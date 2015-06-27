@@ -1,0 +1,36 @@
+{
+  "name": "dsc",
+  "version": "1.0.0",
+  "authors": [
+    "jvalderlei <vander.vander@gmail.com>"
+  ],
+  "description": "Design Socialmente Consciente",
+  "main": "index.html",
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "keywords": [
+    "node",
+    "angular",
+    "material",
+    "mongodb"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "~0.2.15",
+    "angular-material": "~0.10.0",
+    "angular-translate": "~2.7.2",
+    "angular-translate-loader-static-files": "~2.7.2",
+    "angular-translate-storage-local": "~2.7.2",
+    "angular-translate-storage-cookie": "~2.7.2",
+    "angular-material-icons": "~0.5.0"
+  }
+}

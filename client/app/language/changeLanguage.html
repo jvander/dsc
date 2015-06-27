@@ -1,0 +1,10 @@
+<div ng-controller="languageController as ctrl">
+        <md-select placeholder="{{ 'LANGUAGE_SELECTED' | translate }}" ng-model="language">
+            <md-option value="pt" ng-click="ctrl.setLang('pt')" >{{ 'LANGUAGE_PORTUGUESE' | translate }}</md-option>
+            <md-option value="en" ng-click="ctrl.setLang('en')" >{{ 'LANGUAGE_ENGLISH' | translate }}</md-option>
+            <md-option value="es" ng-click="ctrl.setLang('es')" >{{ 'LANGUAGE_SPANISH' | translate }}</md-option>
+        </md-select>
+</div>
+
+
+
