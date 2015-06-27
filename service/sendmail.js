@@ -5,13 +5,15 @@
 
 
 var nodemailer = require('nodemailer');
+var configMail = require('../configmail');
+
 
 // create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: "socialawarenessdesign@gmail.com",
-        pass: "sac123!@#"
+        user: configMail.email,
+        pass: configMail.password
     }
 });
 
@@ -20,9 +22,9 @@ var transporter = nodemailer.createTransport({
 
 // setup e-mail data with unicode symbols
 var mailOptions = {
-    from: 'socialawarenessdesign@gmail.com', // sender address
-    to: 'vander.vander@gmail.com', // list of receivers
-    subject: 'Hello', // Subject line
+    from: configMail.email, // sender address
+    to: 'destinatario@algo...', // list of receivers
+    subject: 'Teste', // Subject line
     text: 'Hello world', // plaintext body
     html: '<b>Não Responda este eamil!</b>' // html body
 };

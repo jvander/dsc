@@ -8,6 +8,7 @@
     angular.module('appLogin',[])
        .controller('loginController', function($rootScope, $state, Auth) {
             var vm = this;
+
             vm.loggedIn = Auth.isLoggedIn();
             $rootScope.$on('$routeChangeStart', function() {
                 vm.loggedIn = Auth.isLoggedIn();

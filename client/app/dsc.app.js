@@ -4,7 +4,7 @@
 (function () {
     "use strict";
 angular
-    .module('app',['appLogin','authService','ui.router','ngMaterial','ngMdIcons','ngCookies','pascalprecht.translate'])
+    .module('app',['exceptionOverride','appLogin','authService','ui.router','ngMaterial','ngMdIcons','ngCookies','pascalprecht.translate'])
         .config(function($httpProvider) {
             $httpProvider.interceptors.push('AuthInterceptor');
         });
