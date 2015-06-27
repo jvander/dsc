@@ -89,7 +89,7 @@ module.exports =  function(app, express){
                 }
             });
         }else{
-            res.status(403).send({ success: false, mensage: "No Token Provide"});
+            res.status(403).send({ success: false, message: "No Token Provide"});
         }
     });
 

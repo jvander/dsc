@@ -7,12 +7,8 @@
     angular
         .module('app')
         .config(appConfig);
-
     appConfig.$inject = ['$mdThemingProvider'];
-
      function appConfig ($mdThemingProvider,$httpProvider) {
-
-
         var customGreenMap = $mdThemingProvider.extendPalette('teal', {
             'contrastDefaultColor': 'light',
             'contrastDarkColors': ['50'],

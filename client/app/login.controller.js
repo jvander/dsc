@@ -5,8 +5,11 @@
 (function() {
     'use strict';
 
-    angular.module('appLogin',[])
-       .controller('loginController', function($rootScope, $state, Auth) {
+    angular.module('app')
+       .controller('loginController',loginController);
+
+
+        function loginController($rootScope,$state, Auth, toastApp) {
             var vm = this;
 
             vm.loggedIn = Auth.isLoggedIn();
@@ -29,9 +32,8 @@
                         Auth.getUser()
                             .then(function(data) {
                                    vm.user = data.data;
-                                   console.log(vm.user);
+                                   toastApp.errorMessage('Seja Bem vindo:' + vm.user.nickname);
                             });
-
                         if(data.success) {
                             $state.go('appdsc');
                         }
@@ -46,6 +48,6 @@
                 $state('init');
             };
 
+        };
 
-        });
 })();

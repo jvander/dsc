@@ -3,11 +3,12 @@
  */
 (function () {
     "use strict";
+
 angular
-    .module('app',['exceptionOverride','appLogin','authService','ui.router','ngMaterial','ngMdIcons','ngCookies','pascalprecht.translate'])
+    .module('app',['toastService','authService','ui.router','ngMaterial','ngMdIcons','ngCookies','pascalprecht.translate'])
         .config(function($httpProvider) {
             $httpProvider.interceptors.push('AuthInterceptor');
-        });
+        })
 })();
 
 
