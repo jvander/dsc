@@ -46,12 +46,13 @@ function routes($stateProvider, $urlRouterProvider) {
         .state('appdsc', {
         url: '/appdsc',
         templateUrl: 'views/pages/appdsc.html',
-        controller: 'menuController as vm'
-        }).state('appdsc.loadproblem', {
+        controller: 'menuAppController as vm'
+        }).state('appdsc.problem', {
             url: '/problem',
             views: {
-                'appdsc-problem': {
-                    templateUrl: 'views/pages/problemdescription.html'
+                'edit-problem': {
+                    templateUrl: 'views/pages/problemdescription.html',
+                    controller: 'editProblemController as vm'
                 }
             }
         });
