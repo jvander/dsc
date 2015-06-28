@@ -2,12 +2,18 @@
  * Created by JOSEVALDERLEI on 24/06/2015.
  */
 
+(function(){
+
+
+"use strict";
 
 angular.module('app')
     .controller('editProblemController',editProblemaController);
-editProblemaController.$inject = ['$scope','Socket'];
+editProblemaController.$injectre = ['$scope','Socket'];
 
 function editProblemaController($scope, Socket){
+
+
     $scope.myProblem = { "id":"",
                          "title": "",
                          "description": ""
@@ -28,4 +34,8 @@ function editProblemaController($scope, Socket){
         Socket.emit('atualizarProblema', myProblem);
 
      };
+
+
 }
+
+})();

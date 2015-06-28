@@ -43,20 +43,56 @@ function routes($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('appdsc', {
-        url: '/appdsc',
-        templateUrl: 'views/pages/appdsc.html',
-        controller: 'menuAppController as vm'
-        }).state('appdsc.problem', {
+        .state('startproblem', {
+            url: '/startproblem',
+            templateUrl: 'views/pages/startproblem.html',
+            controller: 'startProblemController as vm'
+        })
+
+
+        .state('problem', {
             url: '/problem',
+            templateUrl: 'views/pages/problem.html',
+            controller: 'menuProblemController as vm'
+        })
+        .state('problem.description', {
+            url: 'description',
             views: {
-                'edit-problem': {
+                'problem-description': {
                     templateUrl: 'views/pages/problemdescription.html',
                     controller: 'editProblemController as vm'
                 }
             }
-        });
-    $urlRouterProvider.otherwise('/login');
+        })
+        .state('problem.stakeholders', {
+            url: 'stakeholders',
+            views: {
+                'dsc-artifact': {
+                    templateUrl: 'views/pages/stakeholders.html',
+
+                }
+            }
+        })
+        .state('problem.valuationframing', {
+                url: 'valuationframing',
+                views: {
+                    'dsc-artifact': {
+                        templateUrl: 'views/pages/valuationframing.html',
+
+                    }
+                }
+            })
+
+        .state('problem.semioticframework', {
+                url: 'semioticframework',
+                views: {
+                    'dsc-artifact': {
+                        templateUrl: 'views/pages/semioticframework.html',
+
+                    }
+                }
+            });
+        $urlRouterProvider.otherwise('/login');
 }
 
 })();

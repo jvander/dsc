@@ -32,10 +32,11 @@
                         Auth.getUser()
                             .then(function(data) {
                                    vm.user = data.data;
-                                   toastApp.errorMessage('Seja Bem vindo:' + vm.user.nickname);
+                                   toastApp.errorMessage('Bem Vindo...' + vm.user.nickname);
                             });
                         if(data.success) {
-                            $state.go('appdsc');
+                            $state.go('startproblem');
+
                         }
                         else {
                             vm.error = data.message;
@@ -48,6 +49,6 @@
                 $state('init');
             };
 
-        };
+        }
 
 })();

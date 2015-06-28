@@ -26,14 +26,11 @@
     "LABEL_YOUR_EMAIL": "??email",
     "LABEL_YOUR_LANGUAGE": "??Language",
     "LABEL_YOUR_PASSWORD": "??Password",
+    "LABEL_ARTIFACT_STAKEHOLDER" : "??Stakeholders Identification",
+    "LABEL_ARTIFACT_VALUATION_FRAMING" : "??Valuation Framing",
+    "LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK": "??Semiotic Framework",
+    "LABEL_ARTIFACT" : "??Artifact",
+    "PROBLEMS": "??Problems"
 
-    "TITLE_FORM_SIGN_PROBLEM":"***Sign Problem",
-    "LABEL_FIELD": "***Field",
-    "PROBLEMS": "Problems",
-    "LABEL_CORE_PROBLEMATIC": "***Problematic core",
-    "LABEL_PROBLEM_DESCRIPTION": "***Problem (of the??) description",
-    "SEMIOTIC_FRAMEWORK": "...Semiotic Framework",
-    "VALUATION_FRAMEWORK": "...Valuation Framework",
-    "STAKEHOLDERS": "...Stakeholders Identification ",
-    "LABEL_EMAIL" : "Email"
+
 }

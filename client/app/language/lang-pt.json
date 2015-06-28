@@ -26,15 +26,9 @@
     "LABEL_YOUR_EMAIL": "email",
     "LABEL_YOUR_LANGUAGE": "Linguagem",
     "LABEL_YOUR_PASSWORD": "Senha",
-
-    "LABEL_CONFIRMAR": "Confirmar",
-    "TITLE_FORM_SIGN_PROBLEM":"Cadastrar Problema",
-    "LABEL_FIELD": "Tema",
-    "LABEL_CORE_PROBLEMATIC": "Núcleo Problematico",
-    "LABEL_PROBLEM_DESCRIPTION": "Descrição do problema",
-    "PROBLEMS": "Problemas",
-    "SEMIOTIC_FRAMEWORK": "Escada Semiótica",
-    "VALUATION_FRAMEWORK": "Quadro de Avaliação",
-    "STAKEHOLDERS": "Partes Interessadas",
-    "LABEL_EMAIL": "Email"
+    "LABEL_ARTIFACT_STAKEHOLDER" : "Stakeholders",
+    "LABEL_ARTIFACT_VALUATION_FRAMING" : "Quadro de Avaliação",
+    "LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK": "Framework Semiótico",
+    "LABEL_ARTIFACT" : "Artefatos",
+    "PROBLEMS": "Problemas"
 }
