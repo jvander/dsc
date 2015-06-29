@@ -9,7 +9,7 @@
        .controller('loginController',loginController);
 
 
-        function loginController($rootScope,$state, Auth, toastApp) {
+        function loginController($rootScope,$state, Auth, $filter, toastApp) {
             var vm = this;
 
             vm.loggedIn = Auth.isLoggedIn();
@@ -32,7 +32,7 @@
                         Auth.getUser()
                             .then(function(data) {
                                    vm.user = data.data;
-                                   toastApp.errorMessage('Bem Vindo...' + vm.user.nickname);
+                                   toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + vm.user.nickname);
                             });
                         if(data.success) {
                             $state.go('startproblem');

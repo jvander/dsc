@@ -1,5 +1,6 @@
 {
-    "WELCOME_SYSTEM": "Social Awareness Design",
+    "WELCOME_SYSTEM": "Welcome",
+    "NAME_SYSTEM": "Social Awareness Design",
     "LANGUAGE_SELECTED": "English",
     "TITLE_FORM_USER_REGISTER":"Sign up",
     "LANGUAGE_ENGLISH":"English",
@@ -30,7 +31,8 @@
     "LABEL_ARTIFACT_VALUATION_FRAMING": "Valuation Framing",
     "LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK": "Semiotic Framework",
     "LABEL_ARTIFACT" : "Artifact",
-    "PROBLEMS": "Problems"
+    "PROBLEMS": "Problems",
+    "LABEL_CLOSE" : "Close"
 
 
 }

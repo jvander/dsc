@@ -1,5 +1,6 @@
 {
-    "WELCOME_SYSTEM": "Design Socialmente Consciente",
+    "WELCOME_SYSTEM": "Seja bem vindo",
+    "NAME_SYSTEM": "Design Socialmente Consciente",
     "LANGUAGE_SELECTED": "Português",
     "TITLE_FORM_USER_REGISTER":"Registrar",
     "LANGUAGE_ENGLISH":"Inglês",
@@ -30,5 +31,6 @@
     "LABEL_ARTIFACT_VALUATION_FRAMING" : "Quadro de Avaliação",
     "LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK": "Framework Semiótico",
     "LABEL_ARTIFACT" : "Artefatos",
-    "PROBLEMS": "Problemas"
+    "PROBLEMS": "Problemas",
+    "LABEL_CLOSE" : "Fechar"
 }

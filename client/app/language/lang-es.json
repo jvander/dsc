@@ -1,5 +1,6 @@
 {
-    "WELCOME_SYSTEM": "*Traduzir*Design Socialmente Consciente..",
+    "WELCOME_SYSTEM": "*Bien Venido..",
+    "NAME_SYSTEM": "*Traduzir*Design Socialmente Consciente..",
     "LANGUAGE_SELECTED": "español",
     "TITLE_FORM_USER_REGISTER":"Regístrate",
     "LANGUAGE_ENGLISH":"English",
@@ -30,7 +31,8 @@
     "LABEL_ARTIFACT_VALUATION_FRAMING" : "??Valuation Framing",
     "LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK": "??Semiotic Framework",
     "LABEL_ARTIFACT" : "??Artifact",
-    "PROBLEMS": "??Problems"
+    "PROBLEMS": "??Problems",
+    "LABEL_CLOSE" : "??Close"
 
 
 }
