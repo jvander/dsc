@@ -9,8 +9,9 @@
     angular.module('app')
         .controller('startProblemController',startProblemController);
 
-        function startProblemController($state,Auth) {
+        function startProblemController($state,Auth,Socket) {
             var vm = this;
+            vm.idProblem = '00001';
             vm.problemList = [
                 {
                     id: '001',
@@ -34,7 +35,10 @@
                 return vm.problemList;
             }
 
-            vm.editProblem = function () {
+            vm.editProblem = function (idProblem) {
+                vm.idProblem = idProblem;
+                console.log("Busca Problem com id" + vm.idProblem);
+                Socket.emit('addProblemID', vm.idProblem);
                 $state.go('problem');
             };
 

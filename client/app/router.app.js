@@ -56,7 +56,7 @@ function routes($stateProvider, $urlRouterProvider) {
             controller: 'menuProblemController as vm'
         })
         .state('problem.description', {
-            url: 'description',
+            url: '/description',
             views: {
                 'problem-description': {
                     templateUrl: 'views/pages/problemdescription.html',
@@ -69,7 +69,7 @@ function routes($stateProvider, $urlRouterProvider) {
             views: {
                 'dsc-artifact': {
                     templateUrl: 'views/pages/stakeholders.html',
-
+                    controller: 'stakeholderController as vm'
                 }
             }
         })
@@ -78,7 +78,7 @@ function routes($stateProvider, $urlRouterProvider) {
                 views: {
                     'dsc-artifact': {
                         templateUrl: 'views/pages/valuationframing.html',
-
+                        controller: 'valuationframingController as vm'
                     }
                 }
             })
@@ -88,7 +88,7 @@ function routes($stateProvider, $urlRouterProvider) {
                 views: {
                     'dsc-artifact': {
                         templateUrl: 'views/pages/semioticframework.html',
-
+                        controller: 'semioticframeworkController as vm'
                     }
                 }
             });

@@ -14,28 +14,27 @@ editProblemaController.$injectre = ['$scope','Socket'];
 function editProblemaController($scope, Socket){
 
 
-    $scope.myProblem = { "id":"",
+    $scope.myProblem = { "idProblem":"",
                          "title": "",
                          "description": ""
 
                          };
+
     Socket.on('onAtualizarProblema', function (retorno) {
-        $scope.myProblem.id = retorno.id;
+        $scope.myProblem.id = retorno.idProblem;
         $scope.myProblem.title = retorno.title;
         $scope.myProblem.description = retorno.description;
     });
 
     $scope.problemUpdate = function (myProblem) {
         myProblem = {
-            id: "001",
+            idProblem: myProblem.idProblem,
             title: myProblem.title,
             description: myProblem.description
         };
         Socket.emit('atualizarProblema', myProblem);
 
      };
-
-
 }
 
 })();

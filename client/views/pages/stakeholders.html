@@ -1,1 +1,22 @@
-<div>Diagrama das partes Interessadas...</div>
+<div>
+<div ng-repeat="stakeholder in vm.stakeholderList">
+    <md-button ng-click="vm.setOpenEdit(stakeholder)">{{stakeholder.name}}</md-button>
+    <div ng-show=stakeholder.openEdit>
+        <md-input-container>
+            <label>ID</label>
+            <input ng-model="stakeholder.id">
+        </md-input-container>
+        <md-input-container>
+        <md-input-container>
+            <label>Stakeholder</label>
+            <input ng-model="stakeholder.name">
+            </md-input-container>
+        <md-input-container>
+            <label>Description</label>
+            <input ng-model="stakeholder.description">
+        </md-input-container>
+    <md-button ng-click="vm.addStakeholder(stakeholder)">Add</md-button>
+    </div>
+</div>
+</div>
+
