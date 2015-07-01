@@ -24,7 +24,7 @@
             'client/app/*dsc.app.js',
             'client/app/toast.service.js',
             'client/app/router.app.js',
-            'client/app/**/*.js',
+            'client/app/**/*.js'
         ],
         jshint: [
             'client/app/**/*.js'

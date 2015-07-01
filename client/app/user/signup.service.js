@@ -9,19 +9,22 @@
 
   function signupService($http) {
 
-    var API_ROUTE = '/api/signup/';
+    var API_ROUTE_USER = '/api/signup/';
+    var API_ROUTE_RESCUEPASSWORD = '/api/rescuepassword/';
+
 
     var service = {
-      API_ROUTE     : API_ROUTE,
-      create        : create
+      create         : create,
+      rescuePassword : rescuePassword
     };
-
     return service;
 
-
     function create(data) {
-      return $http.post(API_ROUTE, data);
+        return $http.post(API_ROUTE_USER, data);
+    }
 
+    function rescuePassword(data){
+      return $http.post(API_ROUTE_RESCUEPASSWORD, data);
     }
   }
 })();

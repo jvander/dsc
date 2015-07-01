@@ -4,31 +4,50 @@
   angular
     .module('app')
     .controller('signupController', signupController);
-    signupController.$inject = ['signupModel','$state','toastApp'];
+    signupController.$inject = ['signupService','$state','toastApp','AuthToken','Auth','$filter'];
 
-  function signupController(signupModel,$state,toastApp){
+  function signupController(signupService,$state,toastApp,AuthToken,Auth,$filter){
     /* jshint validthis: true */
     var vm = this;
 
     vm.message  = '';
-    vm.save   = save;
+    vm.save   = saveUser;
+    vm.rescuePassword = rescuePassword;
 
-
-    function save(user) {
-      signupModel.create(user)
+    function saveUser(user) {
+      signupService.create(user)
           .success(function(data) {
             if(data.success) {
-              toastApp.errorMessage("Cadastro realizado com sucesso!");
-              $state.go('init.login');
-            }
-            else{
+              AuthToken.setToken(data.token);
+              Auth.getUser()
+                  .then(function(data) {
+                    vm.user = data.data;
+                    toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + vm.user.nickname);
+                    $state.go('startproblem');
+                  });
+          }else{
               toastApp.errorMessage("Email Já cadastrado");
             }
 
+
           })
 
-
     }
+
+      function rescuePassword(userEmail){
+          signupService.rescuePassword(userEmail)
+              .success(function(data) {
+                  console.log(data);
+                  if(data.success) {
+                      toastApp.errorMessage("Email com instruções enviado");
+                  }else{
+                      toastApp.errorMessage("iiiiiiiiiiiiiiiiiiii");
+                  }
+
+              })
+
+      }
+
 
   }
 })();

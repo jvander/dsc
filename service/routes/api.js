@@ -3,6 +3,7 @@
  */
 var User = require('../models/user');
 var config = require('../../config.server');
+var configMail = require('../../configmail');
 var secretKey = config.secretKey;
 
 var jsonwebtoken = require('jsonwebtoken');
@@ -26,10 +27,8 @@ function getToken(){
     return require('crypto').randomBytes(32).toString('hex');
 }
 
-function getDateExpired(){
-    var date = new Date();
-    date.setDate(date.getDate() + 1);
-    return date;
+function sendMail(mailOptions){
+    require('../sendmailDSC')(mailOptions);
 }
 
 module.exports =  function(app, express){
@@ -54,7 +53,8 @@ module.exports =  function(app, express){
                     }
                     res.json({
                         success: true,
-                        mensage: "User has been created."
+                        mensage: "User has been created.",
+                        token: createToken(user)
                     })
                 })
             }else if (user){
@@ -67,34 +67,67 @@ module.exports =  function(app, express){
         });
     });
 
-    api.post('/setpassword', function(req, res){
-        console.log('Valor valor valor valor' +  req.body.mytoken);
-        User.findOne({
-            resetPasswordToken: req.body.mytoken
-        }).select('nickname email resetPasswordToken resetPasswordExpires').exec(function(err,user){
-            if(err) throw err;
-            if(!user){
-                         res.json({
-                        success: false,
-                        mensage: "Not email!"
-                    });
-            }else{
-                if( new Date() < user.resetPasswordExpires ){
+
+    api.post('/newpassword', function(req, res){
+            console.log(req.body.mytoken);
+            User.findOne({resetPasswordToken: req.body.mytoken, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+                if (!user) {
                     res.json({
-                        success: true,
-                        mensage: "Change your password!"
+                        success: false,
+                        mensage: "Password reset token is invalid or has expired."
                     });
                 }else{
-                    res.json({
-                        success: false,
-                        mensage: "Date expired!"
+                    user.password = req.body.password;
+                    user.resetPasswordToken = undefined;
+                    user.resetPasswordExpires = undefined;
+                    user.save(function (err) {
+                        if (err) {
+                            console.log(err);
+                            return;
+                        }
                     });
+                    var mailOptions = {
+                        to: user.email,
+                        from: configMail.email,
+                        subject: 'Your password has been changed in DSC System.',
+                        text: 'Hello ' + user.nickname +',\n\n' +
+                        'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+                    };
+                    sendMail(mailOptions);
+                    res.json({
+                        success: true,
+                        message: "Your password has changed"
+                    });
+
+
                 }
+            });
+        }
+    );
+
+
+    api.get('/setpassword/:mytoken', function(req, res){
+        console.log(req.params.mytoken);
+        User.findOne({resetPasswordToken: req.params.mytoken, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+            if (!user) {
+                res.json({
+                    success: false,
+                    message: "Password reset token is invalid or has expired."
+                });
+            }else{
+                    res.json({
+                        success: true,
+                        message: "Change your password",
+                        mytoken: user.resetPasswordExpires
+                    });
             }
         });
     });
 
     api.post('/rescuepassword', function(req, res){
+
+            console.log(req.body.email);
+
             User.findOne({
                 email: req.body.email
             }).select('id nickname email').exec(function(err,user){
@@ -102,27 +135,37 @@ module.exports =  function(app, express){
                 if(!user){
                     res.json({
                             success: false,
-                            mensage: "Not email " + req.body.email
+                            message: "Not email " + req.body.email
                         }
                     );
                 }else if (user){
                     user.resetPasswordToken = getToken();
-                    user.resetPasswordExpires = getDateExpired();
+                    user.resetPasswordExpires = Date.now() + 21600000; // 6 horas
                     console.log(user.resetPasswordToken);
                      user.save(function (err) {
                         if(err){
                             console.log(err);
                             return;
                         }
+
+                         var mailOptions = {
+                             from: configMail.email, // sender address
+                             to: user.email, // list of receivers
+                             subject: 'Password DSC', // Subject line
+                             text: 'Oi ' + user.nickname + '! Para alterar sua senha clique no link.' +
+                             'http://localhost:3000/?mytoken=' + user.resetPasswordToken,// plaintext body
+                         };
+
+                         sendMail(mailOptions);
                         res.json({
                             success: true,
-                            mensage: "Send email for " + req.body.email
+                            message: "Send email for " + req.body.email
                         })
                     })
                 }else{
                     res.json({
                         success: false,
-                        mensage: "Rescue not possible."
+                        message: "Rescue not possible."
                     })
 
                 }
@@ -166,19 +209,25 @@ module.exports =  function(app, express){
     });
 
     api.use(function(req, res, next){
-         var token = req.body.token || req.param('token') || req.headers['x-access-token'];
-        if(token){
-            jsonwebtoken.verify(token,secretKey, function(err, decoded){
-                if(err){
-                    res.status(403).send({ success: false, message: "Failed to authenticate user"});
-                }else{
-                    req.decoded = decoded;
-                    next();
-                }
-            });
-        }else{
-            res.status(403).send({ success: false, message: "No Token Provide"});
+        if(!req.path === "/setpassword/") {
+
+
+            var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+            if (token) {
+                jsonwebtoken.verify(token, secretKey, function (err, decoded) {
+                    if (err) {
+                        res.status(403).send({success: false, message: "Failed to authenticate user"});
+                    } else {
+                        req.decoded = decoded;
+                        next();
+                    }
+                });
+            } else {
+                res.status(403).send({success: false, message: "No Token Provide"});
+            }
         }
+        next();
+
     });
 
     api.get('/me', function(req, res) {

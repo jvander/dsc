@@ -39,7 +39,7 @@ function routes($stateProvider, $urlRouterProvider) {
             views: {
                 'content-tab': {
                     templateUrl: 'views/pages/rescuepassword.html',
-                    controller: 'loginController as vm'
+                    controller: 'signupController as vm'
                 }
             }
         })

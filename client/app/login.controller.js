@@ -26,8 +26,6 @@
                 vm.error = '';
                 Auth.login(user.email, user.password)
                     .success(function(data) {
-
-
                        vm.processing = false;
                         Auth.getUser()
                             .then(function(data) {
