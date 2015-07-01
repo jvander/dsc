@@ -13,22 +13,13 @@
     function signupModel(signupService) {
 
         var service = {
-            create  : create,
+            create  : create
         };
 
         return service;
-        ///////////////////
 
         function create(data) {
-            var _handleCreate = {
-                success: function(result){
-                   console.log(result.data);
-                },
-                error: function(error){
-                    console.error('signupModel : User create error' + error);
-                }
-            };
-            signupService.create(data).then(_handleCreate.success, _handleCreate.error);
+            return signupService.create(data);
         }
     }
 })();

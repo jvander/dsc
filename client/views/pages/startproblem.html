@@ -5,6 +5,7 @@
             <md-button ng-click="vm.doLogout()">Logout</md-button>
         </div>
     </md-toolbar>
+
     <md-content style="height: 600px;">
         <md-input-container>
             <div>
@@ -12,7 +13,6 @@
             <input type="text" ng-model="vm.idProblem">
             </div>
             <div><md-button ng-click="vm.editProblem(vm.idProblem)">New Problem</md-button></div>
-
         </md-input-container>
         <md-list>
             <md-list-item class="md-3-line" ng-repeat="problem in vm.problemList">
@@ -31,3 +31,4 @@
         </md-list>
     </md-content>
 </div>
+

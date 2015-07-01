@@ -1,6 +1,10 @@
 <div>
+
+
 <div ng-repeat="stakeholder in vm.stakeholderList">
-    <md-button ng-click="vm.setOpenEdit(stakeholder)">{{stakeholder.name}}</md-button>
+    <span ng-hide="stakeholder.openEdit">
+    <md-button class="md-primary" ng-click="vm.setOpenEdit(stakeholder)">{{stakeholder.name}}</md-button>
+    </span>
     <div ng-show=stakeholder.openEdit>
         <md-input-container>
             <label>ID</label>

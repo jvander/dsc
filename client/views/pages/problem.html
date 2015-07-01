@@ -1,6 +1,6 @@
-<md-button ng-click="vm.editDescriptionProblem()">Edit Description</md-button>
-<md-button>Colaborators</md-button>
-<md-button ng-click="vm.doLogout()">Logout</md-button>
+<md-button class="md-primary" ng-click="vm.editDescriptionProblem()">Edit Description</md-button>
+<md-button class="md-primary">Colaborators</md-button>
+<md-button class="md-primary" ng-click="vm.doLogout()">Logout</md-button>
 <div class="" ui-view="problem-description"></div>
 
 <div>
@@ -10,21 +10,18 @@
                     md-active="$state.is('problem.stakeholders')"
                     label="{{'LABEL_ARTIFACT_STAKEHOLDER' | translate }}">
                 <md-content class="md-padding">
-                    <h3 class="md-display-2">{{'LABEL_ARTIFACT_STAKEHOLDER' | translate }}</h3>
                 </md-content>
             </md-tab>
             <md-tab  data-ui-sref="problem.valuationframing"
                      md-active="$state.is('problem.valuationframing')"
                     label="{{'LABEL_ARTIFACT_VALUATION_FRAMING' | translate }}">
                 <md-content class="md-padding">
-                    <h3 class="md-display-2">{{'LABEL_ARTIFACT_VALUATION_FRAMING' | translate }}</h3>
                  </md-content>
             </md-tab>
             <md-tab data-ui-sref="problem.semioticframework"
                     md-active="$state.is('problem.semioticframework')"
                     label="{{'LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK' | translate }}">
                 <md-content class="md-padding">
-                    <h3 class="md-display-2">{{'LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK' | translate }}</h3>
                   </md-content>
             </md-tab>
         </md-tabs>

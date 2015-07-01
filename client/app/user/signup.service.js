@@ -13,21 +13,15 @@
 
     var service = {
       API_ROUTE     : API_ROUTE,
-      create        : create,
-      errorCallback : errorCallback,
+      create        : create
     };
 
     return service;
 
 
     function create(data) {
-      return $http.post(API_ROUTE, data).
-        error(errorCallback);
-    }
+      return $http.post(API_ROUTE, data);
 
-
-    function errorCallback(error) {
-      //console.error(error);
     }
   }
 })();
