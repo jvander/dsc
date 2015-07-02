@@ -32,7 +32,9 @@ function sendMail(mailOptions){
 }
 
 module.exports =  function(app, express){
+
     var api = express.Router();
+
     api.post('/signup', function(req,res){
         User.findOne({
             email: req.body.email
@@ -98,8 +100,6 @@ module.exports =  function(app, express){
                         success: true,
                         message: "Your password has changed"
                     });
-
-
                 }
             });
         }
@@ -153,7 +153,7 @@ module.exports =  function(app, express){
                              to: user.email, // list of receivers
                              subject: 'Password DSC', // Subject line
                              text: 'Oi ' + user.nickname + '! Para alterar sua senha clique no link.' +
-                             'http://localhost:3000/?mytoken=' + user.resetPasswordToken,// plaintext body
+                             'http://'+ configMail.serverURL +':3000/?mytoken=' + user.resetPasswordToken,// plaintext body
                          };
 
                          sendMail(mailOptions);
@@ -208,11 +208,12 @@ module.exports =  function(app, express){
         });
     });
 
+
+
     api.use(function(req, res, next){
-        if(!req.path === "/setpassword/") {
-
-
-            var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+        res.header("Access-Control-Allow-Origin", "/api/setpassword/");
+        next();
+        var token = req.body.token || req.param('token') || req.headers['x-access-token'];
             if (token) {
                 jsonwebtoken.verify(token, secretKey, function (err, decoded) {
                     if (err) {
@@ -225,8 +226,6 @@ module.exports =  function(app, express){
             } else {
                 res.status(403).send({success: false, message: "No Token Provide"});
             }
-        }
-        next();
 
     });
 

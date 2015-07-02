@@ -10,7 +10,7 @@
   function signupService($http) {
 
     var API_ROUTE_USER = '/api/signup/';
-    var API_ROUTE_RESCUEPASSWORD = '/api/rescuepassword/';
+    var API_ROUTE_RESCUEPASSWORD = '/api/rescuepasswd/';
 
 
     var service = {

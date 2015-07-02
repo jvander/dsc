@@ -25,15 +25,20 @@ app.use(morgan('dev'));
 
 app.use(express.static(__dirname + config.clientPath));
 
+/*
 var api = require('./service/routes/api')(app,express);
 app.use('/api',api);
+*/
+
+var api = require('./service/routers/routersAPI')(app,express);
+app.use('/api', api);
+
 
 app.get("*", function(req,res){
     res.sendFile(__dirname + config.viewPath);
 });
 
 io.on('connection', function(socket) {
-    console.log('User on' + Date.now());
     dpi(io, socket);
 });
 
