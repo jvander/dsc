@@ -1,10 +1,11 @@
 
 angular.module('DropDSC',[])
     .directive('draggable', function($document) {
-        return {
-            restrict: 'AE',
+
+      return {
+            restrict: 'A',
             replace: true,
-              link: function(scope, element, attr) {
+            link: function(scope, element, attr) {
                   element.css({
                       position: 'relative',
                       cursor: 'pointer'

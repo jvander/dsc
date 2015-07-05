@@ -3,7 +3,7 @@
  */
 
 
-var rescuepassword = require('../models/rescuepasswordController');
+var rescuepassword = require('../models/rescue.password.controller');
 var accessController = require('../models/accessController');
 
 module.exports =  function(app, express){
