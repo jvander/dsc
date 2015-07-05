@@ -13,10 +13,10 @@
 
 module.exports = function(io,socket) {
 
-    socket.on('addProblemID', function(idProblem){
-        socket.room = idProblem;
-        socket.join(idProblem);
-        console.log("Pronto para editar problema com id " + idProblem);
+    socket.on('addProblemID', function(problem){
+        socket.room = problem.id;
+        socket.join(problem.id);
+        console.log("Pronto para editar problema com id " + problem.id);
     });
 
     socket.on('disconnectProblem', function(){
@@ -26,10 +26,15 @@ module.exports = function(io,socket) {
     });
 
     socket.on('atualizarProblema', function (data) {
-        data.idProblem = socket.room;
-        console.log("Editanto Problema: " + socket.room + ": " + data.description);
+        console.log("Permissão: " + data.update);
+        if(data.update){
+            console.log("Grevando no banco....: " + socket.room );
+        }
+        data.id = socket.room;
         io.sockets.in(socket.room).emit('onAtualizarProblema', data);
     });
+
+
 
      /*socket.on('atualizarProblema', function(problem) {
      if(problem.id == '001') {

@@ -28,9 +28,10 @@
     "LABEL_YOUR_LANGUAGE": "Linguagem",
     "LABEL_YOUR_PASSWORD": "Senha",
     "LABEL_ARTIFACT_STAKEHOLDER" : "Stakeholders",
-    "LABEL_ARTIFACT_VALUATION_FRAMING" : "Quadro de Avaliação",
+    "LABEL_ARTIFACT_EVALUATION_FRAMEWORK" : "Quadro de Avaliação",
     "LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK": "Framework Semiótico",
     "LABEL_ARTIFACT" : "Artefatos",
     "PROBLEMS": "Problemas",
-    "LABEL_CLOSE" : "Fechar"
+    "LABEL_CLOSE" : "Fechar",
+    "LABEL_FORM_EVALUATION_FRAMEWORK" : "Quadro de Avaliação"
 }

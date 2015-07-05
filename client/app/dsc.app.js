@@ -5,10 +5,11 @@
     "use strict";
 
 angular
-    .module('app',['toastService','DragAndDrop','authService','ui.router','ngMaterial','ngMdIcons','ngCookies','pascalprecht.translate'])
+    .module('app',['toastService','dscShared','DropDSC','authService','ui.router','ngMaterial','ngMdIcons','ngCookies','pascalprecht.translate'])
         .config(function($httpProvider) {
             $httpProvider.interceptors.push('AuthInterceptor');
         })
+
 })();
 
 

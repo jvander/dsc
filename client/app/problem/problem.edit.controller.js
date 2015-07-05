@@ -11,30 +11,40 @@ angular.module('app')
     .controller('editProblemController',editProblemaController);
 editProblemaController.$injectre = ['$scope','Socket'];
 
-function editProblemaController($scope, Socket){
-
-
-    $scope.myProblem = { "idProblem":"",
-                         "title": "",
-                         "description": ""
-
-                         };
-
+function editProblemaController($scope, Socket,$timeout) {
+    var updateTrue = true;
+    $scope.myProblem = {
+            "id": "",
+            "title": "",
+            "description": "",
+            "update" : true
+    };
+    var setUpdate = function(){
+        updateTrue = true;
+    };
     Socket.on('onAtualizarProblema', function (retorno) {
-        $scope.myProblem.id = retorno.idProblem;
+        $scope.myProblem.id = retorno.id;
         $scope.myProblem.title = retorno.title;
         $scope.myProblem.description = retorno.description;
+        $scope.myProblem.update = updateTrue;
     });
-
     $scope.problemUpdate = function (myProblem) {
         myProblem = {
-            idProblem: myProblem.idProblem,
+            id: myProblem.id,
             title: myProblem.title,
-            description: myProblem.description
+            description: myProblem.description,
+            "update" : updateTrue
         };
         Socket.emit('atualizarProblema', myProblem);
+        if (updateTrue) {
+            updateTrue = false;
+            $timeout(setUpdate, 5000);
+        }
 
-     };
+    };
+
 }
+
+
 
 })();

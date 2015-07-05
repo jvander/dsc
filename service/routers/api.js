@@ -71,44 +71,14 @@ module.exports =  function(app, express){
 
 
     api.post('/newpassword', function(req, res){
-            console.log(req.body.mytoken);
-            User.findOne({resetPasswordToken: req.body.mytoken, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
-                if (!user) {
-                    res.json({
-                        success: false,
-                        mensage: "Password reset token is invalid or has expired."
-                    });
-                }else{
-                    user.password = req.body.password;
-                    user.resetPasswordToken = undefined;
-                    user.resetPasswordExpires = undefined;
-                    user.save(function (err) {
-                        if (err) {
-                            console.log(err);
-                            return;
-                        }
-                    });
-                    var mailOptions = {
-                        to: user.email,
-                        from: configMail.email,
-                        subject: 'Your password has been changed in DSC System.',
-                        text: 'Hello ' + user.nickname +',\n\n' +
-                        'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
-                    };
-                    sendMail(mailOptions);
-                    res.json({
-                        success: true,
-                        message: "Your password has changed"
-                    });
-                }
-            });
+
         }
     );
 
 
-    api.get('/setpassword/:mytoken', function(req, res){
-        console.log(req.params.mytoken);
-        User.findOne({resetPasswordToken: req.params.mytoken, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+    api.get('/setpassword/', function(req, res){
+        console.log(req.body.mytoken);
+        User.findOne({resetPasswordToken: req.body.mytoken, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
             if (!user) {
                 res.json({
                     success: false,

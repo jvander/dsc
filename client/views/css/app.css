@@ -1,42 +1,39 @@
-md-content.md-default-theme {
-    background-color: #eee;
+.close a {
+    position: absolute;
+    margin-left: 118px;
+    margin-top: -10px;
+    text-decoration: none;
+    color: black;
+}
+.sticky-note {
+    position: absolute;
+    margin: 5px;
+    float: left;
+    background:#fefabc;
+    padding:9px;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size:12px;
+    color: #000;
+    width: 120px;
+    box-shadow: 0px 4px 6px #333;
+    -moz-box-shadow: 0px 4px 6px #333;
+    -webkit-box-shadow: 0px 4px 6px #333;
 }
 
-md-card {
-    background-color: #fff;
-}
-md-card h2:first-of-type {
-    margin-top: 0;
-}
-
-md-toolbar .md-button.md-default-theme {
-    border-radius: 99%;
+.sticky-note .title {
+    background: transparent;
+    border: none;
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
 }
 
-h2 {
-    font-weight: 400;
+.sticky-note .body {
+    background: transparent;
+    border: none;
+    display: block;
 }
 
-.md-toolbar-tools-bottom {
-    font-size: small;
-}
-.md-toolbar-tools-bottom :last-child {
-    opacity: 0.8;
-}
-
-md-toolbar:not(.md-hue-1),
-.md-fab {
-    fill: #fff;
-}
-
-md-sidenav {
-    fill: #737373;
-}
-md-sidenav ng-md-icon {
-    position: relative;
-    top: 5px;
-}
-
-.user-avatar {
-    border-radius: 99%;
+[draggable=true] {
+    cursor: pointer;
 }

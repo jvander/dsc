@@ -1,8 +1,18 @@
-<md-button class="md-primary" ng-click="vm.editDescriptionProblem()">Edit Description</md-button>
-<md-button class="md-primary">Colaborators</md-button>
-<md-button class="md-primary" ng-click="vm.doLogout()">Logout</md-button>
-<div class="" ui-view="problem-description"></div>
 
+<div layout="column" layout-fill>
+    <md-toolbar md-scroll-shrink>
+        <div class="md-toolbar-tools">
+
+            <h3>
+                <span>{{'NAME_SYSTEM' | translate }}</span>
+            </h3>
+            <md-button ng-click="vm.editDescriptionProblem()">Edit Description</md-button>
+            <md-button>Colaborators</md-button>
+            <md-button ng-click="vm.doLogout()">Logout</md-button>
+        </div>
+    </md-toolbar>
+</div>
+<div class="" ui-view="problem-description"></div>
 <div>
     <md-content class="md-padding">
         <md-tabs md-dynamic-height md-border-bottom>
@@ -14,9 +24,9 @@
                 </md-content>
             </md-tab>
 
-            <md-tab  data-ui-sref="problem.valuationframing"
-                     md-active="$state.is('problem.valuationframing')"
-                    label="{{'LABEL_ARTIFACT_VALUATION_FRAMING' | translate }}">
+            <md-tab  data-ui-sref="problem.evaluationframework"
+                     md-active="$state.is('problem.evaluationframework')"
+                    label="{{'LABEL_ARTIFACT_EVALUATION_FRAMEWORK' | translate }}">
                 <md-content class="md-padding">
                  </md-content>
             </md-tab>

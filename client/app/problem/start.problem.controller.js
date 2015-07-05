@@ -8,10 +8,9 @@
     'use strict';
     angular.module('app')
         .controller('startProblemController',startProblemController);
-
-        function startProblemController($state,Auth,Socket) {
+        function startProblemController($state,Auth,Socket, dscSharedService ) {
             var vm = this;
-            vm.idProblem = '00001';
+
             vm.problemList = [
                 {
                     id: '001',
@@ -30,15 +29,24 @@
 
             ];
 
+            vm.problem = {
+                id: '001',
+                title: 'Entendendo DSC',
+                description: 'Design socialemten consciente... bla bla bla',
+                team: ['Jesus', 'Madalena', 'Judas']
+            }
+
 
             vm.searchYoursProblems = function () {
                 return vm.problemList;
-            }
+            };
 
-            vm.editProblem = function (idProblem) {
-                vm.idProblem = idProblem;
-                console.log("Busca Problem com id" + vm.idProblem);
-                Socket.emit('addProblemID', vm.idProblem);
+            vm.editProblem = function (newproblem) {
+                vm.problem = newproblem;
+                console.log("Busca Problem com id" + newproblem.id);
+                dscSharedService.prepForBroadcast(vm.problem);
+                Socket.emit('addProblemID', vm.problem);
+
                 $state.go('problem');
             };
 

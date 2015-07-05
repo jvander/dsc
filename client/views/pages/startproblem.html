@@ -1,25 +1,31 @@
-
 <div layout="column" layout-fill>
     <md-toolbar md-scroll-shrink>
         <div class="md-toolbar-tools">
             <md-button ng-click="vm.doLogout()">Logout</md-button>
         </div>
+        <div>
+            <change-language></change-language>
+        </div>
     </md-toolbar>
-
-    <md-content style="height: 600px;">
+    <div flex layout="row" layout-align="center center">
+        <div flex-sm="100" flex-gt-sm="90" flex-gt-md="80" flex-gt-lg="70" class="md-whiteframe-z2">
+    <md-content>
         <md-input-container>
             <div>
             <label>ID Problem</label>
-            <input type="text" ng-model="vm.idProblem">
+            <input type="text" ng-model="vm.problem.id">
             </div>
-            <div><md-button ng-click="vm.editProblem(vm.idProblem)">New Problem</md-button></div>
+            <div><md-button ng-click="vm.editProblem(vm.problem)">New Problem</md-button></div>
         </md-input-container>
-
+        </div>
+    </div>
 
 
         <md-list>
             <md-list-item class="md-3-line" ng-repeat="problem in vm.problemList">
-                <div class="md-list-item-text">
+                <div flex layout="row" layout-align="center center">
+                <div flex-sm="100" flex-gt-sm="90" flex-gt-md="80" flex-gt-lg="70" class="md-whiteframe-z2">
+                <span class="md-list-item-text">
                     <h4>Titulo: {{problem.title}}</h4>
                     Colaboradores:
                      <span ng-repeat="colaborator in problem.team">
@@ -28,11 +34,11 @@
                     <div>
                         Descricption: {{problem.description}}
                     </div>
-                </div>
+                </span>
                 <md-divider inset></md-divider>
+            </div>
+            </div>
             </md-list-item>
         </md-list>
-
-    </md-content>
 </div>
 

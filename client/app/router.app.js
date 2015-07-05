@@ -47,8 +47,15 @@ function routes($stateProvider, $urlRouterProvider) {
             url: '/startproblem',
             templateUrl: 'views/pages/startproblem.html',
             controller: 'startProblemController as vm'
+
         })
 
+        .state('newpassword', {
+
+            url: '/newpassword/:mytoken',
+            templateUrl: 'views/pages/newpassword.html',
+            controller: 'signupController as vm',
+        })
 
         .state('problem', {
             url: '/problem',
@@ -73,11 +80,11 @@ function routes($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('problem.valuationframing', {
-                url: 'valuationframing',
+        .state('problem.evaluationframework', {
+                url: 'evaluationframework',
                 views: {
                     'dsc-artifact': {
-                        templateUrl: 'views/pages/valuationframing.html',
+                        templateUrl: 'views/pages/evaluationframework.html',
                         controller: 'valuationframingController as vm'
                     }
                 }
@@ -92,6 +99,8 @@ function routes($stateProvider, $urlRouterProvider) {
                     }
                 }
             });
+
+
         $urlRouterProvider.otherwise('/login');
 }
 

@@ -7,8 +7,11 @@
     angular
         .module('app')
         .config(appConfig);
+
     appConfig.$inject = ['$mdThemingProvider','$locationProvider'];
-     function appConfig ($mdThemingProvider,$locationProvider) {
+
+    function appConfig ($mdThemingProvider,$locationProvider) {
+
          //$locationProvider.html5Mode(true);
         var customGreenMap = $mdThemingProvider.extendPalette('teal', {
             'contrastDefaultColor': 'light',
@@ -24,7 +27,6 @@
             .accentPalette('teal');
         $mdThemingProvider.theme('input', 'default')
             .primaryPalette('green');
-
 
     }
 

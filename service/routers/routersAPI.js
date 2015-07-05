@@ -8,7 +8,9 @@ var accessController = require('../models/accessController');
 
 module.exports =  function(app, express){
     var api = express.Router();
-    api.use("/",accessController());
+
     api.use("/rescuepasswd", rescuepassword());
+
+    api.use("/",accessController());
     return api;
 };

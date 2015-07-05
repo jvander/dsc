@@ -1,0 +1,114 @@
+<div id='box'>
+    <md-button ng-click='vm.addPostIt()'>Criar Post it</md-button>
+</div>
+<div ng-repeat="stakeholder in vm.stakeholderList">
+    <div  id="stakeholder{{stakeholder.id}}" class="postit">
+        <div class="fechar"><a ng-click="vm.delPostIt($index)">x</a></div>
+        <div ng-hide="stakeholder.openEdit">
+            <span ng-click="vm.setOpenEdit(stakeholder)">{{stakeholder.name}}</span>
+        </div>
+        <div ng-show=stakeholder.openEdit>
+            <span>{{stakeholder.onionlayer}}</span>
+            <md-input-container>
+                <label> Stakeholder </label>
+                <input ng-model="stakeholder.name">
+            </md-input-container>
+            <md-input-container>
+                <label>Description</label>
+                <textarea ng-model="stakeholder.description"></textarea>
+            </md-input-container>
+            <md-button ng-click="vm.addStakeholder(stakeholder)">Add</md-button>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<svg id="svg" height="800" width="1200">
+    <ellipse id='comunidade' cx="600" cy="320" rx="480" ry="320" fill="#DBE3F0"  ng-mouseover="vm.acende($event);" ng-mouseleave="vm.apaga($event);" ng-click="vm.addStack($event, 'community');"/>
+    <ellipse cx="600" cy="380" rx="390" ry="260" fill="#B3BCCC"  ng-mouseover="vm.acende($event);" ng-mouseleave="vm.apaga($event);" ng-click="vm.addStack($event, 'market');"/>
+    <ellipse cx="600" cy="440" rx="300" ry="200" fill="#8D96A8"  ng-mouseover="vm.acende($event);" ng-mouseleave="vm.apaga($event);" ng-click="vm.addStack($event, 'source');"/>
+    <ellipse cx="600" cy="500" rx="210" ry="140" fill="#737C8C"  ng-mouseover="vm.acende($event);" ng-mouseleave="vm.apaga($event);" ng-click="vm.addStack($event, 'contribution');"/>
+    <ellipse cx="600" cy="560" rx="120" ry="80" fill="#596171"  ng-mouseover="vm.acende($event);" ng-mouseleave="vm.apaga($event);" ng-click="vm.addStack($event, 'technico');"/>
+
+    <!-- <text x="25" y="210"  fill="white" class="badge" style="font-family: Arial; font-weight: bold">Tenico</text>-->
+
+    <!--<ui:repeat value="#{dpiControl.listAllStakeholders()}" var="stakeholder">
+        <foreignObject width="300" height="15" x="#{stakeholder.x}" y="#{stakeholder.y}">
+            <p:commandLink styleClass="badge" rel="tooltip" title="#{stakeholder.description}" value="&bull;&nbsp;#{stakeholder.nome}" onclick="editStack('#{stakeholder.id}', '#{stakeholder.nome}', '#{stakeholder.description}', '#{stakeholder.x}', '#{stakeholder.y}', '#{stakeholder.layer}');"/>
+        </foreignObject>
+    </ui:repeat>-->
+
+    <!--<circle cx="600" cy="50" r="10" style="fill: #737C8C;" onmouseover="acende(evt);" onmouseout="apaga(evt);"/>
+    <text x="615" y="55"  >Contruibuition</text>
+    <text x="615" y="68" style="font-size: 10px">Atores, responsaveis</text>
+
+    <circle cx="600" cy="90" r="10" style="fill: #8D96A8;" onmouseover="acende(evt);" onmouseout="apaga(evt);"/>
+    <text x="615" y="95"  >Source</text>
+    <text x="615" y="108" style="font-size: 10px">Clientes, Fornecedores</text>
+
+    <circle cx="600" cy="130" r="10" style="fill: #B3BCCC;" onmouseover="acende(evt);" onmouseout="apaga(evt);"/>
+    <text x="615" y="135"  >Market</text>
+    <text x="615" y="148" style="font-size: 10px">Parceiros, Concorrentes</text>
+
+    <circle cx="600" cy="170" r="10" style="fill: #DBE3F0;" onmouseover="acende(evt);" onmouseout="apaga(evt);"/>
+    <text x="615" y="175"  >Community</text>
+    <text x="615" y="188" style="font-size: 10px">Epectador, Legislador</text>-->
+
+</svg>
+
+
+<div>
+    <div class="clear"></div><br/>
+    <div id='comunidade' ng-click="vm.click('comunidade')" droppable drop="vm.handleDrop">
+        Comunidade
+        <div id='content_comunidade'  droppable drop="vm.handleDrop"></div>
+        <div id='mercado' ng-click="vm.click('mercado')" droppable drop="vm.handleDrop">
+            Mercado
+            <div id='content_mercado' ondrop="onDrop(event)" droppable drop="vm.handleDrop"></div>
+            <div id='fonte' ng-click="vm.click('fonte')">
+                Fonte
+                <div id='content_fonte' droppable drop="vm.handleDrop"></div>
+                <div id='contribuicao' ng-click="vm.click('contribuicao')">
+                    Contribuicao
+                    <div id='content_contribuicao' droppable drop="vm.handleDrop"></div>
+                    <div id='operacao' ng-click="vm.click('operacao')">
+                        Operacao
+                        <div id='content_operacao' droppable drop="vm.handleDrop"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--
+       <div id='box'>
+           <md-button ng-click='vm.addPostIt()'>Criar Post it</md-button>
+       </div>
+
+     <div ng-repeat="stakeholder in vm.stakeholderList">
+           <div id="stakeholder{{stakeholder.id}}" class="sticky-note" draggable>
+               <span ng-click="vm.delPostIt($index)">&times;</span>
+               <div ng-hide="stakeholder.openEdit">
+                   <span ng-click="vm.setOpenEdit(stakeholder)">{{stakeholder.name}}</span>
+               </div>
+               <div ng-show=stakeholder.openEdit>
+                   <label> Stakeholder </label>
+                   <input ng-model="stakeholder.name" class="title">
+                   <label>Description</label>
+                   <textarea ng-model="stakeholder.description" class="body">{{stakeholder.description}}</textarea>
+                   <md-button ng-click="vm.addStakeholder(stakeholder)">Minimizar</md-button>
+               </div>
+
+           </div>
+       </div>-->
+
+
+<!--<div>
+<div class="bin" droppable drop="vm.handleDrop" ng-repeat="bin in [1, 2, 3]" bin="bin" id="bin{{ bin }}">{{ bin }}</div>
+
+<div class="item" id="item{{ item }}" ng-repeat="item in [1, 2, 3]" draggable item="item">{{ item }}</div>
+</div>-->
+</div>

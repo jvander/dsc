@@ -28,11 +28,12 @@
     "LABEL_YOUR_LANGUAGE": "??Language",
     "LABEL_YOUR_PASSWORD": "??Password",
     "LABEL_ARTIFACT_STAKEHOLDER" : "??Stakeholders Identification",
-    "LABEL_ARTIFACT_VALUATION_FRAMING" : "??Valuation Framing",
+    "LABEL_ARTIFACT_EVALUATION_FRAMEWORK" : "??Valuation Framing",
     "LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK": "??Semiotic Framework",
     "LABEL_ARTIFACT" : "??Artifact",
     "PROBLEMS": "??Problems",
-    "LABEL_CLOSE" : "??Close"
+    "LABEL_CLOSE" : "??Close",
+    "LABEL_FORM_EVALUATION_FRAMEWORK" : "??Evaluation Framing"
 
 
 }

@@ -11,11 +11,13 @@
 
     var API_ROUTE_USER = '/api/signup/';
     var API_ROUTE_RESCUEPASSWORD = '/api/rescuepasswd/';
+    var API_ROUTE_SETNEWPASSWORD = '/api/rescuepasswd/newpasswd/';
 
 
     var service = {
       create         : create,
-      rescuePassword : rescuePassword
+      rescuePassword : rescuePassword,
+      changePassword : changePassword
     };
     return service;
 
@@ -25,6 +27,10 @@
 
     function rescuePassword(data){
       return $http.post(API_ROUTE_RESCUEPASSWORD, data);
+    }
+
+    function changePassword(data){
+      return $http.post(API_ROUTE_SETNEWPASSWORD, data);
     }
   }
 })();

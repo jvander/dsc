@@ -24,32 +24,17 @@ function createToken(user){
 }
 
 module.exports = function () {
+
     router.route('/signup')
         .post(signuUser)
     router.route('/users')
         .get(getUsers);
     router.route('/login')
         .post(userValidate);
+    router.use(validate);
     router.route('/me')
         .get(getUser);
 
-    router.use(function(req, res, next){
-        res.header("Access-Control-Allow-Origin", "/api/setpassword/");
-        next();
-        var token = req.body.token || req.param('token') || req.headers['x-access-token'];
-        if (token) {
-            jsonwebtoken.verify(token, secretKey, function (err, decoded) {
-                if (err) {
-                    res.status(403).send({success: false, message: "Failed to authenticate user"});
-                } else {
-                    req.decoded = decoded;
-                    next();
-                }
-            });
-        } else {
-            res.status(403).send({success: false, message: "No Token Provide"});
-        }
-    });
     return router;
 
     function signuUser(req,res){
@@ -119,6 +104,23 @@ module.exports = function () {
                 }
             }
         });
+    }
+
+    function validate(req, res, next){
+
+        var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+        if (token) {
+            jsonwebtoken.verify(token, secretKey, function (err, decoded) {
+                if (err) {
+                    res.status(403).send({success: false, message: "Failed to authenticate user"});
+                } else {
+                    req.decoded = decoded;
+                    next();
+                }
+            });
+        } else {
+            res.status(403).send({success: false, message: "No Token Provide"});
+        }
     }
 
     function getUser(req, res){
