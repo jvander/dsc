@@ -6,15 +6,19 @@ angular.module('DropDSC',[])
             restrict: 'A',
             replace: true,
             link: function(scope, element, attr) {
+
+
                   element.css({
                       position: 'relative',
                       cursor: 'pointer'
                   });
                   element.on('mousedown', function(event) {
-                      // Prevent default dragging of selected content
-                      event.preventDefault();
-                      $document.on('mousemove', mousemove);
-                      $document.on('mouseup', mouseup);
+                      if(!scope.stakeholder.openEdit){
+                          // Prevent default dragging of selected content
+                          event.preventDefault();
+                          $document.bind('mousemove', mousemove);
+                          $document.bind('mouseup', mouseup);
+                      }
                   });
 
                   function mousemove(event) {

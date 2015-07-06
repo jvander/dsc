@@ -52,7 +52,7 @@ function stakeholderController(){
         });
         vm.stakeholderList = newList;
     };
-    vm.setOpenEdit = function(currentStakeholder){
+    vm.setOpenEdit = function(event,currentStakeholder){
         var id = currentStakeholder.id;
         if ( id == 0) {
             currentStakeholder.openEdit = true;
@@ -61,6 +61,7 @@ function stakeholderController(){
                 if (stakeholder.id == id) stakeholder.openEdit = true;
             });
         }
+
     };
 
     vm.delPostIt = function(id) {
