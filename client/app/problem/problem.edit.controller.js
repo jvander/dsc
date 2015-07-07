@@ -4,10 +4,9 @@
 
 (function(){
 
-
 "use strict";
 
-angular.module('app')
+    angular.module('app')
     .controller('editProblemController',editProblemaController);
 editProblemaController.$injectre = ['$scope','Socket'];
 
@@ -42,9 +41,5 @@ function editProblemaController($scope, Socket,$timeout) {
         }
 
     };
-
 }
-
-
-
 })();

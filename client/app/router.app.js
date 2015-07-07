@@ -85,7 +85,7 @@ function routes($stateProvider, $urlRouterProvider) {
                 views: {
                     'dsc-artifact': {
                         templateUrl: 'views/pages/evaluationframework.html',
-                        controller: 'valuationframingController as vm'
+                        controller: 'evaluationframeworkController as vm'
                     }
                 }
             })
