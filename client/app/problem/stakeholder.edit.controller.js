@@ -52,15 +52,17 @@ function stakeholderController(){
         });
         vm.stakeholderList = newList;
     };
-    vm.setOpenEdit = function(event,currentStakeholder){
-        var id = currentStakeholder.id;
+
+    vm.setOpenEdit = function(currentStakeholder){
+        currentStakeholder.openEdit = true;
+        /*var id = currentStakeholder.id;
         if ( id == 0) {
             currentStakeholder.openEdit = true;
         } else {
             angular.forEach(vm.stakeholderList, function (stakeholder) {
                 if (stakeholder.id == id) stakeholder.openEdit = true;
             });
-        }
+        }*/
 
     };
 

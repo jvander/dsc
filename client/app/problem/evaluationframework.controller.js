@@ -21,33 +21,15 @@ angular.module('app')
               [
                   {
                     "name": "Aluno",
-                    "discutionList":
-                    [
-                        {
-                            "problem": "Problema 01",
-                            "solution": "Solution  01"
-                        },
-                        {
-                            "problem": "Problema 01",
-                            "solution": "Solution  01"
-                        }
-                    ]
-
-                },
+                    "openEdit": false,
+                    "problems": "Problema Aluno",
+                    "solutions": "Solution  Aluno"
+                  },
                   {
                       "name": "Professor",
-                      "discutionList":
-                          [
-                              {
-                                  "problem": "Problema 01",
-                                  "solution": "Solution  01"
-                              },
-                              {
-                                  "problem": "Problema 01",
-                                  "solution": "Solution  01"
-                              }
-                          ]
-
+                      "openEdit": false,
+                      "problems": "Problema Professor",
+                      "solutions": "Solution  Professor"
                   }
               ]
           },
@@ -55,35 +37,19 @@ angular.module('app')
               "onionlayer": "Market",
               "stakeholderList":
                   [
+
                       {
                           "name": "Aluno",
-                          "discutionList":
-                              [
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  },
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  }
-                              ]
+                          "openEdit": false,
+                          "problems": "Problema Aluno",
+                          "solutions": "Solution  Aluno"
 
                       },
                       {
-                          "name": "Professor",
-                          "discutionList":
-                              [
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  },
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  }
-                              ]
-
+                          "name": "Aluno",
+                          "openEdit": false,
+                          "problems": "Problema Aluno",
+                          "solutions": "Solution  Aluno"
                       }
                   ]
           },
@@ -93,33 +59,15 @@ angular.module('app')
                   [
                       {
                           "name": "Aluno",
-                          "discutionList":
-                              [
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  },
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  }
-                              ]
-
+                          "openEdit": false,
+                          "problems": "Problema Aluno",
+                          "solutions": "Solution  Aluno"
                       },
                       {
-                          "name": "Professor",
-                          "discutionList":
-                              [
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  },
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  }
-                              ]
-
+                          "name": "Aluno",
+                          "openEdit": false,
+                          "problems": "Problema Aluno",
+                          "solutions": "Solution  Aluno"
                       }
                   ]
           },
@@ -129,33 +77,15 @@ angular.module('app')
                   [
                       {
                           "name": "Aluno",
-                          "discutionList":
-                              [
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  },
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  }
-                              ]
-
+                          "openEdit": false,
+                          "problems": "Problema Aluno",
+                          "solutions": "Solution  Aluno"
                       },
                       {
-                          "name": "Professor",
-                          "discutionList":
-                              [
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  },
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  }
-                              ]
-
+                          "name": "Aluno",
+                          "openEdit": false,
+                          "problems": "Problema Aluno",
+                          "solutions": "Solution  Aluno"
                       }
                   ]
           },
@@ -165,42 +95,41 @@ angular.module('app')
                   [
                       {
                           "name": "Aluno",
-                          "discutionList":
-                              [
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  },
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  }
-                              ]
-
+                          "openEdit": false,
+                          "problems": "Problema Aluno",
+                          "solutions": "Solution  Aluno"
                       },
                       {
-                          "name": "Professor",
-                          "discutionList":
-                              [
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  },
-                                  {
-                                      "problem": "Problema 01",
-                                      "solution": "Solution  01"
-                                  }
-                              ]
-
+                          "name": "Aluno",
+                          "openEdit": false,
+                          "problems": "Problema Aluno",
+                          "solutions": "Solution  Aluno"
                       }
                   ]
           }
       ];
 
-      vm.newDiscussion = function() {
-            console.log('new Discussion');
+      vm.saveDiscution = function(stakeholder) {
+          console.log("salvar...");
+              stakeholder.openEdit = false;
 
       }
+
+      vm.setOpenEditDiscution = function(currentStakeholder){
+          console.log("editando......");
+          currentStakeholder.openEdit = true;
+
+
+          /*var id = currentStakeholder.id;
+          if ( id == 0) {
+              currentStakeholder.openEdit = true;
+          } else {
+              angular.forEach(vm.evaluationframeworkList.stakeholderList, function (stakeholder) {
+                  if (stakeholder.id == id) stakeholder.openEdit = true;
+              });
+          }*/
+
+      };
 
 
 

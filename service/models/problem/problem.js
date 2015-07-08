@@ -42,18 +42,18 @@ var StakeholderSchema = new Schema({
     },
 
     evaluationFraming: {
-        problemsSolutions: [{
-            problem: {
-                type: String,
-                required: "required.problem",
-                trim: true
-            },
-            solution: {
-                type: String,
-                required: "required.solution",
-                trim: true
-            }
-        }]
+
+        problems: {
+            type: String,
+            required: "required.problem",
+            trim: true
+        },
+        solutions: {
+            type: String,
+            required: "required.solution",
+            trim: true
+        }
+
     },
 
     values: [String]
@@ -61,7 +61,7 @@ var StakeholderSchema = new Schema({
 });
 
 var SemioticFrameworkSchema = new Schema({
-    socialWorlds: [{
+    socialworld: [{
         requirement: String,
         restriction: String
     }],

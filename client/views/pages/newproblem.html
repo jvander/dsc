@@ -22,9 +22,9 @@
                 <label>Initial description</label>
                 <textarea type="text" ng-model="problem.description"></textarea>
             </md-input-container>
-            <md-checkbox ng-checked="" ng-click=""> {{ 'LABEL_ARTIFACT_STAKEHOLDER' | translate }} </md-checkbox>
-            <md-checkbox ng-checked="" ng-click=""> {{ 'LABEL_ARTIFACT_EVALUATION_FRAMEWORK' | translate }}</md-checkbox>
-            <md-checkbox ng-checked="" ng-click=""> {{ 'LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK' | translate }}</md-checkbox>
+            <md-checkbox ng-checked="true" Disabled ng-di> {{ 'LABEL_ARTIFACT_STAKEHOLDER' | translate }} </md-checkbox>
+            <md-checkbox ng-checked="true" Disabled ng-click=""> {{ 'LABEL_ARTIFACT_EVALUATION_FRAMEWORK' | translate }}</md-checkbox>
+            <md-checkbox ng-checked=""> {{ 'LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK' | translate }}</md-checkbox>
         </md-dialog-content>
         <div class="md-actions" layout="row">
             <md-button ng-click="hide()" class="md-primary">

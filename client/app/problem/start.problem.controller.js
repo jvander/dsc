@@ -63,7 +63,7 @@
                 console.log("Salva problema e busca problema" + problem);
                 //dscSharedService.prepForBroadcast(vm.problem);
                 Socket.emit('addProblemID', vm.problem);
-                $state.go('problem');
+                $state.go('problem.stakeholders');
             };
 
 

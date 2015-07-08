@@ -13,65 +13,36 @@ function semioticframeworkController(){
 
     var vm = this;
 
-    vm.semioticframework = [
-        {
-        "community":{
-            "stakeholders":[
-            {
-                "nome": "Stakeyholder1"
+    vm.semioticframework = {
+
+        socialworld: {
+            requirement: "",
+            restriction: ""
             },
-            {
-                    "nome": "Stakeyholder2"
-            }
-            ]
-        },
-        "market":{
-            "stakeholders":[
-                {
-                    "nome": "Stakeyholder3"
-                },
-                {
-                    "nome": "Stakeyholder4"
-                }
-            ]
 
+        pragmatic: {
+            requirement: "",
+            restriction: ""
         },
-        "source":{
-            "stakeholders":[
-                {
-                    "nome": "Stakeyholder5"
-                },
-                {
-                    "nome": "Stakeyholder6"
-                }
-            ]
-        },
-        "contruibuition":{
-            "stakeholders":[
-                {
-                    "nome": "Stakeyholder7"
-                },
-                {
-                    "nome": "Stakeyholder8"
-                }
-            ]
-        },
-        "technico":{
-            "stakeholders":[
-                {
-                    "nome": "Stakeyholder9"
-                },
-                {
-                    "nome": "Stakeyholder10"
-                }
-            ]
-        }
-        }
-    ]
 
-    vm.setValueSF = function(){
-        console.log('semioticframeworkController');
+        semantic: {
+            requirement: "",
+            restriction: ""
+        },
+
+        syntatic: {
+            requirement: "",
+            restriction: ""
+        },
+
+        empirical: {
+            requirement: "",
+            restriction: ""
+        },
+
+        physical: {
+            requirement: "",
+            restriction: ""
+        }
     }
-
-
 }

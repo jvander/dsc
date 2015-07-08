@@ -49,7 +49,7 @@
               .success(function(data) {
                   if(data.success) {
                       toastApp.errorMessage("Senha alterada com sucesso. Faça login com a nova senha.");
-                      $state.go('/');
+                      $state.go('init');
                   }else{
                       toastApp.errorMessage("Error");
               }

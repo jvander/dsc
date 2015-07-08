@@ -18,6 +18,7 @@
             'contrastDarkColors': ['50'],
             '50': '009688'
         });
+
         $mdThemingProvider.definePalette('customGreen', customGreenMap);
         $mdThemingProvider.theme('default')
             .primaryPalette('customGreen', {
