@@ -7,6 +7,18 @@ var mongoose = require('mongoose'),
 
 
 var StakeholderSchema = new Schema({
+
+    owner:{type: String, required: true }, //Usuário que propôe o problema
+
+    colaboratorsList:[
+        {
+            id: {type: String},
+            nickname: {type: String},
+            email: {type: String, required: true},
+            accept: {accept: boolean, required: true, default: false},
+            privilegio: {type: String, enum: ['user', 'adm'], default: 'user'}
+        }
+    ],
     name: {
         type: String,
         required:'required.name',
@@ -42,15 +54,12 @@ var StakeholderSchema = new Schema({
     },
 
     evaluationFraming: {
-
         problems: {
             type: String,
-            required: "required.problem",
             trim: true
         },
         solutions: {
             type: String,
-            required: "required.solution",
             trim: true
         }
 

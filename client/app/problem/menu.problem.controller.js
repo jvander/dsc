@@ -19,6 +19,10 @@
 
     var vm = this;
 
+    vm.getCollaborators = function(){
+        $state.go('problem.collaborators');
+    }
+
     vm.editDescriptionProblem = function () {
         $state.go('problem.description');
     };

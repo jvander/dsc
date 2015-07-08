@@ -1,10 +1,6 @@
-/**
- * Created by JOSEVALDERLEI on 28/06/2015.
- */
-
-
 
 (function(){
+
     'use strict';
     angular.module('app')
         .controller('startProblemController',startProblemController);
@@ -99,5 +95,4 @@
             }
     }
 })();
-
 

@@ -71,6 +71,15 @@ function routes($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('problem.collaborators', {
+            url: '/collaborators',
+            views: {
+                'problem-description': {
+                    templateUrl: 'views/pages/collaborators.html',
+                    controller: 'editProblemController as vm'
+                }
+            }
+        })
         .state('problem.stakeholders', {
             url: 'stakeholders',
             views: {
