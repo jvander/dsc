@@ -25,6 +25,13 @@
                     description: 'blal blalblablab ',
                     team: ['Jaca', 'Jeca', 'Jica']
 
+                },
+                {
+                    id: '003',
+                    title: 'Problem 003',
+                    description: 'blal blalblablab ',
+                    team: ['Jaca', 'Jeca', 'Jica']
+
                 }
 
             ];

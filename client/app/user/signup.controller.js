@@ -45,10 +45,9 @@
       }
 
       function changePassword(user){
-          console.log($stateParams.mytoken);
           signupService.changePassword(user)
               .success(function(data) {
-                  console.log(data);
+                  console.log('retorno...' + data);
                   if(data.success) {
                       toastApp.errorMessage("Senha alterada com sucesso.");
                   }else{
