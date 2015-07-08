@@ -47,9 +47,9 @@
       function changePassword(user){
           signupService.changePassword(user)
               .success(function(data) {
-                  console.log('retorno...' + data);
                   if(data.success) {
-                      toastApp.errorMessage("Senha alterada com sucesso.");
+                      toastApp.errorMessage("Senha alterada com sucesso. Faça login com a nova senha.");
+                      $state.go('/');
                   }else{
                       toastApp.errorMessage("Error");
               }
