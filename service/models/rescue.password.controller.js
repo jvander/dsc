@@ -71,10 +71,7 @@ module.exports = function () {
 
 
   function setNewPassword(req, res){
-
-    console.log('token ' + req.query.mytoken);
-    console.log('password ' + req.query.password);
-    User.findOne({resetPasswordToken: req.query.mytoken, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+   User.findOne({resetPasswordToken: req.query.mytoken, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
       if (!user) {
         res.json({
           success: false,

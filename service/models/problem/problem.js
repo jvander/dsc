@@ -7,18 +7,6 @@ var mongoose = require('mongoose'),
 
 
 var StakeholderSchema = new Schema({
-
-    owner:{type: String, required: true }, //Usuário que propôe o problema
-
-    colaboratorsList:[
-        {
-            id: {type: String},
-            nickname: {type: String},
-            email: {type: String, required: true},
-            accept: {accept: boolean, required: true, default: false},
-            privilegio: {type: String, enum: ['user', 'adm'], default: 'user'}
-        }
-    ],
     name: {
         type: String,
         required:'required.name',
@@ -48,8 +36,7 @@ var StakeholderSchema = new Schema({
         trim: true
     },
     openEdit:{
-        type: boolean,
-        required: true,
+        type: Boolean,
         default: false
     },
 
@@ -130,7 +117,17 @@ var CultureAwareRequirementsFrameworkSchema = new  Schema({
 
 });
 
-var ProblemaBodySchema = new Schema({
+var ProblemSchema = new Schema({
+    owner:{type: String, required: true }, //Usuário que propôe o problema
+    colaboratorsList:[
+        {
+            id: {type: String},
+            nickname: {type: String},
+            email: {type: String, required: true},
+            accept: {type:Boolean, default: false},
+            rules: {type: String, enum: ['user', 'adm'], default: 'user'}
+        }
+    ],
     title: {
         type: String,
         required: 'required.title',
@@ -153,4 +150,4 @@ var ProblemaBodySchema = new Schema({
     cultureAwareRequirementsFramework: [CultureAwareRequirementsFrameworkSchema]
 });
 
-module.exports = mongoose.model('ProblemBody', ProblemaBodySchema);
+module.exports = mongoose.model('Problem', ProblemSchema);

@@ -13,6 +13,6 @@ module.exports =  function(app, express){
     api.use("/rescuepasswd", rescuepassword());
 
     api.use("/",accessController());
-    api.use("/",problemController());
+    api.use("/problem",problemController());
     return api;
 };
