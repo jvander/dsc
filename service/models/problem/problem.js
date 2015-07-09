@@ -118,14 +118,18 @@ var CultureAwareRequirementsFrameworkSchema = new  Schema({
 });
 
 var ProblemSchema = new Schema({
+
+    status: {type: String, enum: ['active', 'inactive', 'finished', 'suspended'], default: 'active'},
+
     owner:{type: String, required: true }, //Usuário que propôe o problema
+
     colaboratorsList:[
         {
             id: {type: String},
             nickname: {type: String},
             email: {type: String, required: true},
             accept: {type:Boolean, default: false},
-            rules: {type: String, enum: ['user', 'adm'], default: 'user'}
+            adm: {type: Boolean, default: false}
         }
     ],
     title: {

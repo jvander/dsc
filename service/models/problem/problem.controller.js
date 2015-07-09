@@ -15,6 +15,7 @@ module.exports = function () {
     return router;
 
      function addNewProblem(req, res){
+         console.log("Gravando problema para o id: " + req.body.userid)
 
         var problem = new Problem({
             title: req.body.title,
@@ -29,19 +30,32 @@ module.exports = function () {
             res.json({
                 success: true,
                 mensage: "new Problem created",
-                id: problem.id
+                problem: problem
             })
         })
 
     }
 
     function getAllProblems(req, res){
-        Problem.find({}, function (err,problems) {
+
+        Problem.find({owner : req.query.userid }).exec (function (err,problems) {
             if(err){
                 res.send(err);
                 return;
             }
-            res.json(problems);
+            if(!problems){
+                res.send({
+                    success: false,
+                    message: "Cadastre seus problemas."
+                });
+
+            }else{
+                res.send({
+                    success: true,
+                    problems: problems
+                });
+            }
+
         });
     }
 

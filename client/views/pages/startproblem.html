@@ -1,4 +1,4 @@
-<div layout="column" layout-fill>
+<div layout="column" layout-fill data-ng-init="vm.getProblems()">
     <md-toolbar md-scroll-shrink>
         <div class="md-toolbar-tools">
 
@@ -15,16 +15,8 @@
 <md-content>
 
 <div ng-repeat="problem in vm.problemList">
-
     <div ng-click="vm.editProblem(problem)" class="box-problem">
         <div clsss="title"><span>{{problem.title}}</span></div>
-
-        <div clsss="colaborator">
-            <span ng-repeat="collaborator in problem.team">
-                         {{collaborator}}
-                     </span>
-        </div>
-
         <div class="description">
                 {{problem.description}}
         </div>
@@ -33,27 +25,5 @@
 
 </md-content>
 
-
-
-
-       <!-- <md-list>
-            <md-list-item class="md-3-line" ng-repeat="problem in vm.problemList">
-                <div flex layout="row" layout-align="center center">
-                <div flex-sm="100" flex-gt-sm="90" flex-gt-md="80" flex-gt-lg="70" class="md-whiteframe-z2">
-                <span class="md-list-item-text">
-                    <h4>Titulo: {{problem.title}}</h4>
-                    Colaboradores:
-                     <span ng-repeat="colaborator in problem.team">
-                         {{colaborator}}
-                     </span>
-                    <div>
-                        Descricption: {{problem.description}}
-                    </div>
-                </span>
-                <md-divider inset></md-divider>
-            </div>
-            </div>
-            </md-list-item>
-        </md-list>-->
 </div>
 

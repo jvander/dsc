@@ -31,7 +31,7 @@
 
     function changePassword(data){
       var mytokenURL = $location.search();
-      return $http.post(API_ROUTE_SETNEWPASSWORD + '?mytoken=' + mytokenURL.mytoken+'&password='+data.password);
+      return $http.get(API_ROUTE_SETNEWPASSWORD + '?mytoken=' + mytokenURL.mytoken+'&password='+data.password);
     }
   }
 })();
