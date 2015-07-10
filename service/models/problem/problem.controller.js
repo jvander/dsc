@@ -111,7 +111,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.reject(new Error("Problema não encontrado"));
+                return deferred.reject(new Error("Problema nï¿½o encontrado"));
             }
             deferred.resolve(problem)
         });
@@ -125,12 +125,13 @@ module.exports = function () {
         }).exec(function (err, user){
             if(err) {
                 return deferred.reject(err)
-            };
+            }
+
             if(!user){
                 var newUser = {
                     nickname: 'not User',
                     email: email
-                }
+                };
                 return deferred.resolve(newUser);
             }
             deferred.resolve(user)
@@ -140,8 +141,8 @@ module.exports = function () {
 
     function addColaboratorInProblem(result) {
         var deferred = Q.defer();
-        result.problem.collaborators.push(user);
-        problem.save(tratarResultado(deferred.resolve, deferred.reject));
+        result.problem.collaborators.push(resul.user);
+        result.problem.save(tratarResultado(deferred.resolve, deferred.reject));
         return deferred.promise;
     }
 
@@ -154,8 +155,8 @@ module.exports = function () {
                         return {problem: problem, user: user};
                     })
             }).then(addColaboratorInProblem)
-            .then(function (problema) {
-                res.json(problema.colaborators);
+            .then(function (problem) {
+                res.json(problem.colaborators);
             }).catch(function (erro) {
                 res.status(400)
                     .json({
