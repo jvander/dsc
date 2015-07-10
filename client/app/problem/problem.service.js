@@ -11,11 +11,14 @@
 
     var API_ROUTE_GETUSERPROBLEMS = '/api/problem/getproblems';
     var API_ROUTE_NEWPROBLEM = '/api/problem/newproblem';
+    var API_ROUTE_GETPROBLEM = '/api/problem/getproblem';
+
 
 
     var service = {
       newproblem       : newproblem,
       getuserproblems : getuserproblems,
+      getproblem : getproblem
     };
 
     return service;
@@ -24,6 +27,9 @@
         return $http.post(API_ROUTE_NEWPROBLEM, data);
     }
 
+    function getproblem(data){
+      return $http.get(API_ROUTE_GETPROBLEM + '?idproblem=' + data );
+    }
 
 
     function getuserproblems(data){

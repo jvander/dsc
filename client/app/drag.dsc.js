@@ -1,13 +1,11 @@
 
 angular.module('DropDSC',[])
-    .directive('draggable', function($document) {
+    .directive('draggable', function($document,Socket) {
 
       return {
             restrict: 'A',
             replace: true,
             link: function(scope, element, attr) {
-
-
                   element.css({
                       position: 'relative',
                       cursor: 'pointer'
@@ -34,9 +32,17 @@ angular.module('DropDSC',[])
                           top: y + 'px',
                           left:  x + 'px'
                       });
+                      /*Socket.on('onBroadcastOnionPosition', function (stakeholder) {
+                          element.css({
+                              top: stakeholder.y,
+                              left:  stakeholder.x
+                          });
+                      });*/
                       scope.stakeholder.x = x + 'px';
                       scope.stakeholder.y = y + 'px';
-                  }
+                      //Socket.emit('broadcastOnionPosition', scope.stakeholder);
+
+                  };
 
                   function mouseup() {
                       $document.unbind('mousemove', mousemove);

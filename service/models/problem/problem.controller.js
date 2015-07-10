@@ -7,7 +7,8 @@ var Problem = require('../../models/problem/problem');
 module.exports = function () {
 
     router.route('/newproblem/')
-        .post(addNewProblem)
+        .post(addNewProblem);
+    router.route('/getproblem/')
         .get(getProblem);
     router.route('/getproblems/')
         .get(getAllProblems);
@@ -60,13 +61,14 @@ module.exports = function () {
     }
 
     function getProblem(req,res){
+        console.log(req.query.idproblem)
+
         Problem.findOne({
-            _id: req.query.id
-        }).select('_id title description').exec(function(err,problem){
+            _id: req.query.idproblem
+        }).select('title description').exec(function(err,problem){
             if(err) throw err;
 
             if(!problem){
-                console.log(problem)
                 res.send({
                     success: false,
                     mensage: "Not Problem"

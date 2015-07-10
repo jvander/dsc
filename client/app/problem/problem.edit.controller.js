@@ -6,37 +6,39 @@
     .controller('editProblemController',editProblemaController);
 editProblemaController.$injectre = ['$scope','Socket'];
 
-function editProblemaController($scope, Socket, $timeout) {
+function editProblemaController($scope, Socket, $timeout,toastApp,$window,problemService) {
     var self = this;
     var updateTrue = true;
+    self.problem = "";
 
-    self.myProblem = {
-            "id": "0001",
-            "title": "",
-            "description": "",
-            "update" : true
+    self.getCurrentProblem = function(){
+        self.idProblem = $window.localStorage.getItem('problemid');
+        problemService.getproblem(self.idProblem)
+            .success(function(data) {
+                if(data.success) {
+                    self.problem = data.problem;
+                }else{
+                    toastApp.errorMessage(data.message);
+                }
+            })
     };
 
     var setUpdate = function(){
         updateTrue = true;
     };
+
     Socket.on('onAtualizarProblema', function (retorno) {
-        self.myProblem.id = retorno.id;
-        self.myProblem.title = retorno.title;
-        self.myProblem.description = retorno.description;
-        self.myProblem.update = updateTrue;
+        self.problem.description = retorno.description;
+        self.problem.update = updateTrue;
     });
-    $scope.problemUpdate = function (myProblem) {
-        myProblem = {
-            id: myProblem.id,
-            title: myProblem.title,
-            description: myProblem.description,
-            "update" : updateTrue
-        };
-        Socket.emit('atualizarProblema', myProblem);
+
+    $scope.problemUpdate = function (problem) {
+        problem.update = updateTrue;
+
+        Socket.emit('atualizarProblema', problem);
         if (updateTrue) {
             updateTrue = false;
-            $timeout(setUpdate, 5000);
+            $timeout(setUpdate, 2000);
         }
 
     };
