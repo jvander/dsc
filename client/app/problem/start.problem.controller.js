@@ -4,61 +4,46 @@
     'use strict';
     angular.module('app')
         .controller('startProblemController',startProblemController);
-        function startProblemController($mdDialog,$state,Auth,Socket, dscSharedService ) {
+        function startProblemController($mdDialog,$state,Auth,Socket, $window, problemService,toastApp ) {
             var vm = this;
+            vm.nickname = "";
+            vm.userid = "";
+            vm.problemList = [];
 
-            vm.problemList = [
-                {
-                    id: '001',
-                    title: 'Entendendo DSC',
-                    description: 'Design socialemten consciente... bla bla bla',
-                    team: ['Jesus', 'Madalena', 'Judas']
+            vm.getProblems = function(){
+                vm.userid = $window.localStorage.getItem('userid');
+                vm.nickname = $window.localStorage.getItem('nickname');
+                problemService.getuserproblems(vm.userid)
+                    .success(function(data) {
+                    if(data.success) {
 
-                },
-                {
-                    id: '002',
-                    title: 'Problem 002',
-                    description: 'blal blalblablab ',
-                    team: ['Jaca', 'Jeca', 'Jica']
-
-                },
-                {
-                    id: '003',
-                    title: 'Problem 003',
-                    description: 'blal blalblablab ',
-                    team: ['Jaca', 'Jeca', 'Jica']
-
-                }
-
-            ];
-
-            vm.problem = {
-                id: '001',
-                title: 'Entendendo DSC',
-                description: 'Design socialemten consciente... bla bla bla',
-                team: ['Jesus', 'Madalena', 'Judas']
-            }
-
-
-            vm.searchYoursProblems = function () {
-                return vm.problemList;
+                         vm.problemList = data.problems;
+                    }else{
+                        toastApp.errorMessage(data.message);
+                    }
+                })
             };
 
-
-            vm.startNewProblem = function(problem){
-
-                console.log("salva problema");
-
-                vm.editProblem(problem);
+            vm.startNewProblem = function(newproblem){
+                newproblem.userid = vm.userid;
+                problemService.newproblem(newproblem)
+                    .success(function(data) {
+                        if(data.success) {
+                            vm.editProblem(data.problem)
+                        }else{
+                            toastApp.errorMessage(data.message);
+                        }
+                    });
             }
-
 
             vm.editProblem = function (problem) {
 
-                vm.problem = problem;
-                console.log("Salva problema e busca problema" + problem);
-                //dscSharedService.prepForBroadcast(vm.problem);
-                Socket.emit('addProblemID', vm.problem);
+                $window.localStorage.setItem("problemid",problem._id);
+                var initsocketproblem = {
+                    "idproblem":problem._id,
+                    "nickname": vm.nickname
+                };
+                Socket.emit('initProblem', initsocketproblem);
                 $state.go('problem.stakeholders');
             };
 
@@ -87,7 +72,6 @@
                 };
 
                 $scope.addNewProblem = function(problem) {
-                    console.log('retorno form...' + problem );
                     vm.startNewProblem(problem);
                     $mdDialog.cancel();
                 };

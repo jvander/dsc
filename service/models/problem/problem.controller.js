@@ -3,14 +3,22 @@
  */
 var router = require('express').Router();
 var Problem = require('../../models/problem/problem');
+var configMail = require('../../../configmail');
+
+function sendMail(mailOptions){
+    require('../../sendmailDSC')(mailOptions);
+}
 
 module.exports = function () {
 
     router.route('/newproblem/')
-        .post(addNewProblem)
+        .post(addNewProblem);
+    router.route('/getproblem/')
         .get(getProblem);
     router.route('/getproblems/')
         .get(getAllProblems);
+    router.route('/addpeople/')
+        .post(addCollaborator)
 
     return router;
 
@@ -60,13 +68,14 @@ module.exports = function () {
     }
 
     function getProblem(req,res){
+        console.log(req.query.idproblem)
+
         Problem.findOne({
-            _id: req.query.id
+            _id: req.query.idproblem
         }).select('_id title description').exec(function(err,problem){
             if(err) throw err;
 
             if(!problem){
-                console.log(problem)
                 res.send({
                     success: false,
                     mensage: "Not Problem"
@@ -78,6 +87,54 @@ module.exports = function () {
                     });
             }
         });
+
+    }
+
+    function addCollaborator(req,res){
+        Problem.findOne({
+            _id: req.body.idproblem
+        }).exec(function(err,problem){
+            if(err) throw err;
+            if(!problem){
+                res.json({
+                        success: false,
+                        message: "Error " + problem
+                    }
+                );
+            }else {
+
+                var colaborator =  {
+                    id: "",
+                    nickname: "",
+                    email: req.body.email,
+                };
+
+                console.log(problem);
+
+               /* var mailOptions = {
+                    from: configMail.email, // sender address
+                    to: req.body.email, // list of receivers
+                    subject: 'Addd Project DSC', // Subject line
+                    text: 'Olá,! Você foi selecionado para nos ajudar a entender melhor o problema ' + problem.title + '.' +
+                    'Acesse http://'+ configMail.serverURL +':3000/'
+                };
+
+                sendMail(mailOptions);*/
+
+                problem.collaborators.push(colaborator);
+               /* problem.save(function (err) {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+                    res.json({
+                        success: true,
+                        message: "Add email " + req.body.email
+                    })
+                })*/
+            }
+        });
+
 
     }
 

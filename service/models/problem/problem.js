@@ -121,9 +121,15 @@ var ProblemSchema = new Schema({
 
     status: {type: String, enum: ['active', 'inactive', 'finished', 'suspended'], default: 'active'},
 
+    started: {type: Date},
+
+    finished: {type: Date},
+
+    status: {type: String, enum: ['stakeholder', 'evaluationframing', 'semioticframework', 'carf']},
+
     owner:{type: String, required: true }, //Usuário que propôe o problema
 
-    colaboratorsList:[
+    collaborators:[
         {
             id: {type: String},
             nickname: {type: String},

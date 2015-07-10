@@ -7,7 +7,7 @@ angular.module('app')
     .controller('stakeholderController',stakeholderController);
 
 
-function stakeholderController(){
+function stakeholderController(Socket,$scope){
     var vm = this;
     vm.stakeholderList = [
         {
@@ -40,8 +40,27 @@ function stakeholderController(){
         "y": 0
     };
 
-    vm.addStakeholder = function(stakeholder) {
-        stakeholder.openEdit = false;
+    Socket.on('onBroadcastOnionSave', function (data) {
+        console.log("Valor do id recebido..." + data);
+
+        var id = data.id;
+        angular.forEach(vm.stakeholderList, function (stakeholder) {
+            if (stakeholder.id == id){
+                stakeholder.stakeholder = data.stakeholder;
+                    stakeholder.name = data.name;
+                    stakeholder.description = data.description;
+                        stakeholder.openEdit = data.dadaopenEdit
+                stakeholder.x = data.x;
+                stakeholder.y = data.y;
+            }
+        });
+
+    });
+
+
+    $scope.saveStakeholder = function(stakeholder) {
+        stakeholder.openEdit = true;
+        Socket.emit('broadcastOnionSave', stakeholder);
     };
 
     vm.removeStakeholder = function (id) {
@@ -53,40 +72,47 @@ function stakeholderController(){
         vm.stakeholderList = newList;
     };
 
-    vm.setOpenEdit = function(currentStakeholder){
-        currentStakeholder.openEdit = true;
-        /*var id = currentStakeholder.id;
-        if ( id == 0) {
-            currentStakeholder.openEdit = true;
-        } else {
-            angular.forEach(vm.stakeholderList, function (stakeholder) {
-                if (stakeholder.id == id) stakeholder.openEdit = true;
-            });
-        }*/
 
+    Socket.on('onBroadcastOnionEdit', function (id) {
+        angular.forEach(vm.stakeholderList, function (stakeholder) {
+            if (stakeholder.id == id) stakeholder.openEdit = true;
+        });
+
+    });
+
+    $scope.setOpenEdit = function(id){
+        Socket.emit('broadcastOnionEdit', id);
     };
 
-    vm.delPostIt = function(id) {
+
+    Socket.on('onBroadcastOnionRemove', function (id) {
         var stakeholder = document.getElementById('stakeholder'+vm.stakeholderList[id].id);
         stakeholder.style.display = 'none';
         vm.stakeholderList.splice(id,1);
+    });
+
+    $scope.delPostIt = function(id) {
+        Socket.emit('broadcastOnionRemove', id);
     };
 
-    vm.addPostIt = function(e,camada) {
+    Socket.on('onBroadcastOnionAdd', function (retorno) {
+        vm.stakeholderList.push(retorno);
+    });
+
+    $scope.addPostIt = function(e,camada) {
         var id = vm.stakeholderList.length + 1;
-        vm.stakeholderList.push(
-            {
-                "id":id,
-                "onionlayer": camada,
-                "name": "",
-                "description": "",
-                "openEdit": true,
-                "x": e.pageX + 'px',
-                "y": e.pageY + 'px'
-            }
-        )
+        var newStakeholder =
+        {
+            "id":id,
+            "onionlayer": camada,
+            "name": "",
+            "description": "",
+            "openEdit": true,
+            "x": e.pageX + 'px',
+            "y": e.pageY + 'px'
+        }
+        Socket.emit('broadcastOnionAdd', newStakeholder);
     };
-
 
     vm.acende = function(evt) {
         evt.target.setAttribute("opacity", "0.7");

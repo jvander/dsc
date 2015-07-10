@@ -17,17 +17,17 @@
 
 
 
-    var vm = this;
+    var self = this;
 
-    vm.getCollaborators = function(){
+     self.formAddCollaborators = function(){
         $state.go('problem.collaborators');
     }
 
-    vm.editDescriptionProblem = function () {
+        self.editDescriptionProblem = function () {
         $state.go('problem.description');
     };
 
-    vm.doLogout = function () {
+        self.doLogout = function () {
         Auth.logout();
         $state.go('init.login');
     };

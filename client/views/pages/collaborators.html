@@ -1,1 +1,18 @@
-<div>Implmentar..</div>
+<div data-ng-init="vm.initCollaborators()">
+    <md-content>
+        <md-input-container>
+            <label>{{'LABEL_EMAIL' | translate}}</label>
+            <input ng-model="people.email">
+        </md-input-container>
+        <md-button ng-click="vm.addCollaborator(people)">{{'BTN_ADD' | translate}}</md-button>
+
+        <div ng-repeat="collaborator in vm.collaborators">
+            <div class="collaborator">
+                <div class="closecollaborator"><span ng-click="vm.removeCollaborator(collaborator)">x</span></div>
+                <div><span>{{collaborator.nickname}}</span></div>
+                <div><span>{{collaborator.email}}</span></div>
+            </div>
+
+        </div>
+    </md-content>
+</div>

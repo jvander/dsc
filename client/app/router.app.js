@@ -76,7 +76,7 @@ function routes($stateProvider, $urlRouterProvider) {
             views: {
                 'problem-description': {
                     templateUrl: 'views/pages/collaborators.html',
-                    controller: 'editProblemController as vm'
+                    controller: 'controllerCollaborators as vm'
                 }
             }
         })

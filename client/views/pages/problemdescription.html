@@ -1,7 +1,7 @@
-<div>
+<div data-ng-init="vm.getCurrentProblem()">
 <md-toolbar>
     <div class="md-toolbar-tools">
-        <h2>{{myProblem.title}}</h2>
+        <h2>{{vm.problem.title}}</h2>
         <span flex></span>
     </div>
 </md-toolbar>
@@ -9,10 +9,9 @@
     <div>
         <md-content layout-padding>
             <div class="md-whiteframe-z1">
-                <input type="text" ng-hide="true" ng-model="myProblem.id" ng-change="problemUpdate(myProblem)">
                 <md-input-container>
                     <label>Description</label>
-                    <textarea ng-model="myProblem.description" rows="2" ng-change="problemUpdate(myProblem)"></textarea>
+                    <textarea ng-model="vm.problem.description" rows="2" ng-blur="saveDescription(vm.problem)"  ng-change="problemUpdate(vm.problem)"></textarea>
                 </md-input-container>
             </div>
         </md-content>
