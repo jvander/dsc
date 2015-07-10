@@ -4,6 +4,7 @@
 var router = require('express').Router();
 var Problem = require('../../models/problem/problem');
 var User = require('../../models/user');
+var Q = require('q');
 
 function sendMail(mailOptions){
     require('../../sendmailDSC')(mailOptions);
@@ -18,7 +19,7 @@ module.exports = function () {
     router.route('/getproblems/')
         .get(getAllProblems);
     router.route('/addpeople/')
-        .post(addCollaborator)
+        .post(addColaborator)
 
     return router;
 
@@ -68,8 +69,6 @@ module.exports = function () {
     }
 
     function getProblem(req,res){
-        console.log(req.query.idproblem)
-
         Problem.findOne({
             _id: req.query.idproblem
         }).select('_id title description').exec(function(err,problem){
@@ -90,69 +89,79 @@ module.exports = function () {
 
     }
 
-    function addCollaborator(req,res){
-        var collaborator = "";
-        Problem.findOne({
-            _id: req.body.idproblem
-        }).exec(function(err,problem){
-            if(err) throw err;
-            if(!problem){
-                res.json({
-                        success: false,
-                        message: "Error " + problem
-                    }
-                );
-            }else {
 
 
-
-                console.log(searchUser(req.body.email));
-
-
-               /* var mailOptions = {
-                    from: configMail.email, // sender address
-                    to: req.body.email, // list of receivers
-                    subject: 'Addd Project DSC', // Subject line
-                    text: 'Olá,! Você foi selecionado para nos ajudar a entender melhor o problema ' + problem.title + '.' +
-                    'Acesse http://'+ configMail.serverURL +':3000/'
-                };
-
-                sendMail(mailOptions);*/
-
-                //problem.collaborators.push(colaborator);
-               /* problem.save(function (err) {
-                    if (err) {
-                        console.log(err);
-                        return;
-                    }
-                    res.json({
-                        success: true,
-                        message: "Add email " + req.body.email
-                    })
-                })*/
+    function tratarResultado(sucesso, erro) {
+        return function (err, dado) {
+            if (err) {
+                return erro(err);
             }
-        });
 
-
+            sucesso(dado);
+        }
     }
 
-    function searchUser(email){
-        var collaborator = "";
+    function findProblem(id) {
+        var deferred = Q.defer();
+
+        Problem.findOne({
+            _id: id
+        }).exec(function (err, problem){
+            if(err) {
+                return deferred.reject(err)
+            };
+            if(!problem){
+                return deferred.reject(new Error("Problema não encontrado"));
+            }
+            deferred.resolve(problem)
+        });
+        return deferred.promise;
+    }
+
+    function findUser(email) {
+        var deferred = Q.defer();
         User.findOne({
             email: email
-        }).select('nickname email').exec(function(err,user){
-            if(err) throw err;
+        }).exec(function (err, user){
+            if(err) {
+                return deferred.reject(err)
+            };
             if(!user){
-                collaborator = {
-                    id : "",
-                    nickname : "nao cadastrado.",
+                var newUser = {
+                    nickname: 'not User',
                     email: email
-                };
-            }else{
-                console.log(user);
-                return user;
+                }
+                return deferred.resolve(newUser);
             }
+            deferred.resolve(user)
         });
+        return deferred.promise;
+    }
+
+    function addColaboratorInProblem(result) {
+        var deferred = Q.defer();
+        result.problem.collaborators.push(user);
+        problem.save(tratarResultado(deferred.resolve, deferred.reject));
+        return deferred.promise;
+    }
+
+
+    function addColaborator(req, res) {
+        findProblem(req.body.idproblem)
+            .then(function (problem) {
+                return findUser(req.body.email)
+                    .then(function (user) {
+                        return {problem: problem, user: user};
+                    })
+            }).then(addColaboratorInProblem)
+            .then(function (problema) {
+                res.json(problema.colaborators);
+            }).catch(function (erro) {
+                res.status(400)
+                    .json({
+                        message: erro.message
+                    })
+            });
     }
 
 }
