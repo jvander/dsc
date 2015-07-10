@@ -3,7 +3,7 @@
  */
 var router = require('express').Router();
 var Problem = require('../../models/problem/problem');
-var configMail = require('../../../configmail');
+var User = require('../../models/user');
 
 function sendMail(mailOptions){
     require('../../sendmailDSC')(mailOptions);
@@ -91,6 +91,7 @@ module.exports = function () {
     }
 
     function addCollaborator(req,res){
+        var collaborator = "";
         Problem.findOne({
             _id: req.body.idproblem
         }).exec(function(err,problem){
@@ -103,13 +104,10 @@ module.exports = function () {
                 );
             }else {
 
-                var colaborator =  {
-                    id: "",
-                    nickname: "",
-                    email: req.body.email,
-                };
 
-                console.log(problem);
+
+                console.log(searchUser(req.body.email));
+
 
                /* var mailOptions = {
                     from: configMail.email, // sender address
@@ -121,7 +119,7 @@ module.exports = function () {
 
                 sendMail(mailOptions);*/
 
-                problem.collaborators.push(colaborator);
+                //problem.collaborators.push(colaborator);
                /* problem.save(function (err) {
                     if (err) {
                         console.log(err);
@@ -136,6 +134,25 @@ module.exports = function () {
         });
 
 
+    }
+
+    function searchUser(email){
+        var collaborator = "";
+        User.findOne({
+            email: email
+        }).select('nickname email').exec(function(err,user){
+            if(err) throw err;
+            if(!user){
+                collaborator = {
+                    id : "",
+                    nickname : "nao cadastrado.",
+                    email: email
+                };
+            }else{
+                console.log(user);
+                return user;
+            }
+        });
     }
 
 }

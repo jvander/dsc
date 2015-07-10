@@ -125,7 +125,7 @@ var ProblemSchema = new Schema({
 
     finished: {type: Date},
 
-    status: {type: String, enum: ['stakeholder', 'evaluationframing', 'semioticframework', 'carf']},
+    artefact: {type: String, enum: ['stakeholder', 'evaluationframing', 'semioticframework', 'carf']},
 
     owner:{type: String, required: true }, //Usuário que propôe o problema
 

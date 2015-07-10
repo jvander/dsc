@@ -26,7 +26,7 @@ module.exports = function () {
 
     User.findOne({
       email: req.body.email
-    }).select('id nickname email').exec(function(err,user){
+    }).select('_id nickname email').exec(function(err,user){
       if(err) throw err;
       if(!user){
         res.json({
