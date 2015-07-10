@@ -21,10 +21,10 @@
     "TITLE_FORM_SIGNUP" : "Sign Up",
     "TITLE_FORM_PROFILE" : "Your Profile",
     "TITLE_RESCUE_PASSWORD" : "Rescue your Password",
-    "LABEL_EMAIL": "Insert you Email",
+    "LABEL_EMAIL": "Email",
     "LABEL_YOUR_NAME": "Full name",
     "LABEL_YOUR_NICKNAME": "Nickname",
-    "LABEL_YOUR_EMAIL": "email",
+    "LABEL_YOUR_EMAIL": "Your email",
     "LABEL_YOUR_LANGUAGE": "Select your Language",
     "LABEL_YOUR_PASSWORD": "Password",
     "LABEL_ARTIFACT_STAKEHOLDER": "Stakeholders Identification",
@@ -34,7 +34,8 @@
     "PROBLEMS": "Problems",
     "LABEL_CLOSE" : "Close",
     "LABEL_FORM_EVALUATION_FRAMEWORK" : "Evaluation Framing",
-    "LABEL_NEW_PROBLEM" : "New Problem"
+    "LABEL_NEW_PROBLEM" : "New Problem",
+    "BTN_ADD": "Add"
 
 
 }

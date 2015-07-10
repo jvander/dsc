@@ -21,10 +21,10 @@
     "TITLE_FORM_SIGNUP" : "Crie uma conta",
     "TITLE_FORM_PROFILE" : "Suas configuações pessoais",
     "TITLE_RESCUE_PASSWORD" : "Recupere sua senha",
-    "LABEL_EMAIL": "Seu Email",
+    "LABEL_EMAIL": "email",
     "LABEL_YOUR_NAME": "Nome completo",
     "LABEL_YOUR_NICKNAME": "Apelido ou como gosta de ser chamado",
-    "LABEL_YOUR_EMAIL": "email",
+    "LABEL_YOUR_EMAIL": "Seu Email",
     "LABEL_YOUR_LANGUAGE": "Linguagem",
     "LABEL_YOUR_PASSWORD": "Senha",
     "LABEL_ARTIFACT_STAKEHOLDER" : "Stakeholders",
@@ -34,5 +34,6 @@
     "PROBLEMS": "Problemas",
     "LABEL_CLOSE" : "Fechar",
     "LABEL_FORM_EVALUATION_FRAMEWORK" : "Quadro de Avaliação",
-    "LABEL_NEW_PROBLEM" : "Novo Problema"
+    "LABEL_NEW_PROBLEM" : "Novo Problema",
+    "BTN_ADD": "Adicionar"
 }

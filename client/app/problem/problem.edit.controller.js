@@ -40,7 +40,12 @@ function editProblemaController($scope, Socket, $timeout,toastApp,$window,proble
             updateTrue = false;
             $timeout(setUpdate, 2000);
         }
-
     };
+
+    $scope.saveDescription = function (problem) {
+        problem.update = updateTrue;
+        Socket.emit('atualizarProblema', problem);
+    };
+
 }
 })();

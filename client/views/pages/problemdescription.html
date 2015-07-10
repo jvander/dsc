@@ -11,7 +11,7 @@
             <div class="md-whiteframe-z1">
                 <md-input-container>
                     <label>Description</label>
-                    <textarea ng-model="vm.problem.description" rows="2" ng-change="problemUpdate(vm.problem)"></textarea>
+                    <textarea ng-model="vm.problem.description" rows="2" ng-blur="saveDescription(vm.problem)"  ng-change="problemUpdate(vm.problem)"></textarea>
                 </md-input-container>
             </div>
         </md-content>
