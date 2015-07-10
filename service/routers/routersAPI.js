@@ -10,7 +10,6 @@ module.exports =  function(app, express){
     var api = express.Router();
 
     api.use("/rescuepasswd", rescuepassword());
-
     api.use("/",accessController());
     return api;
 };
