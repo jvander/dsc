@@ -12,13 +12,15 @@
     var API_ROUTE_GETUSERPROBLEMS = '/api/problem/getproblems';
     var API_ROUTE_NEWPROBLEM = '/api/problem/newproblem';
     var API_ROUTE_GETPROBLEM = '/api/problem/getproblem';
+    var API_ROUTE_GETCOLLABORATORS = '/api/problem/getcollaborators';
 
 
 
     var service = {
       newproblem       : newproblem,
       getuserproblems : getuserproblems,
-      getproblem : getproblem
+      getproblem : getproblem,
+      getcollaborators : getcollaborators
     };
 
     return service;
@@ -34,6 +36,10 @@
 
     function getuserproblems(data){
       return $http.get(API_ROUTE_GETUSERPROBLEMS + '?userid=' + data );
+    }
+
+    function getcollaborators(data){
+      return $http.get(API_ROUTE_GETCOLLABORATORS + '?idproblem=' + data );
     }
   }
 })();

@@ -8,25 +8,27 @@
     angular.module('app')
         .controller('controllerCollaborators', controllerCollaborators);
 
-    function controllerCollaborators($window){
+    function controllerCollaborators($window,problemService){
 
         var self = this;
         self.idProblem = "";
-        self.collaborators = [
-            {
-                nickname: "Jesus",
-                email: "jesus@jesus.com"
-            },
-            {
-                nickname: "Madalena",
-                email: "madalena@jesus.com"
-            }
-        ];
+        self.collaborators = [];
 
 
         self.initCollaborators = function(){
-            self.idProblem = $window.localStorage.getItem('problemid');
 
+            self.idProblem = $window.localStorage.getItem('problemid');
+            console.log('Init collaborators' + self.idProblem)
+            problemService.getcollaborators(self.idProblem)
+                .success(function(data) {
+                    console.log(data.success);
+                    if(data.success) {
+                        self.collaborators = data.collaborators;
+                        console.log(data.collaborators)
+                    }else{
+                        toastApp.errorMessage(data.message);
+                    }
+                })
 
         };
 

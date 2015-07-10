@@ -4,6 +4,7 @@
 var router = require('express').Router();
 var Problem = require('../../models/problem/problem');
 var User = require('../../models/user');
+var configMail = require('../../../configmail');
 var Q = require('q');
 
 function sendMail(mailOptions){
@@ -20,11 +21,46 @@ module.exports = function () {
         .get(getAllProblems);
     router.route('/addpeople/')
         .post(addColaborator)
+    router.route('/getcollaborators/')
+        .get(getAllCollaborators)
+
 
     return router;
 
+    function findCollaboratorsForProblem(id){
+        var deferred = Q.defer();
+        Problem.findOne({
+            _id: id
+        }).select('collaborators').exec(function(err,problem){
+            if(err) {
+                return deferred.reject(err)
+            };
+            if(!problem){
+                return deferred.resolve(new Error("Problem não encontrado"));
+            }
+            deferred.resolve(problem)
+        });
+        return deferred.promise;
+    }
+
+    function getAllCollaborators(req,res){
+        console.log(req.query.idproblem)
+        findCollaboratorsForProblem(req.query.idproblem)
+            .then(function (problem) {
+                res.json({
+                    success: true,
+                    collaborators: problem.collaborators
+                }
+                );
+            }).catch(function (erro) {
+                res.status(400)
+                    .json({
+                        message: erro.message
+                    })
+            });
+    }
+
      function addNewProblem(req, res){
-         console.log("Gravando problema para o id: " + req.body.userid)
 
         var problem = new Problem({
             title: req.body.title,
@@ -103,7 +139,6 @@ module.exports = function () {
 
     function findProblem(id) {
         var deferred = Q.defer();
-
         Problem.findOne({
             _id: id
         }).exec(function (err, problem){
@@ -111,7 +146,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.reject(new Error("Problema não encontrado"));
+                return deferred.reject(new Error("Problem não encontrado"));
             }
             deferred.resolve(problem)
         });
@@ -140,22 +175,30 @@ module.exports = function () {
 
     function addColaboratorInProblem(result) {
         var deferred = Q.defer();
-        result.problem.collaborators.push(user);
-        problem.save(tratarResultado(deferred.resolve, deferred.reject));
+        result.problem.collaborators.push(result.user);
+        result.problem.save(tratarResultado(deferred.resolve, deferred.reject));
         return deferred.promise;
     }
-
 
     function addColaborator(req, res) {
         findProblem(req.body.idproblem)
             .then(function (problem) {
+
                 return findUser(req.body.email)
                     .then(function (user) {
                         return {problem: problem, user: user};
                     })
             }).then(addColaboratorInProblem)
-            .then(function (problema) {
-                res.json(problema.colaborators);
+            .then(function (problem) {
+                   var mailOptions = {
+                    from: configMail.email, // sender address
+                    to: req.body.email, // list of receivers
+                    subject: 'Project DSC', // Subject line
+                    text: 'Olá,! Você foi selecionado para nos ajudar a entender melhor o problema ' + problem.title + '.' +
+                    'Acesse http://'+ configMail.serverURL +':3000/'
+                };
+                sendMail(mailOptions);
+                res.json(problem.collaborators);
             }).catch(function (erro) {
                 res.status(400)
                     .json({
