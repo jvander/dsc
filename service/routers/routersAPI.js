@@ -11,7 +11,6 @@ module.exports =  function(app, express){
     var api = express.Router();
 
     api.use("/rescuepasswd", rescuepassword());
-
     api.use("/",accessController());
     api.use("/problem",problemController());
     return api;
