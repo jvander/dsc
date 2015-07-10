@@ -71,17 +71,14 @@ module.exports = function () {
 
 
   function setNewPassword(req, res){
-
-    var mytoken = req.params.mytoken;
-    var password = req.body.password;
-    User.findOne({resetPasswordToken: mytoken, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+   User.findOne({resetPasswordToken: req.query.mytoken, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
       if (!user) {
         res.json({
           success: false,
           mensage: "Password reset token is invalid or has expired."
         });
       }else{
-        user.password = req.body.password;
+        user.password = req.query.password;
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
         user.save(function (err) {

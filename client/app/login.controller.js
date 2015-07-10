@@ -9,7 +9,7 @@
        .controller('loginController',loginController);
 
 
-        function loginController($rootScope,$state, Auth, $filter, toastApp) {
+        function loginController($rootScope,$state, Auth, $window, $filter, toastApp) {
             var vm = this;
 
             vm.loggedIn = Auth.isLoggedIn();
@@ -30,6 +30,10 @@
                         Auth.getUser()
                             .then(function(data) {
                                    vm.user = data.data;
+                                   $window.localStorage.setItem("userid",vm.user.id);
+
+                                   $window.localStorage.setItem("nickname",vm.user.nickname);
+
                                    toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + vm.user.nickname);
                             });
                         if(data.success) {

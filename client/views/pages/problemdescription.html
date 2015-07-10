@@ -1,15 +1,23 @@
 <div>
-    <md-content layout-padding>
-        <div class="md-whiteframe-z1">
-            <span>Projeto: {{myProblem.id}}</span>
-            <md-input-container>
-                <label>Title</label>
-                <input type="text" ng-model="myProblem.title" ng-change="problemUpdate(myProblem)">
-            </md-input-container>
-            <md-input-container>
-                <label>Description</label>
-                <textarea ng-model="myProblem.description" rows="2" ng-change="problemUpdate(myProblem)"></textarea>
-            </md-input-container>
-        </div>
-    </md-content>
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>{{myProblem.title}}</h2>
+        <span flex></span>
+    </div>
+</md-toolbar>
+<md-content>
+    <div>
+        <md-content layout-padding>
+            <div class="md-whiteframe-z1">
+                <input type="text" ng-hide="true" ng-model="myProblem.id" ng-change="problemUpdate(myProblem)">
+                <md-input-container>
+                    <label>Description</label>
+                    <textarea ng-model="myProblem.description" rows="2" ng-change="problemUpdate(myProblem)"></textarea>
+                </md-input-container>
+            </div>
+        </md-content>
+    </div>
+
+</md-content>
 </div>
+

@@ -12,7 +12,7 @@ var jsonwebtoken = require('jsonwebtoken');
 
 function createToken(user){
     var token = jsonwebtoken.sign({
-        id: user.id,
+        id: user._id,
         fullname: user.fullname,
         nickname: user.nickname,
         email: user.email,
@@ -85,7 +85,7 @@ module.exports = function () {
     function userValidate(req, res){
         User.findOne({
             email: req.body.email
-        }).select('fullname nickname email language password').exec(function(err,user){
+        }).select('_id fullname nickname email language password').exec(function(err,user){
             if(err) throw err;
 
             if(!user){

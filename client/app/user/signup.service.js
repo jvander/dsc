@@ -5,9 +5,9 @@
     .module('app')
     .factory('signupService', signupService);
 
-  signupService.$inject = ['$http'];
+  signupService.$inject = ['$http','$location'];
 
-  function signupService($http) {
+  function signupService($http,$location) {
 
     var API_ROUTE_USER = '/api/signup/';
     var API_ROUTE_RESCUEPASSWORD = '/api/rescuepasswd/';
@@ -30,7 +30,8 @@
     }
 
     function changePassword(data){
-      return $http.post(API_ROUTE_SETNEWPASSWORD, data);
+      var mytokenURL = $location.search();
+      return $http.get(API_ROUTE_SETNEWPASSWORD + '?mytoken=' + mytokenURL.mytoken+'&password='+data.password);
     }
   }
 })();

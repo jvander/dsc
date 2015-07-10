@@ -33,5 +33,6 @@
     "LABEL_ARTIFACT" : "Artefatos",
     "PROBLEMS": "Problemas",
     "LABEL_CLOSE" : "Fechar",
-    "LABEL_FORM_EVALUATION_FRAMEWORK" : "Quadro de Avaliação"
+    "LABEL_FORM_EVALUATION_FRAMEWORK" : "Quadro de Avaliação",
+    "LABEL_NEW_PROBLEM" : "Novo Problema"
 }

@@ -4,12 +4,14 @@
 
 
 var rescuepassword = require('../models/rescue.password.controller');
-var accessController = require('../models/accessController');
+var accessController = require('../models/access.controller');
+var problemController = require('../models/problem/problem.controller');
 
 module.exports =  function(app, express){
     var api = express.Router();
 
     api.use("/rescuepasswd", rescuepassword());
     api.use("/",accessController());
+    api.use("/problem",problemController());
     return api;
 };

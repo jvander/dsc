@@ -33,7 +33,8 @@
     "LABEL_ARTIFACT" : "Artifact",
     "PROBLEMS": "Problems",
     "LABEL_CLOSE" : "Close",
-    "LABEL_FORM_EVALUATION_FRAMEWORK" : "Evaluation Framing"
+    "LABEL_FORM_EVALUATION_FRAMEWORK" : "Evaluation Framing",
+    "LABEL_NEW_PROBLEM" : "New Problem"
 
 
 }

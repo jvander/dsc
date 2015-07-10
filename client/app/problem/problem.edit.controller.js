@@ -1,32 +1,30 @@
-/**
- * Created by JOSEVALDERLEI on 24/06/2015.
- */
-
 (function(){
-
 
 "use strict";
 
-angular.module('app')
+    angular.module('app')
     .controller('editProblemController',editProblemaController);
 editProblemaController.$injectre = ['$scope','Socket'];
 
-function editProblemaController($scope, Socket,$timeout) {
+function editProblemaController($scope, Socket, $timeout) {
+    var self = this;
     var updateTrue = true;
-    $scope.myProblem = {
-            "id": "",
+
+    self.myProblem = {
+            "id": "0001",
             "title": "",
             "description": "",
             "update" : true
     };
+
     var setUpdate = function(){
         updateTrue = true;
     };
     Socket.on('onAtualizarProblema', function (retorno) {
-        $scope.myProblem.id = retorno.id;
-        $scope.myProblem.title = retorno.title;
-        $scope.myProblem.description = retorno.description;
-        $scope.myProblem.update = updateTrue;
+        self.myProblem.id = retorno.id;
+        self.myProblem.title = retorno.title;
+        self.myProblem.description = retorno.description;
+        self.myProblem.update = updateTrue;
     });
     $scope.problemUpdate = function (myProblem) {
         myProblem = {
@@ -42,9 +40,5 @@ function editProblemaController($scope, Socket,$timeout) {
         }
 
     };
-
 }
-
-
-
 })();

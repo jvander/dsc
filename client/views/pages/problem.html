@@ -1,4 +1,3 @@
-
 <div layout="column" layout-fill>
     <md-toolbar md-scroll-shrink>
         <div class="md-toolbar-tools">
@@ -7,7 +6,7 @@
                 <span>{{'NAME_SYSTEM' | translate }}</span>
             </h3>
             <md-button ng-click="vm.editDescriptionProblem()">Edit Description</md-button>
-            <md-button>Colaborators</md-button>
+            <md-button ng-click="vm.getCollaborators()">Collaborators</md-button>
             <md-button ng-click="vm.doLogout()">Logout</md-button>
         </div>
     </md-toolbar>
@@ -15,26 +14,19 @@
 <div class="" ui-view="problem-description"></div>
 <div>
     <md-content class="md-padding">
-        <md-tabs md-dynamic-height md-border-bottom>
-
-            <md-tab  data-ui-sref="problem.stakeholders"
+        <md-tabs md-border-bottom md-stretch-tabs="always">
+            <md-tab data-ui-sref="problem.stakeholders"
                      md-active="$state.is('problem.stakeholders')"
                      label="{{'LABEL_ARTIFACT_STAKEHOLDER' | translate }}">
-                <md-content class="md-padding">
-                </md-content>
             </md-tab>
 
             <md-tab  data-ui-sref="problem.evaluationframework"
                      md-active="$state.is('problem.evaluationframework')"
                     label="{{'LABEL_ARTIFACT_EVALUATION_FRAMEWORK' | translate }}">
-                <md-content class="md-padding">
-                 </md-content>
             </md-tab>
             <md-tab data-ui-sref="problem.semioticframework"
                     md-active="$state.is('problem.semioticframework')"
                     label="{{'LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK' | translate }}">
-                <md-content class="md-padding">
-                  </md-content>
             </md-tab>
         </md-tabs>
     </md-content>
