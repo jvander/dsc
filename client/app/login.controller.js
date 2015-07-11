@@ -26,14 +26,12 @@
                 vm.error = '';
                 Auth.login(user.email, user.password)
                     .success(function(data) {
+                        $window.localStorage.setItem("userid",data.id);
+                        $window.localStorage.setItem("nickname",data.nickname);
                        vm.processing = false;
                         Auth.getUser()
                             .then(function(data) {
                                    vm.user = data.data;
-                                   $window.localStorage.setItem("userid",vm.user.id);
-
-                                   $window.localStorage.setItem("nickname",vm.user.nickname);
-
                                    toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + vm.user.nickname);
                             });
                         if(data.success) {
@@ -47,6 +45,7 @@
                     });
             };
             vm.doLogout = function() {
+
                 Auth.logout();
                 $state('init');
             };

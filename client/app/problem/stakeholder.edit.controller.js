@@ -7,49 +7,34 @@ angular.module('app')
     .controller('stakeholderController',stakeholderController);
 
 
-function stakeholderController(Socket,$scope){
+function stakeholderController(Socket,$scope,$window,problemService){
     var vm = this;
-    vm.stakeholderList = [
-        {
-            "id":1,
-            "onionlayer": "community",
-            "name": "Aluno",
-            "description": "bla blabla",
-            "openEdit": false,
-            "x": "662px",
-            "y": "255px"
-        },
-        {
-            "id":2,
-            "onionlayer": "market",
-            "name": "Professor",
-            "description": "bla blabla",
-            "openEdit": false,
-            "x": "317px",
-            "y": "456px"
-        }
-    ];
+    vm.idproblem = "";
+    vm.stakeholderList = [];
+    vm.stakeholder = "";
+    vm.intitOnion = intitOnion;
 
-    vm.stakeholder = {
-        "id": "0",
-        "onionlayer": "",
-        "name": "",
-        "description": "",
-        "openEdit" : false,
-        "x": 0,
-        "y": 0
-    };
+
+    function intitOnion(){
+        vm.idproblem = $window.localStorage.getItem('problemid');
+        problemService.getonion(vm.idproblem)
+            .success(function(data) {
+                if(data.success) {
+                    vm.stakeholderList = data.stakeholders;
+                }else{
+                    toastApp.errorMessage(data.message);
+                }
+            })
+
+    }
 
     Socket.on('onBroadcastOnionSave', function (data) {
-        console.log("Valor do id recebido..." + data);
-
-        var id = data.id;
-        angular.forEach(vm.stakeholderList, function (stakeholder) {
-            if (stakeholder.id == id){
+          angular.forEach(vm.stakeholderList, function (stakeholder) {
+            if (stakeholder._id == data._id){
                 stakeholder.stakeholder = data.stakeholder;
-                    stakeholder.name = data.name;
-                    stakeholder.description = data.description;
-                        stakeholder.openEdit = data.dadaopenEdit
+                stakeholder.name = data.name;
+                stakeholder.description = data.description;
+                stakeholder.openEdit = data.dadaopenEdit
                 stakeholder.x = data.x;
                 stakeholder.y = data.y;
             }
@@ -59,7 +44,7 @@ function stakeholderController(Socket,$scope){
 
 
     $scope.saveStakeholder = function(stakeholder) {
-        stakeholder.openEdit = true;
+        stakeholder.openEdit = false;
         Socket.emit('broadcastOnionSave', stakeholder);
     };
 
@@ -75,18 +60,20 @@ function stakeholderController(Socket,$scope){
 
     Socket.on('onBroadcastOnionEdit', function (id) {
         angular.forEach(vm.stakeholderList, function (stakeholder) {
-            if (stakeholder.id == id) stakeholder.openEdit = true;
+            if (stakeholder._id == id) stakeholder.openEdit = true;
         });
 
     });
 
     $scope.setOpenEdit = function(id){
+        console.log("openEdit........................................" + id);
+
         Socket.emit('broadcastOnionEdit', id);
     };
 
 
     Socket.on('onBroadcastOnionRemove', function (id) {
-        var stakeholder = document.getElementById('stakeholder'+vm.stakeholderList[id].id);
+        var stakeholder = document.getElementById(vm.stakeholderList[id]._id);
         stakeholder.style.display = 'none';
         vm.stakeholderList.splice(id,1);
     });
@@ -103,7 +90,7 @@ function stakeholderController(Socket,$scope){
         var id = vm.stakeholderList.length + 1;
         var newStakeholder =
         {
-            "id":id,
+            "_id":id,
             "onionlayer": camada,
             "name": "",
             "description": "",

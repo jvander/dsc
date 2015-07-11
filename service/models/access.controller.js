@@ -99,6 +99,8 @@ module.exports = function () {
                     res.json({
                         success: true,
                         mensage: "Sucessfuly login!",
+                        id: user._id,
+                        nickname: user.nickname,
                         token: token
                     });
                 }

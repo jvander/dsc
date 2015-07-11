@@ -7,53 +7,18 @@ var mongoose = require('mongoose'),
 
 
 var StakeholderSchema = new Schema({
-    name: {
-        type: String,
-        required:'required.name',
-        trim: true
-    },
-
-    onionlayer: {
-        type: String,
-        requried: 'required.layer',
-        trim: true
-    },
-
-    description: {
-        type: String,
-        required: 'required.description',
-        trim: true
-    },
-
-    positionX: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    positionY: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    openEdit:{
-        type: Boolean,
-        default: false
-    },
+    name: { type: String, required:'required.name', trim: true },
+    onionlayer: { type: String, requried: 'required.layer', trim: true },
+    description: { type: String, required: 'required.description', trim: true },
+    x: { type: String, required: true, trim: true },
+    y: { type: String, required: true, trim: true },
+    openEdit:{ type: Boolean, default: false },
 
     evaluationFraming: {
-        problems: {
-            type: String,
-            trim: true
-        },
-        solutions: {
-            type: String,
-            trim: true
-        }
-
+        problems: { type: String, trim: true },
+        solutions: { type: String, trim: true }
     },
-
     values: [String]
-
 });
 
 var SemioticFrameworkSchema = new Schema({
@@ -131,7 +96,6 @@ var ProblemSchema = new Schema({
 
     collaborators:[
         {
-            id: {type: String},
             nickname: {type: String},
             email: {type: String, required: true},
             accept: {type:Boolean, default: false},

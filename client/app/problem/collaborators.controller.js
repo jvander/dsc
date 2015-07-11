@@ -8,7 +8,7 @@
     angular.module('app')
         .controller('controllerCollaborators', controllerCollaborators);
 
-    function controllerCollaborators($window,problemService){
+    function controllerCollaborators($window,problemService,toastApp){
 
         var self = this;
         self.idProblem = "";
@@ -16,28 +16,44 @@
 
 
         self.initCollaborators = function(){
-
             self.idProblem = $window.localStorage.getItem('problemid');
-            console.log('Init collaborators' + self.idProblem)
             problemService.getcollaborators(self.idProblem)
                 .success(function(data) {
-                    console.log(data.success);
                     if(data.success) {
                         self.collaborators = data.collaborators;
-                        console.log(data.collaborators)
                     }else{
                         toastApp.errorMessage(data.message);
                     }
                 })
-
         };
 
-        self.addCollaborator = function(people){
-            var collaborator = {
-                nickname: self.collaborators.length + 'XXX',
-                email: people.email
+        function searchCallaboration(email){
+            for(var i = 0; i < self.collaborators.length; i++){
+                if(email == self.collaborators[i].email){
+                    return true;
+                }
             }
-            self.collaborators.push(collaborator)
+            return false;
+        };
+
+        self.addCollaborator = function(email){
+            if(searchCallaboration(email)){
+                toastApp.errorMessage("Usuario Cadastrado.");
+            }else{
+                var invite = {
+                    idproblem: self.idProblem,
+                    email: email
+                }
+                problemService.invite(invite)
+                    .success(function(data) {
+                        if(data.success) {
+                            self.collaborators = data.collaborators;
+                        }else{
+                            toastApp.errorMessage(data.message);
+                        }
+                    })
+            }
+
         }
 
         self.removeCollaborator = function(people){

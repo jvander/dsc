@@ -19,10 +19,13 @@ module.exports = function () {
         .get(getProblem);
     router.route('/getproblems/')
         .get(getAllProblems);
-    router.route('/addpeople/')
+    router.route('/invite/')
         .post(addColaborator)
     router.route('/getcollaborators/')
         .get(getAllCollaborators)
+    router.route('/getonion/')
+        .get(findOnion)
+
 
 
     return router;
@@ -132,12 +135,47 @@ module.exports = function () {
             if (err) {
                 return erro(err);
             }
-
             sucesso(dado);
         }
     }
 
-    function findProblem(id) {
+    function searchOnion(id){
+        var deferred = Q.defer();
+        Problem.findOne({
+            _id: id
+        }).select('stakeholders').exec(function (err, problem){
+            if(err) {
+                return deferred.reject(err)
+            };
+            if(!problem){
+                return deferred.reject(new Error("Problem não encontrado"));
+            }
+            deferred.resolve(problem)
+        });
+        return deferred.promise;
+    }
+
+
+
+    function findOnion(req, res){
+        searchOnion(req.query.idproblem)
+            .then(function (problem) {
+                res.json({
+                        success:true,
+                        stakeholders: problem.stakeholders
+                    }
+                );
+            }).catch(function (erro) {
+                res.status(400)
+                    .json({
+                        message: erro.message
+                    })
+            });
+
+    }
+
+
+    function findProblem(id,email) {
         var deferred = Q.defer();
         Problem.findOne({
             _id: id
@@ -147,6 +185,10 @@ module.exports = function () {
             };
             if(!problem){
                 return deferred.reject(new Error("Problem não encontrado"));
+            }
+            if(buscaUser(problem.collaborators,email)){
+
+                return deferred.reject(new Error("User is Colaborator."));
             }
             deferred.resolve(problem)
         });
@@ -179,26 +221,37 @@ module.exports = function () {
         result.problem.save(tratarResultado(deferred.resolve, deferred.reject));
         return deferred.promise;
     }
+    function buscaUser(listauser, email) {
+        for(var i=0; i < listauser.length; i++){
+            if(listauser[i].email == email){
+                return true;
+            }
+        }
+        return false;
+    }
 
     function addColaborator(req, res) {
-        findProblem(req.body.idproblem)
+        findProblem(req.body.idproblem,req.body.email)
             .then(function (problem) {
-
                 return findUser(req.body.email)
                     .then(function (user) {
                         return {problem: problem, user: user};
                     })
             }).then(addColaboratorInProblem)
-            .then(function (problem) {
-                   var mailOptions = {
+             .then(function (problem) {
+                  /* var mailOptions = {
                     from: configMail.email, // sender address
                     to: req.body.email, // list of receivers
                     subject: 'Project DSC', // Subject line
                     text: 'Olá,! Você foi selecionado para nos ajudar a entender melhor o problema ' + problem.title + '.' +
                     'Acesse http://'+ configMail.serverURL +':3000/'
                 };
-                sendMail(mailOptions);
-                res.json(problem.collaborators);
+                sendMail(mailOptions);*/
+                res.json({
+                    success:true,
+                    collaborators: problem.collaborators
+                }
+                );
             }).catch(function (erro) {
                 res.status(400)
                     .json({
