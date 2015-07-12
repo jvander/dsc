@@ -12,37 +12,47 @@ angular.module('app')
 function semioticframeworkController(){
 
     var vm = this;
+    vm.saveSocialWorld = saveSocialWorld;
+    vm.savePragmatic = savePragmatic;
+    vm.saveSemioticFramework = saveSemioticFramework;
+    vm.saveSyntatic = saveSyntatic;
+    vm.saveEmpirical = saveEmpirical;
+    vm.savePhysical = savePhysical;
+
 
     vm.semioticframework = {
-
-        socialworld: {
-            requirement: "",
-            restriction: ""
-            },
-
-        pragmatic: {
-            requirement: "",
-            restriction: ""
-        },
-
-        semantic: {
-            requirement: "",
-            restriction: ""
-        },
-
-        syntatic: {
-            requirement: "",
-            restriction: ""
-        },
-
-        empirical: {
-            requirement: "",
-            restriction: ""
-        },
-
-        physical: {
-            requirement: "",
-            restriction: ""
-        }
+        socialworld: "social",
+        pragmatic: "pragmatic",
+        semantic: "semantic",
+        syntatic: "syntatic",
+        empirical: "empirical",
+        physical: "phisical"
     }
+
+
+    function saveSocialWorld(socialworld){
+        console.log(socialworld);
+    }
+    function savePragmatic(pragmatic){
+        console.log(pragmatic);
+    }
+
+    function saveSemioticFramework(semantic){
+        console.log(semantic);
+    }
+
+    function saveSyntatic(syntatic){
+        console.log(syntatic);
+    }
+
+    function saveEmpirical(empirical){
+        console.log(empirical);
+    }
+    function savePhysical(physical){
+        console.log(physical);
+    }
+
+
+
+
 }

@@ -21,38 +21,6 @@ var StakeholderSchema = new Schema({
     values: [String]
 });
 
-var SemioticFrameworkSchema = new Schema({
-    socialworld: [{
-        requirement: String,
-        restriction: String
-    }],
-
-    pragmatic: [{
-        requirement: String,
-        restriction: String
-    }],
-
-    semantic: [{
-        requirement: String,
-        restriction: String
-    }],
-
-    syntatic: [{
-        requirement: String,
-        restriction: String
-    }],
-
-    empirical: [{
-        requirement: String,
-        restriction: String
-    }],
-
-    physical: [{
-        requirement: String,
-        restriction: String
-    }]
-});
-
 var CultureAwareRequirementsFrameworkSchema = new  Schema({
     field: {
         type: String,
@@ -78,8 +46,6 @@ var CultureAwareRequirementsFrameworkSchema = new  Schema({
         type: String,
         enum: ['LOW', 'MEDIUM', 'HIGH']
     }
-
-
 });
 
 var ProblemSchema = new Schema({
@@ -116,8 +82,26 @@ var ProblemSchema = new Schema({
 
     stakeholders: [StakeholderSchema],
 
-    semioticFramework: [SemioticFrameworkSchema],
-
+    semioticframework:{
+        socialworld: {
+            type: String
+        },
+        pragmatic: {
+            type: String
+        },
+        semantic: {
+            type: String
+        },
+        syntatic: {
+            type: String
+        },
+        empirical: {
+            type: String
+        },
+        physical: {
+            type: String
+        }
+    },
     values: [String],
 
     cultureAwareRequirementsFramework: [CultureAwareRequirementsFrameworkSchema]

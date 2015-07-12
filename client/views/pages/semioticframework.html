@@ -2,72 +2,112 @@
 <div flex="100" flex-sm="100" class="md-whiteframe-z1">
     <md-content class="md-padding">
 
-    <div layout="row" layout-margin layout-align="end start">
+<form name="socialWorldForm" data-ng-submit="vm.saveSocialWorld(vm.semioticframework.socialworld)">
+
+        <div layout="row" layout-margin layout-align="end start">
         <div flex="75" flex-sm="100" class="md-whiteframe-z1">
         <md-toolbar class="md-primary md-toolbar-tools">
             <span>Mundo Social - Compromissos, contratos, leis, crenças, cultura...</span>
+            <span flex layout-align="end end"></span>
+            <md-button type="submit" class="md-primary md-raised"
+                       ng-class="{'md-raised md-hue-1': (socialWorldForm.$dirty && socialWorldForm.$valid) }"
+                       aria-label="social world">{{'BTN_ADD' | translate}}</md-button>
         </md-toolbar>
-        <md-content class="md-padding">
-        </md-content>
+                <md-input-container>
+                    <textarea ng-model="vm.semioticframework.socialworld" required></textarea>
+                </md-input-container>
     </div>
     </div>
+</form>
 
 
+<form name="pragmaticForm" data-ng-submit="vm.savePragmatic(vm.semioticframework.pragmatic)">
         <div layout="row" layout-margin layout-align="end start">
             <div flex="80" flex-sm="100" class="md-whiteframe-z1">
                 <md-toolbar class="md-primary md-toolbar-tools">
                     <span>Pragmática - Intensões, conversações, negociações...</span>
+                    <span flex layout-align="end end"></span>
+                    <md-button type="submit" class="md-raised"
+                               ng-class="{'md-raised md-hue-1': (pragmaticForm.$dirty && pragmaticForm.$valid) }"
+                               aria-label="pragmatic">{{'BTN_ADD' | translate}}</md-button>
                 </md-toolbar>
-                <md-content class="md-padding">
-
-                </md-content>
+                        <md-input-container>
+                            <textarea ng-model="vm.semioticframework.pragmatic" required></textarea>
+                        </md-input-container>
             </div>
         </div>
+</form>
 
+<form name="semanticForm" data-ng-submit="vm.saveSemioticFramework(vm.semioticframework.semantic)">
 <div layout="row" layout-margin layout-align="end start">
 <div flex="85" flex-sm="100" class="md-whiteframe-z1">
     <md-toolbar class="md-primary md-toolbar-tools">
         <span>Semântica - Significados, pressupostos, validade... 3</span>
+        <span flex layout-align="end end"></span>
+        <md-button type="submit" class="md-raised md-hue-1"
+                   ng-class="{'md-raised md-hue-1': (semanticForm.$dirty && semanticForm.$valid) }"
+                   aria-label="Semantic">{{'BTN_ADD' | translate}}</md-button>
     </md-toolbar>
-    <md-content class="md-padding">
-
-    </md-content>
+            <md-input-container>
+                <textarea ng-model="vm.semioticframework.semantic" required></textarea>
+            </md-input-container>
 </div>
 </div>
+</form>
 
+<form name="syntaticForm" data-ng-submit="vm.saveSyntatic(vm.semioticframework.syntatic)">
 <div layout="row" layout-margin layout-align="end start">
 <div flex="90" flex-sm="100" class="md-whiteframe-z1">
     <md-toolbar class="md-primary md-toolbar-tools">
         <span>Sintática - estrutura, formas, linguagem, dados, padrões...</span>
+        <span flex layout-align="end end"></span>
+        <md-button type="submit" class="md-raised md-hue-1"
+                   ng-class="{'md-raised md-hue-1': (syntaticForm.$dirty && syntaticForm.$valid) }"
+                   aria-label="invite">{{'BTN_ADD' | translate}}</md-button>
     </md-toolbar>
-    <md-content class="md-padding">
-
-    </md-content>
+            <md-input-container>
+                <textarea ng-model="vm.semioticframework.syntatic" required></textarea>
+            </md-input-container>
 </div>
 </div>
+</form>
 
+<form name="empiricalForm" data-ng-submit="vm.saveEmpirical(vm.semioticframework.empirical)">
 <div layout="row" layout-margin layout-align="end start">
 <div flex="95" flex-sm="100" class="md-whiteframe-z1">
     <md-toolbar class="md-primary md-toolbar-tools">
-        <span>Empíria- Canal de comunicação, ruido, capacidade, redundância, eficência...</span>
+        <span>Empíria- Canal de comunicação, ruido, capacidade, redundância, eficência...</span><span flex layout-align="end end"></span><md-button>{{'BTN_ADD' | translate}}</md-button>
+        <span flex layout-align="end end"></span>
+        <md-button type="submit" class="md-raised md-hue-1"
+                   ng-class="{'md-raised md-hue-1': (empiricalForm.$dirty && empiricalForm.$valid) }"
+                   aria-label="invite">{{'BTN_ADD' | translate}}</md-button>
     </md-toolbar>
-    <md-content class="md-padding">
-
-    </md-content>
+            <md-input-container>
+                <textarea ng-model="vm.semioticframework.empirical" required></textarea>
+            </md-input-container>
 </div>
 </div>
+</form>
 
+<form name="physicalForm" data-ng-submit="vm.savePhysical(vm.semioticframework.physical)">
 <div layout="row" layout-margin layout-align="end start">
 <div flex="100" flex-sm="100" class="md-whiteframe-z1">
     <md-toolbar class="md-primary md-toolbar-tools">
     <span>Física - infraestrutura, plataforma de desenvolviemnto, periféricos...</span>
+        <span flex layout-align="end end"></span>
+        <md-button type="submit" class="md-raised md-hue-1"
+                   ng-class="{'md-raised md-hue-1': (physicalForm.$dirty && physicalForm.$valid) }"
+                   aria-label="invite">{{'BTN_ADD' | translate}}</md-button>
     </md-toolbar>
-    <md-content class="md-padding">
+            <md-input-container>
+                <textarea ng-model="vm.semioticframework.physical" required></textarea>
+            </md-input-container>
 
-    </md-content>
 </div>
 </div>
-    </md-content>
+</form>
+
+</md-content>
 
 </div>
 </div>
