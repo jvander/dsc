@@ -28,6 +28,7 @@ function editProblemaController($scope, Socket, $timeout,toastApp,$window,proble
     };
 
     Socket.on('onAtualizarProblema', function (retorno) {
+        console.log("=========================================================================retorno....");
         self.problem.description = retorno.description;
         self.problem.update = updateTrue;
     });
@@ -43,6 +44,7 @@ function editProblemaController($scope, Socket, $timeout,toastApp,$window,proble
     };
 
     $scope.saveDescription = function (problem) {
+        console.log("=============================================================================");
         problem.update = updateTrue;
         Socket.emit('atualizarProblema', problem);
     };

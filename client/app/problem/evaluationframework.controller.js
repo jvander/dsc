@@ -10,127 +10,64 @@ angular.module('app')
 
 
 
-  function evaluationframeworkController (){
+  function evaluationframeworkController ($window,problemService,Socket,$scope){
 
       var vm = this;
-      vm.evaluationframeworkList =
-      [
-          {
-              "onionlayer": "Community",
-              "stakeholderList":
-              [
-                  {
-                    "name": "Aluno",
-                    "openEdit": false,
-                    "problems": "Problema Aluno",
-                    "solutions": "Solution  Aluno"
-                  },
-                  {
-                      "name": "Professor",
-                      "openEdit": false,
-                      "problems": "Problema Professor",
-                      "solutions": "Solution  Professor"
+      vm.evaluationframeworkList =[];
+      vm.initEvaluation = initEvaluation;
+
+      function initEvaluation(){
+          vm.idproblem = $window.localStorage.getItem('problemid');
+         problemService.getevaluation(vm.idproblem)
+              .success(function(data) {
+                  if(data.success) {
+                      vm.evaluationframeworkList = data.evaluationframework;
+                  }else{
+                      toastApp.errorMessage(data.message);
                   }
-              ]
-          },
-          {
-              "onionlayer": "Market",
-              "stakeholderList":
-                  [
-
-                      {
-                          "name": "Aluno",
-                          "openEdit": false,
-                          "problems": "Problema Aluno",
-                          "solutions": "Solution  Aluno"
-
-                      },
-                      {
-                          "name": "Aluno",
-                          "openEdit": false,
-                          "problems": "Problema Aluno",
-                          "solutions": "Solution  Aluno"
-                      }
-                  ]
-          },
-          {
-              "onionlayer": "Source",
-              "stakeholderList":
-                  [
-                      {
-                          "name": "Aluno",
-                          "openEdit": false,
-                          "problems": "Problema Aluno",
-                          "solutions": "Solution  Aluno"
-                      },
-                      {
-                          "name": "Aluno",
-                          "openEdit": false,
-                          "problems": "Problema Aluno",
-                          "solutions": "Solution  Aluno"
-                      }
-                  ]
-          },
-          {
-              "onionlayer": "Contribution",
-              "stakeholderList":
-                  [
-                      {
-                          "name": "Aluno",
-                          "openEdit": false,
-                          "problems": "Problema Aluno",
-                          "solutions": "Solution  Aluno"
-                      },
-                      {
-                          "name": "Aluno",
-                          "openEdit": false,
-                          "problems": "Problema Aluno",
-                          "solutions": "Solution  Aluno"
-                      }
-                  ]
-          },
-          {
-              "onionlayer": "Technico",
-              "stakeholderList":
-                  [
-                      {
-                          "name": "Aluno",
-                          "openEdit": false,
-                          "problems": "Problema Aluno",
-                          "solutions": "Solution  Aluno"
-                      },
-                      {
-                          "name": "Aluno",
-                          "openEdit": false,
-                          "problems": "Problema Aluno",
-                          "solutions": "Solution  Aluno"
-                      }
-                  ]
-          }
-      ];
-
-      vm.saveDiscution = function(stakeholder) {
-          console.log("salvar...");
-              stakeholder.openEdit = false;
-
-      }
-
-      vm.setOpenEditDiscution = function(currentStakeholder){
-          console.log("editando......");
-          currentStakeholder.openEdit = true;
-
-
-          /*var id = currentStakeholder.id;
-          if ( id == 0) {
-              currentStakeholder.openEdit = true;
-          } else {
-              angular.forEach(vm.evaluationframeworkList.stakeholderList, function (stakeholder) {
-                  if (stakeholder.id == id) stakeholder.openEdit = true;
-              });
-          }*/
-
+              })
       };
 
 
+      Socket.on('onBroadcastFrameSave', function (data) {
 
+          angular.forEach(vm.evaluationframeworkList,function(evaluationframework){
+             if( evaluationframework.onionlayer == data.onionlayer){
+                 angular.forEach(evaluationframework.stakeholders,function(stakeholder){
+                     if (stakeholder._id == data._id){
+                         stakeholder.name = data.name;
+                         stakeholder.onionlayer = data.onionlayer;
+                         stakeholder.description = data.description;
+                         stakeholder.openEdit = data.openEdit;
+                         stakeholder.problems = data.problems;
+                         stakeholder.solutions = data.solutions;
+
+                     }
+                 });
+             }
+          });
+
+          angular.forEach(vm.evaluationframeworkList.stakeholders, function (stakeholder) {
+              if (stakeholder._id == data._id){
+                  stakeholder.onionlayer = data.onionlayer;
+                  stakeholder.name = data.name;
+                  stakeholder.description = data.description;
+                  stakeholder.openEdit = data.dadaopenEdit
+                  stakeholder.x = data.x;
+                  stakeholder.y = data.y;
+              }
+          });
+
+      });
+
+
+      $scope.saveDiscution = function(stakeholder) {
+          Socket.emit('broadcastFrameSave', stakeholder);
+      };
+
+
+      $scope.setOpenEditDiscution = function(currentStakeholder){
+          currentStakeholder.openEdit = true;
+      };
   }
+

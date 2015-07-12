@@ -113,7 +113,6 @@ var ProblemSchema = new Schema({
         required: 'required.description',
         trim: true
     },
-       
 
     stakeholders: [StakeholderSchema],
 

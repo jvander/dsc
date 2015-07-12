@@ -15,6 +15,7 @@
     var API_ROUTE_GETCOLLABORATORS = '/api/problem/getcollaborators';
     var API_ROUTE_INVITE = '/api/problem/invite';
     var API_ROUTE_GETONION = '/api/problem/getonion';
+    var API_ROUTE_GETEVALUATION = '/api/problem/getevaluation';
 
 
     var service = {
@@ -23,7 +24,8 @@
       getproblem       : getproblem,
       getcollaborators : getcollaborators,
       invite           : invite,
-      getonion         : getonion
+      getonion         : getonion,
+      getevaluation    : getevaluation
     };
 
     return service;
@@ -51,6 +53,10 @@
 
     function getonion(data){
       return $http.get(API_ROUTE_GETONION + '?idproblem=' + data );
+    }
+
+    function getevaluation (data){
+      return $http.get(API_ROUTE_GETEVALUATION + '?idproblem=' + data );
     }
   }
 })();

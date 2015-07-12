@@ -12,51 +12,40 @@ function existStakeholder(list, id){
     false;
 }
 
-function addStakeholder(result){
-    var deferred = Q.defer();
-    var problem = result.problem;
-    var stakeholder = result.stakeholder;
-    if(existStakeholder(problem.stakeholders,stakeholder._id)){
-        problem.stakeholders.push({
-            _id: stakeholder._id,
-            name: stakeholder.name,
-            onionlayer: stakeholder.onionlayer,
-            description: stakeholder.description,
-            x: stakeholder.x,
-            y: stakeholder.y
-        });
-    }else{
-
-        problem.stakeholders.push({
-            name: stakeholder.name,
-            onionlayer: stakeholder.onionlayer,
-            description: stakeholder.description,
-            x: stakeholder.x,
-            y: stakeholder.y
-        });
-
-    }
-    deferred.resolve(problem);
-    return deferred.promise;
-
-};
-
-
-
 function saveorUpdate(idproblem,stakeholder){
     searchStakeholder(idproblem)
         .then(function(problem) {
-            return {problem: problem, stakeholder: stakeholder}
-        }).then(addStakeholder)
-            .then(function (problem) {
-            console.log(problem)
-            problem.save(function(err) {
-                if(err){
-                    console.log(err);
-                }
-            })
-        }).catch(function (erro) {
-            console.log(erro);
+            if(existStakeholder(problem.stakeholders,stakeholder._id)){
+                console.log("------------------------------------------------------------------------");
+                console.log(problem)
+                console.log("------------------------------------------------------------------------");
+                Problem.findByIdAndUpdate({'_id' : problem._id, "stakeholders._id": stakeholder._id }, { $set: { "stakeholders.$": stakeholder }}, { upsert: true }, function(err, updated) {
+                    if( err || !updated ){
+                        console.log(err);
+                    }
+                });
+
+
+
+
+            }else{
+                console.log("Não Existe............................................");
+                var newstakeholder = {
+                    name: stakeholder.name,
+                    onionlayer: stakeholder.onionlayer,
+                    description: stakeholder.description,
+                    x: stakeholder.x,
+                    y: stakeholder.y
+                };
+
+                Problem.findByIdAndUpdate({_id: idproblem}, {$push: { stakeholders: newstakeholder }}, function(err, updated) {
+                    if( err || !updated ){
+                        console.log(err);
+                    }
+                });
+            }
+        }).catch(function (err) {
+            console.log(err)
         });
 }
 
@@ -78,7 +67,6 @@ function searchStakeholder(idproblem, idstakeholder){
 
 
 module.exports = function(io,socket) {
-
     socket.on('initProblem', function(data){
         socket.room = data.idproblem;
         socket.join(data.idproblem);
@@ -93,6 +81,7 @@ module.exports = function(io,socket) {
     });
 
     socket.on('atualizarProblema', function (data) {
+        console.log('>>>>>>>>>>>>>>++++++++++++++++++>>>>>>>>>' + data);
         if(data.update){
             Problem.update({_id: socket.room}, {$set: {description: data.description}}, function(err, updated) {
                 if( err || !updated ){
@@ -121,7 +110,7 @@ module.exports = function(io,socket) {
     socket.on('broadcastOnionSave',function(data){
         console.log("ID problema   " + socket.room);
 
-        //saveorUpdate(socket.room, data);
+        saveorUpdate(socket.room, data);
 
 
         /*Problem.update({_id: socket.room}, {$push: {stakeholders: data}}, function(err, updated) {
@@ -138,6 +127,18 @@ module.exports = function(io,socket) {
         console.log("Posição........... " + data.y);
         io.sockets.in(socket.room).emit('onBroadcastOnionPosition', data);
     });
+
+    //----------------------- Evaluation Frameing ----------------------------
+
+
+    socket.on('broadcastFrameSave',function(stakeholder){
+        console.log("ID problema   " + socket.room);
+        console.log(stakeholder._id);
+        console.log('>>>>>>>>>>>>>>++++++++++++++++++>>>>>>>>>' + stakeholder.onionlayer);
+        //Salvar discution...
+        io.sockets.in(socket.room).emit('onBroadcastFrameSave', stakeholder);
+    });
+
 
 };
 

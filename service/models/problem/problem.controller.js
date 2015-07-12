@@ -25,6 +25,10 @@ module.exports = function () {
         .get(getAllCollaborators)
     router.route('/getonion/')
         .get(findOnion)
+    router.route('/getevaluation/')
+        .get(findEvaluationFraming)
+
+
 
 
 
@@ -85,7 +89,6 @@ module.exports = function () {
     }
 
     function getAllProblems(req, res){
-
         Problem.find({owner : req.query.userid }).exec (function (err,problems) {
             if(err){
                 res.send(err);
@@ -96,14 +99,12 @@ module.exports = function () {
                     success: false,
                     message: "Cadastre seus problemas."
                 });
-
             }else{
                 res.send({
                     success: true,
                     problems: problems
                 });
             }
-
         });
     }
 
@@ -155,8 +156,6 @@ module.exports = function () {
         return deferred.promise;
     }
 
-
-
     function findOnion(req, res){
         searchOnion(req.query.idproblem)
             .then(function (problem) {
@@ -171,7 +170,61 @@ module.exports = function () {
                         message: erro.message
                     })
             });
+    }
 
+    function findEvaluationFraming(req, res){
+        searchOnion(req.query.idproblem)
+            .then(function (problem) {
+                var data = [
+                    {
+                        onionlayer: "Community",
+                        stakeholders:[],
+                    },
+                    {
+                        onionlayer: "Market",
+                        stakeholders:[],
+                    },
+                    {
+                        onionlayer: "Source",
+                        stakeholders:[],
+                    },
+                    {
+                        onionlayer: "Contribution",
+                        stakeholders:[],
+                    },
+                    {
+                        onionlayer: "Technico",
+                        stakeholders:[],
+                    }
+                ];
+                 for (var i = 0; i < problem.stakeholders.length; i++) {
+                   for (var j = 0; j < data.length; j++) {
+                             if (data[j].onionlayer == problem.stakeholders[i].onionlayer) {
+                             var stakeholder = {
+                                        _id: problem.stakeholders[i]._id,
+                                        name: problem.stakeholders[i].name,
+                                        onionlayer: data[j].onionlayer,
+                                        description: problem.stakeholders[i].description,
+                                        openEdit: problem.stakeholders[i].openEdit,
+                                        problems: problem.stakeholders[i].problems,
+                                        solutions: problem.stakeholders[i].solutions
+                                    }
+                                data[j].stakeholders.push(stakeholder);
+                                 break;
+                            }
+                        }
+                  }
+                res.json({
+                    success: true,
+                    evaluationframework: data
+                    })
+
+            }).catch(function (erro) {
+                res.status(400)
+                    .json({
+                        message: erro.message
+                    })
+            });
     }
 
 

@@ -17,8 +17,8 @@
 <div ng-repeat="problem in vm.problemList">
     <div ng-click="vm.editProblem(problem)" class="box-problem">
         <div clsss="title"><span>{{problem.title}}</span></div>
-        <div class="description">
-                {{problem.description}}
+        <div class="description" ng-bind-html="problem.description">
+
         </div>
     </div>
 </div>

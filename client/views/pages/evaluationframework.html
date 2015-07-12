@@ -1,3 +1,5 @@
+<div data-ng-init="vm.initEvaluation()">
+
 <div layout="row" layout-margin layout-align="center center">
    <div flex="100" flex-sm="100" class="md-whiteframe-z1">
       <md-content class="md-padding">
@@ -8,60 +10,31 @@
                <h3>{{ evaluationframework.onionlayer }}</h3>
             </md-toolbar>
          </div>
-
-            <div ng-repeat="stakeholder in evaluationframework.stakeholderList">
-                  <div class="sticky-note-dicution" id="stakeholder{{stakeholder.id}}">
+            <div ng-repeat="stakeholder in evaluationframework.stakeholders">
+                  <div class="sticky-note-dicution" id="stakeholder{{stakeholder._id}}">
                      <div ng-hide="stakeholder.openEdit">
-                        <span ng-click="vm.setOpenEditDiscution(stakeholder)">{{stakeholder.name}}</span>
+                        <span ng-click="setOpenEditDiscution(stakeholder)">{{stakeholder.name}}</span>
                      </div>
                      <div ng-show=stakeholder.openEdit>
                         <div><span>{{stakeholder.name}}</span></div>
                         <md-input-container>
                            <label>Question/Problem</label>
-                           <textarea class="discution" ng-model="stakeholder.problems"></textarea>
+                           <textarea class="discution" ng-model="stakeholder.problems" ng-blur="saveDiscution(stakeholder)"  ng-change="saveDiscution(stakeholder)"></textarea>
                         </md-input-container>
                         <md-input-container>
                            <label>Ideia/Solution</label>
-                           <textarea class="discution" ng-model="stakeholder.solutions"></textarea>
+                           <textarea class="discution" ng-model="stakeholder.solutions" ng-blur="saveDiscution(stakeholder)"  ng-change="saveDiscution(stakeholder)"></textarea>
                         </md-input-container>
-                        <md-button ng-click="vm.saveDiscution(stakeholder)">Save {{stakeholder.name}}</md-button>
+                        <md-button ng-click="saveDiscution(stakeholder)">Save {{stakeholder.name}}</md-button>
                      </div>
                   </div>
             </div>
-
+            <div>
+               <span flex>&nbsp;</span>
+            </div>
          </div>
       </md-content>
    </div>
 </div>
 
-
-
-<!--
-<md-content>
-   <div layout="row">
-      <div class="titleevaluationframework" flex="20">Stakeholders</div>
-      <div class="titleevaluationframework" flex="40">Solution/Ideias</div>
-      <div class="titleevaluationframework" flex="40">Problems/Questions</div>
-   </div>
-
-   <div layout="row" ng-repeat="stakeholder in evaluationframework.stakeholderList">
-
-      <div class="stakeholderevaluationframework" flex="20">
-         <span>{{stakeholder.name}}</span>
-      </div>
-
-      <div class="problemevaluationframework" flex="40">
-         <md-input-container>
-            <textarea ng-model="stakeholder.problems"></textarea>
-         </md-input-container>
-
-      </div>
-      <div class="problemevaluationframework" flex="40">
-         <md-input-container>
-            <textarea ng-model="stakeholder.solutions"></textarea>
-         </md-input-container>
-
-      </div>
-   </div>
-
-</md-content>-->
+</div>

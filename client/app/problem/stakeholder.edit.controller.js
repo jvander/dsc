@@ -25,7 +25,6 @@ function stakeholderController(Socket,$scope,$window,problemService){
                     toastApp.errorMessage(data.message);
                 }
             })
-
     }
 
     Socket.on('onBroadcastOnionSave', function (data) {
@@ -66,8 +65,6 @@ function stakeholderController(Socket,$scope,$window,problemService){
     });
 
     $scope.setOpenEdit = function(id){
-        console.log("openEdit........................................" + id);
-
         Socket.emit('broadcastOnionEdit', id);
     };
 
@@ -100,6 +97,7 @@ function stakeholderController(Socket,$scope,$window,problemService){
         }
         Socket.emit('broadcastOnionAdd', newStakeholder);
     };
+
 
     vm.acende = function(evt) {
         evt.target.setAttribute("opacity", "0.7");
