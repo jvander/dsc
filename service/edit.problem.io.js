@@ -3,53 +3,8 @@
 var Problem = require('./models/problem/problem');
 var Q = require('q');
 
-function existStakeholder(list, id){
-    for(var i = 0; i < list.length; i++){
-        if(list[i]._id == id){
-            return true;
-        }
-    }
-    false;
-}
-
-function saveorUpdate(idproblem,stakeholder){
-    searchStakeholder(idproblem)
-        .then(function(problem) {
-            if(existStakeholder(problem.stakeholders,stakeholder._id)){
-                console.log("------------------------------------------------------------------------");
-                console.log(problem)
-                console.log("------------------------------------------------------------------------");
-                Problem.findByIdAndUpdate({'_id' : problem._id, "stakeholders._id": stakeholder._id }, { $set: { "stakeholders.$": stakeholder }}, { upsert: true }, function(err, updated) {
-                    if( err || !updated ){
-                        console.log(err);
-                    }
-                });
-
-
-
-
-            }else{
-                console.log("Não Existe............................................");
-                var newstakeholder = {
-                    name: stakeholder.name,
-                    onionlayer: stakeholder.onionlayer,
-                    description: stakeholder.description,
-                    x: stakeholder.x,
-                    y: stakeholder.y
-                };
-
-                Problem.findByIdAndUpdate({_id: idproblem}, {$push: { stakeholders: newstakeholder }}, function(err, updated) {
-                    if( err || !updated ){
-                        console.log(err);
-                    }
-                });
-            }
-        }).catch(function (err) {
-            console.log(err)
-        });
-}
-
-function searchStakeholder(idproblem, idstakeholder){
+//Save SocialWorld
+function searchProblem(idproblem){
     var deferred = Q.defer();
     Problem.findOne({ _id: idproblem }).exec(function(err,problem){
         if(err) {
@@ -62,8 +17,124 @@ function searchStakeholder(idproblem, idstakeholder){
     });
     return deferred.promise;
 }
+function savePhysical(idproblem, text){
+    searchProblem(idproblem)
+        .then(function(problem){
+            Problem.findByIdAndUpdate({_id: problem._id}, {$set: { "semioticframework.physical": text }}, function(err, updated) {
+                if( err || !updated ){
+                    console.log(err);
+                }
+            });
+        }).catch(function (err) {
+            console.log(err)
+        });
+}
+function saveEpirical(idproblem, text){
+    searchProblem(idproblem)
+        .then(function(problem){
+            Problem.findByIdAndUpdate({_id: problem._id}, {$set: { "semioticframework.empirical": text }}, function(err, updated) {
+                if( err || !updated ){
+                    console.log(err);
+                }
+            });
+        }).catch(function (err) {
+            console.log(err)
+        });
+}
+
+function saveSyntatic(idproblem, text){
+    searchProblem(idproblem)
+        .then(function(problem){
+            Problem.findByIdAndUpdate({_id: problem._id}, {$set: { "semioticframework.syntatic": text }}, function(err, updated) {
+                if( err || !updated ){
+                    console.log(err);
+                }
+            });
+        }).catch(function (err) {
+            console.log(err)
+        });
+}
+
+function saveSemantic(idproblem, text){
+    searchProblem(idproblem)
+        .then(function(problem){
+            Problem.findByIdAndUpdate({_id: problem._id}, {$set: { "semioticframework.semantic": text }}, function(err, updated) {
+                if( err || !updated ){
+                    console.log(err);
+                }
+            });
+        }).catch(function (err) {
+            console.log(err)
+        });
+}
+
+function savePragmatic(idproblem, text){
+    searchProblem(idproblem)
+        .then(function(problem){
+            Problem.findByIdAndUpdate({_id: problem._id}, {$set: { "semioticframework.pragmatic": text }}, function(err, updated) {
+                if( err || !updated ){
+                    console.log(err);
+                }
+            });
+        }).catch(function (err) {
+            console.log(err)
+        });
+}
+
+function saveSocialWorld(idproblem, text){
+    searchProblem(idproblem)
+        .then(function(problem){
+            Problem.findByIdAndUpdate({_id: problem._id}, {$set: { "semioticframework.socialworld": text }}, function(err, updated) {
+                if( err || !updated ){
+                    console.log(err);
+                }
+            });
+        }).catch(function (err) {
+            console.log(err)
+        });
+}
 
 
+function existStakeholder(list, id){
+    for(var i = 0; i < list.length; i++){
+        if(list[i]._id == id){
+            return true;
+        }
+    }
+    false;
+}
+
+function saveorUpdate(idproblem,stakeholder){
+    searchProblem(idproblem)
+        .then(function(problem) {
+            if(existStakeholder(problem.stakeholders,stakeholder._id)){
+
+                var id = stakeholder._id;
+                Problem.findOneAndUpdate(
+                    { "_id": idproblem, "stakeholders._id": id },
+                    {
+                        "$set": {
+                            "stakeholders.$": stakeholder
+                        }
+                    },
+                    function(err) {
+                        console.log(err,problem);
+                    }
+                );
+            }else{
+                var id = stakeholder._id;
+                delete stakeholder._id;
+                problem.stakeholders.push(stakeholder);
+                problem.save(function(err) {
+                    if( err  ){
+                        console.log(err);
+                    }
+                });
+            }
+        }).catch(function (err) {
+            console.log(err)
+        });
+}
 
 
 module.exports = function(io,socket) {
@@ -128,9 +199,11 @@ module.exports = function(io,socket) {
         io.sockets.in(socket.room).emit('onBroadcastOnionPosition', data);
     });
 
-    //----------------------- Evaluation Frameing ----------------------------
+    //----------------------- Evaluation Framing ----------------------------
 
+    function notifyEvaluationFraming(stakeholer){
 
+    }
     socket.on('broadcastFrameSave',function(stakeholder){
         console.log("ID problema   " + socket.room);
         console.log(stakeholder._id);
@@ -138,6 +211,70 @@ module.exports = function(io,socket) {
         //Salvar discution...
         io.sockets.in(socket.room).emit('onBroadcastFrameSave', stakeholder);
     });
+
+
+    // -- Semiotic Framework ----------------------------------------------------------------
+
+    socket.on('updateSocialWorld',function(obj){
+        //Validar o Salvar e Salvar no banco.
+        if(obj.update){
+            saveSocialWorld(socket.room, obj.text);
+        }
+        console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
+        console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
+        io.sockets.in(socket.room).emit('onUpdateSocialWorld', obj.text);
+    });
+
+    socket.on('updatePragmatic',function(obj){
+        //Validar o Salvar e Salvar no banco.
+        if(obj.update){
+            savePragmatic(socket.room, obj.text);
+        }
+        console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
+        console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
+        io.sockets.in(socket.room).emit('onUpdatePragmatic', obj.text);
+    });
+
+    socket.on('updateSemantic',function(obj){
+        //Validar o Salvar e Salvar no banco.
+        if(obj.update){
+            saveSemantic(socket.room, obj.text);
+        }
+        console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
+        console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
+        io.sockets.in(socket.room).emit('onUpdateSemantic', obj.text);
+    });
+
+    socket.on('updateSyntatic',function(obj){
+        //Validar o Salvar e Salvar no banco.
+        if(obj.update){
+            saveSyntatic(socket.room, obj.text);
+        }
+        console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
+        console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
+        io.sockets.in(socket.room).emit('onUpdateSyntatic', obj.text);
+    });
+
+    socket.on('updateEmpirical',function(obj){
+        //Validar o Salvar e Salvar no banco.
+        if(obj.update){
+            saveEpirical(socket.room, obj.text);
+        }
+        console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
+        console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
+        io.sockets.in(socket.room).emit('onUpdateEmpirical', obj.text);
+    });
+
+    socket.on('updatePhysical',function(obj){
+        //Validar o Salvar e Salvar no banco.
+        if(obj.update){
+            savePhysical(socket.room, obj.text);
+        }
+        console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
+        console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
+        io.sockets.in(socket.room).emit('onUpdatePhysical', obj.text);
+    });
+
 
 
 };

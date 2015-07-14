@@ -16,6 +16,7 @@
     var API_ROUTE_INVITE = '/api/problem/invite';
     var API_ROUTE_GETONION = '/api/problem/getonion';
     var API_ROUTE_GETEVALUATION = '/api/problem/getevaluation';
+    var API_ROUTE_GETSEMIOTICFRAMEWORK = '/api/problem/getsemiotic';
 
 
     var service = {
@@ -25,7 +26,8 @@
       getcollaborators : getcollaborators,
       invite           : invite,
       getonion         : getonion,
-      getevaluation    : getevaluation
+      getevaluation    : getevaluation,
+      getsemiotic      : getsemiotic
     };
 
     return service;
@@ -58,5 +60,10 @@
     function getevaluation (data){
       return $http.get(API_ROUTE_GETEVALUATION + '?idproblem=' + data );
     }
+
+    function getsemiotic (data){
+      return $http.get(API_ROUTE_GETSEMIOTICFRAMEWORK + '?idproblem=' + data )
+    }
+
   }
 })();

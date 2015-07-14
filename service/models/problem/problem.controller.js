@@ -27,12 +27,54 @@ module.exports = function () {
         .get(findOnion)
     router.route('/getevaluation/')
         .get(findEvaluationFraming)
+    router.route('/getsemiotic/')
+        .get(findSemioticFramework)
+
+
 
 
 
 
 
     return router;
+
+
+    function searchSemioticFramework(id){
+        var deferred = Q.defer();
+        Problem.findOne({
+            _id: id
+        }).select('semioticframework').exec(function (err, problem){
+            if(err) {
+                return deferred.reject(err)
+            };
+            if(!problem){
+                return deferred.reject(new Error("Problem não encontrado"));
+            }
+            deferred.resolve(problem)
+        });
+        return deferred.promise;
+    }
+
+
+    function findSemioticFramework(req, res){
+        console.log(req.query.idproblem)
+        searchSemioticFramework(req.query.idproblem)
+            .then(function(problem){
+                res.json({
+                        success: true,
+                    semioticframework: problem.semioticframework
+                    });
+            }).catch(function (erro) {
+                res.status(400)
+                    .json({
+                        message: erro.message
+                    })
+            });
+
+
+
+    };
+
 
     function findCollaboratorsForProblem(id){
         var deferred = Q.defer();
@@ -51,7 +93,6 @@ module.exports = function () {
     }
 
     function getAllCollaborators(req,res){
-        console.log(req.query.idproblem)
         findCollaboratorsForProblem(req.query.idproblem)
             .then(function (problem) {
                 res.json({
@@ -312,5 +353,6 @@ module.exports = function () {
                     })
             });
     }
+
 
 }

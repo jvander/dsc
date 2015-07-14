@@ -18,11 +18,12 @@ var StakeholderSchema = new Schema({
         problems: { type: String, trim: true },
         solutions: { type: String, trim: true }
     },
+
     values: [String]
 });
 
 var CultureAwareRequirementsFrameworkSchema = new  Schema({
-    field: {
+    pms: {
         type: String,
         requried: 'requried.field',
         trim: true
@@ -52,7 +53,7 @@ var ProblemSchema = new Schema({
 
     status: {type: String, enum: ['active', 'inactive', 'finished', 'suspended'], default: 'active'},
 
-    started: {type: Date},
+    started: {type: Date, default: Date.now },
 
     finished: {type: Date},
 

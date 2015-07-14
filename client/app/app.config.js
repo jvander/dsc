@@ -16,7 +16,7 @@
         var customGreenMap = $mdThemingProvider.extendPalette('teal', {
             'contrastDefaultColor': 'light',
             'contrastDarkColors': ['50'],
-            '50': '009688'
+            '50': 'E0F2F1'
         });
 
         $mdThemingProvider.definePalette('customGreen', customGreenMap);
