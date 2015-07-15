@@ -11,6 +11,7 @@ var UserSchema = new Schema({
     email: {type: String, required: true, index: { unique: true } },
     password: {type: String, required: true, select: false },
     language: {type: String, enum: ['en', 'pt', 'es'], default: 'en' },
+    status: {type: String, enum: ['active', 'inactive'], default: 'active'},
     resetPasswordToken: String,
     resetPasswordExpires: Date
 });

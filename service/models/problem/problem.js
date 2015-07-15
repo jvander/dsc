@@ -59,10 +59,14 @@ var ProblemSchema = new Schema({
 
     artefact: {type: String, enum: ['stakeholder', 'evaluationframing', 'semioticframework', 'carf']},
 
-    owner:{type: String, required: true }, //Usuário que propôe o problema
-
+    owner:{
+        fullname: {type: String, requered: true},
+        nickname: {type: String, requered: true},
+        email: {type: String, required: true},
+    },
     collaborators:[
         {
+            fullname: {type: String, requered: true},
             nickname: {type: String},
             email: {type: String, required: true},
             accept: {type:Boolean, default: false},

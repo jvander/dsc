@@ -26,6 +26,7 @@
                 vm.error = '';
                 Auth.login(user.email, user.password)
                     .success(function(data) {
+                        $window.localStorage.setItem("useremail",data.email);
                         $window.localStorage.setItem("userid",data.id);
                         $window.localStorage.setItem("nickname",data.nickname);
                        vm.processing = false;

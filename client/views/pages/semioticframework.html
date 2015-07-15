@@ -96,12 +96,12 @@
     <span>Física - infraestrutura, plataforma de desenvolviemnto, periféricos...</span>
         <span flex layout-align="end end"></span>
         <md-button type="submit" class="md-hue-1"
-                   ng-class="{'md-raised md-hue-1': (physicalForm.$dirty && physicalForm.$valid) }"
+                   ng-class="{'md-hue-1': (physicalForm.$dirty && physicalForm.$valid) }"
                    aria-label="invite">{{'BTN_ADD' | translate}}</md-button>
     </md-toolbar>
             <md-input-container>
-                <textarea ng-blur="vm.savePhysical(vm.semioticframework.physical,true)" ng-change="vm.savePhysical(vm.semioticframework.physical,false)" required></textarea>
-            </md-input-container>
+                <textarea ng-blur="vm.savePhysical(vm.semioticframework.physical,true)" ng-change="vm.savePhysical(vm.semioticframework.physical,false)" ng-model="vm.semioticframework.physical" required></textarea>
+             </md-input-container>
 
 </div>
 </div>

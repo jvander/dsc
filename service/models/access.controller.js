@@ -101,6 +101,7 @@ module.exports = function () {
                         mensage: "Sucessfuly login!",
                         id: user._id,
                         nickname: user.nickname,
+                        email: user.email,
                         token: token
                     });
                 }

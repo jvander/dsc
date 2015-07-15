@@ -107,6 +107,15 @@ function routes($stateProvider, $urlRouterProvider) {
                         controller: 'semioticframeworkController as vm'
                     }
                 }
+            })
+        .state('problem.carf', {
+                url: 'carf',
+                views: {
+                    'dsc-artifact': {
+                        templateUrl: 'views/pages/carf.html',
+                        controller: 'carfController as vm'
+                    }
+                }
             });
 
 

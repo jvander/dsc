@@ -8,15 +8,16 @@
             var vm = this;
             vm.nickname = "";
             vm.userid = "";
+            vm.useremail = "";
             vm.problemList = [];
 
             vm.getProblems = function(){
                 vm.userid = $window.localStorage.getItem('userid');
                 vm.nickname = $window.localStorage.getItem('nickname');
-                problemService.getuserproblems(vm.userid)
+                vm.useremail = $window.localStorage.getItem('useremail');
+                problemService.getuserproblems(vm.useremail)
                     .success(function(data) {
                     if(data.success) {
-
                          vm.problemList = data.problems;
                     }else{
                         toastApp.errorMessage(data.message);

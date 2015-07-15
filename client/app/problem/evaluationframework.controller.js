@@ -29,8 +29,10 @@ angular.module('app')
       };
 
 
-      Socket.on('onBroadcastFrameSave', function (data) {
 
+
+
+      Socket.on('onBroadcastFrameSave', function (data) {
           angular.forEach(vm.evaluationframeworkList,function(evaluationframework){
              if( evaluationframework.onionlayer == data.onionlayer){
                  angular.forEach(evaluationframework.stakeholders,function(stakeholder){
@@ -41,13 +43,12 @@ angular.module('app')
                          stakeholder.openEdit = data.openEdit;
                          stakeholder.problems = data.problems;
                          stakeholder.solutions = data.solutions;
-
                      }
                  });
              }
           });
 
-          angular.forEach(vm.evaluationframeworkList.stakeholders, function (stakeholder) {
+         /* angular.forEach(vm.evaluationframeworkList.stakeholders, function (stakeholder) {
               if (stakeholder._id == data._id){
                   stakeholder.onionlayer = data.onionlayer;
                   stakeholder.name = data.name;
@@ -56,8 +57,7 @@ angular.module('app')
                   stakeholder.x = data.x;
                   stakeholder.y = data.y;
               }
-          });
-
+          });*/
       });
 
 
@@ -65,6 +65,11 @@ angular.module('app')
           Socket.emit('broadcastFrameSave', stakeholder);
       };
 
+
+      Socket.on('onUpdateStakeholder', function (stakeholderOnion) {
+         console.log(stakeholderOnion);
+
+      });
 
       $scope.setOpenEditDiscution = function(currentStakeholder){
           currentStakeholder.openEdit = true;

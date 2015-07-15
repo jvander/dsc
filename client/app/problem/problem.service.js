@@ -42,7 +42,7 @@
 
 
     function getuserproblems(data){
-      return $http.get(API_ROUTE_GETUSERPROBLEMS + '?userid=' + data );
+      return $http.get(API_ROUTE_GETUSERPROBLEMS + '?email=' + data );
     }
 
     function getcollaborators(data){

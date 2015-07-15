@@ -1,0 +1,22 @@
+<div>
+
+     <p>PSM: <span class="radioValue">{{ vm.selectedpms }}</span></p>
+     <div>
+        <md-radio-group ng-model="vm.selectedpms" layout="row" layout-align="start start">
+            <md-radio-button class="md-primary" ng-repeat="p in vm.carfPMSValue"
+                             ng-value="p.pms"
+                             ng-click="vm.selectPMSValue(vm.selectedpms)">
+                {{ p.pms }}
+            </md-radio-button>
+        </md-radio-group>
+     </div>
+
+
+        <div ng-repeat="pmsvalue in vm.valueList">
+            <div layout="row" layout-align="start start">
+
+            <md-checkbox class="md-primary" ng-click="vm.addListValue(pmsvalue)">{{ pmsvalue }}</md-checkbox>
+                </div>
+        </div>
+
+</div>

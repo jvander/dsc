@@ -29,15 +29,10 @@ module.exports = function () {
         .get(findEvaluationFraming)
     router.route('/getsemiotic/')
         .get(findSemioticFramework)
-
-
-
-
-
-
+    router.route('/removeproblem/')
+        .get(removeProblem)
 
     return router;
-
 
     function searchSemioticFramework(id){
         var deferred = Q.defer();
@@ -55,7 +50,6 @@ module.exports = function () {
         return deferred.promise;
     }
 
-
     function findSemioticFramework(req, res){
         console.log(req.query.idproblem)
         searchSemioticFramework(req.query.idproblem)
@@ -70,9 +64,6 @@ module.exports = function () {
                         message: erro.message
                     })
             });
-
-
-
     };
 
 
@@ -108,29 +99,58 @@ module.exports = function () {
             });
     }
 
-     function addNewProblem(req, res){
-
-        var problem = new Problem({
-            title: req.body.title,
-            description: req.body.description,
-            owner: req.body.userid
-        });
-        problem.save(function (err) {
-            if(err){
-                console.log(err);
-                return;
+    function searchUser(id){
+        var deferred = Q.defer();
+        User.findOne({
+            _id: id
+        }).select('fullname nickname email').exec(function(err,user){
+            if(err) {
+                return deferred.reject(err)
+            };
+            if(!user){
+                return deferred.resolve(new Error("User não encontrado"));
             }
-            res.json({
-                success: true,
-                mensage: "new Problem created",
-                problem: problem
-            })
-        })
+            deferred.resolve(user)
+        });
+        return deferred.promise;
+    }
 
+     function addNewProblem(req, res){
+       searchUser(req.body.userid)
+            .then(function(user){
+                var problem = new Problem({
+                    title: req.body.title,
+                    description: req.body.description,
+                    owner: {
+                        fullname: user.fullname,
+                        nickname: user.nickname,
+                        email: user.email
+                    }
+                });
+                problem.save(function (err) {
+                    if(err){
+                        console.log(err);
+                        return;
+                    }
+                    res.json({
+                        success: true,
+                        mensage: "New Problem created",
+                        problem: problem
+                    })
+                })
+            }).catch(function (erro) {
+                res.status(400)
+                    .json({
+                        message: erro.message
+                    })
+            });
     }
 
     function getAllProblems(req, res){
-        Problem.find({owner : req.query.userid }).exec (function (err,problems) {
+         Problem.find({})
+            .where('owner.email').equals(req.query.email)
+             .where('status' ).equals('active')
+            .exec (function (err,problems) {
             if(err){
                 res.send(err);
                 return;
@@ -268,6 +288,43 @@ module.exports = function () {
             });
     }
 
+    function findProblem(idproblem){
+        var deferred = Q.defer();
+        Problem.findOne({
+            _id: id
+        }).exec(function (err, problem){
+            if(err) {
+                return deferred.reject(err)
+            };
+            if(!problem){
+                return deferred.reject(new Error("Problem não encontrado"));
+            }
+            deferred.resolve(problem)
+        });
+        return deferred.promise;
+    }
+
+    function removeProblem(req,res){
+        findProblem(req.query.idproblem)
+            .then(function(problem){
+                problem.update({$set: { status: "inactive" }}, function(err) {
+                    if( err ){
+                        console.log(err);
+                        return;
+                    }
+                    res.json({
+                            success:true,
+                        }
+                    );
+                });
+            }).catch(function (erro) {
+                res.status(400)
+                    .json({
+                        message: erro.message
+                    })
+            });
+
+    }
 
     function findProblem(id,email) {
         var deferred = Q.defer();
@@ -281,7 +338,6 @@ module.exports = function () {
                 return deferred.reject(new Error("Problem não encontrado"));
             }
             if(buscaUser(problem.collaborators,email)){
-
                 return deferred.reject(new Error("User is Colaborator."));
             }
             deferred.resolve(problem)

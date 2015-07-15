@@ -2,7 +2,6 @@
 'use strict';
 var Problem = require('./models/problem/problem');
 var Q = require('q');
-
 //Save SocialWorld
 function searchProblem(idproblem){
     var deferred = Q.defer();
@@ -17,6 +16,19 @@ function searchProblem(idproblem){
     });
     return deferred.promise;
 }
+function removeStakeholder(idproblem,stakeholder){
+   searchProblem(idproblem)
+       .then(function(problem){
+           problem.stakeholders.pull(stakeholder);
+           problem.save(function(err){
+               console.log(err);
+           });
+       }).catch(function(err){
+          console.log(err);
+       });
+}
+
+
 function savePhysical(idproblem, text){
     searchProblem(idproblem)
         .then(function(problem){
@@ -94,7 +106,6 @@ function saveSocialWorld(idproblem, text){
         });
 }
 
-
 function existStakeholder(list, id){
     for(var i = 0; i < list.length; i++){
         if(list[i]._id == id){
@@ -108,17 +119,11 @@ function saveorUpdate(idproblem,stakeholder){
     searchProblem(idproblem)
         .then(function(problem) {
             if(existStakeholder(problem.stakeholders,stakeholder._id)){
-
                 var id = stakeholder._id;
-                Problem.findOneAndUpdate(
-                    { "_id": idproblem, "stakeholders._id": id },
-                    {
-                        "$set": {
-                            "stakeholders.$": stakeholder
-                        }
-                    },
+                Problem.findOneAndUpdate({ "_id": idproblem, "stakeholders._id": id },
+                    {"$set": {"stakeholders.$": stakeholder }},
                     function(err) {
-                        console.log(err,problem);
+                        console.log(err);
                     }
                 );
             }else{
@@ -135,7 +140,6 @@ function saveorUpdate(idproblem,stakeholder){
             console.log(err)
         });
 }
-
 
 module.exports = function(io,socket) {
     socket.on('initProblem', function(data){
@@ -173,25 +177,17 @@ module.exports = function(io,socket) {
         io.sockets.in(socket.room).emit('onBroadcastOnionAdd', data);
     });
 
-    socket.on('broadcastOnionRemove',function(data){
-        console.log("Removendo................ " + data);
-        io.sockets.in(socket.room).emit('onBroadcastOnionRemove', data);
+    socket.on('broadcastOnionRemove',function(obj){
+
+        //Notificar interessados.
+        removeStakeholder(socket.room,obj.stakeholder);
+        io.sockets.in(socket.room).emit('onBroadcastOnionRemove', obj.index);
     });
 
     socket.on('broadcastOnionSave',function(data){
         console.log("ID problema   " + socket.room);
-
         saveorUpdate(socket.room, data);
-
-
-        /*Problem.update({_id: socket.room}, {$push: {stakeholders: data}}, function(err, updated) {
-            if( err || !updated ){
-                console.log(err);
-            }
-        });*/
-
-
-        io.sockets.in(socket.room).emit('onBroadcastOnionSave', data);
+        chanceStakeholder(socket,io,data);
     });
 
     socket.on('broadcastOnionPosition',function(data){
@@ -274,8 +270,13 @@ module.exports = function(io,socket) {
         console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
         io.sockets.in(socket.room).emit('onUpdatePhysical', obj.text);
     });
-
-
-
 };
 
+function chanceStakeholder(socket,io,stakeholder){
+
+
+    //Sem mundaça
+    io.sockets.in(socket.room).emit('onBroadcastOnionSave', stakeholder);
+
+    io.sockets.in(socket.room).emit('onUpdateStakeholder', stakeholder);
+};

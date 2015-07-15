@@ -75,8 +75,12 @@ function stakeholderController(Socket,$scope,$window,problemService){
         vm.stakeholderList.splice(id,1);
     });
 
-    $scope.delPostIt = function(id) {
-        Socket.emit('broadcastOnionRemove', id);
+    $scope.delPostIt = function(index,stakeholder) {
+        var obj = {
+            index: index,
+            stakeholder: stakeholder
+        }
+        Socket.emit('broadcastOnionRemove', obj);
     };
 
     Socket.on('onBroadcastOnionAdd', function (retorno) {
