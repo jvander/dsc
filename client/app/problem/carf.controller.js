@@ -34,8 +34,6 @@
         };
 
         function resetCarf(){
-            var tmpList = vm.stakeholderList;
-            vm.stakeholderList = [];
             vm.carf = {
                 _id: "",
                 pms: "",
@@ -43,7 +41,6 @@
                 requirement: "",
                 stakeholders: []
             };
-            vm.stakeholderList = tmpList;
             vm.valueList = [];
         }
 
