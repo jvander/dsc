@@ -7,14 +7,14 @@ var mongoose = require('mongoose'),
 
 
 var StakeholderSchema = new Schema({
-    name: { type: String, required:'required.name', trim: true },
-    onionlayer: { type: String, requried: 'required.layer', trim: true },
-    description: { type: String, required: 'required.description', trim: true },
+    name: { type: String, trim: true },
+    onionlayer: { type: String, trim: true },
+    description: { type: String, trim: true },
     x: { type: String, required: true, trim: true },
     y: { type: String, required: true, trim: true },
     openEdit:{ type: Boolean, default: false },
 
-    evaluationFraming: {
+    evaluationframing: {
         problems: { type: String, trim: true },
         solutions: { type: String, trim: true }
     },
@@ -25,24 +25,18 @@ var StakeholderSchema = new Schema({
 var CultureAwareRequirementsFrameworkSchema = new  Schema({
     pms: {
         type: String,
-        requried: 'requried.field',
+        requried: true,
         trim: true
     },
-
-    value: {
-        type: String,
-        required: 'required:value',
-        trim: true
-    },
-
+    values: [
+        {type:String, requried:true }
+    ],
     requirement: {
         type: String,
-        required: 'required.requirement',
+        required: true,
         trim: true
     },
-
     stakeholders: [String],
-
     priority: {
         type: String,
         enum: ['LOW', 'MEDIUM', 'HIGH']
@@ -109,7 +103,7 @@ var ProblemSchema = new Schema({
     },
     values: [String],
 
-    cultureAwareRequirementsFramework: [CultureAwareRequirementsFrameworkSchema]
+    carf: [CultureAwareRequirementsFrameworkSchema]
 });
 
 module.exports = mongoose.model('Problem', ProblemSchema);

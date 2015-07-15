@@ -19,11 +19,11 @@
                         <div><span>{{stakeholder.name}}</span></div>
                         <md-input-container>
                            <label>Question/Problem</label>
-                           <textarea class="discution" ng-model="stakeholder.problems" ng-blur="saveDiscution(stakeholder)"  ng-change="saveDiscution(stakeholder)"></textarea>
+                           <textarea class="discution" ng-model="stakeholder.problems"></textarea>
                         </md-input-container>
                         <md-input-container>
                            <label>Ideia/Solution</label>
-                           <textarea class="discution" ng-model="stakeholder.solutions" ng-blur="saveDiscution(stakeholder)"  ng-change="saveDiscution(stakeholder)"></textarea>
+                           <textarea class="discution" ng-model="stakeholder.solutions"></textarea>
                         </md-input-container>
                         <md-button ng-click="saveDiscution(stakeholder)">Save {{stakeholder.name}}</md-button>
                      </div>

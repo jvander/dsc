@@ -31,6 +31,8 @@ module.exports = function () {
         .get(findSemioticFramework)
     router.route('/removeproblem/')
         .get(removeProblem)
+    router.route('/getcarf/')
+        .get(findCarf)
 
     return router;
 
@@ -51,7 +53,6 @@ module.exports = function () {
     }
 
     function findSemioticFramework(req, res){
-        console.log(req.query.idproblem)
         searchSemioticFramework(req.query.idproblem)
             .then(function(problem){
                 res.json({
@@ -66,6 +67,48 @@ module.exports = function () {
             });
     };
 
+
+    function searchCarf(id){
+        var deferred = Q.defer();
+        Problem.findOne({
+            _id: id
+        }).select('stakeholders carf').exec(function (err, problem){
+            if(err) {
+                return deferred.reject(err)
+            };
+            if(!problem){
+                return deferred.reject(new Error("Problem não encontrado"));
+            }
+            deferred.resolve(problem)
+        });
+        return deferred.promise;
+    }
+
+    function buildStakeholderList(stakeholders){
+        var list = [];
+        stakeholders.forEach(function(stakeholder){
+                list.push((stakeholder.name));
+        });
+        return list;
+
+    }
+
+    function findCarf(req,res){
+        searchCarf(req.query.idproblem)
+            .then(function(problem){
+                var stakeholderList = buildStakeholderList(problem.stakeholders);
+                res.json({
+                    success: true,
+                    stakeholders: stakeholderList,
+                    carf: problem.carf
+                });
+            }).catch(function (erro) {
+                res.status(400)
+                    .json({
+                        message: erro.message
+                    })
+            });
+    }
 
     function findCollaboratorsForProblem(id){
         var deferred = Q.defer();
@@ -267,8 +310,8 @@ module.exports = function () {
                                         onionlayer: data[j].onionlayer,
                                         description: problem.stakeholders[i].description,
                                         openEdit: problem.stakeholders[i].openEdit,
-                                        problems: problem.stakeholders[i].problems,
-                                        solutions: problem.stakeholders[i].solutions
+                                        problems: problem.stakeholders[i].evaluationframing.problems,
+                                        solutions: problem.stakeholders[i].evaluationframing.solutions
                                     }
                                 data[j].stakeholders.push(stakeholder);
                                  break;

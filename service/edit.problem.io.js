@@ -15,7 +15,60 @@ function searchProblem(idproblem){
         deferred.resolve(problem)
     });
     return deferred.promise;
+};
+
+//---- insert carf -----
+
+function creatNewCARF(socket, io, carf){
+    var idproblem = socket.room;
+    searchProblem(idproblem)
+        .then(function(problem) {
+            var id = carf._id;
+            delete carf._id;
+            problem.carf.push(carf);
+            problem.save(function(err, objUpdate) {
+                if( err  ){
+                    console.log(err);
+                }else{
+                    io.sockets.in(socket.room).emit('onBroadcastCARFadd', objUpdate.carf[objUpdate.carf.length -1]);
+                }
+            });
+        }).catch(function (err) {
+            console.log(err)
+        });
+};
+
+function removeCARF(idproblem,carf){
+    searchProblem(idproblem)
+        .then(function(problem){
+            problem.carf.pull(carf);
+            problem.save(function(err){
+                console.log(err);
+            });
+        }).catch(function(err){
+            console.log(err);
+        });
 }
+
+function updateStakeholderEvaluationFraming(socket, io, stakeholder){
+        var idproblem = socket.room;
+        searchProblem(idproblem)
+            .then(function(problem) {
+                var id = stakeholder._id;
+                stakeholder.openEdit = false;
+                Problem.findOneAndUpdate({ _id: idproblem, "stakeholders._id": id },
+                    {"$set": {"stakeholders.$.evaluationframing.problems": stakeholder.problems, "stakeholders.$.evaluationframing.solutions": stakeholder.solutions  }},function(err,update){
+                        if(err){
+                            console.log(err)
+                        }else{
+                            io.sockets.in(socket.room).emit('onBroadcastFrameSave', stakeholder);
+                        }
+                    });
+            }).catch(function (err) {
+                console.log(err)
+            });
+}
+
 function removeStakeholder(idproblem,stakeholder){
    searchProblem(idproblem)
        .then(function(problem){
@@ -41,6 +94,7 @@ function savePhysical(idproblem, text){
             console.log(err)
         });
 }
+
 function saveEpirical(idproblem, text){
     searchProblem(idproblem)
         .then(function(problem){
@@ -106,33 +160,69 @@ function saveSocialWorld(idproblem, text){
         });
 }
 
-function existStakeholder(list, id){
-    for(var i = 0; i < list.length; i++){
-        if(list[i]._id == id){
-            return true;
-        }
-    }
-    false;
+
+
+function creatStakeholder(socket,io,stakeholder){
+    var idproblem = socket.room;
+    searchProblem(idproblem)
+        .then(function(problem) {
+                var id = stakeholder._id;
+                delete stakeholder._id;
+                problem.stakeholders.push(stakeholder);
+                problem.save(function(err, objUpdate) {
+                    if( err  ){
+                        console.log(err);
+                    }else{
+                        io.sockets.in(socket.room).emit('onBroadcastOnionAdd', objUpdate.stakeholders[objUpdate.stakeholders.length -1]);
+                    }
+                });
+        }).catch(function (err) {
+            console.log(err)
+        });
+};
+
+function updateStakeholder(socket,io,stakeholder){
+    var idproblem = socket.room;
+    searchProblem(idproblem)
+        .then(function(problem) {
+                var id = stakeholder._id;
+                stakeholder.openEdit = false;
+                Problem.findOneAndUpdate({ "_id": idproblem, "stakeholders._id": id },
+                    {"$set": {"stakeholders.$": stakeholder }},function(err){
+                        if(err){
+                            console.log(err)
+                        }else{
+                            chanceStakeholder(socket,io,stakeholder);
+                        }
+                    });
+        }).catch(function (err) {
+            console.log(err)
+        });
 }
 
-function saveorUpdate(idproblem,stakeholder){
+function saveorUpdate(socket,io,stakeholder){
+    var idproblem = socket.room;
     searchProblem(idproblem)
         .then(function(problem) {
             if(existStakeholder(problem.stakeholders,stakeholder._id)){
                 var id = stakeholder._id;
                 Problem.findOneAndUpdate({ "_id": idproblem, "stakeholders._id": id },
-                    {"$set": {"stakeholders.$": stakeholder }},
-                    function(err) {
-                        console.log(err);
-                    }
-                );
+                    {"$set": {"stakeholders.$": stakeholder }},function(err){
+                        if(err){
+                            console.log(err)
+                        }else{
+                            chanceStakeholder(socket,io,stakeholder);
+                        }
+                    });
             }else{
                 var id = stakeholder._id;
                 delete stakeholder._id;
                 problem.stakeholders.push(stakeholder);
-                problem.save(function(err) {
+                problem.save(function(err, objUpdate) {
                     if( err  ){
                         console.log(err);
+                    }else{
+                        chanceStakeholder(socket,io,objUpdate.stakeholders[objUpdate.stakeholders.length -1]);
                     }
                 });
             }
@@ -167,18 +257,16 @@ module.exports = function(io,socket) {
         io.sockets.in(socket.room).emit('onAtualizarProblema', data);
     });
 
-    socket.on('broadcastOnionEdit',function(data){
-        console.log("Editando..................... " + data);
-        io.sockets.in(socket.room).emit('onBroadcastOnionEdit', data);
+    socket.on('broadcastOnionEdit',function(id){
+        console.log("Editando..................... " + id);
+        io.sockets.in(socket.room).emit('onBroadcastOnionEdit',id);
     });
 
     socket.on('broadcastOnionAdd',function(data){
-        console.log("Addicionando.................. " + data);
-        io.sockets.in(socket.room).emit('onBroadcastOnionAdd', data);
+        creatStakeholder(socket,io,data);
     });
 
     socket.on('broadcastOnionRemove',function(obj){
-
         //Notificar interessados.
         removeStakeholder(socket.room,obj.stakeholder);
         io.sockets.in(socket.room).emit('onBroadcastOnionRemove', obj.index);
@@ -186,8 +274,7 @@ module.exports = function(io,socket) {
 
     socket.on('broadcastOnionSave',function(data){
         console.log("ID problema   " + socket.room);
-        saveorUpdate(socket.room, data);
-        chanceStakeholder(socket,io,data);
+        updateStakeholder(socket,io,data);
     });
 
     socket.on('broadcastOnionPosition',function(data){
@@ -203,9 +290,14 @@ module.exports = function(io,socket) {
     socket.on('broadcastFrameSave',function(stakeholder){
         console.log("ID problema   " + socket.room);
         console.log(stakeholder._id);
-        console.log('>>>>>>>>>>>>>>++++++++++++++++++>>>>>>>>>' + stakeholder.onionlayer);
-        //Salvar discution...
-        io.sockets.in(socket.room).emit('onBroadcastFrameSave', stakeholder);
+        updateStakeholderEvaluationFraming(socket, io, stakeholder);
+
+    });
+
+    socket.on('broadcastFrameEdit',function(stakeholder){
+        console.log("ID problema   " + socket.room);
+        console.log(stakeholder._id);
+        io.sockets.in(socket.room).emit('onBroadcastFrameEdit', stakeholder);
     });
 
 
@@ -269,6 +361,16 @@ module.exports = function(io,socket) {
         console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
         console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
         io.sockets.in(socket.room).emit('onUpdatePhysical', obj.text);
+    });
+
+    // ----- CARF --------------------------------------------------
+    socket.on('broadcastCARFadd',function(carf){
+        creatNewCARF(socket,io,carf);
+    });
+
+    socket.on('broadcastCARFremove',function(obj){
+        removeCARF(socket.room,obj.carf);
+        io.sockets.in(socket.room).emit('onBroadcastCARFremove', obj.index);
     });
 };
 

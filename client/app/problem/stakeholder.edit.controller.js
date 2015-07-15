@@ -43,19 +43,8 @@ function stakeholderController(Socket,$scope,$window,problemService){
 
 
     $scope.saveStakeholder = function(stakeholder) {
-        stakeholder.openEdit = false;
         Socket.emit('broadcastOnionSave', stakeholder);
     };
-
-    vm.removeStakeholder = function (id) {
-        var oldList = vm.stakeholderList,
-            newList = [];
-        angular.forEach(oldList, function (stakeholder) {
-            if (stakeholder.id !== id) newList.push(stakeholder);
-        });
-        vm.stakeholderList = newList;
-    };
-
 
     Socket.on('onBroadcastOnionEdit', function (id) {
         angular.forEach(vm.stakeholderList, function (stakeholder) {

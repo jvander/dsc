@@ -17,7 +17,7 @@
     var API_ROUTE_GETONION = '/api/problem/getonion';
     var API_ROUTE_GETEVALUATION = '/api/problem/getevaluation';
     var API_ROUTE_GETSEMIOTICFRAMEWORK = '/api/problem/getsemiotic';
-
+    var API_ROUTE_GETCARF = '/api/problem/getcarf';
 
     var service = {
       newproblem       : newproblem,
@@ -27,7 +27,8 @@
       invite           : invite,
       getonion         : getonion,
       getevaluation    : getevaluation,
-      getsemiotic      : getsemiotic
+      getsemiotic      : getsemiotic,
+      getcarf          : getcarf
     };
 
     return service;
@@ -64,6 +65,11 @@
     function getsemiotic (data){
       return $http.get(API_ROUTE_GETSEMIOTICFRAMEWORK + '?idproblem=' + data )
     }
+
+    function getcarf(data){
+      return $http.get(API_ROUTE_GETCARF + '?idproblem=' + data )
+    }
+
 
   }
 })();
