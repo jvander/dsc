@@ -5,6 +5,11 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+var MessageSchema = new Schema({
+    nickname: {type: String, requered: true},
+    msg: {type: String, requered: true},
+    time: {type: Date, required: true},
+});
 
 var StakeholderSchema = new Schema({
     name: { type: String, trim: true },
@@ -18,7 +23,6 @@ var StakeholderSchema = new Schema({
         problems: { type: String, trim: true },
         solutions: { type: String, trim: true }
     },
-
     values: [String]
 });
 
@@ -102,8 +106,9 @@ var ProblemSchema = new Schema({
         }
     },
     values: [String],
+    carf: [CultureAwareRequirementsFrameworkSchema],
+    chat: [MessageSchema]
 
-    carf: [CultureAwareRequirementsFrameworkSchema]
 });
 
 module.exports = mongoose.model('Problem', ProblemSchema);

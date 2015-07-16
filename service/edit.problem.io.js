@@ -16,6 +16,25 @@ function searchProblem(idproblem){
     });
     return deferred.promise;
 };
+//Insert Message Chat
+
+function insertMessage(socket,io,obj){
+    var idproblem = socket.room;
+    searchProblem(idproblem)
+        .then(function(problem) {
+            problem.chat.push(obj);
+            problem.save(function(err, objUpdate) {
+                if( err  ){
+                    console.log(err);
+                }else{
+                    io.sockets.in(socket.room).emit('onBroadcastChat', objUpdate.chat);
+                }
+            });
+        }).catch(function (err) {
+            console.log(err)
+        });
+};
+
 
 //---- insert carf -----
 
@@ -372,11 +391,24 @@ module.exports = function(io,socket) {
         removeCARF(socket.room,obj.carf);
         io.sockets.in(socket.room).emit('onBroadcastCARFremove', obj.index);
     });
+
+    // ---- Chat -----------------
+    socket.on('broadcastChat',function(message){
+        var obj = {
+            nickname: socket.username,
+            msg: message,
+            time: new Date()
+        };
+        insertMessage(socket,io,obj);
+    });
 };
 
+/*function getTime(){
+    var time = new Date();
+    return time.getDate() + "/" + time.getMonth() + "/" + time.getFullYear() + "[" + time.getHours() + ":" + time.getMinutes() + "]";
+}*/
+
 function chanceStakeholder(socket,io,stakeholder){
-
-
     //Sem mundaça
     io.sockets.in(socket.room).emit('onBroadcastOnionSave', stakeholder);
 

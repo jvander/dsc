@@ -1,36 +1,30 @@
 <div flex="100" flex-sm="100" class="md-whiteframe-z1" data-ng-init="vm.initCarf()">
 
 <form name="carfForm" data-ng-submit="vm.addpmsvalue(vm.carf)">
-     <div>PSM: <span class="radioValue">{{vm.carf.pms}}</span>
-     <div ng-repeat="va in vm.carf.values">
-       <span>{{ va }}</span>
-     </div>
-         <div ng-repeat="stakeholder in vm.carf.stakeholders">
-             <span>{{stakeholder}}</span>
-         </div>
-    </div>
-
-        <md-content>
-        <md-radio-group ng-model="vm.carf.pms" layout="row" layout-align="start start">
+        <md-radio-group ng-change="vm.selectPMSValue(vm.carf.pms)" ng-model="vm.carf.pms" layout="row" layout-align="start start">
             <md-radio-button class="md-primary" ng-repeat="p in vm.carfPMSValue"
-                             ng-value="p.pms"
-                             ng-click="vm.selectPMSValue(vm.carf.pms)">
+                             ng-value="p.pms">
                 {{ p.pms }}
             </md-radio-button>
         </md-radio-group>
-        </md-content>
 
-
-        <div ng-repeat="pmsvalue in vm.valueList">
-            <div layout="row" layout-align="start start">
-            <md-checkbox class="md-primary" ng-click="vm.addListValue(pmsvalue)">{{ pmsvalue }}</md-checkbox>
-            </div>
+        <div layout="row">
+        <div flex="100" flex-md="100" layout="column">
+            <fieldset flex>
+                <legend><code>{{vm.carf.pms}}</code></legend>
+                <div layout="row" layout-wrap>
+                    <div flex ng-repeat="pmsvalue in vm.valueList">
+                        <md-checkbox class="md-primary" ng-click="vm.addListValue(pmsvalue)" ng-click="">
+                            {{ pmsvalue }}
+                        </md-checkbox>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
         </div>
     <md-input-container>
         <label>Requirement</label>
-
     <textarea required ng-model="vm.carf.requirement"></textarea>
-
     </md-input-container>
        <div ng-repeat="stakeholder in vm.stakeholderList">
            <div layout="row" layout-align="start start">

@@ -81,17 +81,18 @@
         }
 
         vm.addListValue = function(newvalue){
-            if(vm.carf.values.length == 0){
+            console.log(newvalue);
+           if(vm.carf.values.length == 0){
                 vm.carf.values.push(newvalue);
-            }else{
-                for(var i=0; i < vm.carf.values.length; i++){
-                    if(newvalue == vm.carf.values[i]){
-                        vm.carf.values.splice(i,1);
-                        return;
-                    }
-                }
-                vm.carf.values.push(newvalue);
-            }
+            }else {
+               for (var i = 0; i < vm.carf.values.length; i++) {
+                   if (newvalue == vm.carf.values[i]) {
+                       vm.carf.values.splice(i, 1);
+                       return;
+                   }
+               }
+               vm.carf.values.push(newvalue);
+           }
         };
 
         vm.addStakeholder = function(newStakeholder){

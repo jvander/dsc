@@ -1,4 +1,44 @@
 <div layout="column" layout-fill>
+            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="chat">
+                <md-toolbar class="md-theme-light">
+                    <h1 class="md-toolbar-tools">Chat DSC</h1>
+                </md-toolbar>
+                <md-content ng-controller="chatDSC as vm" layout-padding>
+
+                    <md-content>
+                        <md-list>
+                            <md-list-item class="md-3-line" ng-repeat="msg in vm.messages">
+                                <div class="md-list-item-text">
+                                    <h4>{{msg.nickname}} {{msg.time}}</h4>
+                                    <p>{{msg.msg}}</p>
+                                </div>
+                            </md-list-item>
+                        </md-list>
+                    </md-content>
+
+                    <!--
+                    <div ng-repeat="msg in vm.messages">
+                        <div class="chat-box messagedsc">
+                            <span>{{msg.time}} </span> {{msg.nickname}} {{msg.msg}}</span>
+                        </div>
+                    </div>
+
+                    -->
+
+                    <form>
+                        <md-input-container>
+                            <label for="testInput">Mensagem</label>
+                            <input type="text" id="testInput"
+                                   ng-model="vm.newmsg" md-sidenav-focus>
+                        </md-input-container>
+                        <md-button ng-click="vm.sendMessage(vm.newmsg)">Send</md-button>
+                    </form>
+                    <md-button ng-click="vm.close()" class="md-primary">
+                        Close
+                    </md-button>
+                </md-content>
+            </md-sidenav>
+
     <md-toolbar md-scroll-shrink>
         <div class="md-toolbar-tools">
 
@@ -7,6 +47,8 @@
             </h3>
             <md-button ng-click="vm.editDescriptionProblem()">Edit Description</md-button>
             <md-button ng-click="vm.formAddCollaborators()">Collaborators</md-button>
+            <md-button ng-click="vm.openChat()">Open Chat</md-button>
+
             <md-button ng-click="vm.doLogout()">Logout</md-button>
         </div>
     </md-toolbar>
@@ -35,8 +77,24 @@
 
         </md-tabs>
     </md-content>
-</div>
 
+</div>
 
 <div class="" ui-view="dsc-artifact"></div>
 
+
+
+<md-content>
+    <md-list>
+        <md-subheader class="md-no-sticky">3 line item</md-subheader>
+        <md-list-item class="md-3-line" ng-repeat="item in todos">
+            <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+            <div class="md-list-item-text">
+                <h3>{{ item.who }}</h3>
+                <h4>{{ item.what }}</h4>
+                <p>{{ item.notes }}</p>
+            </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+    </md-list>
+</md-content>
