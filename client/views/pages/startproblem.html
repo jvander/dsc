@@ -16,7 +16,7 @@
 
 <div ng-repeat="problem in vm.problemList">
     <div class="box-problem">
-        <div><span class="close-problem" ng-click="removeProblem(problem._id)">x</span></div>
+        <div><span class="close-problem" ng-click="vm.revomveProblem($event,problem)">x</span></div>
     <div ng-click="vm.editProblem(problem)">
         <div clsss="title"><span>{{problem.title}}</span></div>
         <div class="description" ng-bind-html="problem.description">
@@ -25,6 +25,17 @@
     </div>
     </div>
 </div>
+
+    <div ng-repeat="problem in vm.problemCollaboratorList">
+        <div class="box-problem-collaborator">
+            <div ng-click="vm.editProblem(problem)">
+                <div clsss="title"><span>{{problem.title}}</span></div>
+                <div class="description" ng-bind-html="problem.description">
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 </md-content>
 

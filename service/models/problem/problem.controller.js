@@ -19,6 +19,8 @@ module.exports = function () {
         .get(getProblem);
     router.route('/getproblems/')
         .get(getAllProblems);
+    router.route('/getproblemscolaborator/')
+        .get(getAllProblemsCollaborator);
     router.route('/invite/')
         .post(addColaborator)
     router.route('/getcollaborators/')
@@ -33,6 +35,8 @@ module.exports = function () {
         .get(removeProblem)
     router.route('/getcarf/')
         .get(findCarf)
+
+
 
     return router;
 
@@ -189,7 +193,30 @@ module.exports = function () {
             });
     }
 
+    function getAllProblemsCollaborator(req, res){
+       Problem.find({"collaborators.email":req.query.email })
+           .where('status' ).equals('active')
+           .exec (function (err,problems) {
+            if(err){
+                res.send(err);
+                return;
+            }
+            if(!problems){
+                res.send({
+                    success: false,
+                    message: "Cadastre seus problemas."
+                });
+            }else{
+                res.send({
+                    success: true,
+                    problems: problems
+                });
+            }
+        });
+    }
+
     function getAllProblems(req, res){
+
          Problem.find({})
             .where('owner.email').equals(req.query.email)
              .where('status' ).equals('active')

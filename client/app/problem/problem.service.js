@@ -10,6 +10,7 @@
   function problemService($http,$location) {
 
     var API_ROUTE_GETUSERPROBLEMS = '/api/problem/getproblems';
+    var API_ROUTE_GETUSERPROBLEMSCOLLABORATOR = '/api/problem/getproblemscolaborator';
     var API_ROUTE_NEWPROBLEM = '/api/problem/newproblem';
     var API_ROUTE_GETPROBLEM = '/api/problem/getproblem';
     var API_ROUTE_GETCOLLABORATORS = '/api/problem/getcollaborators';
@@ -18,6 +19,7 @@
     var API_ROUTE_GETEVALUATION = '/api/problem/getevaluation';
     var API_ROUTE_GETSEMIOTICFRAMEWORK = '/api/problem/getsemiotic';
     var API_ROUTE_GETCARF = '/api/problem/getcarf';
+    var API_ROUTE_REMOVEPROBLEM = '/api/problem/removeproblem'
 
     var service = {
       newproblem       : newproblem,
@@ -28,7 +30,9 @@
       getonion         : getonion,
       getevaluation    : getevaluation,
       getsemiotic      : getsemiotic,
-      getcarf          : getcarf
+      getcarf          : getcarf,
+      removeproblem    : removeproblem,
+      getproblemscolaborator: getproblemscolaborator
     };
 
     return service;
@@ -70,6 +74,13 @@
       return $http.get(API_ROUTE_GETCARF + '?idproblem=' + data )
     }
 
+    function removeproblem(data){
+      return $http.get(API_ROUTE_REMOVEPROBLEM + '?idproblem=' + data );
+    }
+
+    function getproblemscolaborator(data){
+      return $http.get(API_ROUTE_GETUSERPROBLEMS + '?email=' + data );
+    }
 
   }
 })();
