@@ -19,7 +19,10 @@
                 problemService.getuserproblems(vm.useremail)
                     .success(function(data) {
                     if(data.success) {
-                         vm.problemList = data.problems;
+                        for(var i=0; i < data.problems.length; i++ ){
+                            data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"");
+                        };
+                        vm.problemList = data.problems;
                     }else{
                         toastApp.errorMessage(data.message);
                     }
@@ -27,6 +30,9 @@
                 problemService.getproblemscolaborator(vm.useremail)
                     .success(function(data) {
                         if(data.success) {
+                            for(var i=0; i < data.problems.length; i++ ){
+                                data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"");
+                            };
                             vm.problemCollaboratorList = data.problems;
                         }else{
                             toastApp.errorMessage(data.message);

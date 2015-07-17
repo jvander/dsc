@@ -47,17 +47,6 @@ angular.module('app')
                  });
              }
           });
-
-         /* angular.forEach(vm.evaluationframeworkList.stakeholders, function (stakeholder) {
-              if (stakeholder._id == data._id){
-                  stakeholder.onionlayer = data.onionlayer;
-                  stakeholder.name = data.name;
-                  stakeholder.description = data.description;
-                  stakeholder.openEdit = data.dadaopenEdit
-                  stakeholder.x = data.x;
-                  stakeholder.y = data.y;
-              }
-          });*/
       });
 
 

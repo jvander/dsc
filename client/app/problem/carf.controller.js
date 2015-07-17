@@ -7,7 +7,7 @@
     angular.module('app')
         .controller("carfController",carfController);
 
-    function carfController($window,Socket,problemService){
+    function carfController($window,Socket,problemService,toastApp){
         var vm = this;
         vm.idProblem = "",
         vm.valueList = [];
@@ -15,7 +15,7 @@
         vm.carf = {
                      pms: "",
                      values: [],
-                    requirement: "Teste",
+                    requirement: "",
                     stakeholders: []
 
             };
@@ -52,7 +52,21 @@
         });
 
         vm.addpmsvalue = function(carf){
-            Socket.emit('broadcastCARFadd', carf);
+
+            if(carf.pms === ""){
+                toastApp.errorMessage("Select PMS");
+            }else{
+                if(carf.values.length < 1 ){
+                    toastApp.errorMessage("Select one or more Value");
+                }else{
+                    if(carf.stakeholders.length < 1){
+                        toastApp.errorMessage("Select one or more Stakeholder(s)");
+                    }else{
+                        Socket.emit('broadcastCARFadd', carf);
+                    }
+                }
+            }
+
         };
 
         Socket.on('onBroadcastCARFremove', function (id) {

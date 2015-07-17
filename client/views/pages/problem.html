@@ -1,15 +1,15 @@
 <div layout="column" layout-fill>
+
             <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="chat">
                 <md-toolbar class="md-theme-light">
                     <h1 class="md-toolbar-tools">Chat DSC</h1>
                 </md-toolbar>
                 <md-content ng-controller="chatDSC as vm" layout-padding>
-                <md-content style="height: 400px;">
+                <md-content style="height: 400px;"  scroll-glue>
                         <md-list>
                             <md-list-item class="md-3-line" ng-repeat="msg in vm.messages">
                                 <div class="md-list-item-text">
-                                    <h4>{{msg.nickname}} {{msg.time}}</h4>
-                                    <p>{{msg.msg}}</p>
+                                    <p>{{msg.time}} {{msg.nickname}} : {{msg.msg}}</p>
                                 </div>
                                 <md-divider inset></md-divider>
                             </md-list-item>
@@ -17,8 +17,6 @@
                             </md-list-item>
                         </md-list>
                     </md-content>
-
-
                     <!--
                     <div ng-repeat="msg in vm.messages">
                         <div class="chat-box messagedsc">
@@ -34,13 +32,15 @@
                             <input type="text" id="testInput"
                                    ng-model="vm.newmsg" md-sidenav-focus>
                         </md-input-container>
+                        <md-button ng-hide="true" ng-click="vm.sendMessage(vm.newmsg)">Send</md-button>
+                        <md-button ng-click="vm.close()" class="md-primary">Close</md-button>
+                        <span flex></span>
                         <md-button ng-click="vm.sendMessage(vm.newmsg)">Send</md-button>
                     </form>
-                    <md-button ng-click="vm.close()" class="md-primary">
-                        Close
-                    </md-button>
                 </md-content>
             </md-sidenav>
+
+
 
     <md-toolbar md-scroll-shrink>
         <div class="md-toolbar-tools">

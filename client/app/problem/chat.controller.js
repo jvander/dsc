@@ -17,13 +17,13 @@ angular
                 });
         };
         Socket.on('onBroadcastChat', function (obj) {
-            if(vm.messages.length < 2) {
+            if(vm.messages.length == 0) {
                 for (var i = 0; i < obj.length; i++) {
                     tmp = new Date(obj[i].time);
                     var msn = {
                         nickname: obj[i].nickname,
                         msg: obj[i].msg,
-                        time: tmp.getDate() + "/" + tmp.getMonth() + "/" + tmp.getFullYear() + " [" + tmp.getHours() + ":" + tmp.getMinutes() + "] "
+                        time: tmp.getDate() + "/" + (tmp.getMonth() + 1 )+ "/" + tmp.getFullYear() + " [" + tmp.getHours() + ":" + tmp.getMinutes() + "] "
                     }
                     vm.messages.push(msn);
                 }
@@ -32,7 +32,7 @@ angular
                 vm.messages.push({
                     nickname: obj[obj.length -1].nickname,
                     msg: obj[obj.length -1].msg,
-                    time: tmp.getDay() + "/" + tmp.getMonth() + 1 + "/" + tmp.getFullYear() + " [" + tmp.getHours() + ":" + tmp.getMinutes() + "] "
+                    time: tmp.getDate() + "/" + (tmp.getMonth() + 1) + "/" + tmp.getFullYear() + " [" + tmp.getHours() + ":" + tmp.getMinutes() + "] "
                 });
             }
         });
@@ -41,4 +41,5 @@ angular
              Socket.emit('broadcastChat', chatmsg);
             vm.newmsg = "";
         }
+
     };

@@ -79,7 +79,7 @@
     }
 
     function getproblemscolaborator(data){
-      return $http.get(API_ROUTE_GETUSERPROBLEMS + '?email=' + data );
+      return $http.get(API_ROUTE_GETUSERPROBLEMSCOLLABORATOR + '?email=' + data );
     }
 
   }

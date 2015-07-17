@@ -101,8 +101,4 @@ function semioticframeworkController(Socket,$window, problemService){
         };
         Socket.emit('updatePhysical', obj);
     }
-
-
-
-
 }

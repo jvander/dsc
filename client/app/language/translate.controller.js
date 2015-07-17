@@ -5,7 +5,7 @@
 
 'use strict';
 
-angular
+    angular
     .module('app')
     .config(initLanguage)
     .controller('languageController',languageController)
@@ -34,7 +34,7 @@ function changeLanguage(){
     return {
         templateUrl : "app/language/changeLanguage.html",
         restrict: "E"
-    };
-}
+        };
+    }
 
 })();
