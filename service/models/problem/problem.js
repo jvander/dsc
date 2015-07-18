@@ -43,7 +43,7 @@ var CultureAwareRequirementsFrameworkSchema = new  Schema({
     stakeholders: [String],
     priority: {
         type: String,
-        enum: ['LOW', 'MEDIUM', 'HIGH']
+        enum: ['Low', 'Medium', 'High']
     }
 });
 

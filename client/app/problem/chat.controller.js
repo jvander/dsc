@@ -1,13 +1,14 @@
 /**
  * Created by JOSEVALDERLEI on 15/07/2015.
  */
+'use strict';
 
 angular
     .module('app')
     .controller('chatDSC',chatDSC);
 
     function chatDSC($timeout, Socket, $mdSidenav, $log) {
-        vm = this;
+        var vm = this;
         vm.newmsg = "";
         vm.messages = [];
         vm.close = function () {
@@ -17,6 +18,7 @@ angular
                 });
         };
         Socket.on('onBroadcastChat', function (obj) {
+            var tmp = "";
             if(vm.messages.length === 0) {
                 for (var i = 0; i < obj.length; i++) {
                     tmp = new Date(obj[i].time);
@@ -42,3 +44,4 @@ angular
         }
 
     };
+

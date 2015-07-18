@@ -1,15 +1,10 @@
 
 angular.module('DropDSC',[])
     .directive('draggable', function($document,Socket) {
-
       return {
             restrict: 'A',
             replace: true,
             link: function(scope, element, attr) {
-                  element.css({
-                      position: 'relative',
-                      cursor: 'pointer'
-                  });
                   element.on('mousedown', function(event) {
                       if(!scope.stakeholder.openEdit){
                           // Prevent default dragging of selected content

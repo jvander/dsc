@@ -14,14 +14,15 @@
         vm.stakeholderList = [];
         vm.localStakeholders = [];
         vm.carf = {
-                     pms: "",
-                     values: [],
-                    requirement: "",
-                    stakeholders: []
-
+            pms: "",
+            values: [],
+            priority: "",
+            requirement: "",
+            stakeholders: []
             };
         vm.initCarf = initCarf;
         vm.carfList = [];
+        vm.carfPriorityList = [];
 
         function initCarf(){
             vm.idProblem = $window.localStorage.getItem('problemid');
@@ -31,6 +32,7 @@
                         vm.localStakeholders = data.stakeholders;
                         vm.stakeholderList = vm.localStakeholders;
                         vm.carfList = data.carf;
+                        vm.carfPriorityList = vm.localPriorityList;
                     }
                 })
         };
@@ -40,6 +42,7 @@
                 _id: "",
                 pms: "",
                 values: [],
+                priority: "",
                 requirement: "",
                 stakeholders: []
             };
@@ -50,11 +53,12 @@
             vm.carfList.push(carf);
             resetCarf();
             vm.stakeholderList = vm.localStakeholders;
+            vm.carfPriorityList = vm.localPriorityList;
         });
 
         vm.addpmsvalue = function(carf){
 
-            if(carf.pms === ""){
+            if(carf.pms == ""){
                 toastApp.errorMessage("Select PMS");
             }else{
                 if(carf.values.length < 1 ){
@@ -63,8 +67,13 @@
                     if(carf.stakeholders.length < 1){
                         toastApp.errorMessage("Select one or more Stakeholder(s)");
                     }else{
-                        Socket.emit('broadcastCARFadd', carf);
-                        vm.stakeholderList = [];
+                        if(carf.priority == ""){
+                            toastApp.errorMessage("Select priority [Low, Medium or High]");
+                        }else{
+                            Socket.emit('broadcastCARFadd', carf);
+                            vm.stakeholderList = [];
+                            vm.carfPriorityList = [];
+                        }
                     }
                 }
             }
@@ -96,8 +105,11 @@
             }
         }
 
+        vm.setPriotity = function(priority){
+            vm.carf.priority = priority;
+        }
+
         vm.addListValue = function(newvalue){
-            console.log(newvalue);
            if(vm.carf.values.length == 0){
                 vm.carf.values.push(newvalue);
             }else {
@@ -124,6 +136,8 @@
                 vm.carf.stakeholders.push(newStakeholder);
             }
         };
+
+        vm.localPriorityList = ['Low', 'Medium','High'];
 
         vm.carfPMSValue = [
                 {

@@ -23,6 +23,18 @@
                 </fieldset>
             </div>
         </div>
+
+        <fieldset flex>
+            <legend><span>Priority</span></legend>
+            <md-radio-group ng-change="vm.setPriotity(vm.carf.priority)" ng-model="vm.carf.priority" layout="row" layout-align="start start">
+                <md-radio-button class="md-primary" ng-repeat="priority in vm.carfPriorityList"
+                                 ng-value="priority">
+                    {{ priority }}
+                </md-radio-button>
+            </md-radio-group>
+        </fieldset>
+
+
         <md-input-container>
             <label>Requirement</label>
             <textarea required ng-model="vm.carf.requirement"></textarea>
@@ -52,6 +64,7 @@
                     </div>
                     <div><span>Requirement</span></div>
                     <div><span>{{carf.requirement}}</span></div>
+                    <div><span>Priority: {{carf.priority}}</span></div>
                     <div><span>Stakeholders</span></div>
                     <div ng-repeat="stakeholder in carf.stakeholders">
                         <span>{{stakeholder}}</span>

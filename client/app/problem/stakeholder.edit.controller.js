@@ -59,7 +59,7 @@ function stakeholderController(Socket,$scope,$window,problemService){
 
 
     Socket.on('onBroadcastOnionRemove', function (id) {
-        var stakeholder = document.getElementById(vm.stakeholderList[id]._id);
+        var stakeholder = document.getElementById("stakeholder" +vm.stakeholderList[id]._id);
         stakeholder.style.display = 'none';
         vm.stakeholderList.splice(id,1);
     });
@@ -93,7 +93,7 @@ function stakeholderController(Socket,$scope,$window,problemService){
 
 
     vm.acende = function(evt) {
-        evt.target.setAttribute("opacity", "0.7");
+        evt.target.setAttribute("opacity", "0.8");
     }
     vm.apaga = function(evt) {
         evt.target.setAttribute("opacity", "1.0");

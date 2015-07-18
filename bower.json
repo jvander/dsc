@@ -35,7 +35,6 @@
     "angular-wysiwyg": "~1.2.4",
     "angular-sanitize": "~1.4.2",
     "textAngular": "~1.4.2",
-    "jquery": "~2.1.4",
     "angular-scroll-glue": "~2.0.6"
   }
 }
