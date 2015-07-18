@@ -1,7 +1,7 @@
 <div flex="100" flex-sm="100" class="md-whiteframe-z1" data-ng-init="vm.initCarf()">
     <form style="background-color: #fefabc" name="carfForm" data-ng-submit="vm.addpmsvalue(vm.carf)">
         <fieldset flex>
-            <legend><span>PMS</span sty></legend>
+            <legend><span>PMS</span></legend>
             <md-radio-group ng-change="vm.selectPMSValue(vm.carf.pms)" ng-model="vm.carf.pms" layout="row" layout-align="start start">
                     <md-radio-button class="md-primary" ng-repeat="p in vm.carfPMSValue"
                                      ng-value="p.pms">

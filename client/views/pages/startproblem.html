@@ -1,12 +1,21 @@
 <div layout="column" layout-fill data-ng-init="vm.getProblems()">
     <md-toolbar md-scroll-shrink>
         <div class="md-toolbar-tools">
-
-            <md-button class="md-primary md-raised" ng-click="vm.newProblem($event)" flex flex-md="100">
-                {{'LABEL_NEW_PROBLEM' | translate }}
+            <span>{{'NAME_SYSTEM' | translate }}</span>
+            <span flex flex-md="100"></span>
+            <md-button ng-click="vm.newProblem($event)" class="md-fab md-primary" aria-label="Out app">
+                <md-tooltip>
+                    {{'LABEL_NEW_PROBLEM' | translate }}
+                </md-tooltip>
+                <md-icon md-svg-src="views/img/icon/newproject.svg"></md-icon>
             </md-button>
-            <md-button ng-click="">Perfil</md-button>
-            <md-button ng-click="vm.doLogout()">Logout</md-button>
+
+            <md-button ng-click="vm.doLogout()" class="md-fab md-primary" aria-label="Out app">
+                <md-tooltip>
+                    Logout
+                </md-tooltip>
+                <md-icon md-svg-src="views/img/icon/ic_exit_to_app_24px.svg"></md-icon>
+            </md-button>
             <change-language></change-language>
         </div>
     </md-toolbar>

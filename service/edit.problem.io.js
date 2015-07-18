@@ -411,6 +411,5 @@ module.exports = function(io,socket) {
 function chanceStakeholder(socket,io,stakeholder){
     //Sem mundaça
     io.sockets.in(socket.room).emit('onBroadcastOnionSave', stakeholder);
-
     io.sockets.in(socket.room).emit('onUpdateStakeholder', stakeholder);
 };

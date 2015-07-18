@@ -36,8 +36,8 @@ angular.module('toastService',[])
                     templateUrl: 'views/pages/dsctoast.html',
                     action: "OK",
                     highlightAction: true,
-                    position: "top right",
-                    hideDelay: 9000
+                    position: "top left",
+                    hideDelay: 5000
                 }
             );
         }

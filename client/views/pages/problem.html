@@ -48,11 +48,32 @@
             <h3>
                 <span>{{'NAME_SYSTEM' | translate }}</span>
             </h3>
-            <md-button ng-click="vm.editDescriptionProblem()">Edit Description</md-button>
-            <md-button ng-click="vm.formAddCollaborators()">Collaborators</md-button>
-            <md-button ng-click="vm.openChat()">Open Chat</md-button>
+            <span flex flex-md="100"></span>
+            <md-button ng-click="vm.formAddCollaborators()" class="md-fab md-primary" aria-label="Edit Collaborators">
+                <md-tooltip>
+                    Edit Collaborators
+                </md-tooltip>
+                <md-icon md-svg-src="views/img/icon/men16.svg"></md-icon>
+            </md-button>
 
-            <md-button ng-click="vm.doLogout()">Logout</md-button>
+            <md-button ng-click="vm.editDescriptionProblem()" class="md-fab md-primary" aria-label="Edit Description">
+                <md-tooltip>
+                    Edit Description
+                </md-tooltip>
+                <md-icon md-svg-src="views/img/icon/ic_edit_24px.svg"></md-icon>
+            </md-button>
+            <md-button ng-click="vm.openChat()" class="md-fab md-primary" aria-label="Chat">
+                <md-tooltip>
+                    Open Chat
+                </md-tooltip>
+                <md-icon md-svg-src="views/img/icon/ic_chat_bubble_24px.svg"></md-icon>
+            </md-button>
+            <md-button ng-click="vm.doLogout()" class="md-fab md-primary" aria-label="Out app">
+                <md-tooltip>
+                    Logout
+                </md-tooltip>
+                <md-icon md-svg-src="views/img/icon/ic_exit_to_app_24px.svg"></md-icon>
+            </md-button>
         </div>
     </md-toolbar>
 </div>

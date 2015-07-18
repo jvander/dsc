@@ -17,7 +17,7 @@ angular
                 });
         };
         Socket.on('onBroadcastChat', function (obj) {
-            if(vm.messages.length == 0) {
+            if(vm.messages.length === 0) {
                 for (var i = 0; i < obj.length; i++) {
                     tmp = new Date(obj[i].time);
                     var msn = {
@@ -36,7 +36,6 @@ angular
                 });
             }
         });
-
         vm.sendMessage = function(chatmsg){
              Socket.emit('broadcastChat', chatmsg);
             vm.newmsg = "";
