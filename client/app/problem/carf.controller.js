@@ -12,6 +12,7 @@
         vm.idProblem = "",
         vm.valueList = [];
         vm.stakeholderList = [];
+        vm.localStakeholders = [];
         vm.carf = {
                      pms: "",
                      values: [],
@@ -27,7 +28,8 @@
             problemService.getcarf(vm.idProblem)
                 .success(function(data) {
                     if(data.success) {
-                        vm.stakeholderList = data.stakeholders;
+                        vm.localStakeholders = data.stakeholders;
+                        vm.stakeholderList = vm.localStakeholders;
                         vm.carfList = data.carf;
                     }
                 })
@@ -42,13 +44,12 @@
                 stakeholders: []
             };
             vm.valueList = [];
+
         }
-
-
-
         Socket.on('onBroadcastCARFadd', function (carf) {
             vm.carfList.push(carf);
             resetCarf();
+            vm.stakeholderList = vm.localStakeholders;
         });
 
         vm.addpmsvalue = function(carf){
@@ -63,6 +64,7 @@
                         toastApp.errorMessage("Select one or more Stakeholder(s)");
                     }else{
                         Socket.emit('broadcastCARFadd', carf);
+                        vm.stakeholderList = [];
                     }
                 }
             }
@@ -122,9 +124,6 @@
                 vm.carf.stakeholders.push(newStakeholder);
             }
         };
-
-
-
 
         vm.carfPMSValue = [
                 {
