@@ -11,6 +11,10 @@ function editProblemaController($scope, Socket, $timeout,toastApp,$window,proble
     var updateTrue = true;
     self.problem = "";
 
+    self.tabs = ['problem.stakeholders','problem.evaluationframework','problem.semioticframework','problem.carf'];
+
+
+
     self.getCurrentProblem = function(){
         self.idProblem = $window.localStorage.getItem('problemid');
         problemService.getproblem(self.idProblem)

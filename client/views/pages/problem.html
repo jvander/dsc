@@ -1,5 +1,4 @@
 <div layout="column" layout-fill>
-
             <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="chat">
                 <md-toolbar class="md-theme-light">
                     <h1 class="md-toolbar-tools">Chat DSC</h1>
@@ -69,9 +68,11 @@
         </div>
     </md-toolbar>
 </div>
+
 <div class="" ui-view="problem-description"></div>
+
 <div>
-    <md-content class="md-padding">
+    <md-content>
         <md-tabs md-border-bottom md-stretch-tabs="always">
             <md-tab data-ui-sref="problem.stakeholders"
                      md-active="$state.is('problem.stakeholders')"
@@ -90,10 +91,8 @@
                     md-active="$state.is('problem.carf')"
                     label="CARF">
             </md-tab>
-
         </md-tabs>
     </md-content>
-
 </div>
 
 <div class="" ui-view="dsc-artifact"></div>
