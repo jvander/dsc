@@ -6,7 +6,8 @@ angular.module('DropDSC',[])
             replace: true,
             link: function(scope, element, attr) {
                   element.on('mousedown', function(event) {
-                      if(!scope.stakeholder.openEdit){
+
+                      if(event.target.id.substring(0,11) == "stakeholder"){
                           // Prevent default dragging of selected content
                           event.preventDefault();
                           $document.bind('mousemove', mousemove);

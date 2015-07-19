@@ -13,6 +13,7 @@ function stakeholderController(Socket,$scope,$window,problemService){
     vm.stakeholderList = [];
     vm.stakeholder = "";
     vm.intitOnion = intitOnion;
+    vm.move = false;
 
     function intitOnion(){
         vm.idproblem = $window.localStorage.getItem('problemid');
@@ -62,6 +63,10 @@ function stakeholderController(Socket,$scope,$window,problemService){
         stakeholder.style.display = 'none';
         vm.stakeholderList.splice(id,1);
     });
+
+    $scope.setValue = function(){
+        console.log("Chamando para trocar para true....")
+    }
 
     $scope.delPostIt = function(index,stakeholder) {
         var obj = {

@@ -6,6 +6,16 @@
     color: black;
     cursor: default;
 }
+
+.move {
+    position: absolute;
+    margin-left: 120px;
+    margin-top: -10px;
+    text-decoration: none;
+    color: black;
+    cursor: default;
+}
+
 .sticky-note {
     margin: 5px;
     background:#fefabc;
