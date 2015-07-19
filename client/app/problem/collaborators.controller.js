@@ -13,10 +13,12 @@
         var self = this;
         self.idProblem = "";
         self.collaborators = [];
+        self.useremail = "";
 
 
         self.initCollaborators = function(){
             self.idProblem = $window.localStorage.getItem('problemid');
+            self.useremail = $window.localStorage.getItem('useremail');
             problemService.getcollaborators(self.idProblem)
                 .success(function(data) {
                     if(data.success) {
@@ -37,27 +39,42 @@
         };
 
         self.addCollaborator = function(email){
-            if(searchCallaboration(email)){
-                toastApp.errorMessage("Usuario Cadastrado.");
-            }else{
-                var invite = {
-                    idproblem: self.idProblem,
-                    email: email
+            if(self.useremail == email){
+                toastApp.errorMessage(self.useremail + " is email of owner.");
+            }else {
+                if (searchCallaboration(email)) {
+                    toastApp.errorMessage("Usuario Cadastrado.");
+                } else {
+                    var invite = {
+                        idproblem: self.idProblem,
+                        email: email
+                    };
+                    problemService.invite(invite)
+                        .success(function (data) {
+                            if (data.success) {
+                                self.collaborators = data.collaborators;
+                            } else {
+                                toastApp.errorMessage(data.message);
+                            }
+                        })
                 }
-                problemService.invite(invite)
-                    .success(function(data) {
-                        if(data.success) {
-                            self.collaborators = data.collaborators;
-                        }else{
-                            toastApp.errorMessage(data.message);
-                        }
-                    })
             }
-
         }
 
         self.removeCollaborator = function(people){
-            console.log(people.email);
+            var obj = {
+                idproblem: self.idProblem,
+                email: people.email
+            };
+           problemService.removecollaborators(obj)
+                .success(function(data) {
+                    if(data.success) {
+                        toastApp.errorMessage("Colaborador foi removido do projeto.");
+                        self.collaborators = data.collaborators;
+                    }else{
+                        toastApp.errorMessage(data.message);
+                    }
+                })
         }
     }
 

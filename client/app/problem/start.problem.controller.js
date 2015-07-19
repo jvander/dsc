@@ -27,7 +27,7 @@
                         toastApp.errorMessage(data.message);
                     }
                 })
-                problemService.getproblemscolaborator(vm.useremail)
+                problemService.getproblemscollaborator(vm.useremail)
                     .success(function(data) {
                         if(data.success) {
                             for(var i=0; i < data.problems.length; i++ ){

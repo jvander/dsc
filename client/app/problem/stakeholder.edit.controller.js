@@ -14,7 +14,6 @@ function stakeholderController(Socket,$scope,$window,problemService){
     vm.stakeholder = "";
     vm.intitOnion = intitOnion;
 
-
     function intitOnion(){
         vm.idproblem = $window.localStorage.getItem('problemid');
         problemService.getonion(vm.idproblem)
@@ -90,7 +89,6 @@ function stakeholderController(Socket,$scope,$window,problemService){
         }
         Socket.emit('broadcastOnionAdd', newStakeholder);
     };
-
 
     vm.acende = function(evt) {
         evt.target.setAttribute("opacity", "0.8");

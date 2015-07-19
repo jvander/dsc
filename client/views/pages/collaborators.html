@@ -14,7 +14,7 @@
 
         <div ng-repeat="collaborator in vm.collaborators">
             <div class="collaborator">
-                <div class="closecollaborator"><span ng-click="vm.removeCollaborator(collaborator)">x</span></div>
+                <div class="closecollaborator"><a ng-click="vm.removeCollaborator(collaborator)">X</a></div>
                 <div><span>{{collaborator.nickname}}</span></div>
                 <div><span>{{collaborator.email}}</span></div>
             </div>

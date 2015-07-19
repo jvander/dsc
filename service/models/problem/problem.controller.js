@@ -19,12 +19,14 @@ module.exports = function () {
         .get(getProblem);
     router.route('/getproblems/')
         .get(getAllProblems);
-    router.route('/getproblemscolaborator/')
+    router.route('/getproblemscollaborator/')
         .get(getAllProblemsCollaborator);
     router.route('/invite/')
-        .post(addColaborator)
+        .post(addCollaborator)
     router.route('/getcollaborators/')
         .get(getAllCollaborators)
+    router.route('/removecollaborator/')
+        .get(removeCollaborator)
     router.route('/getonion/')
         .get(findOnion)
     router.route('/getevaluation/')
@@ -436,7 +438,7 @@ module.exports = function () {
         return deferred.promise;
     }
 
-    function addColaboratorInProblem(result) {
+    function addCollaboratorInProblem(result) {
         var deferred = Q.defer();
         result.problem.collaborators.push(result.user);
         result.problem.save(tratarResultado(deferred.resolve, deferred.reject));
@@ -451,14 +453,14 @@ module.exports = function () {
         return false;
     }
 
-    function addColaborator(req, res) {
+    function addCollaborator(req, res) {
         findProblem(req.body.idproblem,req.body.email)
             .then(function (problem) {
                 return findUser(req.body.email)
                     .then(function (user) {
                         return {problem: problem, user: user};
                     })
-            }).then(addColaboratorInProblem)
+            }).then(addCollaboratorInProblem)
              .then(function (problem) {
                   /* var mailOptions = {
                     from: configMail.email, // sender address
@@ -481,5 +483,58 @@ module.exports = function () {
             });
     }
 
+    function selectCollaborator(list, email){
+            var collaborator;
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].email == email) {
+                    collaborator = list[i];
+                    return collaborator;
+                }
+        }
+        return null;
+    }
+
+
+
+    function removeCollaborator(req, res){
+        Problem.findOne({
+            _id: req.query.idproblem
+        }).exec(function (err, problem){
+            if(err) {
+                res.json({
+                    success:false,
+                    message: erro.message
+                })
+            };
+            if(!problem){
+                res.json({
+                    success:false,
+                    message: "Problema não encontrado."
+                })
+                }else{
+                    var collaborator = selectCollaborator(problem.collaborators, req.query.email);
+                    if(collaborator) {
+                        problem.collaborators.pull(collaborator);
+                        problem.save(function (err) {
+                            console.log(err);
+                            return
+
+                        });
+                        res.json({
+                            success: true,
+                            message: "Removido: " + req.query.email,
+                            collaborators: problem.collaborators
+                        })
+                    }else {
+                        res.json({
+                            success: false,
+                            message: req.query.email + "não removido."
+
+                        })
+                    }
+
+                }
+            });
+    }
 
 }
