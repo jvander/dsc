@@ -21,6 +21,7 @@
     var API_ROUTE_GETCARF = '/api/problem/getcarf';
     var API_ROUTE_REMOVEPROBLEM = '/api/problem/removeproblem';
     var API_ROUTE_REMOVECOLLABORATOR = '/api/problem/removecollaborator';
+    var API_ROUTE_GETHISTORYCHAT = '/api/problem/historychat';
 
     var service = {
       newproblem       : newproblem,
@@ -34,7 +35,8 @@
       getcarf          : getcarf,
       removeproblem    : removeproblem,
       getproblemscollaborator: getproblemscollaborator,
-      removecollaborators : removecollaborators
+      removecollaborators : removecollaborators,
+      gethistorychat: gethistorychat
     };
 
     return service;
@@ -86,6 +88,10 @@
 
     function removecollaborators(data){
       return $http.get(API_ROUTE_REMOVECOLLABORATOR + '?idproblem=' + data.idproblem + '&email=' + data.email );
+    }
+
+    function gethistorychat(data){
+      return $http.get(API_ROUTE_GETHISTORYCHAT + '?idproblem=' + data );
     }
 
   }

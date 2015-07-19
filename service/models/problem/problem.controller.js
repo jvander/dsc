@@ -37,6 +37,10 @@ module.exports = function () {
         .get(removeProblem)
     router.route('/getcarf/')
         .get(findCarf)
+    router.route('/historychat/')
+        .get(getHistoryChat)
+
+
 
 
 
@@ -534,6 +538,38 @@ module.exports = function () {
                     }
 
                 }
+            });
+    }
+
+
+    function searchProblem(idproblem){
+        var deferred = Q.defer();
+        Problem.findOne({ _id: idproblem }).exec(function(err,problem){
+            if(err) {
+                return deferred.reject(err)
+            };
+            if(!problem){
+                return deferred.resolve(new Error("Problem não encontrado"));
+            }
+            deferred.resolve(problem)
+        });
+        return deferred.promise;
+    };
+
+    function getHistoryChat(req,res){
+        var idproblem = req.query.idproblem;
+        searchProblem(idproblem)
+            .then(function(problem) {
+                     res.json({
+                            success: true,
+                            historychat: problem.chat
+                        })
+            }).catch(function (err) {
+                res.json({
+                    success: false,
+                    message: "No History Chat"
+
+                })
             });
     }
 

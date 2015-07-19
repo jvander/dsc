@@ -7,37 +7,55 @@ angular
     .module('app')
     .controller('chatDSC',chatDSC);
 
-    function chatDSC($timeout, Socket, $mdSidenav, $log) {
+    function chatDSC($timeout, Socket, $mdSidenav, $log,problemService,$window) {
         var vm = this;
         vm.newmsg = "";
         vm.messages = [];
+        vm.replay = false;
         vm.close = function () {
             $mdSidenav('chat').close()
                 .then(function () {
                     $log.debug("close chat");
                 });
         };
-        Socket.on('onBroadcastChat', function (obj) {
-            var tmp = "";
-            if(vm.messages.length === 0) {
-                for (var i = 0; i < obj.length; i++) {
-                    tmp = new Date(obj[i].time);
-                    var msn = {
-                        nickname: obj[i].nickname,
-                        msg: obj[i].msg,
-                        time: tmp.getDate() + "/" + (tmp.getMonth() + 1 )+ "/" + tmp.getFullYear() + " [" + tmp.getHours() + ":" + tmp.getMinutes() + "] "
+
+        vm.initHistoryChat = function(){
+            console.log('--------------------------------------------------------')
+            vm.idProblem = $window.localStorage.getItem('problemid');
+            problemService.gethistorychat(vm.idProblem)
+                .success(function(data) {
+                    if(data.success) {
+                        console.log(data.historychat);
+                        for (var i = 0; i < data.historychat.length; i++) {
+                            var tmp = new Date(data.historychat[i].time);
+                            var msn = {
+                                nickname: data.historychat[i].nickname,
+                                msg: data.historychat[i].msg,
+                                time: tmp.getDate() + "/" + (tmp.getMonth() + 1 )+ "/" + tmp.getFullYear() + " [" + tmp.getHours() + ":" + tmp.getMinutes() + "] "
+                            }
+                            vm.messages.push(msn);
+                        }
                     }
-                    vm.messages.push(msn);
-                }
+                })
+        }
+
+        vm.showReplay = function(){
+            if(vm.replay){
+                vm.replay = false;
             }else{
-                tmp = new Date(obj[obj.length -1].time);
+                vm.replay = true;
+            }
+
+        }
+        Socket.on('onBroadcastChat', function (obj) {
+                var tmp = new Date(obj[obj.length -1].time);
                 vm.messages.push({
                     nickname: obj[obj.length -1].nickname,
                     msg: obj[obj.length -1].msg,
                     time: tmp.getDate() + "/" + (tmp.getMonth() + 1) + "/" + tmp.getFullYear() + " [" + tmp.getHours() + ":" + tmp.getMinutes() + "] "
                 });
-            }
         });
+
         vm.sendMessage = function(chatmsg){
              Socket.emit('broadcastChat', chatmsg);
             vm.newmsg = "";

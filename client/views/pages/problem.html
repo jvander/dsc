@@ -4,7 +4,7 @@
                 <md-toolbar class="md-theme-light">
                     <h1 class="md-toolbar-tools">Chat DSC</h1>
                 </md-toolbar>
-                <md-content ng-controller="chatDSC as vm" layout-padding>
+                <md-content ng-controller="chatDSC as vm" layout-padding data-ng-init="vm.initHistoryChat()">
                 <md-content style="height: 400px;"  scroll-glue>
                         <md-list>
                             <md-list-item class="md-3-line" ng-repeat="msg in vm.messages">
