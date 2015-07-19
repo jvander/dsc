@@ -11,9 +11,12 @@ function editProblemaController($scope, Socket, $timeout,toastApp,$window,proble
     var updateTrue = true;
     self.problem = "";
 
-    self.tabs = ['problem.stakeholders','problem.evaluationframework','problem.semioticframework','problem.carf'];
-
-
+    self.tabsdsc = [
+        '<md-tab data-ui-sref="problem.stakeholders" md-active="$state.is(\'problem.stakeholders\')" label="{{\'LABEL_ARTIFACT_STAKEHOLDER\' | translate }}"></md-tab>',
+        '<md-tab data-ui-sref="problem.evaluationframework" md-active="$state.is(\'problem.evaluationframework\')" label="{{\'LABEL_ARTIFACT_EVALUATION_FRAMEWORK\' | translate }}"></md-tab>',
+        '<md-tab data-ui-sref="problem.semioticframework" md-active="$state.is(\'problem.semioticframework\')" label="{{\'LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK\' | translate }}"></md-tab>',
+        '<md-tab data-ui-sref="problem.carf" md-active="$state.is(\'problem.carf\')" label="CARF"></md-tab></md-tabs>'
+    ];
 
     self.getCurrentProblem = function(){
         self.idProblem = $window.localStorage.getItem('problemid');

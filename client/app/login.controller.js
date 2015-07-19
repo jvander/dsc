@@ -29,7 +29,9 @@
                         $window.localStorage.setItem("useremail",data.email);
                         $window.localStorage.setItem("userid",data.id);
                         $window.localStorage.setItem("nickname",data.nickname);
-                       vm.processing = false;
+                        console.log(data.language)
+                        $window.localStorage.setItem("NG_TRANSLATE_LANG_KEY",data.language)
+                        vm.processing = false;
                         Auth.getUser()
                             .then(function(data) {
                                    vm.user = data.data;

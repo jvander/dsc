@@ -102,6 +102,7 @@ module.exports = function () {
                         id: user._id,
                         nickname: user.nickname,
                         email: user.email,
+                        language: user.language,
                         token: token
                     });
                 }

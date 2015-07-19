@@ -12,6 +12,7 @@ angular
         vm.newmsg = "";
         vm.messages = [];
         vm.replay = false;
+        vm.nickname = "",
         vm.close = function () {
             $mdSidenav('chat').close()
                 .then(function () {
@@ -20,8 +21,8 @@ angular
         };
 
         vm.initHistoryChat = function(){
-            console.log('--------------------------------------------------------')
             vm.idProblem = $window.localStorage.getItem('problemid');
+            vm.nickname = $window.localStorage.getItem('nickname');
             problemService.gethistorychat(vm.idProblem)
                 .success(function(data) {
                     if(data.success) {
