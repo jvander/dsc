@@ -200,7 +200,6 @@ module.exports = function () {
     }
 
     function getAllProblemsCollaborator(req, res){
-        console.log(req.query.email)
        Problem.find({"collaborators.email":req.query.email })
            .where('status' ).equals('active')
            .exec (function (err,problems) {

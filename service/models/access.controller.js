@@ -5,6 +5,7 @@ var User = require('../models/user');
 var config = require('../../config.server');
 var secretKey = config.secretKey;
 var router = require('express').Router();
+var Problem = require('../models/problem/problem');
 
 var jsonwebtoken = require('jsonwebtoken');
 
@@ -60,7 +61,21 @@ module.exports = function () {
                         mensage: "User has been created.",
                         token: createToken(user)
                     })
-                })
+                }).then(
+                    Problem.find({"collaborators.email": user.email })
+                        .where('status' ).equals('active')
+                        .exec (function (err,problems) {
+                        if(err){
+                            res.send(err);
+                            return;
+                        }
+                        if(!problems){
+
+                            console.log(problems)
+                        }
+                    })
+
+                )
             }else if (user){
                 res.json({
                     success: false,
