@@ -5,6 +5,7 @@ var User = require('../models/user');
 var config = require('../../config.server');
 var secretKey = config.secretKey;
 var router = require('express').Router();
+var Problem = require('../models/problem/problem');
 
 var jsonwebtoken = require('jsonwebtoken');
 
@@ -60,7 +61,38 @@ module.exports = function () {
                         mensage: "User has been created.",
                         token: createToken(user)
                     })
+                }).then(
+                Problem.find({"collaborators.email": user.email })
+                    .where('status' ).equals('active')
+                    .exec (function (err,problems) {
+                    if(err){
+                        res.send(err);
+                        return;
+                    }
+
+                    if(problems.length > 0){
+
+
+                        for(var i = 0; i < problems.length; i++) {
+                            var collaborator = selectCollaborator(problems[i].collaborators, user.email);
+                            collaborator.nickname = user.nickname;
+                            collaborator.accept = true;
+                            collaborator.fullname = user.fullname;
+                            Problem.findOneAndUpdate({ _id: problems[i]._id, "collaborators._id": collaborator._id },
+                                {"$set": {"collaborators.$": collaborator  }},function(err,update){
+                                    if(err){
+                                        console.log(err)
+                                    }else{
+                                        console.log(update);
+                                    }
+                                });
+                        }
+                    }else{
+
+                        console.log("---------------------------------Sem problemas")
+                    }
                 })
+                );
             }else if (user){
                 res.json({
                     success: false,
@@ -70,6 +102,17 @@ module.exports = function () {
             }
         });
 
+    }
+
+    function selectCollaborator(list, email){
+        var collaborator;
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].email == email) {
+                collaborator = list[i];
+                return collaborator;
+            }
+        }
+        return null;
     }
 
     function getUsers(req,res){
@@ -102,6 +145,7 @@ module.exports = function () {
                         id: user._id,
                         nickname: user.nickname,
                         email: user.email,
+                        language: user.language,
                         token: token
                     });
                 }
