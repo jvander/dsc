@@ -69,10 +69,7 @@ module.exports = function () {
                         res.send(err);
                         return;
                     }
-
                     if(problems.length > 0){
-
-
                         for(var i = 0; i < problems.length; i++) {
                             var collaborator = selectCollaborator(problems[i].collaborators, user.email);
                             collaborator.nickname = user.nickname;
