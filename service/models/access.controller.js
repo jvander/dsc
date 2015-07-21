@@ -93,7 +93,7 @@ module.exports = function () {
             }else if (user){
                 res.json({
                     success: false,
-                    mensage: "User not has been created!",
+                    mensage: "User not has been created!"
                 });
 
             }

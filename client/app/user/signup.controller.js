@@ -4,9 +4,9 @@
   angular
     .module('app')
     .controller('signupController', signupController);
-    signupController.$inject = ['signupService','$state','toastApp','AuthToken','Auth','$filter','$stateParams'];
+    signupController.$inject = ['$translate','$window','signupService','$state','toastApp','AuthToken','Auth','$filter','$stateParams'];
 
-  function signupController(signupService,$state,toastApp,AuthToken,Auth,$filter,$stateParams){
+  function signupController($translate, $window, signupService,$state,toastApp,AuthToken,Auth,$filter,$stateParams){
     /* jshint validthis: true */
     var vm = this;
 
@@ -14,6 +14,7 @@
     vm.save   = saveUser;
     vm.rescuePassword = rescuePassword;
     vm.changePassword = changePassword;
+    vm.setLang = setLang;
 
     function saveUser(user) {
       signupService.create(user)
@@ -23,6 +24,10 @@
               Auth.getUser()
                   .then(function(data) {
                     vm.user = data.data;
+                      $window.localStorage.setItem("useremail",user.email);
+                      $window.localStorage.setItem("userid",user.id);
+                      $window.localStorage.setItem("nickname",user.nickname);
+                      vm.setLang(user.language);
                     toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + vm.user.nickname);
                     $state.go('startproblem');
                   });
@@ -31,6 +36,10 @@
             }
           })
        }
+
+      function setLang(langKey) {
+          $translate.use(langKey);
+      };
 
       function rescuePassword(userEmail){
           signupService.rescuePassword(userEmail)
