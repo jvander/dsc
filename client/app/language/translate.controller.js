@@ -30,6 +30,9 @@ function languageController ($translate) {
         };
 }
 
+
+
+
 function changeLanguage(){
     return {
         templateUrl : "app/language/changeLanguage.html",
