@@ -20,7 +20,7 @@
                     .success(function(data) {
                     if(data.success) {
                         for(var i=0; i < data.problems.length; i++ ){
-                            data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"");
+                            data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"").substring(0,460);
                         };
                         vm.problemList = data.problems;
                     }else{
@@ -31,7 +31,7 @@
                     .success(function(data) {
                         if(data.success) {
                             for(var i=0; i < data.problems.length; i++ ){
-                                data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"");
+                                data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"").substring(0,460);
                             };
                             vm.problemCollaboratorList = data.problems;
                         }else{
