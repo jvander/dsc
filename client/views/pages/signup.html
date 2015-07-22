@@ -1,7 +1,7 @@
-    <div flex layout="row" layout-align="center center">
-    <div flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" class="md-whiteframe-z2">
+    <div >
+    <div class="md-whiteframe-z2">
         <md-content class="md-padding">
-            <div flex-sm="100" flex-gt-sm="80" layout-sm="column">
+            <div layout-sm="column">
                 <form name="signupForm" data-ng-submit="vm.save(vm.user)">
                     <md-input-container>
                         <label>{{'LABEL_YOUR_NAME' | translate }}</label>
@@ -24,9 +24,11 @@
                         <md-option value="en" ng-click="vm.setLang('en')" >{{ 'LANGUAGE_ENGLISH' | translate }}</md-option>
                         <md-option value="es" ng-click="vm.setLang('es')" >{{ 'LANGUAGE_SPANISH' | translate }}</md-option>
                     </md-select>
-                    <md-button type="submit" class="md-primary"
+                    <div layout-align="end center" layout="row">
+                        <md-button type="submit" class="md-primary"
                                ng-class="{'md-raised md-hue-1': (signupForm.$dirty && signupForm.$valid) }"
                                aria-label="Save Project">Send</md-button>
+                    </div>
                 </form>
             </div>
         </md-content>
