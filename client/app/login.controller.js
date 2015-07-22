@@ -9,8 +9,12 @@
        .controller('loginController',loginController);
 
 
-        function loginController($rootScope,$state, Auth, $window, $filter, toastApp) {
+        function loginController($translate, $rootScope, $state, Auth, $window, $filter, toastApp) {
             var vm = this;
+
+            vm.setLang = function(langKey) {
+                 $translate.use(langKey);
+            };
 
             vm.loggedIn = Auth.isLoggedIn();
             $rootScope.$on('$routeChangeStart', function() {
@@ -29,7 +33,8 @@
                         $window.localStorage.setItem("useremail",data.email);
                         $window.localStorage.setItem("userid",data.id);
                         $window.localStorage.setItem("nickname",data.nickname);
-                       vm.processing = false;
+                        vm.setLang(data.language);
+                        vm.processing = false;
                         Auth.getUser()
                             .then(function(data) {
                                    vm.user = data.data;

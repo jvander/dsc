@@ -5,16 +5,18 @@
                 </md-toolbar>
                 <md-content ng-controller="chatDSC as vm" layout-padding data-ng-init="vm.initHistoryChat()">
                 <md-content style="height: 400px;"  scroll-glue>
-                        <md-list>
-                            <md-list-item class="md-3-line" ng-repeat="msg in vm.messages">
-                                <div class="md-list-item-text">
-                                    <p>{{msg.time}} {{msg.nickname}} : {{msg.msg}}</p>
-                                </div>
+
+                            <div ng-repeat="msg in vm.messages">
+                                    <div ng-if="msg.nickname == vm.nickname">
+                                        <div class="bubble me">{{msg.time}} {{msg.nickname}} : {{msg.msg}}</div>
+                                    </div>
+                                    <div ng-if="msg.nickname != vm.nickname">
+                                        <div class="bubble you">{{msg.time}} {{msg.nickname}} : {{msg.msg}}</div>
+                                    </div>
+                            </div>
                                 <md-divider inset></md-divider>
                             </md-list-item>
-                                <md-divider inset></md-divider>
-                            </md-list-item>
-                        </md-list>
+
                     </md-content>
 
                     <form>
@@ -93,6 +95,13 @@
             </md-tab>
         </md-tabs>
     </md-content>
+
+    <md-content>
+        <md-tabs  md-border-bottom md-stretch-tabs="always" ng-repeat="tab in vm.tabs">
+            <div>{{tab}}</div>
+        </md-tabs>
+    </md-content>
+
 </div>
 
 <div class="" ui-view="dsc-artifact"></div>
