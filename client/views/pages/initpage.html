@@ -1,29 +1,28 @@
-<div layout="column" layout-fill>
-    <md-toolbar md-scroll-shrink>
-        <div class="md-toolbar-tools">
-            <h3>
-                <span>{{'NAME_SYSTEM' | translate }}</span>
-            </h3>
-        </div>
-    </md-toolbar>
+<div layout="column" layout-fill layout-align="center center" layout-margin layout-padding>
+    <div flex="40">
+        <h1 class="md-display-4" align="center" style="color: #004d40">DSC</h1>
+        <h3  style="color: #00695c">{{'NAME_SYSTEM' | translate }}</h3>
+    </div>
+    <div flex="40">
+        <md-content layout-padding>
+            <md-tabs md-stretch-tabs="always"
+                     class="md-primary md-hue-2">
+                <md-tab data-ui-sref="init.login"
+                        md-active="$state.is('init.login')">
+                    <md-tab-label> {{'LABEL_BTN_LOGIN' | translate }} </md-tab-label>
+                </md-tab>
+                <md-tab data-ui-sref="init.signup"
+                        md-active="$state.is('init.signup')">
+                    <md-tab-label>{{'LABEL_SIGNUP' | translate }}</md-tab-label>
+                </md-tab>
+                <md-tab data-ui-sref="init.rescuepassword"
+                        md-active="$state.is('init.rescuepassword')">
+                    <md-tab-label> {{'LABEL_FORGOT_PASSWORD' | translate }} </md-tab-label>
+                </md-tab>
+            </md-tabs>
+            <div class="" ui-view="content-tab"></div>
+        </md-content>
+    </div>
 </div>
-<md-tabs md-stretch-tabs="always"
-         class="md-primary md-hue-2">
-    <md-tab data-ui-sref="init.login"
-            md-active="$state.is('init.login')">
-        <md-tab-label> {{'LABEL_BTN_LOGIN' | translate }} </md-tab-label>
-    </md-tab>
-    <md-tab data-ui-sref="init.signup"
-            md-active="$state.is('init.signup')">
-        <md-tab-label>{{'LABEL_SIGNUP' | translate }}</md-tab-label>
-    </md-tab>
-    <md-tab data-ui-sref="init.rescuepassword"
-            md-active="$state.is('init.rescuepassword')">
-        <md-tab-label> {{'LABEL_FORGOT_PASSWORD' | translate }} </md-tab-label>
-    </md-tab>
-</md-tabs>
-
-<div class="" ui-view="content-tab"></div>
-
 
 

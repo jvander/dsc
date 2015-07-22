@@ -3,14 +3,14 @@
         <div class="md-toolbar-tools">
             <span>{{'NAME_SYSTEM' | translate }}</span>
             <span flex flex-md="100"></span>
-            <md-button ng-click="vm.newProblem($event)" class="md-fab md-primary" aria-label="Out app">
+            <md-button ng-click="vm.newProblem($event)" class="md-icon-button" aria-label="Out app">
                 <md-tooltip>
                     {{'LABEL_NEW_PROBLEM' | translate }}
                 </md-tooltip>
                 <md-icon md-svg-src="views/img/icon/newproject.svg"></md-icon>
             </md-button>
 
-            <md-button ng-click="vm.doLogout()" class="md-fab md-primary" aria-label="Out app">
+            <md-button ng-click="vm.doLogout()" class="md-icon-button"  aria-label="Out app">
                 <md-tooltip>
                     Logout
                 </md-tooltip>
@@ -23,17 +23,21 @@
 
 <md-content>
 
-<div ng-repeat="problem in vm.problemList">
-    <div class="box-problem">
-        <div><span class="close-problem" ng-click="vm.revomveProblem($event,problem)">x</span></div>
-    <div ng-click="vm.editProblem(problem)">
-        <div clsss="title"><span>{{problem.title}}</span></div>
-        <div class="description" ng-bind-html="problem.description">
+    <div layout-margin layout-padding>
+        <md-grid-list
+                md-cols-sm="1" md-cols-md="5" md-cols-gt-md="5"
+                md-row-height-gt-md="1:1" md-row-height="4:3"
+                md-gutter="10px" md-gutter-gt-sm="8px" >
+            <md-grid-tile ng-repeat="problem in vm.problemList"
+                            style=" background: #ffff8d;">
+                <div class="description" layout-padding ng-bind-html="problem.description" ng-click="vm.editProblem(problem)">
 
-        </div>
-    </div>
-    </div>
-</div>
+                </div>
+                <md-grid-tile-header>
+                        <div layout="row" layout-align="end center"><h3>{{problem.title}}</h3><h3><span ng-click="vm.revomveProblem($event,problem)">x</span></h3></div>
+                </md-grid-tile-header>
+            </md-grid-tile>
+        </md-grid-list>
 
     <div ng-repeat="problem in vm.problemCollaboratorList">
         <div class="box-problem-collaborator">
