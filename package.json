@@ -11,6 +11,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.1",
+    "bower": "^1.4.1",
     "del": "^1.2.0",
     "expect.js": "*",
     "express": "^4.13.0",
