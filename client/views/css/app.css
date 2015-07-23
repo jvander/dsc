@@ -304,3 +304,13 @@
     box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
     right: -9px;
 }
+
+.problem_close {
+    position: absolute;
+    right: -10px;
+    top: 3px;
+}
+
+.problem_title {
+    color: #000000;
+}
