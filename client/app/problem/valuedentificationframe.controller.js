@@ -85,6 +85,7 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
     };
 
     Socket.on('onBroadcastOnionSave', function (data) {
+        console.log(data);
         angular.forEach(self.stakeholderList, function (stakeholder) {
             if (stakeholder._id == data._id){
                 stakeholder.onionlayer = data.onionlayer;
@@ -119,13 +120,17 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
 
     self.setValueIdentication = function(stakeholder) {
         console.log(stakeholder.newValues);
-
         if((stakeholder.newValues === "") || (stakeholder.newValues === undefined)){
             toastApp.errorMessage("Valor não especificado.");
         }else{
             var valuesList = stakeholder.newValues.split(',');
             for(var i=0; i < valuesList.length; i++){
-                stakeholder.values.push(valuesList[i]);
+                if(findValue(stakeholder.values, valuesList[i])){
+                    toastApp.errorMessage("Duplicate value: " + valuesList[i]);
+                }else{
+                    stakeholder.values.push(valuesList[i]);
+                }
+
             }
             console.log(stakeholder.values);
             stakeholder.newValues = "";
@@ -135,6 +140,13 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
 
     };
 
-
+    function findValue(list, value){
+        for(var i=0; i < list.length; i++){
+            if(value === list[i]){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
