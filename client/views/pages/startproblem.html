@@ -46,19 +46,17 @@
                 <div class="description" layout-padding ng-bind-html="problem.description" ng-click="vm.editProblem(problem)">
                 </div>
             </md-grid-tile>
-        </md-grid-list>
-
-    <div ng-repeat="problem in vm.problemCollaboratorList">
-        <div class="box-problem-collaborator">
-            <div ng-click="vm.editProblem(problem)">
-                <div clsss="title"><span>{{problem.title}}</span></div>
-                <div class="description" ng-bind-html="problem.description">
-
+            <md-grid-tile ng-repeat="problem in vm.problemCollaboratorList"
+                          style=" background: #80d8ff;">
+                <md-grid-tile-header>
+                    <div layout="row">
+                        <h3 class="problem_title"  ng-click="vm.editProblem(problem)">{{problem.title}}</h3>
+                    </div>
+                </md-grid-tile-header>
+                <div class="description" layout-padding ng-bind-html="problem.description" ng-click="vm.editProblem(problem)">
                 </div>
-            </div>
-        </div>
-    </div>
-
+            </md-grid-tile>
+        </md-grid-list>
 </md-content>
 </div>
 
