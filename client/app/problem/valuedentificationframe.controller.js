@@ -39,7 +39,9 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
 
     ];
 
-    self.sugestionValues = [
+    self.sugestionValues = "";
+
+    self.sugestionValuesArray = [
         'Acessibilidade', 'Adaptabilidade', 'Estética', 'Autonomia', 'Disponibilidade', 'Consciência', 'Colaboração',
         'Conversação', 'Emoção e Afeto', 'Grupos', 'Identidade', 'Consentimento informado', 'Meta-comunicação', 'Normas',
         'Objeto', 'Portabilidade', 'Presença', 'Privacidade', 'Propriedade', 'Reciprocidade, Relacionamento, Reputação,' +
@@ -53,10 +55,14 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
             .success(function(data) {
                 if(data.success) {
                     if(data.stakeholders.length > 0){
-                            console.log(data.stakeholders.length);
+                            for(var k = 1; k < self.sugestionValuesArray.length; k++){
+                                self.sugestionValues += self.sugestionValuesArray[k] +  ", "
+                            }
+                        self.sugestionValues[self.sugestionValuesArray[self.sugestionValuesArray.length-1]] + ".";
                             for(var i = 0; i < data.stakeholders.length; i++){
                                 for(var j = 0; j < self.stakeholderList.length; j++){
                                     var stakeholder = {
+                                        _id : data.stakeholders[i]._id,
                                         onionlayer : data.stakeholders[i].onionlayer,
                                         values : data.stakeholders[i].values,
                                         name : data.stakeholders[i].name,
@@ -64,9 +70,7 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
                                         openEdit : data.stakeholders[i].openEdit,
                                         newValues : []
                                     }
-                                    console.log(data.stakeholders[i].onionlayer);
                                     if(data.stakeholders[i].onionlayer == self.stakeholderList[j].onionlayer){
-                                        console.log('If.... ' + data.stakeholders[i].onionlayer + '  ' + self.stakeholderList[j].onionlayer);
                                         self.stakeholderList[j].stakeholders.push(stakeholder);
                                         continue;
                                     }
@@ -81,7 +85,7 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
     };
 
     Socket.on('onBroadcastOnionSave', function (data) {
-        angular.forEach(vm.stakeholderList, function (stakeholder) {
+        angular.forEach(self.stakeholderList, function (stakeholder) {
             if (stakeholder._id == data._id){
                 stakeholder.onionlayer = data.onionlayer;
                 stakeholder.values = data.values;
@@ -101,8 +105,20 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
         stakeholder.openEdit = false;
     };
 
-    self.setValueIdentication = function(stakeholder) {
 
+    self.removeValueIdentication = function(value,stakeholder){
+        var newList = [];
+        for(var i = 0; i < stakeholder.values.length; i++){
+            if(stakeholder.values[i] != value){
+                newList.push(stakeholder.values[i]);
+            }
+        }
+        stakeholder.values = newList;
+        Socket.emit('broadcastOnionSave', stakeholder);
+    }
+
+    self.setValueIdentication = function(stakeholder) {
+        console.log(stakeholder.values);
         if((stakeholder.newValues === "") || (stakeholder.newValues === undefined)){
             toastApp.errorMessage("Valor não especificado.");
         }else{
@@ -110,10 +126,8 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
             for(var i=0; i < valuesList.length; i++){
                 stakeholder.values.push(valuesList[i]);
             }
-            stakeholder.newValues = "";
-            console.log(stakeholder);
             console.log(stakeholder.values);
-
+            stakeholder.newValues = "";
             stakeholder.openEdit = false;
             Socket.emit('broadcastOnionSave', stakeholder);
         }

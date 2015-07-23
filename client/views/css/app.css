@@ -42,7 +42,7 @@
     box-shadow: 0px 4px 6px #333;
     -moz-box-shadow: 0px 4px 6px #333;
     -webkit-box-shadow: 0px 4px 6px #333;
-    cursor: move;
+    cursor: default;
 }
 
 .sticky-note-value .stakeholder{

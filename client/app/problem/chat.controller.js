@@ -26,7 +26,6 @@ angular
             problemService.gethistorychat(vm.idProblem)
                 .success(function(data) {
                     if(data.success) {
-                        console.log(data.historychat);
                         for (var i = 0; i < data.historychat.length; i++) {
                             var tmp = new Date(data.historychat[i].time);
                             var msn = {

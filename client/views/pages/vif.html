@@ -9,9 +9,8 @@
                 <div class="stakeholder" id="stakeholder{{stakeholder._id}}">
                     <div><span>{{stakeholder.name}}</span></div>
                     <div ng-repeat="value in stakeholder.values">
-                        <span>{{value}}</span>
+                            <div><span>{{value}} </span><span ng-click="vm.removeValueIdentication(value,stakeholder)">x</span></div>
                     </div>
-
                     <md-input-container>
                         <label>Value</label>
                         <input ng-blur="vm.leaveSuggestionShow(stakeholder)" ng-focus="vm.setSuggestionShow(stakeholder)" ng-model="stakeholder.newValues">
@@ -19,8 +18,8 @@
                     <md-button ng-click="vm.setValueIdentication(stakeholder)" class="md-primary">{{'BTN_ADD' | translate}}</md-button>
 
                     <div ng-show="stakeholder.openEdit">
-                        <div ng-repeat="sv in vm.sugestionValues">
-                            <span>{{sv}} </span>
+                        <div>
+                            <span>{{vm.sugestionValues}}</span>
                         </div>
                     </div>
                 </div>
