@@ -11,6 +11,7 @@
 
         function loginController($translate, $rootScope, $state, Auth, $window, $filter, toastApp) {
             var vm = this;
+            vm.loginInProgress = false;
 
             vm.setLang = function(langKey) {
                  $translate.use(langKey);
@@ -26,7 +27,7 @@
             });
 
             vm.doLogin = function(user) {
-                vm.processing = true;
+                vm.loginInProgress = true;
                 vm.error = '';
                 Auth.login(user.email, user.password)
                     .success(function(data) {
@@ -34,7 +35,7 @@
                         $window.localStorage.setItem("userid",data.id);
                         $window.localStorage.setItem("nickname",data.nickname);
                         vm.setLang(data.language);
-                        vm.processing = false;
+                        vm.loginInProgress = false;
                         Auth.getUser()
                             .then(function(data) {
                                    vm.user = data.data;

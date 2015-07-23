@@ -1,5 +1,7 @@
 <div flex layout="row" layout-align="center center">
-    <div flex class="md-whiteframe-z2">
+
+    <div flex class="md-whiteframe-z2" ng-show="!vm.loginInProgress">
+    <div flex-sm="60" flex-gt-sm="50" flex-gt-md="40" flex-gt-lg="30" class="md-whiteframe-z2">
         <form name="loginForm" data-ng-submit="vm.doLogin(vm.user)">
             <md-content layout-padding>
                 <md-input-container flex>

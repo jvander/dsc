@@ -1,0 +1,36 @@
+<div data-ng-init="vm.initValueIdentificationFrame()">
+    <div ng-repeat="onion in vm.stakeholderList">
+
+        <div ng-if="onion.stakeholders.length > 0">
+
+            <div class="sticky-note-value">
+            <div>{{onion.onionlayer}}</div>
+            <div ng-repeat="stakeholder in onion.stakeholders">
+                <div class="stakeholder" id="stakeholder{{stakeholder._id}}">
+                    <div><span>{{stakeholder.name}}</span></div>
+                    <div ng-repeat="value in stakeholder.values">
+                        <span>{{value}}</span>
+                    </div>
+
+                    <md-input-container>
+                        <label>Value</label>
+                        <input ng-blur="vm.leaveSuggestionShow(stakeholder)" ng-focus="vm.setSuggestionShow(stakeholder)" ng-model="stakeholder.newValues">
+                    </md-input-container>
+                    <md-button ng-click="vm.setValueIdentication(stakeholder)" class="md-primary">{{'BTN_ADD' | translate}}</md-button>
+
+                    <div ng-show="stakeholder.openEdit">
+                        <div ng-repeat="sv in vm.sugestionValues">
+                            <span>{{sv}} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div ng-show="vm.inProcessing">
+        <div><md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular></div>
+    </div>
+</div>

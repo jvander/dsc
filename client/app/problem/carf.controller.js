@@ -9,7 +9,8 @@
 
     function carfController($window,Socket,problemService,toastApp){
         var vm = this;
-        vm.idProblem = "",
+        vm.idProblem = "";
+        vm.inProcessing = true;
         vm.valueList = [];
         vm.stakeholderList = [];
         vm.localStakeholders = [];
@@ -35,6 +36,7 @@
                         vm.carfPriorityList = vm.localPriorityList;
                     }
                 })
+            vm.inProcessing = false;
         };
 
         function resetCarf(){

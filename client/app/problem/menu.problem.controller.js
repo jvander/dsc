@@ -35,7 +35,10 @@
 
      self.formAddCollaborators = function(){
         $state.go('problem.collaborators');
-    }
+      }
+        self.openReport = function(){
+            $state.go('problem.dscreport');
+        }
 
         self.editDescriptionProblem = function () {
         $state.go('problem.description');

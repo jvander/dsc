@@ -51,16 +51,25 @@ function routes($stateProvider, $urlRouterProvider) {
         })
 
         .state('newpassword', {
-
             url: '/newpassword/:mytoken',
             templateUrl: 'views/pages/newpassword.html',
             controller: 'signupController as vm',
         })
 
+
         .state('problem', {
             url: '/problem',
             templateUrl: 'views/pages/problem.html',
             controller: 'menuProblemController as vm'
+        })
+        .state('problem.dscreport', {
+            url: '/dscreport',
+            views: {
+                'problem-description': {
+                    templateUrl: 'views/pages/dscreport.html',
+                    controller: 'dscReportController as vm'
+                }
+            }
         })
         .state('problem.description', {
             url: '/description',
@@ -116,7 +125,16 @@ function routes($stateProvider, $urlRouterProvider) {
                         controller: 'carfController as vm'
                     }
                 }
-            });
+            })
+        .state('problem.vif', {
+            url: 'vif',
+            views: {
+                'dsc-artifact': {
+                    templateUrl: 'views/pages/vif.html',
+                    controller: 'valueIdentificationFrameController as vm'
+                }
+            }
+        });
 
 
         $urlRouterProvider.otherwise('/login');

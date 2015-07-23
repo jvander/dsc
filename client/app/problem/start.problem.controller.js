@@ -11,6 +11,7 @@
             vm.useremail = "";
             vm.problemList = [];
             vm.problemCollaboratorList = [];
+            vm.loginInProgress = true;
 
             vm.getProblems = function(){
                 vm.userid = $window.localStorage.getItem('userid');
@@ -38,6 +39,7 @@
                             toastApp.errorMessage(data.message);
                         }
                     })
+                vm.loginInProgress = false;
             };
 
             function removeProblem(problemid){

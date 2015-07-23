@@ -15,6 +15,7 @@
     vm.rescuePassword = rescuePassword;
     vm.changePassword = changePassword;
     vm.setLang = setLang;
+    vm.loginInProgress = false;
 
     function saveUser(user) {
       signupService.create(user)
@@ -24,6 +25,7 @@
               Auth.getUser()
                   .then(function(data) {
                     vm.user = data.data;
+                      vm.loginInProgress = false;
                       $window.localStorage.setItem("useremail",user.email);
                       $window.localStorage.setItem("userid",user.id);
                       $window.localStorage.setItem("nickname",user.nickname);

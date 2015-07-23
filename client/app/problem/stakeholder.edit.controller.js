@@ -14,6 +14,7 @@ function stakeholderController(Socket,$scope,$window,problemService){
     vm.stakeholder = "";
     vm.intitOnion = intitOnion;
     vm.move = false;
+    vm.inProcessing = true;
 
     function intitOnion(){
         vm.idproblem = $window.localStorage.getItem('problemid');
@@ -25,6 +26,7 @@ function stakeholderController(Socket,$scope,$window,problemService){
                     toastApp.errorMessage(data.message);
                 }
             })
+        vm.inProcessing = false;
     }
 
     Socket.on('onBroadcastOnionSave', function (data) {
