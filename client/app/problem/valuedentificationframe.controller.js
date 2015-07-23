@@ -68,8 +68,11 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
                                         name : data.stakeholders[i].name,
                                         description : data.stakeholders[i].description,
                                         openEdit : data.stakeholders[i].openEdit,
+                                        x : data.stakeholders[i].x,
+                                        y : data.stakeholders[i].y,
                                         newValues : []
                                     }
+                                    console.log(stakeholder);
                                     if(data.stakeholders[i].onionlayer == self.stakeholderList[j].onionlayer){
                                         self.stakeholderList[j].stakeholders.push(stakeholder);
                                         continue;
@@ -88,11 +91,12 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
         console.log(data);
         angular.forEach(self.stakeholderList, function (stakeholder) {
             if (stakeholder._id == data._id){
-                stakeholder.onionlayer = data.onionlayer;
-                stakeholder.values = data.values;
+                stakeholder.stakeholder = data.stakeholder;
                 stakeholder.name = data.name;
                 stakeholder.description = data.description;
-                stakeholder.openEdit = data.openEdit;
+                stakeholder.openEdit = data.openEdit,
+                stakeholder.x = data.x;
+                stakeholder.y = data.y;
                 stakeholder.newValues = [];
             }
         });
