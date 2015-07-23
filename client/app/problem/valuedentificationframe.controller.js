@@ -118,7 +118,8 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
     }
 
     self.setValueIdentication = function(stakeholder) {
-        console.log(stakeholder.values);
+        console.log(stakeholder.newValues);
+
         if((stakeholder.newValues === "") || (stakeholder.newValues === undefined)){
             toastApp.errorMessage("Valor não especificado.");
         }else{

@@ -15,8 +15,8 @@ var StakeholderSchema = new Schema({
     name: { type: String, trim: true },
     onionlayer: { type: String, trim: true },
     description: { type: String, trim: true },
-    x: { type: String, required: true, trim: true },
-    y: { type: String, required: true, trim: true },
+    x: { type: String},
+    y: { type: String},
     openEdit:{ type: Boolean, default: false },
 
     evaluationframing: {

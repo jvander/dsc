@@ -66,10 +66,6 @@ function stakeholderController(Socket,$scope,$window,problemService){
         vm.stakeholderList.splice(id,1);
     });
 
-    $scope.setValue = function(){
-        console.log("Chamando para trocar para true....")
-    }
-
     $scope.delPostIt = function(index,stakeholder) {
         var obj = {
             index: index,
@@ -83,10 +79,10 @@ function stakeholderController(Socket,$scope,$window,problemService){
     });
 
     $scope.addPostIt = function(e,camada) {
-        var id = vm.stakeholderList.length + 1;
+
+
         var newStakeholder =
         {
-            "_id":id,
             "onionlayer": camada,
             "name": "",
             "description": "",
@@ -94,7 +90,8 @@ function stakeholderController(Socket,$scope,$window,problemService){
             "x": e.pageX + 'px',
             "y": e.pageY + 'px'
         }
-        Socket.emit('broadcastOnionAdd', newStakeholder);
+
+       Socket.emit('broadcastOnionAdd', newStakeholder);
     };
 
     vm.acende = function(evt) {

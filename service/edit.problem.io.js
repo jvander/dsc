@@ -185,8 +185,6 @@ function creatStakeholder(socket,io,stakeholder){
     var idproblem = socket.room;
     searchProblem(idproblem)
         .then(function(problem) {
-                var id = stakeholder._id;
-                delete stakeholder._id;
                 problem.stakeholders.push(stakeholder);
                 problem.save(function(err, objUpdate) {
                     if( err  ){
@@ -282,6 +280,8 @@ module.exports = function(io,socket) {
     });
 
     socket.on('broadcastOnionAdd',function(data){
+        console.log("Adicionar: " + data.x);
+        console.log("Adicionar: " + data.y);
         creatStakeholder(socket,io,data);
     });
 
