@@ -30,12 +30,21 @@
                 md-gutter="10px" md-gutter-gt-sm="8px" >
             <md-grid-tile ng-repeat="problem in vm.problemList"
                             style=" background: #ffff8d;">
-                <div class="description" layout-padding ng-bind-html="problem.description" ng-click="vm.editProblem(problem)">
-
-                </div>
                 <md-grid-tile-header>
-                        <div layout="row" layout-align="end center"><h3>{{problem.title}}</h3><h3><span ng-click="vm.revomveProblem($event,problem)">x</span></h3></div>
+                    <div layout="row">
+                        <h3 class="problem_title"  ng-click="vm.editProblem(problem)">{{problem.title}}</h3>
+                        <div class="problem_close">
+                            <md-button ng-click="vm.revomveProblem($event,problem)" class="md-icon-button"  aria-label="Out app">
+                                <md-tooltip>
+                                    Remover
+                                </md-tooltip>
+                                <md-icon md-font-icon="fa fa-times"></md-icon>
+                            </md-button>
+                        </div>
+                    </div>
                 </md-grid-tile-header>
+                <div class="description" layout-padding ng-bind-html="problem.description" ng-click="vm.editProblem(problem)">
+                </div>
             </md-grid-tile>
         </md-grid-list>
 
@@ -51,6 +60,5 @@
     </div>
 
 </md-content>
-
 </div>
 
