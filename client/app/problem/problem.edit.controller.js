@@ -46,7 +46,7 @@ function editProblemaController(Socket, $timeout,toastApp,$window,problemService
     }
 
     function saveDescription(problem) {
-         problem.update = updateTrue;
+        problem.update = updateTrue;
         Socket.emit('atualizarProblema', problem);
     }
 

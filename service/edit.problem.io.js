@@ -200,8 +200,8 @@
             .then(function(problem) {
                 var id = stakeholder._id;
                 stakeholder.openEdit = false;
-                   Problem.findOneAndUpdate({ _id : idproblem, 'stakeholders._id' : id },
-                    { $set: { 'stakeholders.$' : stakeholder }},function(err,objUpdate){
+                   Problem.findOneAndUpdate({ _id : idproblem, "stakeholders._id" : id },
+                    { $set: { "stakeholders.$" : stakeholder }},function(err,objUpdate){
                         if(err){
                             console.log(err);
                         }else{
@@ -276,10 +276,9 @@
              }*/
         });
 
-        socket.on('atualizarProblema', function (data) {
+        socket.on('atualizarProblema', function (data) {console.log(data.description)
             if(data.update){
-                consolo.log(data.description)
-                Problem.update({ _id : socket.room}, { $set : { description: data.description }}, function(err, updated) {
+                Problem.update({ _id : socket.room}, { $set : { "description": data.description }}, function(err, updated) {
                     if( err || !updated ){
                         console.log(err);
                     }
