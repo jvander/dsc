@@ -199,7 +199,7 @@
         searchProblem(idproblem)
             .then(function(problem) {
                 var id = stakeholder._id;
-                consoel.log(id);
+                console.log(id);
                 stakeholder.openEdit = false;
                    Problem.findOneAndUpdate({_id: idproblem, 'stakeholders._id': id },
                     { $set: {'stakeholders.$': stakeholder }},function(err,objUpdate){
