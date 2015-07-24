@@ -199,7 +199,6 @@
         searchProblem(idproblem)
             .then(function(problem) {
                 var id = stakeholder._id;
-                console.log(stakeholder)
                 stakeholder.openEdit = false;
                    Problem.findOneAndUpdate({ _id : idproblem, 'stakeholders._id' : id },
                     { $set: {
@@ -209,7 +208,7 @@
                         'stakeholders.$.x' : stakeholder.x,
                         'stakeholders.$.y' : stakeholder.y,
                         'stakeholders.$.values' : stakeholder.values,
-                        'stakeholders.$.openEdit' : stakeholder.false
+                        'stakeholders.$.openEdit' : false
                        }},function(err,objUpdate){
                         if(err){
                             console.log(err);
@@ -270,7 +269,6 @@
                 userList.push(clientSocket.username);
                 clientSocket.emit('new event', 'Updates');
             }
-            console.log(userList)
             io.sockets.in(socket.room).emit('onCheckUsers', userList);
         });
 
@@ -285,7 +283,7 @@
              }*/
         });
 
-        socket.on('atualizarProblema', function (data) {console.log(data.description)
+        socket.on('atualizarProblema', function (data) {
             if(data.update){
                 Problem.update({ _id : socket.room}, { $set : { "description": data.description }}, function(err, updated) {
                     if( err || !updated ){
@@ -297,13 +295,10 @@
         });
 
         socket.on('broadcastOnionEdit',function(id){
-            console.log("Editando..................... " + id);
             io.sockets.in(socket.room).emit('onBroadcastOnionEdit',id);
         });
 
         socket.on('broadcastOnionAdd',function(data){
-            console.log("Adicionar: " + data.x);
-            console.log("Adicionar: " + data.y);
             creatStakeholder(socket,io,data);
         });
 
@@ -314,13 +309,10 @@
         });
 
         socket.on('broadcastOnionSave',function(stakeholder){
-            console.log("Save.....   " + stakeholder.name);
-            console.log("Save.....   " + stakeholder.description);
             updateStakeholder(socket,io,stakeholder);
         });
 
         socket.on('broadcastOnionPosition',function(data){
-            console.log("Posição........... " + data.y);
             io.sockets.in(socket.room).emit('onBroadcastOnionPosition', data);
         });
 
@@ -330,15 +322,11 @@
 
         }
         socket.on('broadcastFrameSave',function(stakeholder){
-            console.log("ID problema   " + socket.room);
-            console.log(stakeholder._id);
             updateStakeholderEvaluationFraming(socket, io, stakeholder);
 
         });
 
         socket.on('broadcastFrameEdit',function(stakeholder){
-            console.log("ID problema   " + socket.room);
-            console.log(stakeholder._id);
             io.sockets.in(socket.room).emit('onBroadcastFrameEdit', stakeholder);
         });
 
@@ -350,8 +338,6 @@
             if(obj.update){
                 saveSocialWorld(socket.room, obj.text);
             }
-            console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
-            console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
             io.sockets.in(socket.room).emit('onUpdateSocialWorld', obj.text);
         });
 
@@ -360,8 +346,6 @@
             if(obj.update){
                 savePragmatic(socket.room, obj.text);
             }
-            console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
-            console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
             io.sockets.in(socket.room).emit('onUpdatePragmatic', obj.text);
         });
 
@@ -370,9 +354,7 @@
             if(obj.update){
                 saveSemantic(socket.room, obj.text);
             }
-            console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
-            console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
-            io.sockets.in(socket.room).emit('onUpdateSemantic', obj.text);
+             io.sockets.in(socket.room).emit('onUpdateSemantic', obj.text);
         });
 
         socket.on('updateSyntatic',function(obj){
@@ -380,9 +362,7 @@
             if(obj.update){
                 saveSyntatic(socket.room, obj.text);
             }
-            console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
-            console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
-            io.sockets.in(socket.room).emit('onUpdateSyntatic', obj.text);
+             io.sockets.in(socket.room).emit('onUpdateSyntatic', obj.text);
         });
 
         socket.on('updateEmpirical',function(obj){
@@ -390,8 +370,6 @@
             if(obj.update){
                 saveEpirical(socket.room, obj.text);
             }
-            console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
-            console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
             io.sockets.in(socket.room).emit('onUpdateEmpirical', obj.text);
         });
 
@@ -400,8 +378,6 @@
             if(obj.update){
                 savePhysical(socket.room, obj.text);
             }
-            console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.update);
-            console.log('Problema: ' + socket.room + ' >>>>>>>>++++++++++++++++++>>>>>>>>> ' + obj.text);
             io.sockets.in(socket.room).emit('onUpdatePhysical', obj.text);
         });
 
