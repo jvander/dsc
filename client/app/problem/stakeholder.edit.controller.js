@@ -55,6 +55,8 @@ function stakeholderController(Socket,$window,problemService,toastApp){
     });
 
     function saveStakeholder(stakeholder) {
+        console.log('Salvar....' + stakeholder.name);
+        console.log('Salvar....' + stakeholder.description);
         Socket.emit('broadcastOnionSave', stakeholder);
     }
 

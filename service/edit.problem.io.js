@@ -307,9 +307,9 @@
             io.sockets.in(socket.room).emit('onBroadcastOnionRemove', obj.index);
         });
 
-        socket.on('broadcastOnionSave',function(data){
-            console.log("ID problema   " + socket.room);
-            updateStakeholder(socket,io,data);
+        socket.on('broadcastOnionSave',function(stakeholder){
+            console.log("Save.....   " + socket.room);
+            updateStakeholder(socket,io,stakeholder);
         });
 
         socket.on('broadcastOnionPosition',function(data){
