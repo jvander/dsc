@@ -199,9 +199,18 @@
         searchProblem(idproblem)
             .then(function(problem) {
                 var id = stakeholder._id;
+                console.log(stakeholder)
                 stakeholder.openEdit = false;
-                   Problem.findOneAndUpdate({ _id : idproblem, "stakeholders._id" : id },
-                    { $set: { "stakeholders.$" : stakeholder }},function(err,objUpdate){
+                   Problem.findOneAndUpdate({ _id : idproblem, 'stakeholders._id' : id },
+                    { $set: {
+                        'stakeholders.$.name' : stakeholder.name,
+                        'stakeholders.$.description' : stakeholder.description,
+                        'stakeholders.$.onionlayer' : stakeholder.onionlayer,
+                        'stakeholders.$.x' : stakeholder.x,
+                        'stakeholders.$.y' : stakeholder.y,
+                        'stakeholders.$.values' : stakeholder.values,
+                        'stakeholders.$.openEdit' : stakeholder.false
+                       }},function(err,objUpdate){
                         if(err){
                             console.log(err);
                         }else{
