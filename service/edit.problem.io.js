@@ -199,12 +199,14 @@
         searchProblem(idproblem)
             .then(function(problem) {
                 var id = stakeholder._id;
+                consoel.log(id);
                 stakeholder.openEdit = false;
-                   Problem.findOneAndUpdate({ '_id': idproblem, 'stakeholders._id': id },
-                    {'$set': {'stakeholders.$': stakeholder }},function(err,objUpdate){
+                   Problem.findOneAndUpdate({_id: idproblem, 'stakeholders._id': id },
+                    { $set: {'stakeholders.$': stakeholder }},function(err,objUpdate){
                         if(err){
                             console.log(err);
                         }else{
+                            console.log(stakeholder);
                             chanceStakeholder(socket,io,stakeholder);
                         }
                     });
@@ -305,7 +307,6 @@
         });
 
         socket.on('broadcastOnionSave',function(stakeholder){
-            console.log("Save.....   " + socket.room);
             console.log("Save.....   " + stakeholder.name);
             console.log("Save.....   " + stakeholder.description);
             updateStakeholder(socket,io,stakeholder);
