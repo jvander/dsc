@@ -74,8 +74,8 @@
             .then(function(problem) {
                 var id = stakeholder._id;
                 stakeholder.openEdit = false;
-                Problem.findOneAndUpdate({ '_id': idproblem, 'stakeholders._id': id },
-                    {'$set': {'stakeholders.$.evaluationframing.problems': stakeholder.problems, 'stakeholders.$.evaluationframing.solutions': stakeholder.solutions  }},function(err,update){
+                Problem.findOneAndUpdate({_id: idproblem, 'stakeholders._id': id },
+                    {$set: {'stakeholders.$.evaluationframing.problems': stakeholder.problems, 'stakeholders.$.evaluationframing.solutions': stakeholder.solutions  }},function(err,update){
                         if(err){
                             console.log(err)
                         }else{
@@ -102,7 +102,7 @@
     function savePhysical(idproblem, text){
         searchProblem(idproblem)
             .then(function(problem){
-                Problem.findByIdAndUpdate({'_id': problem._id}, {'$set': { 'semioticframework.physical': text }}, function(err, updated) {
+                Problem.findByIdAndUpdate({_id: problem._id}, {$set: { 'semioticframework.physical': text }}, function(err, updated) {
                     if( err || !updated ){
                         console.log(err);
                     }
@@ -115,7 +115,7 @@
     function saveEpirical(idproblem, text){
         searchProblem(idproblem)
             .then(function(problem){
-                Problem.findByIdAndUpdate({'_id': problem._id}, {'$set': { 'semioticframework.empirical': text }}, function(err, updated) {
+                Problem.findByIdAndUpdate({_id: problem._id}, { $set : { 'semioticframework.empirical': text }}, function(err, updated) {
                     if( err || !updated ){
                         console.log(err);
                     }
@@ -128,7 +128,7 @@
     function saveSyntatic(idproblem, text){
         searchProblem(idproblem)
             .then(function(problem){
-                Problem.findByIdAndUpdate({'_id': problem._id}, {'$set': { 'semioticframework.syntatic': text }}, function(err, updated) {
+                Problem.findByIdAndUpdate({ _id : problem._id}, { $set : { 'semioticframework.syntatic': text }}, function(err, updated) {
                     if( err || !updated ){
                         console.log(err);
                     }
@@ -141,7 +141,7 @@
     function saveSemantic(idproblem, text){
         searchProblem(idproblem)
             .then(function(problem){
-                Problem.findByIdAndUpdate({'_id': problem._id}, {'$set': { 'semioticframework.semantic': text }}, function(err, updated) {
+                Problem.findByIdAndUpdate({ _id : problem._id}, { $set : { 'semioticframework.semantic': text }}, function(err, updated) {
                     if( err || !updated ){
                         console.log(err);
                     }
@@ -154,7 +154,7 @@
     function savePragmatic(idproblem, text){
         searchProblem(idproblem)
             .then(function(problem){
-                Problem.findByIdAndUpdate({'_id': problem._id}, {'$set': { 'semioticframework.pragmatic': text }}, function(err, updated) {
+                Problem.findByIdAndUpdate({ _id : problem._id }, { $set : { 'semioticframework.pragmatic': text }}, function(err, updated) {
                     if( err || !updated ){
                         console.log(err);
                     }
@@ -167,7 +167,7 @@
     function saveSocialWorld(idproblem, text){
         searchProblem(idproblem)
             .then(function(problem){
-                Problem.findByIdAndUpdate({'_id': problem._id}, {'$set': { 'semioticframework.socialworld': text }}, function(err, updated) {
+                Problem.findByIdAndUpdate({ _id : problem._id }, { $set : { 'semioticframework.socialworld': text }}, function(err, updated) {
                     if( err || !updated ){
                         console.log(err);
                     }
@@ -199,14 +199,12 @@
         searchProblem(idproblem)
             .then(function(problem) {
                 var id = stakeholder._id;
-                console.log(id);
                 stakeholder.openEdit = false;
-                   Problem.findOneAndUpdate({_id: idproblem, 'stakeholders._id': id },
-                    { $set: {'stakeholders.$': stakeholder }},function(err,objUpdate){
+                   Problem.findOneAndUpdate({ _id: idproblem, 'stakeholders._id' : id },
+                    { $set: { 'stakeholders.$' : stakeholder }},function(err,objUpdate){
                         if(err){
                             console.log(err);
                         }else{
-                            console.log(stakeholder);
                             chanceStakeholder(socket,io,stakeholder);
                         }
                     });
@@ -221,8 +219,8 @@
             .then(function(problem) {
                 if(existStakeholder(problem.stakeholders,stakeholder._id)){
                     var id = stakeholder._id;
-                    Problem.findOneAndUpdate({ '_id': idproblem, 'stakeholders._id': id },
-                        {'$set': {'stakeholders.$': stakeholder }},function(err){
+                    Problem.findOneAndUpdate({ _id : idproblem, 'stakeholders._id' : id },
+                        { $set : {'stakeholders.$' : stakeholder }},function(err){
                             if(err){
                                 console.log(err)
                             }else{
@@ -280,7 +278,7 @@
 
         socket.on('atualizarProblema', function (data) {
             if(data.update){
-                Problem.update({_id: socket.room}, {$set: {description: data.description}}, function(err, updated) {
+                Problem.update({ _id : socket.room}, { $set : { description: data.description }}, function(err, updated) {
                     if( err || !updated ){
                         console.log(err);
                     }
