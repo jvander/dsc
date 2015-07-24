@@ -18,7 +18,7 @@
             deferred.resolve(problem)
         });
         return deferred.promise;
-    };
+    }
 //Insert Message Chat
     function insertMessage(socket,io,obj){
         var idproblem = socket.room;
@@ -35,7 +35,7 @@
             }).catch(function (err) {
                 console.log(err)
             });
-    };
+    }
 //---- insert carf -----
     function creatNewCARF(socket, io, carf){
         var idproblem = socket.room;
@@ -54,7 +54,7 @@
             }).catch(function (err) {
                 console.log(err)
             });
-    };
+    }
 
     function removeCARF(idproblem,carf){
         searchProblem(idproblem)
@@ -192,7 +192,7 @@
             }).catch(function (err) {
                 console.log(err)
             });
-    };
+    }
 
     function updateStakeholder(socket,io,stakeholder){
         var idproblem = socket.room;
@@ -200,11 +200,14 @@
             .then(function(problem) {
                 var id = stakeholder._id;
                 stakeholder.openEdit = false;
+                console.log(stakeholder._id);
+                console.log(stakeholder._id);
                 Problem.findOneAndUpdate({ "_id": idproblem, "stakeholders._id": id },
-                    {"$set": {"stakeholders.$": stakeholder }},function(err){
+                    {"$set": {"stakeholders.$": stakeholder }},function(err,objUpdate){
                         if(err){
-                            console.log(err)
+                            console.log(err);
                         }else{
+                            console.log(objUpdate);
                             chanceStakeholder(socket,io,stakeholder);
                         }
                     });
@@ -420,6 +423,6 @@
     function chanceStakeholder(socket,io,stakeholder){
         io.sockets.in(socket.room).emit('onBroadcastOnionSave', stakeholder);
         io.sockets.in(socket.room).emit('onUpdateStakeholder', stakeholder);
-    };
+    }
 
 })();
