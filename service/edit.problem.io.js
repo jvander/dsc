@@ -200,7 +200,7 @@
             .then(function(problem) {
                 var id = stakeholder._id;
                 stakeholder.openEdit = false;
-                   Problem.findOneAndUpdate({ _id: idproblem, 'stakeholders._id' : id },
+                   Problem.findOneAndUpdate({ _id : idproblem, 'stakeholders._id' : id },
                     { $set: { 'stakeholders.$' : stakeholder }},function(err,objUpdate){
                         if(err){
                             console.log(err);
@@ -278,6 +278,7 @@
 
         socket.on('atualizarProblema', function (data) {
             if(data.update){
+                consolo.log(data.description)
                 Problem.update({ _id : socket.room}, { $set : { description: data.description }}, function(err, updated) {
                     if( err || !updated ){
                         console.log(err);
