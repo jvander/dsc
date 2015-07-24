@@ -7,15 +7,14 @@
     signupController.$inject = ['$translate','$window','signupService','$state','toastApp','AuthToken','Auth','$filter','$stateParams'];
 
   function signupController($translate, $window, signupService,$state,toastApp,AuthToken,Auth,$filter,$stateParams){
-    /* jshint validthis: true */
-    var vm = this;
 
-    vm.message  = '';
-    vm.save   = saveUser;
-    vm.rescuePassword = rescuePassword;
-    vm.changePassword = changePassword;
-    vm.setLang = setLang;
-    vm.loginInProgress = false;
+    var self = this;
+    self.message  = '';
+    self.save   = saveUser;
+    self.rescuePassword = rescuePassword;
+    self.changePassword = changePassword;
+    self.setLang = setLang;
+    self.loginInProgress = false;
 
     function saveUser(user) {
       signupService.create(user)
@@ -24,24 +23,24 @@
               AuthToken.setToken(data.token);
               Auth.getUser()
                   .then(function(data) {
-                    vm.user = data.data;
-                      vm.loginInProgress = false;
+                    self.user = data.data;
+                      self.loginInProgress = false;
                       $window.localStorage.setItem("useremail",user.email);
                       $window.localStorage.setItem("userid",user.id);
                       $window.localStorage.setItem("nickname",user.nickname);
-                      vm.setLang(user.language);
-                    toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + vm.user.nickname);
+                      self.setLang(user.language);
+                    toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + self.user.nickname);
                     $state.go('startproblem');
                   });
           }else{
               toastApp.errorMessage("Email Já cadastrado");
             }
-          })
+          });
        }
 
       function setLang(langKey) {
           $translate.use(langKey);
-      };
+      }
 
       function rescuePassword(userEmail){
           signupService.rescuePassword(userEmail)
@@ -52,7 +51,7 @@
                   }else{
                       toastApp.errorMessage("Error");
                   }
-              })
+              });
       }
 
       function changePassword(user){
@@ -64,7 +63,7 @@
                   }else{
                       toastApp.errorMessage("Error");
               }
-          })
+          });
       }
 
 

@@ -6,18 +6,17 @@
             <div class="sticky-note-value">
             <div>{{onion.onionlayer}}</div>
             <div ng-repeat="stakeholder in onion.stakeholders">
-                <div class="stakeholder" id="stakeholder{{stakeholder._id}}">
+                <div class="stakeholder" id="stakeholder{{stakeholder._id}}"  ng-click="vm.setSuggestionShow(stakeholder)" ng-mouseleave="vm.leaveSuggestionShow(stakeholder)">
                     <div><span>{{stakeholder.name}}</span></div>
                     <div ng-repeat="value in stakeholder.values">
                             <div><span>{{value}} </span><span ng-click="vm.removeValueIdentication(value,stakeholder)">x</span></div>
                     </div>
-                    <md-input-container>
-                        <label>Value</label>
-                        <input ng-blur="vm.leaveSuggestionShow(stakeholder)" ng-focus="vm.setSuggestionShow(stakeholder)" ng-model="stakeholder.newValues">
-                    </md-input-container>
-                    <md-button ng-click="vm.setValueIdentication(stakeholder)" class="md-primary">{{'BTN_ADD' | translate}}</md-button>
-
                     <div ng-show="stakeholder.openEdit">
+                        <md-input-container>
+                            <label>Value</label>
+                            <input ng-model="stakeholder.newValues">
+                        </md-input-container>
+                        <md-button ng-click="vm.setValueIdentication(stakeholder)" class="md-primary">{{'BTN_ADD' | translate}}</md-button>
                         <div>
                             <span>{{vm.sugestionValues}}</span>
                         </div>

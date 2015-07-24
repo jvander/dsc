@@ -4,8 +4,11 @@
 
 
 (function(){
+
     "use strict";
-    angular.module('app')
+
+    angular
+        .module('app')
         .controller('controllerCollaborators', controllerCollaborators);
 
     function controllerCollaborators($window,problemService,toastApp){
@@ -14,9 +17,11 @@
         self.idProblem = "";
         self.collaborators = [];
         self.useremail = "";
+        self.initCollaborators = initCollaborators;
+        self.addCollaborator = addCollaborator;
+        self.removeCollaborator = removeCollaborator;
 
-
-        self.initCollaborators = function(){
+        function initCollaborators(){
             self.idProblem = $window.localStorage.getItem('problemid');
             self.useremail = $window.localStorage.getItem('useremail');
             problemService.getcollaborators(self.idProblem)
@@ -26,8 +31,8 @@
                     }else{
                         toastApp.errorMessage(data.message);
                     }
-                })
-        };
+                });
+        }
 
         function searchCallaboration(email){
             for(var i = 0; i < self.collaborators.length; i++){
@@ -36,9 +41,9 @@
                 }
             }
             return false;
-        };
+        }
 
-        self.addCollaborator = function(email){
+        function addCollaborator(email){
             if(self.useremail == email){
                 toastApp.errorMessage(self.useremail + " is email of owner.");
             }else {
@@ -56,12 +61,12 @@
                             } else {
                                 toastApp.errorMessage(data.message);
                             }
-                        })
+                        });
                 }
             }
         }
 
-        self.removeCollaborator = function(people){
+        function removeCollaborator(people){
             var obj = {
                 idproblem: self.idProblem,
                 email: people.email
@@ -74,7 +79,7 @@
                     }else{
                         toastApp.errorMessage(data.message);
                     }
-                })
+                });
         }
     }
 

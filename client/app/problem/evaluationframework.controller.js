@@ -1,39 +1,36 @@
 /**
  * Created by JOSEVALDERLEI on 29/06/2015.
  */
+(function(){
 
 'use strict';
 
-angular.module('app')
+angular
+    .module('app')
     .controller('evaluationframeworkController',evaluationframeworkController);
 
+  function evaluationframeworkController ($window,problemService,Socket,toastApp){
 
-
-
-  function evaluationframeworkController ($window,problemService,Socket,$scope){
-
-      var vm = this;
-      vm.evaluationframeworkList =[];
-      vm.initEvaluation = initEvaluation;
+      var self = this;
+      self.evaluationframeworkList =[];
+      self.initEvaluation = initEvaluation;
+      self.setOpenEditDiscution = setOpenEditDiscution;
+      self.saveDiscution = saveDiscution;
 
       function initEvaluation(){
-          vm.idproblem = $window.localStorage.getItem('problemid');
-         problemService.getevaluation(vm.idproblem)
+          self.idproblem = $window.localStorage.getItem('problemid');
+         problemService.getevaluation(self.idproblem)
               .success(function(data) {
                   if(data.success) {
-                      vm.evaluationframeworkList = data.evaluationframework;
+                      self.evaluationframeworkList = data.evaluationframework;
                   }else{
                       toastApp.errorMessage(data.message);
                   }
-              })
-      };
-
-
-
-
+              });
+      }
 
       Socket.on('onBroadcastFrameSave', function (data) {
-          angular.forEach(vm.evaluationframeworkList,function(evaluationframework){
+          angular.forEach(self.evaluationframeworkList,function(evaluationframework){
              if( evaluationframework.onionlayer == data.onionlayer){
                  angular.forEach(evaluationframework.stakeholders,function(stakeholder){
                      if (stakeholder._id == data._id){
@@ -49,19 +46,18 @@ angular.module('app')
           });
       });
 
-
-      $scope.saveDiscution = function(stakeholder) {
+      function saveDiscution(stakeholder) {
           Socket.emit('broadcastFrameSave', stakeholder);
-      };
-
+      }
 
       Socket.on('onUpdateStakeholder', function (stakeholderOnion) {
          console.log(stakeholderOnion);
 
       });
 
-      $scope.setOpenEditDiscution = function(currentStakeholder){
+      function setOpenEditDiscution(currentStakeholder){
           currentStakeholder.openEdit = true;
-      };
+      }
   }
 
+})();

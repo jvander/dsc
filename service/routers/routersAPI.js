@@ -2,16 +2,20 @@
  * Created by JOSEVALDERLEI on 02/07/2015.
  */
 
+(function(){
 
-var rescuepassword = require('../models/rescue.password.controller');
-var accessController = require('../models/access.controller');
-var problemController = require('../models/problem/problem.controller');
+    'use strict';
 
-module.exports =  function(app, express){
-    var api = express.Router();
+    var rescuepassword = require('../models/rescue.password.controller');
+    var accessController = require('../models/access.controller');
+    var problemController = require('../models/problem/problem.controller');
 
-    api.use("/rescuepasswd", rescuepassword());
-    api.use("/",accessController());
-    api.use("/problem",problemController());
-    return api;
-};
+    module.exports =  function(app, express){
+        var api = express.Router();
+        api.use("/rescuepasswd", rescuepassword());
+        api.use("/",accessController());
+        api.use("/problem",problemController());
+        return api;
+    }
+
+})();

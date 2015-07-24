@@ -2,15 +2,21 @@
  * Created by JOSEVALDERLEI on 21/06/2015.
  */
 
-angular.module('app').
-    service('Socket',
-    ['$location', '$timeout',
+(function(){
+
+    'use strict';
+
+    angular
+        .module('app')
+        .service('Socket',
+        ['$location', '$timeout',
     function($location, $timeout) {
         if (true) {
             this.socket = io();
         } else {
             $location.path('/');
         }
+
         this.on = function(eventName, callback) {
             if (this.socket) {
                 this.socket.on(eventName, function(data) {
@@ -20,6 +26,7 @@ angular.module('app').
                 });
             }
         };
+
         this.emit = function(eventName, data) {
             if (this.socket) {
                 this.socket.emit(eventName, data);
@@ -32,4 +39,6 @@ angular.module('app').
             }
         };
     }
-]);
+])
+
+})();

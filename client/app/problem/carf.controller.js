@@ -2,45 +2,53 @@
  * Created by JOSEVALDERLEI on 14/07/2015.
  */
 (function(){
+
     "use strict";
 
     angular.module('app')
         .controller("carfController",carfController);
 
     function carfController($window,Socket,problemService,toastApp){
-        var vm = this;
-        vm.idProblem = "";
-        vm.inProcessing = true;
-        vm.valueList = [];
-        vm.stakeholderList = [];
-        vm.localStakeholders = [];
-        vm.carf = {
+
+        var self = this;
+        self.idProblem = "";
+        self.inProcessing = true;
+        self.valueList = [];
+        self.stakeholderList = [];
+        self.localStakeholders = [];
+        self.addpmsvalue = addpmsvalue;
+        self.removeCARF = removeCARF;
+        self.selectPMSValue = selectPMSValue;
+        self.setPriotity = setPriotity;
+        self.addListValue = addListValue;
+        self.addStakeholder = addStakeholder;
+        self.carf = {
             pms: "",
             values: [],
             priority: "",
             requirement: "",
             stakeholders: []
             };
-        vm.initCarf = initCarf;
-        vm.carfList = [];
-        vm.carfPriorityList = [];
+        self.initCarf = initCarf;
+        self.carfList = [];
+        self.carfPriorityList = [];
 
         function initCarf(){
-            vm.idProblem = $window.localStorage.getItem('problemid');
-            problemService.getcarf(vm.idProblem)
+            self.idProblem = $window.localStorage.getItem('problemid');
+            problemService.getcarf(self.idProblem)
                 .success(function(data) {
                     if(data.success) {
-                        vm.localStakeholders = data.stakeholders;
-                        vm.stakeholderList = vm.localStakeholders;
-                        vm.carfList = data.carf;
-                        vm.carfPriorityList = vm.localPriorityList;
+                        self.localStakeholders = data.stakeholders;
+                        self.stakeholderList = self.localStakeholders;
+                        self.carfList = data.carf;
+                        self.carfPriorityList = self.localPriorityList;
                     }
-                })
-            vm.inProcessing = false;
-        };
+                });
+            self.inProcessing = false;
+        }
 
         function resetCarf(){
-            vm.carf = {
+            self.carf = {
                 _id: "",
                 pms: "",
                 values: [],
@@ -48,19 +56,20 @@
                 requirement: "",
                 stakeholders: []
             };
-            vm.valueList = [];
+            self.valueList = [];
 
         }
+
         Socket.on('onBroadcastCARFadd', function (carf) {
-            vm.carfList.push(carf);
+            self.carfList.push(carf);
             resetCarf();
-            vm.stakeholderList = vm.localStakeholders;
-            vm.carfPriorityList = vm.localPriorityList;
+            self.stakeholderList = self.localStakeholders;
+            self.carfPriorityList = self.localPriorityList;
         });
 
-        vm.addpmsvalue = function(carf){
+        function addpmsvalue(carf){
 
-            if(carf.pms == ""){
+            if(carf.pms === ""){
                 toastApp.errorMessage("Select PMS");
             }else{
                 if(carf.values.length < 1 ){
@@ -69,79 +78,79 @@
                     if(carf.stakeholders.length < 1){
                         toastApp.errorMessage("Select one or more Stakeholder(s)");
                     }else{
-                        if(carf.priority == ""){
+                        if(carf.priority === ""){
                             toastApp.errorMessage("Select priority [Low, Medium or High]");
                         }else{
                             Socket.emit('broadcastCARFadd', carf);
-                            vm.stakeholderList = [];
-                            vm.carfPriorityList = [];
+                            self.stakeholderList = [];
+                            self.carfPriorityList = [];
                         }
                     }
                 }
             }
 
-        };
+        }
 
         Socket.on('onBroadcastCARFremove', function (id) {
-            vm.carfList.splice(id,1);
+            self.carfList.splice(id,1);
         });
 
-        vm.removeCARF = function(index,carf){
+        function removeCARF(index,carf){
             var obj = {
                 index: index,
                 carf: carf
-            }
+            };
             Socket.emit('broadcastCARFremove', obj);
         }
 
 
-        vm.selectPMSValue = function(pms){
-            if(pms != undefined) {
-                angular.forEach(vm.carfPMSValue, function (pms_value) {
+        function selectPMSValue(pms){
+            if(pms !== undefined) {
+                angular.forEach(self.carfPMSValue, function (pms_value) {
                     if (pms_value.pms == pms) {
-                        vm.carf.values = [];
-                        vm.valueList = pms_value.values;
+                        self.carf.values = [];
+                        self.valueList = pms_value.values;
                         return;
                     }
                 });
             }
         }
 
-        vm.setPriotity = function(priority){
-            vm.carf.priority = priority;
+        function setPriotity(priority){
+            self.carf.priority = priority;
         }
 
-        vm.addListValue = function(newvalue){
-           if(vm.carf.values.length == 0){
-                vm.carf.values.push(newvalue);
+        function addListValue(newvalue){
+           if(self.carf.values.length === 0){
+                self.carf.values.push(newvalue);
             }else {
-               for (var i = 0; i < vm.carf.values.length; i++) {
-                   if (newvalue == vm.carf.values[i]) {
-                       vm.carf.values.splice(i, 1);
+               for (var i = 0; i < self.carf.values.length; i++) {
+                   if (newvalue == self.carf.values[i]) {
+                       self.carf.values.splice(i, 1);
                        return;
                    }
                }
-               vm.carf.values.push(newvalue);
+               self.carf.values.push(newvalue);
            }
-        };
+        }
 
-        vm.addStakeholder = function(newStakeholder){
-            if(vm.carf.stakeholders.length == 0){
-                vm.carf.stakeholders.push(newStakeholder);
+        function addStakeholder(newStakeholder){
+            if(self.carf.stakeholders.length === 0){
+                self.carf.stakeholders.push(newStakeholder);
             }else{
-                for(var i=0; i < vm.carf.stakeholders.length; i++){
-                    if(newStakeholder == vm.carf.stakeholders[i]){
-                        vm.carf.stakeholders.splice(i,1);
+                for(var i=0; i < self.carf.stakeholders.length; i++){
+                    if(newStakeholder == self.carf.stakeholders[i]){
+                        self.carf.stakeholders.splice(i,1);
                         return;
                     }
                 }
-                vm.carf.stakeholders.push(newStakeholder);
+                self.carf.stakeholders.push(newStakeholder);
             }
-        };
+        }
 
-        vm.localPriorityList = ['Low', 'Medium','High'];
+        self.localPriorityList = ['Low', 'Medium','High'];
 
-        vm.carfPMSValue = [
+        self.carfPMSValue = [
                 {
                     "pms": "Interaction",
                     "values": [
@@ -220,7 +229,7 @@
                         "Reciprocity"
                     ]
                 }
-            ]
+            ];
     }
 
 })();

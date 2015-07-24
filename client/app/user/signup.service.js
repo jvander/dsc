@@ -19,6 +19,7 @@
       rescuePassword : rescuePassword,
       changePassword : changePassword
     };
+
     return service;
 
     function create(data) {
@@ -34,4 +35,5 @@
       return $http.get(API_ROUTE_SETNEWPASSWORD + '?mytoken=' + mytokenURL.mytoken+'&password='+data.password);
     }
   }
+
 })();

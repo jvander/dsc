@@ -3,59 +3,64 @@
  */
 
 (function() {
+
     'use strict';
 
-    angular.module('app')
-       .controller('loginController',loginController);
-
+    angular
+        .module('app')
+        .controller('loginController',loginController);
 
         function loginController($translate, $rootScope, $state, Auth, $window, $filter, toastApp) {
-            var vm = this;
-            vm.inProgress = false;
+            var self = this;
+            self.inProgress = false;
+            self.setLang = setLang;
+            self.doLogout = doLogout;
+            self.doLogin = doLogin;
 
-            vm.setLang = function(langKey) {
+            function setLang(langKey) {
                  $translate.use(langKey);
-            };
+            }
 
-            vm.loggedIn = Auth.isLoggedIn();
+            self.loggedIn = Auth.isLoggedIn();
+
             $rootScope.$on('$routeChangeStart', function() {
-                vm.loggedIn = Auth.isLoggedIn();
+                self.loggedIn = Auth.isLoggedIn();
                 Auth.getUser()
                     .then(function(data) {
-                        vm.user = data.data;
+                        self.user = data.data;
                     });
             });
 
-            vm.doLogin = function(user) {
-                vm.inProgress = true;
-                vm.error = '';
+            function doLogin(user) {
+                self.inProgress = true;
+                self.error = '';
                 Auth.login(user.email, user.password)
                     .success(function(data) {
                         $window.localStorage.setItem("useremail",data.email);
                         $window.localStorage.setItem("userid",data.id);
                         $window.localStorage.setItem("nickname",data.nickname);
-                        vm.setLang(data.language);
-                        vm.inProgress = false;
+                        self.setLang(data.language);
+                        self.inProgress = false;
                         Auth.getUser()
                             .then(function(data) {
-                                   vm.user = data.data;
-                                   toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + vm.user.nickname);
+                                   self.user = data.data;
+                                   toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + self.user.nickname);
                             });
                         if(data.success) {
                             $state.go('startproblem');
 
                         }
                         else {
-                            vm.error = data.message;
+                            self.error = data.message;
                         }
 
                     });
-            };
-            vm.doLogout = function() {
+            }
 
+            function doLogout() {
                 Auth.logout();
                 $state('init');
-            };
+            }
 
         }
 

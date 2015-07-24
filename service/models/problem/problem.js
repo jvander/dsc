@@ -1,7 +1,6 @@
 /**
  * Created by JOSEVALDERLEI on 07/07/2015.
  */
-
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
@@ -48,15 +47,10 @@ var CultureAwareRequirementsFrameworkSchema = new  Schema({
 });
 
 var ProblemSchema = new Schema({
-
     status: {type: String, enum: ['active', 'inactive', 'finished', 'suspended'], default: 'active'},
-
     started: {type: Date, default: Date.now },
-
     finished: {type: Date},
-
     artefact: {type: String, enum: ['stakeholder', 'evaluationframing', 'semioticframework', 'carf']},
-
     owner:{
         fullname: {type: String, requered: true},
         nickname: {type: String, requered: true},
@@ -76,15 +70,12 @@ var ProblemSchema = new Schema({
         required: 'required.title',
         trim: true
     },
-
     description: {
         type: String,
         required: 'required.description',
         trim: true
     },
-
     stakeholders: [StakeholderSchema],
-
     semioticframework:{
         socialworld: {
             type: String

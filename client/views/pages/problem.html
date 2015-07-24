@@ -30,6 +30,12 @@
                         <span flex></span>
                         <md-button ng-click="vm.sendMessage(vm.newmsg)">Send</md-button>
                     </form>
+                    <div>
+                        <span>Collaborators on</span>
+                    <div ng-repeat="user in vm.userList">
+                        <span>{{user}}</span>
+                    </div>
+                    </div>
                 </md-content>
             </md-sidenav>
 

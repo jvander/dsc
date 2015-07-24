@@ -25,9 +25,11 @@ function initLanguage ($translateProvider) {
 }
 
 function languageController ($translate) {
-            this.setLang = function(langKey) {
+    var self = this;
+    self.setLang = setLang;
+    function setLang(langKey) {
             $translate.use(langKey);
-        };
+    }
 }
 
 

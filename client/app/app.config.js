@@ -3,7 +3,9 @@
  */
 
 (function(){
+
     'use strict';
+
     angular
         .module('app')
         .config(appConfig);
@@ -29,7 +31,7 @@
         $mdThemingProvider.theme('input', 'default')
             .primaryPalette('green');
 
-    }
+    };
 
 
 })();

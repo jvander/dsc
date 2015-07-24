@@ -1,6 +1,8 @@
 /**
  * Created by JOSEVALDERLEI on 16/06/2015.
  */
+(function(){
+
 var User = require('../models/user');
 var config = require('../../config.server');
 var configMail = require('../../configmail');
@@ -9,7 +11,6 @@ var secretKey = config.secretKey;
 var jsonwebtoken = require('jsonwebtoken');
 
 function createToken(user){
-
     var token = jsonwebtoken.sign({
         id: user.id,
         fullname: user.fullname,
@@ -19,7 +20,6 @@ function createToken(user){
       }, secretKey,{
         expirtesInMinute: 1440
     });
-
     return token;
 }
 
@@ -69,12 +69,9 @@ module.exports =  function(app, express){
         });
     });
 
-
     api.post('/newpassword', function(req, res){
 
-        }
-    );
-
+        });
 
     api.get('/setpassword/', function(req, res){
         console.log(req.body.mytoken);
@@ -95,9 +92,6 @@ module.exports =  function(app, express){
     });
 
     api.post('/rescuepassword', function(req, res){
-
-            console.log(req.body.email);
-
             User.findOne({
                 email: req.body.email
             }).select('id nickname email').exec(function(err,user){
@@ -140,9 +134,7 @@ module.exports =  function(app, express){
 
                 }
             });
-        }
-    );
-
+        });
 
     api.get('/users',function(req,res){
         User.find({}, function (err,users) {
@@ -178,8 +170,6 @@ module.exports =  function(app, express){
         });
     });
 
-
-
     api.use(function(req, res, next){
         res.header("Access-Control-Allow-Origin", "/api/setpassword/");
         next();
@@ -204,6 +194,7 @@ module.exports =  function(app, express){
     });
 
     return api;
-};
+}
 
+})();
 
