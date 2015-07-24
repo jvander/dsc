@@ -200,7 +200,6 @@
             .then(function(problem) {
                 var id = stakeholder._id;
                 stakeholder.openEdit = false;
-                console.log(stakeholder._id);
                 console.log('Update ' + stakeholder.name);
                 console.log('Update ' + stakeholder.description);
                 Problem.findOneAndUpdate({ "_id": idproblem, "stakeholders._id": id },
