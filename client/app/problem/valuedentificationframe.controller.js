@@ -3,6 +3,7 @@
  */
 (function(){
 
+    "use strict";
 angular
     .module('app')
     .controller('valueIdentificationFrameController', valueIdentificationFrameController);
@@ -43,9 +44,9 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
         }
     ];
     self.sugestionValuesArray = [
-        'Acessibilidade', 'Adaptabilidade', 'Estética', 'Autonomia', 'Disponibilidade', 'Consciência', 'Colaboração',
+        'Acessibilidade','Adaptabilidade','Estética','Autonomia', 'Disponibilidade', 'Consciência', 'Colaboração',
         'Conversação', 'Emoção e Afeto', 'Grupos', 'Identidade', 'Consentimento informado', 'Meta-comunicação', 'Normas',
-        'Objeto', 'Portabilidade', 'Presença', 'Privacidade', 'Propriedade', 'Reciprocidade, Relacionamento, Reputação,' +
+        'Objeto', 'Portabilidade', 'Presença', 'Privacidade', 'Propriedade', 'Reciprocidade, Relacionamento, Reputação',
         'Escalabilidade', 'Segurança', 'Compartilhamento', 'Confiança', 'Usabilidade', 'Visibilidade'];
 
     function initValueIdentificationFrame(){
