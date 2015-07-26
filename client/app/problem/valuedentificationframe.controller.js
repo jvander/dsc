@@ -44,10 +44,10 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
         }
     ];
     self.sugestionValuesArray = [
-        'Acessibilidade','Adaptabilidade','Estética','Autonomia', 'Disponibilidade', 'Consciência', 'Colaboração',
-        'Conversação', 'Emoção e Afeto', 'Grupos', 'Identidade', 'Consentimento informado', 'Meta-comunicação', 'Normas',
-        'Objeto', 'Portabilidade', 'Presença', 'Privacidade', 'Propriedade', 'Reciprocidade, Relacionamento, Reputação',
-        'Escalabilidade', 'Segurança', 'Compartilhamento', 'Confiança', 'Usabilidade', 'Visibilidade'];
+        'Acessibilidade','Adaptabilidade','EstÃ©tica','Autonomia', 'Disponibilidade', 'ConsciÃªncia', 'ColaboraÃ§Ã£o',
+        'ConversaÃ§Ã£o', 'EmoÃ§Ã£o e Afeto', 'Grupos', 'Identidade', 'Consentimento informado', 'Meta-comunicaÃ§Ã£o', 'Normas',
+        'Objeto', 'Portabilidade', 'PresenÃ§a', 'Privacidade', 'Propriedade', 'Reciprocidade, Relacionamento, ReputaÃ§Ã£o',
+        'Escalabilidade', 'SeguranÃ§a', 'Compartilhamento', 'ConfianÃ§a', 'Usabilidade', 'Visibilidade'];
 
     function initValueIdentificationFrame(){
         self.idproblem = $window.localStorage.getItem('problemid');
@@ -122,7 +122,7 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
 
     function setValueIdentication(stakeholder) {
         if((stakeholder.newValues === "") || (stakeholder.newValues === undefined)){
-            toastApp.errorMessage('Valor não especificado.');
+            toastApp.errorMessage('Valor nï¿½o especificado.');
         }else{
             var valuesList = stakeholder.newValues.split(',');
             for(var i=0; i < valuesList.length; i++){
