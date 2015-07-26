@@ -104,12 +104,16 @@ function stakeholderController(Socket,$window,problemService,toastApp){
        Socket.emit('broadcastOnionAdd', newStakeholder);
     }
 
-    function acende(evt) {
-        evt.target.setAttribute("opacity", "0.8");
+    function acende(id) {
+        document.getElementById("name"+id).style.setAttribute('text-decoration: underline;')
+        document.getElementById("legend"+id).setAttribute("opacity", "0.8");
+        document.getElementById(id).setAttribute("opacity", "0.8");
     }
 
-    function apaga(evt) {
-        evt.target.setAttribute("opacity", "1.0");
+    function apaga(id) {
+        document.getElementById("name"+id).style.setAttribute('text-decoration: none;')
+        document.getElementById("legend"+id).setAttribute("opacity", "1.0");
+        document.getElementById(id).setAttribute("opacity", "1.0");
     }
 }
 
