@@ -105,13 +105,13 @@ function stakeholderController(Socket,$window,problemService,toastApp){
     }
 
     function acende(id) {
-        document.getElementById("name"+id).style.setAttribute('text-decoration: underline;')
-        document.getElementById("legend"+id).setAttribute("opacity", "0.8");
-        document.getElementById(id).setAttribute("opacity", "0.8");
+        document.getElementById("name"+id).setAttribute('style', 'text-decoration: underline;')
+        document.getElementById("legend"+id).setAttribute("opacity", "0.7");
+        document.getElementById(id).setAttribute("opacity", "0.7");
     }
 
     function apaga(id) {
-        document.getElementById("name"+id).style.setAttribute('text-decoration: none;')
+        document.getElementById("name"+id).setAttribute('style', 'text-decoration: none;')
         document.getElementById("legend"+id).setAttribute("opacity", "1.0");
         document.getElementById(id).setAttribute("opacity", "1.0");
     }

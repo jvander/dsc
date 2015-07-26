@@ -11,7 +11,7 @@
         .module('app')
         .controller('controllerCollaborators', controllerCollaborators);
 
-    function controllerCollaborators($window,problemService,toastApp){
+    function controllerCollaborators($window,Socket,problemService,toastApp){
 
         var self = this;
         self.idProblem = "";
@@ -28,6 +28,7 @@
                 .success(function(data) {
                     if(data.success) {
                         self.collaborators = data.collaborators;
+                        //Socket.emit('checkUsers');
                     }else{
                         toastApp.errorMessage(data.message);
                     }
@@ -81,6 +82,21 @@
                     }
                 });
         }
+
+        /*Socket.on('onCheckUsers', function (userList) {
+            for(var i=0; i < userList.length; i++){
+                console.log(userList[i]);
+                for(var j = 0; j < self.collaborators.length; j++){
+                    console.log(userList[i] + '   ' + self.collaborators[j].nickname)
+                    if(userList[i] === self.collaborators[j].nickname){
+                        self.collaborators[j].nickname = self.collaborators[j].nickname + ' (online) ';
+                    }
+                }
+            }
+
+        });*/
+
     }
+
 
 })();
