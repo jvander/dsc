@@ -10,6 +10,7 @@
 
     function routes($stateProvider, $urlRouterProvider) {
 
+
         $stateProvider.state('init', {
             url: '/',
             templateUrl: 'views/pages/initpage.html',
@@ -48,14 +49,17 @@
                 controller: 'startProblemController as vm'
 
             })
+            .state('profile', {
+                url: '/profile',
+                templateUrl: 'views/pages/profile.html',
+                controller: 'profileController as vm'
 
+            })
             .state('newpassword', {
                 url: '/newpassword/:mytoken',
                 templateUrl: 'views/pages/newpassword.html',
-                controller: 'signupController as vm',
+                controller: 'signupController as vm'
             })
-
-
             .state('problem', {
                 url: '/problem',
                 templateUrl: 'views/pages/problem.html',
@@ -135,6 +139,7 @@
                 }
             });
         $urlRouterProvider.otherwise('/login');
+
     }
 
 })();

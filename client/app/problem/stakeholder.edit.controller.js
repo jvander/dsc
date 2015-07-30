@@ -11,7 +11,7 @@ angular
     .controller('stakeholderController',stakeholderController);
 
 
-function stakeholderController(Socket,$window,problemService,toastApp){
+function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp){
 
     var self = this;
     self.idproblem = "";
@@ -79,12 +79,26 @@ function stakeholderController(Socket,$window,problemService,toastApp){
         self.stakeholderList.splice(id,1);
     });
 
-    function delPostIt(index,stakeholder) {
+    function removePostIt(index,stakeholder) {
         var obj = {
             index: index,
             stakeholder: stakeholder
         };
         Socket.emit('broadcastOnionRemove', obj);
+    }
+
+    function delPostIt(ev,index,stakeholder) {
+        var confirm = $mdDialog.confirm()
+            .parent(angular.element(document.body))
+            .title('Detete Stakeholder?')
+            .content('Title: ' + stakeholder.name)
+            .ariaLabel('Remove Stakeholder')
+            .ok('Yes!')
+            .cancel('Cancel')
+            .targetEvent(ev);
+        $mdDialog.show(confirm).then(function() {
+            removePostIt(index,stakeholder);
+        });
     }
 
     Socket.on('onBroadcastOnionAdd', function (retorno) {

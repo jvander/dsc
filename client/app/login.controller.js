@@ -40,19 +40,21 @@
                         $window.localStorage.setItem("userid",data.id);
                         $window.localStorage.setItem("nickname",data.nickname);
                         self.setLang(data.language);
-                        Auth.getUser()
-                            .then(function(data) {
-                                   self.user = data.data;
-                                   toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + self.user.nickname);
-                                   self.inProcessing = false;
-                            });
-                        if(data.success) {
-                            $state.go('startproblem');
+                        Auth.getUser(data.id)
+                            .then(function(userData) {
+                             toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + self.user.nickname);
 
+                        if(data.success) {
+                            console.log(userData)
+                            $window.localStorage.setItem("photo",userData.data.photo);
+
+                            self.inProcessing = false;
+                            $state.go('startproblem');
                         }
                         else {
                             self.error = data.message;
                         }
+                     });
 
                     });
             }
@@ -63,5 +65,6 @@
             }
 
         }
+
 
 })();

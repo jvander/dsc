@@ -169,7 +169,28 @@
         }
 
         function getUser(req, res){
-            res.send(req.decoded);
+            console.log(req.query.userid)
+            User.findOne({
+                _id: req.query.userid
+            }).select('_id fullname nickname email language password photo').exec(function(err,user){
+                if(err) throw err;
+
+                if(!user){
+                    res.send({mensage: "user invalid"});
+                }else{
+                        res.json({
+                            success: true,
+                            mensage: "Sucessfuly login!",
+                            id: user._id,
+                            nickname: user.nickname,
+                            email: user.email,
+                            language: user.language,
+                            photo: user.photo
+                        });
+
+                }
+            });
+
         }
 
     }

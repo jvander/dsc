@@ -13,6 +13,11 @@
         self.formAddCollaborators = formAddCollaborators;
         self.editDescriptionProblem = editDescriptionProblem;
         self.doLogout = doLogout;
+        self.systemReturn = systemReturn;
+
+        function systemReturn(){
+            $state.go('startproblem');
+        }
 
         function buildToggler(navID) {
             var debounceFn =  $mdUtil.debounce(function(){

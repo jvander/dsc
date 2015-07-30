@@ -1,0 +1,33 @@
+<div layout="column" layout-fill data-ng-init="vm.getProblems()">
+     <md-toolbar md-scroll-shrink>
+          <div class="md-toolbar-tools">
+               <span>{{'NAME_SYSTEM' | translate }}</span>
+               <span flex flex-md="100"></span>
+               <md-button ng-click="vm.systemReturn()" class="md-fab md-primary" aria-label="Chat">
+                    <md-tooltip>
+                         Your Projects (Problems)
+                    </md-tooltip>
+                    <md-icon md-svg-src="views/img/icon/ic_home_24px.svg"></md-icon>
+               </md-button>
+               <md-button ng-click="vm.doLogout()" class="md-icon-button"  aria-label="Out app">
+                    <md-tooltip>
+                         Logout
+                    </md-tooltip>
+                    <md-icon md-svg-src="views/img/icon/ic_exit_to_app_24px.svg"></md-icon>
+               </md-button>
+               <change-language></change-language>
+          </div>
+     </md-toolbar>
+
+     <md-content>
+     <div>Select an image file:<input type="file" id="fileInput"/></div>
+     <div class="cropArea">
+          <img-crop image="myImage" result-image="vm.myCroppedImage"></img-crop>
+     </div>
+     <div>Cropped Image:</div>
+     <div><img ng-src="{{vm.myCroppedImage}}"/></div>
+     <md-button ng-click="vm.savePhoto(vm.myCroppedImage)">Upload on file change</md-button>
+    </md-content>
+
+</div>
+

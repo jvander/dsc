@@ -10,6 +10,7 @@
     var UserSchema = new Schema({
         fullname: {type: String, required: true },
         nickname: {type: String, required: true },
+        photo: { type: String },
         email: {type: String, required: true, index: { unique: true } },
         password: {type: String, required: true, select: false },
         language: {type: String, enum: ['en', 'pt', 'es'], default: 'en' },

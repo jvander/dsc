@@ -22,11 +22,18 @@
         self.editProblem = editProblem;
         self.doLogout = doLogout;
         self.newProblem = newProblem;
+        self.editProfile = editProfile;
+        self.photo;
+
 
         function getProblems(){
             self.userid = $window.localStorage.getItem('userid');
             self.nickname = $window.localStorage.getItem('nickname');
             self.useremail = $window.localStorage.getItem('useremail');
+            self.photo = $window.localStorage.getItem('photo');
+
+
+
             problemService.getuserproblems(self.useremail)
                 .success(function(data) {
                     if(data.success) {
@@ -108,6 +115,9 @@
         function doLogout() {
             Auth.logout();
             $state.go('init.login');
+        }
+        function editProfile() {
+            $state.go('profile');
         }
 
         function newProblem(ev) {

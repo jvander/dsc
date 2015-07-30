@@ -398,3 +398,20 @@ body{
 .problem_title {
     color: #000000;
 }
+
+.img-circular{
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    display: block;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+}
+
+.cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width:400px;
+    height:300px;
+}

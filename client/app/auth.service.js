@@ -30,9 +30,9 @@
 				}
 			};
 
-			authFactory.getUser = function() {
+			authFactory.getUser = function(id) {
 				if(AuthToken.getToken()) {
-					return $http.get('/api/me');
+					return $http.get('/api/me/?userid=' + id);
 				}
 				else {
 					return $q.reject({message: "User has no token"});

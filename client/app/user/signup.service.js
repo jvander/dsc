@@ -12,12 +12,14 @@
     var API_ROUTE_USER = '/api/signup/';
     var API_ROUTE_RESCUEPASSWORD = '/api/rescuepasswd/';
     var API_ROUTE_SETNEWPASSWORD = '/api/rescuepasswd/newpasswd/';
+    var API_ROUTE_UPDATEPHOTO = '/api/profile/photo/';
 
 
     var service = {
       create         : create,
       rescuePassword : rescuePassword,
-      changePassword : changePassword
+      changePassword : changePassword,
+      uploadPhoto: uploadPhoto
     };
 
     return service;
@@ -33,6 +35,10 @@
     function changePassword(data){
       var mytokenURL = $location.search();
       return $http.get(API_ROUTE_SETNEWPASSWORD + '?mytoken=' + mytokenURL.mytoken+'&password='+data.password);
+    }
+
+    function uploadPhoto(data) {
+      return $http.post(API_ROUTE_UPDATEPHOTO, data);
     }
   }
 
