@@ -35,5 +35,7 @@
     "LABEL_CLOSE" : "Fechar",
     "LABEL_FORM_EVALUATION_FRAMEWORK" : "Quadro de Avaliação",
     "LABEL_NEW_PROBLEM" : "Novo Problema",
-    "BTN_ADD": "Adicionar"
+    "BTN_ADD": "Adicionar",
+    "BTN_SAVE": "Savar",
+    "LABEL_LOGOUT":"Sair"
 }

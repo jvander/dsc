@@ -20,18 +20,8 @@
       signupService.create(user)
           .success(function(data) {
             if(data.success) {
-              AuthToken.setToken(data.token);
-              Auth.getUser()
-                  .then(function(data) {
-                    self.user = data.data;
-                      self.loginInProgress = false;
-                      $window.localStorage.setItem("useremail",user.email);
-                      $window.localStorage.setItem("userid",user.id);
-                      $window.localStorage.setItem("nickname",user.nickname);
-                      self.setLang(user.language);
-                    toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + self.user.nickname);
-                    $state.go('startproblem');
-                  });
+                  toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + user.nickname);
+                   $state.go('init.login');
           }else{
               toastApp.errorMessage("Email Já cadastrado");
             }
@@ -45,7 +35,6 @@
       function rescuePassword(userEmail){
           signupService.rescuePassword(userEmail)
               .success(function(data) {
-                  console.log(data);
                   if(data.success) {
                       toastApp.errorMessage("Email com instruções enviado");
                   }else{
@@ -59,7 +48,7 @@
               .success(function(data) {
                   if(data.success) {
                       toastApp.errorMessage("Senha alterada com sucesso. Faça login com a nova senha.");
-                      $state.go('init');
+                      $state.go('init.login');
                   }else{
                       toastApp.errorMessage("Error");
               }

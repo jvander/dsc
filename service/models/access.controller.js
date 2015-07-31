@@ -174,7 +174,6 @@
                 _id: req.query.userid
             }).select('_id fullname nickname email language password photo').exec(function(err,user){
                 if(err) throw err;
-
                 if(!user){
                     res.send({mensage: "user invalid"});
                 }else{

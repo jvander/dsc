@@ -1,6 +1,6 @@
 {
     "WELCOME_SYSTEM": "Welcome",
-    "NAME_SYSTEM": "Social Awareness Design",
+    "NAME_SYSTEM": "Social Aware Design",
     "LANGUAGE_SELECTED": "English",
     "TITLE_FORM_USER_REGISTER":"Sign up",
     "LANGUAGE_ENGLISH":"English",
@@ -35,7 +35,9 @@
     "LABEL_CLOSE" : "Close",
     "LABEL_FORM_EVALUATION_FRAMEWORK" : "Evaluation Framing",
     "LABEL_NEW_PROBLEM" : "New Problem",
-    "BTN_ADD": "Add"
+    "BTN_ADD": "Add",
+    "BTN_SAVE": "Save",
+    "LABEL_LOGOUT":"logout"
 
 
 }

@@ -21,12 +21,17 @@
              if (contentType !== 'image/png' && contentType !== 'image/jpeg') {
                 return res.status(400).send('Unsupported file type.');
             }
-
                 User.findByIdAndUpdate({_id: req.body.userid}, { $set : { 'photo': req.body.photo }}, function(err, updated) {
-                    if (err || !updated) {
-                        console.log(err);
+                    if (err) {
+                        res.json({
+                            success: false,
+                            mensage: "Sorry!! Problems!",
+                        });
                     } else {
-                        console.log(updated)
+                        res.json({
+                            success: true,
+                            mensage: "Update Your Photo!",
+                        });
                     }
                 });
 

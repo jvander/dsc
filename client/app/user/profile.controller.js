@@ -53,8 +53,7 @@
             signupService.uploadPhoto(userPhoto)
                 .success(function(data) {
                     if(data.success) {
-
-
+                        $window.localStorage.setItem("photo",myimage);
                     }else{
                         toastApp.errorMessage("-----");
                     }

@@ -9,12 +9,6 @@
                     </md-tooltip>
                     <md-icon md-svg-src="views/img/icon/ic_home_24px.svg"></md-icon>
                </md-button>
-               <md-button ng-click="vm.doLogout()" class="md-icon-button"  aria-label="Out app">
-                    <md-tooltip>
-                         Logout
-                    </md-tooltip>
-                    <md-icon md-svg-src="views/img/icon/ic_exit_to_app_24px.svg"></md-icon>
-               </md-button>
                <change-language></change-language>
           </div>
      </md-toolbar>
@@ -22,7 +16,7 @@
      <md-content>
      <div>Select an image file:<input type="file" id="fileInput"/></div>
      <div class="cropArea">
-          <img-crop image="myImage" result-image="vm.myCroppedImage"></img-crop>
+          <img-crop result-image-size="100" image="myImage" result-image="vm.myCroppedImage"></img-crop>
      </div>
      <div>Cropped Image:</div>
      <div><img ng-src="{{vm.myCroppedImage}}"/></div>

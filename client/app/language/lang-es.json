@@ -35,7 +35,9 @@
     "LABEL_CLOSE" : "??Close",
     "LABEL_FORM_EVALUATION_FRAMEWORK" : "??Evaluation Framing"
     "LABEL_NEW_PROBLEM" : "??New Problem",
-    "BTN_ADD": "??Add"
+    "BTN_ADD": "??Add",
+    "BTN_SAVE": "???Salvar",
+    "LABEL_LOGOUT":"??logout"
 
 
 }
