@@ -1,6 +1,7 @@
 /**
  * Created by JOSEVALDERLEI on 15/07/2015.
  */
+/*
 (function(){
 
 'use strict';
@@ -32,6 +33,7 @@ angular
         function initHistoryChat(){
             self.idProblem = $window.localStorage.getItem('problemid');
             self.nickname = $window.localStorage.getItem('nickname');
+            self.photo = $window.localStorage.getItem('photo');
             problemService.gethistorychat(self.idProblem)
                 .success(function(data) {
                     if(data.success) {
@@ -78,3 +80,6 @@ angular
     }
 
 })();
+*/
+
+

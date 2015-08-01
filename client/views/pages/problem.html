@@ -1,5 +1,6 @@
-<div layout="column" layout-fill>
-            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="chat">
+<div layout="column" layout-fill data-ng-init="vm.initHistoryChat()">
+
+            <!--<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="chat">
                 <md-toolbar class="md-theme-light">
                     <h1 class="md-toolbar-tools">Chat DSC</h1>
                 </md-toolbar>
@@ -37,13 +38,13 @@
                     </div>
                     </div>
                 </md-content>
-            </md-sidenav>
+            </md-sidenav>-->
 
     <md-toolbar md-scroll-shrink>
         <div class="md-toolbar-tools">
 
             <h3>
-                <span>{{'NAME_SYSTEM' | translate }}</span>
+                <span><img src="views/img/logo_barra.png" /> {{'NAME_SYSTEM' | translate }}</span>
             </h3>
             <span flex flex-md="100"></span>
             <md-button ng-click="vm.formAddCollaborators()" class="md-fab md-primary" aria-label="Edit Collaborators">
@@ -65,12 +66,12 @@
                 </md-tooltip>
                 <md-icon md-svg-src="views/img/icon/ic_home_24px.svg"></md-icon>
             </md-button>
-            <md-button ng-click="vm.openChat()" class="md-fab md-primary" aria-label="Chat">
+          <!--  <md-button ng-click="vm.openChat()" class="md-fab md-primary" aria-label="Chat">
                 <md-tooltip>
                     Open Chat
                 </md-tooltip>
                 <md-icon md-svg-src="views/img/icon/ic_chat_bubble_24px.svg"></md-icon>
-            </md-button>
+            </md-button>-->
            <!-- <md-button ng-click="vm.openReport()" class="md-fab md-primary" aria-label="Chat">
                 <md-tooltip>
                     Open HTML Report
@@ -121,6 +122,36 @@
             <div>{{tab}}</div>
         </md-tabs>
     </md-content>
+
+    <div class="chatarea">
+        <div class="chat">
+            <div class="chathead" id="chathead" ng-click="vm.openChat()">
+                <img src="{{ vm.photo }}" />{{vm.nickname}}
+            </div>
+            <div id="togglearea" ng-show="vm.isOpenChat">
+                <div class="feed" style="height: 400px;"  scroll-glue>
+                    <div ng-repeat="msg in vm.messages">
+                        <div ng-if="msg.nickname == vm.nickname">
+                            <div class="bubble me">
+                                {{msg.time}} {{msg.nickname}} : {{msg.msg}}
+                            </div>
+                        </div>
+                        <div ng-if="msg.nickname == !vm.nickname">
+                            <div class="bubble you">
+                                {{msg.time}} {{msg.nickname}} : {{msg.msg}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- feed -->
+                <div class="messagebox" flex layout="column" layout-align="center center">
+                    <textarea id="message" ng-model="vm.newmsg"></textarea>
+                    <md-button class="md-primary" ng-click="vm.sendMessage(vm.newmsg)">Send</md-button>
+                </div>
+            </div>
+
+        </div><!-- chatbox -->
+    </div><!-- chat container -->
 
 </div>
 
