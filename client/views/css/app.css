@@ -4,6 +4,7 @@
     right:0px;
     margin:0px;
     padding:0px;
+    z-index: 9999;
 }
 .chat {
     margin:0px;
@@ -24,33 +25,22 @@
 }
 .chathead {
     width:250px;
-    background-color: #009688;
+    background-color: #004D40;
     height:40px;
     color:#ffffff;
-    padding-top:13px;
-    padding-left:10px;
+    padding-top:4px;
+    padding-left: 10px;
     cursor:pointer;
-}
-
-.barraDSC {
-    background-color: #009688;
-    height:50px;
-    padding-top:5px;
-    padding-left:20px;
-}
-
-.barraDSC .texto {
-    margin: 10px;
-    padding:5px;
-    font-family: 'Gloria Hallelujah', cursive;
-    font-size:18px;
-    color: #FFF;
 }
 
 .chathead img {
     width: 30px;
     vertical-align:middle;
-    padding-right: 8px;
+    padding-right: 2px;
+    height: 30px;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
 }
 
 .feed {

@@ -129,7 +129,8 @@
     <div class="chatarea" ng-controller="chatDSC as vm" data-ng-init="vm.initHistoryChat()">
         <div class="chat">
             <div class="chathead" id="chathead" ng-click="vm.openChat()">
-                <span><img src="{{ vm.photo }}" />{{vm.nickname}}</span>
+                <span><img src="{{ vm.photo }}" /></span>
+                <span flex layout-align="end end">{{vm.nickname}}</span>
             </div>
             <div id="togglearea" ng-show="vm.isOpenChat">
                 <div class="feed" style="height: 400px;"  scroll-glue>
