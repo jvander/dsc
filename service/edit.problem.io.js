@@ -13,7 +13,7 @@
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.resolve(new Error('Problem não encontrado'));
+                return deferred.resolve(new Error('Problem nï¿½o encontrado'));
             }
             deferred.resolve(problem)
         });

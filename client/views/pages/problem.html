@@ -1,4 +1,4 @@
-<div layout="column" layout-fill data-ng-init="vm.initHistoryChat()">
+<div layout="column" layout-fill>
 
             <!--<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="chat">
                 <md-toolbar class="md-theme-light">
@@ -122,11 +122,14 @@
             <div>{{tab}}</div>
         </md-tabs>
     </md-content>
+    <div class="" ui-view="dsc-artifact"></div>
+</div>
 
-    <div class="chatarea">
+<md-content>
+    <div class="chatarea" ng-controller="chatDSC as vm" data-ng-init="vm.initHistoryChat()">
         <div class="chat">
             <div class="chathead" id="chathead" ng-click="vm.openChat()">
-                <img src="{{ vm.photo }}" />{{vm.nickname}}
+                <span><img src="{{ vm.photo }}" />{{vm.nickname}}</span>
             </div>
             <div id="togglearea" ng-show="vm.isOpenChat">
                 <div class="feed" style="height: 400px;"  scroll-glue>
@@ -136,7 +139,7 @@
                                 {{msg.time}} {{msg.nickname}} : {{msg.msg}}
                             </div>
                         </div>
-                        <div ng-if="msg.nickname == !vm.nickname">
+                        <div ng-if="msg.nickname != vm.nickname">
                             <div class="bubble you">
                                 {{msg.time}} {{msg.nickname}} : {{msg.msg}}
                             </div>
@@ -152,9 +155,4 @@
 
         </div><!-- chatbox -->
     </div><!-- chat container -->
-
-</div>
-
-<div class="" ui-view="dsc-artifact"></div>
-
-
+</md-content>
