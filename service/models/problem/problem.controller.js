@@ -55,7 +55,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.reject(new Error("Problem não encontrado"));
+                return deferred.reject(new Error("Problem nï¿½o encontrado"));
             }
             deferred.resolve(problem)
         });
@@ -87,7 +87,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.reject(new Error("Problem não encontrado"));
+                return deferred.reject(new Error("Problem nï¿½o encontrado"));
             }
             deferred.resolve(problem)
         });
@@ -129,7 +129,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.resolve(new Error("Problem não encontrado"));
+                return deferred.resolve(new Error("Problem nï¿½o encontrado"));
             }
             deferred.resolve(problem)
         });
@@ -161,7 +161,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!user){
-                return deferred.resolve(new Error("User não encontrado"));
+                return deferred.resolve(new Error("User nï¿½o encontrado"));
             }
             deferred.resolve(user)
         });
@@ -286,7 +286,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.reject(new Error("Problem não encontrado"));
+                return deferred.reject(new Error("Problem nï¿½o encontrado"));
             }
             deferred.resolve(problem)
         });
@@ -373,7 +373,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.reject(new Error("Problem não encontrado"));
+                return deferred.reject(new Error("Problem nï¿½o encontrado"));
             }
             deferred.resolve(problem)
         });
@@ -411,7 +411,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.reject(new Error("Problem não encontrado"));
+                return deferred.reject(new Error("Problem nï¿½o encontrado"));
             }
             if(buscaUser(problem.collaborators,email)){
                 return deferred.reject(new Error("User is Colaborator."));
@@ -465,14 +465,14 @@ module.exports = function () {
                     })
             }).then(addCollaboratorInProblem)
              .then(function (problem) {
-                  /* var mailOptions = {
+                  var mailOptions = {
                     from: configMail.email, // sender address
                     to: req.body.email, // list of receivers
                     subject: 'Project DSC', // Subject line
-                    text: 'Olá,! Você foi selecionado para nos ajudar a entender melhor o problema ' + problem.title + '.' +
+                    text: 'OlÃ¡,! VocÃª foi convidado para nos ajudar a entender o problema ' + problem.title + '.' +
                     'Acesse http://'+ configMail.serverURL +':3000/'
                 };
-                sendMail(mailOptions);*/
+                sendMail(mailOptions);
                 res.json({
                     success:true,
                     collaborators: problem.collaborators
@@ -512,7 +512,7 @@ module.exports = function () {
             if(!problem){
                 res.json({
                     success:false,
-                    message: "Problema não encontrado."
+                    message: "Problema nï¿½o encontrado."
                 })
                 }else{
                     var collaborator = selectCollaborator(problem.collaborators, req.query.email);
@@ -531,7 +531,7 @@ module.exports = function () {
                     }else {
                         res.json({
                             success: false,
-                            message: req.query.email + "não removido."
+                            message: req.query.email + "nï¿½o removido."
 
                         })
                     }
@@ -548,7 +548,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.resolve(new Error("Problem não encontrado"));
+                return deferred.resolve(new Error("Problem nï¿½o encontrado"));
             }
             deferred.resolve(problem)
         });

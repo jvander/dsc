@@ -4,6 +4,8 @@
 
 (function(){
 
+    'use strict';
+
 angular
     .module('app')
     .controller('dscReportController',dscReportController);
