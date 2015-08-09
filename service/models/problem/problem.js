@@ -51,6 +51,7 @@ var ProblemSchema = new Schema({
     started: {type: Date, default: Date.now },
     finished: {type: Date},
     artefact: {type: String, enum: ['stakeholder', 'evaluationframing', 'semioticframework', 'carf']},
+
     owner:{
         fullname: {type: String, requered: true},
         nickname: {type: String, requered: true},
