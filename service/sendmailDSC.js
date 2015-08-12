@@ -6,8 +6,13 @@
 
     module.exports =  function(mailOptions){
 
+        console.log(mailOptions);
+
+        console.log(configMail.email);
+        console.log(configMail.password);
+
         var transporter = nodemailer.createTransport({
-            service: 'gmail',
+            service: 'Gmail',
             auth: {
                 user: configMail.email,
                 pass: configMail.password
@@ -22,5 +27,8 @@
         });
 
     }
+
+
+
 
 })();
