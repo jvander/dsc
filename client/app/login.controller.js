@@ -47,7 +47,6 @@
                         if(data.success) {
                             console.log(userData)
                             $window.localStorage.setItem("photo",userData.data.photo);
-
                             self.inProcessing = false;
                             $state.go('startproblem');
                         }
