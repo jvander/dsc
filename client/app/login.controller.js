@@ -42,7 +42,7 @@
                         self.setLang(data.language);
                         Auth.getUser(data.id)
                             .then(function(userData) {
-                             toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + self.user.nickname);
+                             toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + data.nickname);
 
                         if(data.success) {
                             console.log(userData)

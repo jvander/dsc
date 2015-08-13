@@ -36,7 +36,7 @@
           signupService.rescuePassword(userEmail)
               .success(function(data) {
                   if(data.success) {
-                      toastApp.errorMessage("Email com instruções enviado para " + userEmail);
+                      toastApp.errorMessage("Email com instruções enviado para " + userEmail.email);
                       $state.go('init.login');
                   }else{
                       toastApp.errorMessage("Error");
