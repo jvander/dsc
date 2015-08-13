@@ -14,8 +14,10 @@ function editProblemaController(Socket, $timeout,toastApp,$window,problemService
     self.problemUpdate = problemUpdate;
     self.getCurrentProblem = getCurrentProblem;
     self.saveDescription = saveDescription;
+    self.nickname;
 
     function getCurrentProblem(){
+        self.nickname = $window.localStorage.getItem('nickname');
         self.idProblem = $window.localStorage.getItem('problemid');
         problemService.getproblem(self.idProblem)
             .success(function(data) {
@@ -25,6 +27,11 @@ function editProblemaController(Socket, $timeout,toastApp,$window,problemService
                     toastApp.errorMessage(data.message);
                 }
             });
+        var initsocketproblem = {
+            "idproblem": self.idProblem,
+            "nickname": self.nickname
+        };
+        Socket.emit('initProblem', initsocketproblem);
     }
 
     function setUpdate(){

@@ -17,6 +17,8 @@ module.exports = function () {
         .post(addNewProblem);
     router.route('/getproblem/')
         .get(getProblem);
+    router.route('/getproblemreport/')
+        .get(getProblemReport);
     router.route('/getproblems/')
         .get(getAllProblems);
     router.route('/getproblemscollaborator/')
@@ -257,15 +259,32 @@ module.exports = function () {
                     mensage: "Not Problem"
                 });
             }else{
-                    res.json({
-                        success: true,
-                        problem: problem
-                    });
+                res.json({
+                    success: true,
+                    problem: problem
+                });
             }
         });
 
     }
 
+
+    function getProblemReport(req,res){
+        findProblem(req.query.idproblem)
+            .then(function(problem){
+                res.json({
+                        success: true,
+                        problem: problem
+                    }
+                );
+            }).catch(function (erro) {
+                res.status(400)
+                    .json({
+                        message: erro.message
+                    })
+            });
+
+    }
 
 
     function tratarResultado(sucesso, erro) {

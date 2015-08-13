@@ -13,6 +13,7 @@
     var API_ROUTE_GETUSERPROBLEMSCOLLABORATOR = '/api/problem/getproblemscollaborator';
     var API_ROUTE_NEWPROBLEM = '/api/problem/newproblem';
     var API_ROUTE_GETPROBLEM = '/api/problem/getproblem';
+    var API_ROUTE_GETPROBLEMREPORT = '/api/problem/getproblemreport';
     var API_ROUTE_GETCOLLABORATORS = '/api/problem/getcollaborators';
     var API_ROUTE_INVITE = '/api/problem/invite';
     var API_ROUTE_GETONION = '/api/problem/getonion';
@@ -36,7 +37,8 @@
       removeproblem    : removeproblem,
       getproblemscollaborator: getproblemscollaborator,
       removecollaborators : removecollaborators,
-      gethistorychat: gethistorychat
+      gethistorychat: gethistorychat,
+      getproblemreport : getproblemreport
     };
 
     return service;
@@ -45,10 +47,13 @@
         return $http.post(API_ROUTE_NEWPROBLEM, data);
     }
 
+    function getproblemreport(data){
+      return $http.get(API_ROUTE_GETPROBLEMREPORT + '?idproblem=' + data );
+    }
+
     function getproblem(data){
       return $http.get(API_ROUTE_GETPROBLEM + '?idproblem=' + data );
     }
-
 
     function getuserproblems(data){
       return $http.get(API_ROUTE_GETUSERPROBLEMS + '?email=' + data );

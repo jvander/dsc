@@ -4,6 +4,7 @@
     angular
         .module('app')
         .controller('menuProblemController', menuProblemaController);
+
     function menuProblemaController(Auth, $state){
 
         var self = this;
@@ -12,6 +13,7 @@
         self.editDescriptionProblem = editDescriptionProblem;
         self.doLogout = doLogout;
         self.systemReturn = systemReturn;
+        self.formProblemReport = formProblemReport;
 
         function systemReturn(){
             $state.go('startproblem');
@@ -20,6 +22,10 @@
 
         function formAddCollaborators(){
             $state.go('problem.collaborators');
+        }
+
+        function formProblemReport(){
+            $state.go('dscreport');
         }
 
         function editDescriptionProblem() {

@@ -55,6 +55,11 @@
                 controller: 'profileController as vm'
 
             })
+            .state('dscreport', {
+                url: '/dscreport',
+                        templateUrl: 'views/pages/problemreport.html',
+                        controller: 'problemReportController as vm'
+            })
             .state('newpassword', {
                 url: '/newpassword/:mytoken',
                 templateUrl: 'views/pages/newpassword.html',
@@ -64,15 +69,6 @@
                 url: '/problem',
                 templateUrl: 'views/pages/problem.html',
                 controller: 'menuProblemController as vm'
-            })
-            .state('problem.dscreport', {
-                url: '/dscreport',
-                views: {
-                    'problem-description': {
-                        templateUrl: 'views/pages/dscreport.html',
-                        controller: 'dscReportController as vm'
-                    }
-                }
             })
             .state('problem.description', {
                 url: '/description',

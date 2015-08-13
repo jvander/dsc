@@ -1,0 +1,102 @@
+<div data-ng-init="vm.initProblemPeport()">
+    <md-toolbar md-scroll-shrink>
+        <div class="md-toolbar-tools">
+            <span><img src="views/img/logo_barra.png" /> {{'NAME_SYSTEM' | translate }}</span>
+            <span flex flex-md="100"></span>
+            <md-button ng-click="vm.systemReturn()" class="md-fab md-primary" aria-label="Chat">
+                <md-tooltip>
+                    Return for Problem {{ vm.problem.title }}
+                </md-tooltip>
+                <md-icon md-svg-src="views/img/icon/mind.svg"></md-icon>
+            </md-button>
+
+            <md-button ng-click="vm.systemReturn()" class="md-fab md-primary" aria-label="Chat">
+                <md-tooltip>
+                    Your Projects (Problems)
+                </md-tooltip>
+                <md-icon md-svg-src="views/img/icon/ic_home_24px.svg"></md-icon>
+            </md-button>
+
+        </div>
+    </md-toolbar>
+
+
+    <div class="md-whiteframe-z2">
+        <md-content class="md-padding">
+
+
+            <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
+               <div class="titleReport1">{{ vm.problem.title}} </div>
+            </div>
+
+            <!-- Cebolala-->
+
+            <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
+                <div class="titleReport2">1. {{'LABEL_ARTIFACT_STAKEHOLDER' | translate}}</div>
+            </div>
+            <svg id="svg" height="650" width="1200">
+                <circle id="legendCommunity" cx="1080" cy="10" r="10" style="fill: #E0F2F1;" ng-mouseover="vm.acende('Community');" ng-mouseleave="vm.apaga('Community');"/>
+                <text id="nameCommunity" style="font-size: 14px" x="1090" y="15" ng-mouseover="vm.acende('Community');" ng-mouseleave="vm.apaga('Community');">Community</text>
+                <text x="1090" y="28" style="font-size: 10px">Epectador, Legislador</text>
+                <circle id="legendMarket" cx="1080" cy="50" r="10" style="fill: #B2DFDB;" />
+                <text id="nameMarket" x="1090" y="55" >Market</text>
+                <text x="1090" y="68" style="font-size: 10px">Parceiros, Concorrentes</text>
+                <circle id="legendSource" cx="1080" cy="90" r="10" style="fill: #80CBC4;" />
+                <text id="nameSource" x="1090" y="95" >Source</text>
+                <text x="1090" y="108" style="font-size: 10px">Clientes, Fornecedores</text>
+                <circle id="legendContribution" cx="1080" cy="130" r="10" style="fill: #4DB6AC;" />
+                <text id="nameContribution" x="1090" y="135" >Contribution</text>
+                <text x="1090" y="148" style="font-size: 10px">Atores, responsaveis</text>
+                <circle id="legendTechnico" cx="1080" cy="170" r="10" style="fill: #26A69A;" />
+                <text id="nameTechnico" x="1090" y="175"  >Technico</text>
+                <text x="1090" y="188" style="font-size: 10px">Epectador, Legislador</text>
+
+
+                <ellipse id="Community" cx="600" cy="320" rx="480" ry="320" fill="#E0F2F1"  />
+                <ellipse id="Market" cx="600" cy="380" rx="390" ry="260" fill="#B2DFDB"  />
+                <ellipse id="Source" cx="600" cy="440" rx="300" ry="200" fill="#80CBC4"  />
+                <ellipse id="Contribution" cx="600" cy="500" rx="210" ry="140" fill="#4DB6AC" />
+                <ellipse id="Technico" cx="600" cy="560" rx="120" ry="80" fill="#26A69A"  />
+            </svg>
+            <div ng-repeat="stakeholder in vm.problem.stakeholders">
+                <div style="position: absolute; top: {{stakeholder.y}}; left:{{stakeholder.x}};" class="sticky-note" id="stakeholder{{stakeholder._id}}">
+                        <span>{{stakeholder.name}}</span>
+                </div>
+            </div>
+
+            <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
+                <div class="titleReport3">1.2 {{'LABEL_ARTIFACT_STAKEHOLDER' | translate}}</div>
+            </div>
+            <div class="containerDiv">
+                <div class="rowDivHeader">
+                    <div class="cellDivHeader">Stakeholder</div>
+                    <div class="cellDivHeader lastCell">Description</div>
+                </div>
+
+            <div ng-repeat="stakeholder in vm.problem.stakeholders" class="rowDiv">
+                <div class="cellDiv">&nbsp;{{stakeholder.name}}</div>
+                <div class="cellDiv lastCell">&nbsp;{{stakeholder.description}}</div>
+            </div>
+            </div>
+
+
+    <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
+        <div class="titleReport2">Descrição do Problema</div>
+    </div>
+    <div>
+        <span ng-bind-html="vm.problem.description">{{vm.problem.description}}</span>
+    </div>
+
+    <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
+        <div class="titleReport2">Equipe</div>
+    </div>
+    <div><span>{{vm.problem.owner.fullname}}</span></div>
+    <div ng-repeat="collaborator in vm.problem.collaborators">
+        <span>{{collaborator.fullname}}</span>
+    </div>
+
+
+
+    </md-content>
+    </div>
+</div>
