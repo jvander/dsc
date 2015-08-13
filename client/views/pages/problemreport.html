@@ -23,8 +23,6 @@
 
     <div class="md-whiteframe-z2">
         <md-content class="md-padding">
-
-
             <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
                <div class="titleReport1">{{ vm.problem.title}} </div>
             </div>
@@ -64,6 +62,8 @@
                 </div>
             </div>
 
+            <br>
+            <br>
             <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
                 <div class="titleReport3">1.2 {{'LABEL_ARTIFACT_STAKEHOLDER' | translate}}</div>
             </div>
@@ -80,15 +80,74 @@
             </div>
 
 
-    <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
-        <div class="titleReport2">Descrição do Problema</div>
+            <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
+                <div class="titleReport2">2 {{'LABEL_ARTIFACT_EVALUATION_FRAMEWORK' | translate}}</div>
+            </div>
+            <div class="containerDiv">
+                <div class="rowDivHeader">
+                    <div class="cellDivHeader">Stakeholder</div>
+                    <div class="cellDivHeader segundCell">Problems</div>
+                    <div class="cellDivHeader segundLastCell">Solutions</div>
+                </div>
+
+                <div ng-repeat="stakeholder in vm.problem.stakeholders" class="rowDiv">
+                    <div class="cellDiv">&nbsp;{{stakeholder.name}}</div>
+                    <div class="cellDiv segundCell">&nbsp;{{stakeholder.evaluationframing.problems}}</div>
+                    <div class="cellDiv segundLastCell">&nbsp;{{stakeholder.evaluationframing.solutions}}</div>
+                </div>
+            </div>
+
+
+            <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
+                <div class="titleReport2">3 {{'LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK' | translate}}</div>
+            </div>
+            <div class="containerDiv">
+                <div class="rowDivHeader">
+                    <div class="cellDivHeader">Stair</div>
+                    <div class="cellDivHeader lastCell">Requirements</div>
+                </div>
+
+                <div class="rowDiv">
+                    <div class="cellDiv">&nbsp;Social World</div>
+                    <div class="cellDiv lastCell">&nbsp;{{vm.problem.semioticframework.socialworld}}</div>
+                </div>
+                <div class="rowDiv">
+                    <div class="cellDiv">&nbsp;Pragmatic</div>
+                    <div class="cellDiv lastCell">&nbsp;{{vm.problem.semioticframework.pragmatic}}</div>
+                </div>
+                <div class="rowDiv">
+                    <div class="cellDiv">&nbsp;Semantic</div>
+                    <div class="cellDiv lastCell">&nbsp;{{vm.problem.semioticframework.semantic}}</div>
+                </div>
+                <div class="rowDiv">
+                    <div class="cellDiv">&nbsp;Syntatic</div>
+                    <div class="cellDiv lastCell">&nbsp;{{vm.problem.semioticframework.syntatic}}</div>
+                </div>
+                <div class="rowDiv">
+                    <div class="cellDiv">&nbsp;Empirical</div>
+                    <div class="cellDiv lastCell">&nbsp;{{vm.problem.semioticframework.empirical}}</div>
+                </div>
+                <div class="rowDiv">
+                    <div class="cellDiv">&nbsp;Physical</div>
+                    <div class="cellDiv lastCell">&nbsp;{{vm.problem.semioticframework.physical}}</div>
+                </div>
+            </div>
+
+
+     <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
+        <div class="titleReport2">4. Descrição do Problema</div>
     </div>
     <div>
         <span ng-bind-html="vm.problem.description">{{vm.problem.description}}</span>
     </div>
 
+
+
+
+
+
     <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
-        <div class="titleReport2">Equipe</div>
+        <div class="titleReport2">5 Equipe</div>
     </div>
     <div><span>{{vm.problem.owner.fullname}}</span></div>
     <div ng-repeat="collaborator in vm.problem.collaborators">

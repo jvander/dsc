@@ -534,3 +534,11 @@ body{
     border-right: none;
 
 }
+.segundCell {
+    width: 40%;
+}
+
+.segundLastCell {
+    width: 40%; display:table
+   border-right: none;
+}
