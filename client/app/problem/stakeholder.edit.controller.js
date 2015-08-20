@@ -49,14 +49,13 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
                 stakeholder.openEdit = data.openEdit;
                 stakeholder.x = data.x;
                 stakeholder.y = data.y;
+                stakeholder.zindex = 10;
             }
         });
 
     });
 
     function saveStakeholder(stakeholder) {
-        console.log('Salvar....' + stakeholder.name);
-        console.log('Salvar....' + stakeholder.description);
         Socket.emit('broadcastOnionSave', stakeholder);
     }
 
@@ -64,6 +63,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
         angular.forEach(self.stakeholderList, function (stakeholder) {
             if(stakeholder._id === id) {
                 stakeholder.openEdit = true;
+                stakeholder.zindex = 9999;
             }
         });
 
@@ -119,13 +119,13 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     }
 
     function acende(id) {
-        document.getElementById("name"+id).setAttribute('style', 'text-decoration: underline;')
+        document.getElementById("name"+id).setAttribute('style', 'text-decoration: underline;');
         document.getElementById("legend"+id).setAttribute("opacity", "0.7");
         document.getElementById(id).setAttribute("opacity", "0.7");
     }
 
     function apaga(id) {
-        document.getElementById("name"+id).setAttribute('style', 'text-decoration: none;')
+        document.getElementById("name"+id).setAttribute('style', 'text-decoration: none;');
         document.getElementById("legend"+id).setAttribute("opacity", "1.0");
         document.getElementById(id).setAttribute("opacity", "1.0");
     }

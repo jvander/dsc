@@ -40,19 +40,16 @@
                         $window.localStorage.setItem("userid",data.id);
                         $window.localStorage.setItem("nickname",data.nickname);
                         self.setLang(data.language);
+                        self.inProcessing = false;
                         Auth.getUser(data.id)
                             .then(function(userData) {
                              toastApp.errorMessage($filter('translate')('WELCOME_SYSTEM') + ": " + data.nickname);
-
                         if(data.success) {
-                            console.log(userData)
                             $window.localStorage.setItem("photo",userData.data.photo);
-
-                            self.inProcessing = false;
                             $state.go('startproblem');
                         }
                         else {
-                            self.error = data.message;
+                            toastApp.errorMessage("Usuário e senha não conferem.");
                         }
                      });
 

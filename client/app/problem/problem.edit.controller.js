@@ -17,6 +17,7 @@ function editProblemaController(Socket, $timeout,toastApp,$window,problemService
     self.nickname;
 
     function getCurrentProblem(){
+
         self.nickname = $window.localStorage.getItem('nickname');
         self.idProblem = $window.localStorage.getItem('problemid');
         problemService.getproblem(self.idProblem)

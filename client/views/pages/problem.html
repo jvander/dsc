@@ -1,4 +1,4 @@
-<div layout="column" layout-fill>
+<div layout="column" layout-fill data-ng-init="vm.getCurrentProblem()">
 
             <!--<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="chat">
                 <md-toolbar class="md-theme-light">
@@ -42,7 +42,6 @@
 
     <md-toolbar md-scroll-shrink>
         <div class="md-toolbar-tools">
-
             <h3>
                 <span><img src="views/img/logo_barra.png" /> {{'NAME_SYSTEM' | translate }}</span>
             </h3>
@@ -91,8 +90,8 @@
 <div class="" ui-view="problem-description"></div>
 
 <div>
-    <md-content class="md-primary">
-        <md-tabs md-border-bottom md-stretch-tabs="always">
+    <md-content class="md-padding">
+        <md-tabs md-border-bottom md-dynamic-height md-stretch-tabs="always">
             <md-tab data-ui-sref="problem.stakeholders"
                      md-active="$state.is('problem.stakeholders')"
                      label="{{'LABEL_ARTIFACT_STAKEHOLDER' | translate }}">
