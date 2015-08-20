@@ -87,7 +87,6 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
     }
 
     Socket.on('onBroadcastOnionSave', function (data) {
-        console.log(data);
         angular.forEach(self.stakeholderList, function (stakeholder) {
             if (stakeholder._id == data._id){
                 stakeholder.stakeholder = data.stakeholder;
