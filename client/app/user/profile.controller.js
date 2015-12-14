@@ -26,12 +26,12 @@
         self.myImage='';
         self.myCroppedImage='';
 
-        var handleFileSelect=function(evt) {
-            var file=evt.currentTarget.files[0];
+        var handleFileSelect = function(evt) {
+            var file = evt.currentTarget.files[0];
             var reader = new FileReader();
             reader.onload = function (evt) {
                 $scope.$apply(function($scope){
-                    $scope.myImage=evt.target.result;
+                    $scope.myImage = evt.target.result;
                 });
             };
             reader.readAsDataURL(file);

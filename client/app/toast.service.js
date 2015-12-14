@@ -24,7 +24,26 @@
         };
         return service;
 
+        function simpleToast(errorMessage) {
+            this.message = errorMessage;
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent(message)
+                    .position('top right')
+                    .hideDelay(4000)
+            );
+        };
+
         function errorMessage(errorMessage) {
+            $mdToast.show(
+                $mdToast.simple()
+                .textContent(errorMessage)
+                .position('top right')
+                .hideDelay(800)
+            );
+        }
+
+        /*function errorMessage(errorMessage) {
             this.message = errorMessage;
             $mdToast.show(
                 {
@@ -33,11 +52,11 @@
                     templateUrl: 'views/pages/dsctoast.html',
                     action: "OK",
                     highlightAction: true,
-                    position: "top left",
+                    position: "top right",
                     hideDelay: 5000
                 }
             );
-        }
+        }*/
     }
 
 })();

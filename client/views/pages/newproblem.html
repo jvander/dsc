@@ -1,4 +1,4 @@
-<md-dialog aria-label="DSC">
+<md-dialog aria-label="DSC" flex="50">
 <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -9,26 +9,29 @@
                 </md-button>
             </div>
         </md-toolbar>
+
         <md-dialog-content>
-            <md-input-container>
+            <div layout="column">
+            <md-input-container layout-fill>
                 <label>Title</label>
                 <input type="text" ng-model="problem.title">
             </md-input-container>
-            <md-input-container>
+            <md-input-container layout-fill>
                 <label>Initial description</label>
                 <textarea type="text" ng-model="problem.description"></textarea>
             </md-input-container>
+            </div>
 <!--            <md-checkbox ng-checked="true" Disabled ng-di> {{ 'LABEL_ARTIFACT_STAKEHOLDER' | translate }} </md-checkbox>
             <md-checkbox ng-checked="true" Disabled ng-click=""> {{ 'LABEL_ARTIFACT_EVALUATION_FRAMEWORK' | translate }}</md-checkbox>
             <md-checkbox ng-checked=""> {{ 'LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK' | translate }}</md-checkbox>-->
         </md-dialog-content>
-        <div class="md-actions" layout="row">
+        <div class="md-actions" layout="row" layout-fill>
             <md-button ng-click="hide()" class="md-primary">
                 {{'LABEL_BTN_CANCEL' | translate }}
             </md-button>
             <span flex></span>
             <md-button ng-click="addNewProblem(problem)" class="md-primary">
-                {{'LABEL_NEW_PROBLEM' | translate }}
+                {{'BTN_SAVE' | translate }}
             </md-button>
         </div>
 </form>

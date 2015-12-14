@@ -1,10 +1,9 @@
 <div layout="row" layout-margin layout-align="end start" data-ng-init="vm.initSemioticFramework()">
 <div flex="100" flex-sm="100" class="md-whiteframe-z1">
-    <md-content class="md-padding">
+    <div class="md-padding">
 
 <form name="socialWorldForm" data-ng-submit="vm.saveSocialWorld(vm.semioticframework.socialworld,false)">
-
-        <div layout="row" layout-margin layout-align="end start">
+    <div layout="row" layout-margin layout-align="end start">
         <div flex="75" flex-sm="100" class="md-whiteframe-z1">
         <md-toolbar class="md-primary md-toolbar-tools">
             <span>SOCIAL WORLD - beliefs, expectations,commitments, contracts, law, culture,... </span>
@@ -13,7 +12,7 @@
                        ng-class="{'md-raised md-hue-1': (socialWorldForm.$dirty && socialWorldForm.$valid) }"
                        aria-label="social world">{{'BTN_ADD' | translate}}</md-button>
         </md-toolbar>
-                <md-input-container>
+                <md-input-container layout-fill>
                     <textarea ng-blur="vm.saveSocialWorld(vm.semioticframework.socialworld,true)" ng-change="vm.saveSocialWorld(vm.semioticframework.socialworld,false)" ng-model="vm.semioticframework.socialworld" required></textarea>
                 </md-input-container>
     </div>
@@ -31,7 +30,7 @@
                                ng-class="{'md-raised md-hue-1': (pragmaticForm.$dirty && pragmaticForm.$valid) }"
                                aria-label="pragmatic">{{'BTN_ADD' | translate}}</md-button>
                 </md-toolbar>
-                        <md-input-container>
+                        <md-input-container layout-fill>
                             <textarea ng-blur="vm.savePragmatic(vm.semioticframework.pragmatic,true)" ng-change="vm.savePragmatic(vm.semioticframework.pragmatic,false)" ng-model="vm.semioticframework.pragmatic" required></textarea>
                         </md-input-container>
             </div>
@@ -48,7 +47,7 @@
                    ng-class="{'md-raised md-hue-1': (semanticForm.$dirty && semanticForm.$valid) }"
                    aria-label="Semantic">{{'BTN_ADD' | translate}}</md-button>
     </md-toolbar>
-            <md-input-container>
+            <md-input-container layout-fill>
                 <textarea ng-blur="vm.saveSemantic(vm.semioticframework.semantic,true)" ng-change="vm.saveSemantic(vm.semioticframework.semantic,false)" ng-model="vm.semioticframework.semantic" required></textarea>
             </md-input-container>
 </div>
@@ -65,7 +64,7 @@
                    ng-class="{'md-raised md-hue-1': (syntaticForm.$dirty && syntaticForm.$valid) }"
                    aria-label="invite">{{'BTN_ADD' | translate}}</md-button>
     </md-toolbar>
-            <md-input-container>
+            <md-input-container layout-fill>
                 <textarea ng-blur="vm.saveSyntatic(vm.semioticframework.syntatic,true)" ng-change="vm.saveSyntatic(vm.semioticframework.syntatic,false)" ng-model="vm.semioticframework.syntatic" required></textarea>
             </md-input-container>
 </div>
@@ -82,7 +81,7 @@
                    ng-class="{'md-raised md-hue-1': (empiricalForm.$dirty && empiricalForm.$valid) }"
                    aria-label="invite">{{'BTN_ADD' | translate}}</md-button>
     </md-toolbar>
-            <md-input-container>
+            <md-input-container layout-fill>
                 <textarea ng-blur="vm.saveEmpirical(vm.semioticframework.empirical,true)" ng-change="vm.saveEmpirical(vm.semioticframework.empirical,false)" ng-model="vm.semioticframework.empirical" required></textarea>
             </md-input-container>
 </div>
@@ -99,7 +98,7 @@
                    ng-class="{'md-hue-1': (physicalForm.$dirty && physicalForm.$valid) }"
                    aria-label="invite">{{'BTN_ADD' | translate}}</md-button>
     </md-toolbar>
-            <md-input-container>
+            <md-input-container layout-fill>
                 <textarea ng-blur="vm.savePhysical(vm.semioticframework.physical,true)" ng-change="vm.savePhysical(vm.semioticframework.physical,false)" ng-model="vm.semioticframework.physical" required></textarea>
              </md-input-container>
 

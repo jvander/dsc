@@ -6,18 +6,18 @@
     </div>
 
     <div layout="row" layout-align="center start">
-            <div flex="33">
+            <div flex="45">
                 <md-content class="md-padding">
-                    <md-tabs md-border-bottom md-dynamic-height md-stretch-tabs="always" class="md-primary md-hue-2">
-                        <md-tab data-ui-sref="init.login"
+                    <md-tabs class="md-primary">
+                        <md-tab id="fmLogin" data-ui-sref="init.login"
                                 md-active="$state.is('init.login')">
                             <md-tab-label> {{'LABEL_BTN_LOGIN' | translate }} </md-tab-label>
                         </md-tab>
-                        <md-tab data-ui-sref="init.signup"
+                        <md-tab id="fmSignup" data-ui-sref="init.signup"
                                 md-active="$state.is('init.signup')">
                             <md-tab-label>{{'LABEL_SIGNUP' | translate }}</md-tab-label>
                         </md-tab>
-                        <md-tab data-ui-sref="init.rescuepassword"
+                        <md-tab id="fmRescuePasswd" data-ui-sref="init.rescuepassword"
                                 md-active="$state.is('init.rescuepassword')">
                             <md-tab-label> {{'LABEL_FORGOT_PASSWORD' | translate }} </md-tab-label>
                         </md-tab>
@@ -32,29 +32,29 @@
 
 
 
-<!--<section class="module parallax parallax-1">
+<section class="module parallax parallax-1">
     <div class="container">
         <h1>DSC</h1>
     </div>
-</section>&lt;!&ndash;first section &ndash;&gt;
+</section><!--first section -->
 <section class="module content">
     <div class="container">
         <h2>Social Awarness Computer</h2>
         <p>The DSC is a tool that supports Socially Aware Design approach developed by Baranauskas.
             Baranauskas articulates ideas inspired by Organizational Semiotics and Participatory Design to propose a framework that considers a dialogue with design materials and, mainly, among individuals in their different roles, guiding the participatory work in computing technology design. In this view, the technical aspects of a design solution depend and impact on the formal and informal aspects of organizations and society. Therefore, this approach understands the design process as a movement from the informal to the technical, crossing the informal and formal layers of signs towards the construction of a technical solution. Because this movement favors the identification, articulation, and formalization of relevant aspects of the social world, such as values and culture, it returns from the technical system affecting the formal and informal layers and the society in an informed way, possibly making sense to users as it tends to reflect an understanding of their social world. This perspective for the design of interactive systems is in line with the demands of the digital in a society mediated by Information Communication technologies.</p>
     </div>
-</section>&lt;!&ndash;Grand Canyon content &ndash;&gt;
+</section><!--Grand Canyon content -->
 <section class="module parallax parallax-2">
     <div class="container">
         <h1>Brazil</h1>
     </div>
-</section> &lt;!&ndash; end of rocky mountains &ndash;&gt;
+</section> <!-- end of rocky mountains -->
 <section class="module content">
     <div class="container">
         <h2>History</h2>
         <p>Bla bla bla bla bla bla.....</p>
     </div>
-</section> &lt;!&ndash; end Rocky Mountain content &ndash;&gt;
+</section> <!-- end Rocky Mountain content -->
 
 <section class="module parallax parallax-3">
     <div class="container">
@@ -70,4 +70,4 @@
         <br>
         <img src="views/img/logo_200x150.png"/>
     </div>
-</section>-->
+</section>

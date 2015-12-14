@@ -14,7 +14,7 @@
                 <md-tooltip>
                     Profile {{vm.nickname}}
                 </md-tooltip>
-                <img class="img-circular" ng-src="{{vm.photo}}">
+                <img class="img_circular" src="{{ vm.photo }}" />
 
             </md-button>
             <md-button ng-click="vm.doLogout()" class="md-icon-button"  aria-label="Out app">
@@ -30,12 +30,9 @@
 <md-content>
 
     <div layout-margin layout-padding>
-        <md-grid-list
-                md-cols-sm="1" md-cols-md="5" md-cols-gt-md="5"
-                md-row-height-gt-md="1:1" md-row-height="4:3"
-                md-gutter="10px" md-gutter-gt-sm="8px" >
-            <md-grid-tile ng-repeat="problem in vm.problemList"
-                            style=" background: #ffff8d;">
+
+        <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="3:2" md-gutter="12px" md-gutter-gt-sm="8px">
+            <md-grid-tile ng-repeat="problem in vm.problemList" md-rowspan="1" md-colspan="1" md-colspan-sm="1" style=" background: #ffff8d;">
                 <md-grid-tile-header>
                     <div layout="row">
                         <h3 class="problem_title"  ng-click="vm.editProblem(problem)">{{problem.title}}</h3>

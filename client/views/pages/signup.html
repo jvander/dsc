@@ -1,12 +1,12 @@
 <div class="md-whiteframe-z2">
     <md-content class="md-padding">
-        <div layout-sm="column">
             <form name="signupForm" data-ng-submit="vm.save(vm.user)">
-                <md-input-container>
+                <div layout-gt-sm="column">
+                <md-input-container flex>
                     <label>{{'LABEL_YOUR_NAME' | translate }}</label>
                     <input ng-model="vm.user.fullname" required>
                 </md-input-container>
-                <md-input-container>
+                <md-input-container flex>
                     <label>{{'LABEL_YOUR_NICKNAME' | translate }}</label>
                     <input ng-model="vm.user.nickname" required>
                 </md-input-container>
@@ -26,9 +26,11 @@
                 <div layout-align="end center" layout="row">
                     <md-button type="submit" class="md-primary"
                                ng-class="{'md-raised md-hue-1': (signupForm.$dirty && signupForm.$valid) }"
+
                                aria-label="Save Project">Send</md-button>
                 </div>
+                </div>
             </form>
-        </div>
+
     </md-content>
 </div>

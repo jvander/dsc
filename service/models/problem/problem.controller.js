@@ -89,7 +89,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.reject(new Error("Problem n�o encontrado"));
+                return deferred.reject(new Error("Problem não encontrado"));
             }
             deferred.resolve(problem)
         });
@@ -131,7 +131,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.resolve(new Error("Problem n�o encontrado"));
+                return deferred.resolve(new Error("Problem não encontrado"));
             }
             deferred.resolve(problem)
         });
