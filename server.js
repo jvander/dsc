@@ -43,8 +43,6 @@ io.on('connection', function(socket) {
 });
 
 
-
-
 http.listen(config.port, function(err){
     if(err){
         console.log(err);
