@@ -35,7 +35,7 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
             stakeholders: []
         },
         {
-            onionlayer: "Contruibuition",
+            onionlayer: "Contribution",
             stakeholders: []
         },
         {
@@ -121,7 +121,7 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
 
     function setValueIdentication(stakeholder) {
         if((stakeholder.newValues === "") || (stakeholder.newValues === undefined)){
-            toastApp.errorMessage('Valor n�o especificado.');
+            toastApp.errorMessage('Valor não especificado.');
         }else{
             var valuesList = stakeholder.newValues.split(',');
             for(var i=0; i < valuesList.length; i++){

@@ -1,14 +1,15 @@
 <div data-ng-init="vm.initCollaborators()">
-    <md-content>
-
+    <md-content class="md-padding">
         <form name="inviteForm" data-ng-submit="vm.addCollaborator(email)">
+            <div layout="row" layout-fill layout-margin>
             <md-input-container flex>
                 <label>{{'LABEL_EMAIL' | translate }}</label>
-                <input type="email" ng-model="email" required>
+                <input type="email" ng-model="email" md-autofocus required>
             </md-input-container>
             <md-button type="submit" class="md-primary"
                        ng-class="{'md-raised md-hue-1': (inviteForm.$dirty && inviteForm.$valid) }"
-                       aria-label="invite">{{'BTN_ADD' | translate}}</md-button>
+                       aria-label="invite">{{'BTN_SHARED' | translate}}</md-button>
+            </div>
         </form>
 
         <div ng-repeat="collaborator in vm.collaborators">

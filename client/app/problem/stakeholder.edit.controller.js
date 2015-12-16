@@ -106,6 +106,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     });
 
     function addPostIt(e,camada) {
+
         var newStakeholder =
         {
             "onionlayer": camada,
@@ -113,7 +114,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
             "description": "",
             "openEdit": true,
             "x": e.pageX + 'px',
-            "y": e.pageY + 'px'
+            "y": (e.pageY - 130) + 'px'
         };
        Socket.emit('broadcastOnionAdd', newStakeholder);
     }

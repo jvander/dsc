@@ -11,10 +11,11 @@
         </md-toolbar>
 
         <md-dialog-content>
+            <br>
             <div layout="column">
             <md-input-container layout-fill>
                 <label>Title</label>
-                <input type="text" ng-model="problem.title">
+                <input type="text" ng-model="problem.title" md-autofocus>
             </md-input-container>
             <md-input-container layout-fill>
                 <label>Initial description</label>
@@ -24,15 +25,18 @@
 <!--            <md-checkbox ng-checked="true" Disabled ng-di> {{ 'LABEL_ARTIFACT_STAKEHOLDER' | translate }} </md-checkbox>
             <md-checkbox ng-checked="true" Disabled ng-click=""> {{ 'LABEL_ARTIFACT_EVALUATION_FRAMEWORK' | translate }}</md-checkbox>
             <md-checkbox ng-checked=""> {{ 'LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK' | translate }}</md-checkbox>-->
+
+
         </md-dialog-content>
         <div class="md-actions" layout="row" layout-fill>
-            <md-button ng-click="hide()" class="md-primary">
+            <md-button ng-click="hide()" class="md-raised md-primary">
                 {{'LABEL_BTN_CANCEL' | translate }}
             </md-button>
             <span flex></span>
-            <md-button ng-click="addNewProblem(problem)" class="md-primary">
+            <md-button ng-click="addNewProblem(problem)" class="md-raised md-primary">
                 {{'BTN_SAVE' | translate }}
             </md-button>
         </div>
 </form>
+
 </md-dialog>

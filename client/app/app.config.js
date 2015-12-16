@@ -12,7 +12,7 @@
 
     appConfig.$inject = ['$mdThemingProvider','$locationProvider'];
 
-    function appConfig ($mdThemingProvider,$locationProvider) {
+   /* function appConfig ($mdThemingProvider,$locationProvider) {
 
          //$locationProvider.html5Mode(true);
         var customGreenMap = $mdThemingProvider.extendPalette('teal', {
@@ -31,7 +31,38 @@
         $mdThemingProvider.theme('input', 'default')
             .primaryPalette('green');
 
-    };
+    };*/
+
+    function appConfig($mdThemingProvider) {
+        // Extend the red theme with a few different colors
+        var neonRedMap = $mdThemingProvider.extendPalette('teal', {
+            '50': 'E0F2F1',
+            '100': 'B2DFDB',
+            '200': '80CBC4',
+            '300': '4DB6AC',
+            '400': '26A69A',
+            '500': '009688',
+            '600': '00897B',
+            '700': '00796B',
+            '800': '00695C',
+            '900': '004D40',
+            'A100': 'A7FFEB',
+            'A200': '64FFDA',
+            'A400': '1DE9B6',
+            'A700': '00BFA5',
+            'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
+            // on this palette should be dark or light
+            'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
+                '200', '300', '400', 'A100'],
+            'contrastLightColors': undefined
+        });
+        // Register the new color palette map with the name <code>neonRed</code>
+        $mdThemingProvider.definePalette('teal', neonRedMap);
+        // Use that theme for the primary intentions
+        $mdThemingProvider.theme('default')
+            .primaryPalette('teal')
+            .accentPalette('orange');
+    }
 
 
 })();

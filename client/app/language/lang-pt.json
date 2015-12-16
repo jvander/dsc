@@ -37,5 +37,6 @@
     "LABEL_NEW_PROBLEM" : "Novo Problema",
     "BTN_ADD": "Adicionar",
     "BTN_SAVE": "Savar",
+    "BTN_SHARED": "Shared",
     "LABEL_LOGOUT":"Sair"
 }

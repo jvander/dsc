@@ -86,11 +86,9 @@
         </div>
     </md-toolbar>
 </div>
-
 <div class="" ui-view="problem-description"></div>
-
 <div>
-    <md-content class="md-padding">
+
         <md-tabs md-border-bottom md-dynamic-height md-stretch-tabs="always">
             <md-tab data-ui-sref="problem.stakeholders"
                      md-active="$state.is('problem.stakeholders')"
@@ -120,9 +118,10 @@
         <md-tabs  md-border-bottom md-stretch-tabs="always" ng-repeat="tab in vm.tabs">
             <div>{{tab}}</div>
         </md-tabs>
-    </md-content>
-    <div class="" ui-view="dsc-artifact"></div>
+        <md-content class="md-padding" class="" ui-view="dsc-artifact"></md-content>
 </div>
+
+
 
 <md-content>
     <div class="chatarea" ng-controller="chatDSC as vm" data-ng-init="vm.initHistoryChat()">

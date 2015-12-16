@@ -26,11 +26,7 @@
         </div>
     </md-toolbar>
 
-
-<md-content>
-
-    <div layout-margin layout-padding>
-
+    <div layout-padding>
         <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="3:2" md-gutter="12px" md-gutter-gt-sm="8px">
             <md-grid-tile ng-repeat="problem in vm.problemList" md-rowspan="1" md-colspan="1" md-colspan-sm="1" style=" background: #ffff8d;">
                 <md-grid-tile-header>
@@ -48,6 +44,8 @@
                 </md-grid-tile-header>
                 <div class="description" layout-padding ng-bind-html="problem.description" ng-click="vm.editProblem(problem)">
                 </div>
+
+
             </md-grid-tile>
             <md-grid-tile ng-repeat="problem in vm.problemCollaboratorList"
                           style=" background: #80d8ff;">
@@ -61,8 +59,6 @@
             </md-grid-tile>
         </md-grid-list>
   </div>
-</md-content>
-
 
 </div>
 

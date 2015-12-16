@@ -14,6 +14,7 @@ angular.module('DropDSC',[])
                           $document.bind('mousemove', mousemove);
                           $document.bind('mouseup', mouseup);
                       }
+
                   });
 
                   function mousemove(event) {
@@ -21,10 +22,11 @@ angular.module('DropDSC',[])
                       if (id_div == 'svg') {
                           id_div = "";
                       }
-                          scope.stakeholder.onionlayer = id_div;
+                      scope.stakeholder.onionlayer = id_div;
 
-                      y = event.pageY;
+                      y = event.pageY - 130;
                       x = event.pageX;
+
                       element.css({
                           top: y + 'px',
                           left:  x + 'px'
