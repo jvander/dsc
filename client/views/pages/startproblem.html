@@ -14,7 +14,7 @@
                 <md-tooltip>
                     Profile {{vm.nickname}}
                 </md-tooltip>
-                <img class="img_circular" src="{{ vm.photo }}" />
+              <img class="img_circular" ng-src="{{ vm.photo }}" alt="{{ vm.nickname }}"/>
 
             </md-button>
             <md-button ng-click="vm.doLogout()" class="md-icon-button"  aria-label="Out app">

@@ -61,7 +61,7 @@
         // Use that theme for the primary intentions
         $mdThemingProvider.theme('default')
             .primaryPalette('teal')
-            .accentPalette('orange');
+            .accentPalette('green');
     }
 
 

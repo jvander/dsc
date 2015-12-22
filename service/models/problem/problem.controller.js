@@ -224,7 +224,6 @@ module.exports = function () {
     }
 
     function getAllProblems(req, res){
-
          Problem.find({})
             .where('owner.email').equals(req.query.email)
              .where('status' ).equals('active')

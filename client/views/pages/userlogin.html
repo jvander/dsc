@@ -17,9 +17,9 @@
                            ng-class="{'md-raised md-hue-1': (loginForm.$dirty && loginForm.$valid) }"
                            aria-label="Save Project">{{'LABEL_BTN_LOGIN' | translate }}</md-button>
             </div>
-            <div ng-show="vm.inProcessing">
-                <div><md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular></div>
-            </div>
+        </div>
+        <div layout="row" layout-sm="column" layout-align="space-around" ng-show="vm.inProcessing">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         </div>
     </form>
     </md-content>

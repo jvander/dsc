@@ -114,7 +114,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
             "description": "",
             "openEdit": true,
             "x": e.pageX + 'px',
-            "y": (e.pageY - 130) + 'px'
+            "y": (e.pageY) + 'px'
         };
        Socket.emit('broadcastOnionAdd', newStakeholder);
     }

@@ -49,7 +49,7 @@
                             $state.go('startproblem');
                         }
                         else {
-                            toastApp.errorMessage("Usu·rio e senha n„o conferem.");
+                            toastApp.errorMessage("Usu√°rio e senha n√£o conferem.");
                         }
                      });
 

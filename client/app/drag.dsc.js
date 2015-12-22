@@ -24,7 +24,7 @@ angular.module('DropDSC',[])
                       }
                       scope.stakeholder.onionlayer = id_div;
 
-                      y = event.pageY - 130;
+                      y = event.pageY;
                       x = event.pageX;
 
                       element.css({

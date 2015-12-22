@@ -10,7 +10,7 @@
 
     var self = this;
     self.message  = '';
-    self.save   = saveUser;
+    self.saveUser   = saveUser;
     self.rescuePassword = rescuePassword;
     self.changePassword = changePassword;
     self.setLang = setLang;
