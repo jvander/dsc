@@ -7,8 +7,9 @@
 
     var rescuepassword = require('../models/rescue.password.controller');
     var accessController = require('../models/access.controller');
-    var problemController = require('../models/problem/problem.controller');
     var profileController = require('../models/profile.controller');
+    var problemController = require('../models/problem/problem.controller');
+
 
     module.exports =  function(app, express){
         var api = express.Router();

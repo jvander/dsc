@@ -87,7 +87,7 @@
                                 }
                             }else{
 
-                                console.log("---------------------------------Sem problemas")
+                                console.log("Sem problemas")
                             }
                         })
                     );

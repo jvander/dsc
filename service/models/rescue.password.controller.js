@@ -18,8 +18,8 @@
 
     router.route('/')
         .post(sendTokenEmail);
-    router.route('/newpasswd/')
-        .post(setNewPassword);
+    router.route('/newpasswd')
+        .get(setNewPassword);
 
     return router;
 
@@ -66,6 +66,7 @@
     }
 
     function setNewPassword(req, res){
+      console.log('req.query.mytoken ' + req.query.mytoken)
       User.findOne({resetPasswordToken: req.query.mytoken, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
         if (!user) {
           res.json({
