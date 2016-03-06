@@ -89,7 +89,7 @@
                 }
             })
             .state('problem.stakeholders', {
-                url: 'stakeholders',
+                url: '/stakeholders',
                 views: {
                     'dsc-artifact': {
                         templateUrl: 'views/pages/stakeholders.html',
@@ -98,7 +98,7 @@
                 }
             })
             .state('problem.evaluationframework', {
-                url: 'evaluationframework',
+                url: '/evaluationframework',
                 views: {
                     'dsc-artifact': {
                         templateUrl: 'views/pages/evaluationframework.html',
@@ -108,7 +108,7 @@
             })
 
             .state('problem.semioticframework', {
-                url: 'semioticframework',
+                url: '/semioticframework',
                 views: {
                     'dsc-artifact': {
                         templateUrl: 'views/pages/semioticframework.html',
@@ -117,7 +117,7 @@
                 }
             })
             .state('problem.carf', {
-                url: 'carf',
+                url: '/carf',
                 views: {
                     'dsc-artifact': {
                         templateUrl: 'views/pages/carf.html',
@@ -126,7 +126,7 @@
                 }
             })
             .state('problem.vif', {
-                url: 'vif',
+                url: '/vif',
                 views: {
                     'dsc-artifact': {
                         templateUrl: 'views/pages/vif.html',

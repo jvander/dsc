@@ -530,7 +530,7 @@ module.exports = function () {
             if(!problem){
                 res.json({
                     success:false,
-                    message: "Problema n�o encontrado."
+                    message: "Problema nao encontrado."
                 })
                 }else{
                     var collaborator = selectCollaborator(problem.collaborators, req.query.email);
@@ -549,7 +549,7 @@ module.exports = function () {
                     }else {
                         res.json({
                             success: false,
-                            message: req.query.email + "n�o removido."
+                            message: req.query.email + "nao removido."
 
                         })
                     }
