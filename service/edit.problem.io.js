@@ -79,7 +79,7 @@
                         if(err){
                             console.log(err)
                         }else{
-                            io.sockets.in(socket.room).emit('onBroadcastFrameSave', stakeholder);
+                            io.sockets.in(socket.room).emit('onBroadcastFrameEdit', stakeholder);
                         }
                     });
             }).catch(function (err) {
@@ -321,12 +321,15 @@
         function notifyEvaluationFraming(stakeholer){
 
         }
+
         socket.on('broadcastFrameSave',function(stakeholder){
+            console.log('FrameSave..............................')
             updateStakeholderEvaluationFraming(socket, io, stakeholder);
 
         });
 
         socket.on('broadcastFrameEdit',function(stakeholder){
+            console.log('FrameEdit..............................')
             io.sockets.in(socket.room).emit('onBroadcastFrameEdit', stakeholder);
         });
 

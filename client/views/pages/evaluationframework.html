@@ -11,14 +11,17 @@
             <div ng-repeat="stakeholder in evaluationframework.stakeholders">
 
                <div class="sticky-note-frame" id="stakeholder{{stakeholder._id}}">
-                     <div ng-hide="stakeholder.openEdit"  ng-click="vm.setOpenEditDiscution(stakeholder)">
-                        <div>{{stakeholder.name}}</div>
-                        <div>Question/Problem: </div><span>{{stakeholder.problems}}</span>
-                        <div>Ideia/Solution: </div><span>{{stakeholder.solutions}}</span>
+                   <div ng-hide="stakeholder.openEdit"  ng-click="vm.setOpenEditDiscution(stakeholder)">
+                        <div class="title">{{stakeholder.name}}</div>
+                        <div><span flex layout-fill></span></div>
+
+                         <div class="item">Question/Problem: </div><span>{{stakeholder.problems}}</span>
+                        <div class="item">Ideia/Solution: </div><span>{{stakeholder.solutions}}</span>
                      </div>
 
                      <div ng-show=stakeholder.openEdit>
-                        <div><span>{{stakeholder.name}}</span></div>
+                        <div class="title"><span>{{stakeholder.name}}</span></div>
+                         <span flex layout-fill></span>
                         <md-input-container>
                            <label>Question/Problem</label>
                            <textarea class="discution" ng-model="stakeholder.problems"></textarea>
@@ -27,7 +30,7 @@
                            <label>Ideia/Solution</label>
                            <textarea class="discution" ng-model="stakeholder.solutions"></textarea>
                         </md-input-container>
-                        <md-button ng-click="vm.saveDiscution(stakeholder)">Save {{stakeholder.name}}</md-button>
+                        <md-button ng-click="vm.saveFrame(stakeholder)">Save {{stakeholder.name}}</md-button>
                      </div>
 
                   </div>

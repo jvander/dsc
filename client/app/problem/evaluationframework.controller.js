@@ -15,7 +15,7 @@ angular
       self.evaluationframeworkList =[];
       self.initEvaluation = initEvaluation;
       self.setOpenEditDiscution = setOpenEditDiscution;
-      self.saveDiscution = saveDiscution;
+      self.saveFrame = saveFrame;
 
       function initEvaluation(){
           self.idproblem = $window.localStorage.getItem('problemid');
@@ -29,7 +29,8 @@ angular
               });
       }
 
-      Socket.on('onBroadcastFrameSave', function (data) {
+      Socket.on('onBroadcastFrameEdit', function (data) {
+          console.log('O que vem aqui...' + data)
           angular.forEach(self.evaluationframeworkList,function(evaluationframework){
              if( evaluationframework.onionlayer == data.onionlayer){
                  angular.forEach(evaluationframework.stakeholders,function(stakeholder){
@@ -46,7 +47,7 @@ angular
           });
       });
 
-      function saveDiscution(stakeholder) {
+      function saveFrame(stakeholder) {
           Socket.emit('broadcastFrameSave', stakeholder);
       }
 
