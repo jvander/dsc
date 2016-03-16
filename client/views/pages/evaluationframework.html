@@ -1,22 +1,22 @@
-<div data-ng-init="vm.initEvaluation()">
+<md-whiteframe class="md-whiteframe-4dp" data-ng-init="vm.initEvaluation()" layout-padding layout-wrap layout-fill flex-sm="100" flex-gt-sm="100" flex-gt-md="100" layout layout-align="center center">
 
-<div layout="row" layout-margin layout-align="center center">
-   <div flex="100" flex-sm="100" class="md-whiteframe-z1">
-      <md-content class="md-padding">
-         <div ng-repeat="evaluationframework in vm.evaluationframeworkList">
-
-         <div flex="100" flex-sm="100" class="md-whiteframe-z2">
-            <md-toolbar class="md-primary md-toolbar-tools">
+         <md-whiteframe class="md-whiteframe-1dp" layout-padding layout-wrap layout-fill ng-repeat="evaluationframework in vm.evaluationframeworkList">
+            <md-content>
+            <md-toolbar class="md-primary md-toolbar-tools" layout-padding layout-wrap layout-fill>
                <h3>{{ evaluationframework.onionlayer }}</h3>
             </md-toolbar>
-         </div>
+
+
+
             <div ng-repeat="stakeholder in evaluationframework.stakeholders">
-                  <div class="sticky-note-dicution" id="stakeholder{{stakeholder._id}}">
+
+               <div class="sticky-note-frame" id="stakeholder{{stakeholder._id}}">
                      <div ng-hide="stakeholder.openEdit"  ng-click="vm.setOpenEditDiscution(stakeholder)">
-                        <span>{{stakeholder.name}}</span>
-                        <div><span>Question/Problem: </span><span>{{stakeholder.problems}}</span></div>
-                        <div><span>Ideia/Solution: </span><span>{{stakeholder.solutions}}</span></div>
+                        <div>{{stakeholder.name}}</div>
+                        <div>Question/Problem: </div><span>{{stakeholder.problems}}</span>
+                        <div>Ideia/Solution: </div><span>{{stakeholder.solutions}}</span>
                      </div>
+
                      <div ng-show=stakeholder.openEdit>
                         <div><span>{{stakeholder.name}}</span></div>
                         <md-input-container>
@@ -29,14 +29,11 @@
                         </md-input-container>
                         <md-button ng-click="vm.saveDiscution(stakeholder)">Save {{stakeholder.name}}</md-button>
                      </div>
-                  </div>
-            </div>
-            <div>
-               <span flex>&nbsp;</span>
-            </div>
-         </div>
-      </md-content>
-   </div>
-</div>
 
-</div>
+                  </div>
+
+            </div>
+            </md-content>
+         </md-whiteframe>
+ </md-whiteframe>
+

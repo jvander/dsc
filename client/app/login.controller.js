@@ -21,6 +21,12 @@
                  $translate.use(langKey);
             }
 
+            function getLocalCode(){
+                return Math.random() + Math.floor(Math.random() * 10);
+
+            }
+
+
             self.loggedIn = Auth.isLoggedIn();
 
             $rootScope.$on('$routeChangeStart', function() {
@@ -38,6 +44,7 @@
                     .success(function(data) {
                         $window.localStorage.setItem("useremail",data.email);
                         $window.localStorage.setItem("userid",data.id);
+                        $window.localStorage.setItem("localcode",data.id + '-' + getLocalCode());
                         $window.localStorage.setItem("nickname",data.nickname);
                         self.setLang(data.language);
                         self.inProcessing = false;

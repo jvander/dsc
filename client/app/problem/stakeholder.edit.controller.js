@@ -26,6 +26,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     self.addPostIt = addPostIt;
     self.acende = acende;
     self.apaga = apaga;
+    self.updateCodeOnion = [];
 
     function intitOnion(){
         self.idproblem = $window.localStorage.getItem('problemid');
@@ -80,6 +81,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     });
 
     function removePostIt(index,stakeholder) {
+
         var obj = {
             index: index,
             stakeholder: stakeholder
@@ -116,6 +118,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
             "x": e.pageX + 'px',
             "y": (e.pageY) + 'px'
         };
+
        Socket.emit('broadcastOnionAdd', newStakeholder);
     }
 
