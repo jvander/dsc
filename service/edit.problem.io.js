@@ -323,13 +323,11 @@
         }
 
         socket.on('broadcastFrameSave',function(stakeholder){
-            console.log('FrameSave..............................')
             updateStakeholderEvaluationFraming(socket, io, stakeholder);
 
         });
 
         socket.on('broadcastFrameEdit',function(stakeholder){
-            console.log('FrameEdit..............................')
             io.sockets.in(socket.room).emit('onBroadcastFrameEdit', stakeholder);
         });
 
