@@ -14,14 +14,14 @@
                    <div ng-hide="stakeholder.openEdit"  ng-click="vm.setOpenEditDiscution(stakeholder)">
                         <div class="title">{{stakeholder.name}}</div>
                         <div><span flex layout-fill></span></div>
-
                          <div class="item">Question/Problem: </div><span>{{stakeholder.problems}}</span>
                         <div class="item">Ideia/Solution: </div><span>{{stakeholder.solutions}}</span>
                      </div>
 
                      <div ng-show=stakeholder.openEdit>
-                        <div class="title"><span>{{stakeholder.name}}</span></div>
-                         <span flex layout-fill></span>
+                         <div class="title">{{stakeholder.name}}</div>
+                         <br>
+                         <br>
                         <md-input-container layout-fill>
                            <label>Question/Problem</label>
                            <textarea class="discution" ng-model="stakeholder.problems"></textarea>
@@ -30,7 +30,7 @@
                            <label>Ideia/Solution</label>
                            <textarea class="discution" ng-model="stakeholder.solutions"></textarea>
                         </md-input-container>
-                        <md-button ng-click="vm.saveFrame(stakeholder)">Save {{stakeholder.name}}</md-button>
+                        <div layout="row" layout-align="center center"><md-button ng-click="vm.saveFrame(stakeholder)">Save</md-button></div>
                      </div>
 
                   </div>

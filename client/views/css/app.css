@@ -322,7 +322,7 @@ body{
 .sticky-note-frame {
     margin: 2px;
     float: left;
-    background-color: rgb(255, 240, 70);
+    background-color:#FFFFA5;
     padding:2px;
     font-family: 'Gloria Hallelujah', cursive;
     font-size:12px;
