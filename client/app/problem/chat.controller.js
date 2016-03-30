@@ -24,6 +24,8 @@ angular
         self.photo = "";
         self.openChat = openChat;
         self.isOpenChat = false;
+        self.keypressChat = keypressChat;
+        self.contador = 0;
 
         function openChat(){
             self.isOpenChat = !self.isOpenChat;
@@ -76,9 +78,26 @@ angular
             if(chatmsg === undefined || chatmsg.length < 2 ){
                 return;
             }
-
             Socket.emit('broadcastChat', chatmsg);
             self.newmsg = "";
+            self.contador = 0;
+        }
+
+        function zerarContador(){
+            self.contador = 0;
+        }
+
+        function keypressChat(event,chatmsg){
+            console.log(self.contador);
+            if(event.keyCode == 13){
+                self.contador++;
+                if (self.contador == 1) {
+                    $timeout(zerarContador, 2000);
+                }
+                if(self.contador > 1){
+                    sendMessage(chatmsg);
+                }
+            }
         }
 
    }

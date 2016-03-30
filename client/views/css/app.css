@@ -403,7 +403,7 @@ body{
     height: 16px;
     position: absolute;
     top: 11px;
-    transform:             rotate( 29deg ) skew( -35deg );
+    transform:         rotate( 29deg ) skew( -35deg );
     -moz-transform:    rotate( 29deg ) skew( -35deg );
     -ms-transform:     rotate( 29deg ) skew( -35deg );
     -o-transform:      rotate( 29deg ) skew( -35deg );
@@ -413,7 +413,7 @@ body{
 
 .me {
     float: left;
-    margin: 5px 45px 5px 20px;
+    margin: 5px 15px 5px 10px;
 }
 
 .me::before {
@@ -423,7 +423,7 @@ body{
 
 .you {
     float: right;
-    margin: 5px 20px 5px 45px;
+    margin: 5px 10px 5px 15px;
 }
 
 .you::before {

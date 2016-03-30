@@ -148,7 +148,7 @@
 
                 </div><!-- feed -->
                 <div class="messagebox" flex layout="column" layout-align="center center">
-                    <textarea id="message" ng-model="vm.newmsg"></textarea>
+                    <textarea ng-keydown="vm.keypressChat($event,vm.newmsg)" id="message" ng-model="vm.newmsg"></textarea>
                     <md-button class="md-primary" ng-click="vm.sendMessage(vm.newmsg)">Send</md-button>
                 </div>
             </div>
