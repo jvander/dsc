@@ -2,7 +2,7 @@
  * Created by JOSEVALDERLEI on 29/06/2015.
  */
 
-(function(){
+;(function(undefined){
 
 'use strict';
 
@@ -26,10 +26,11 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     self.addPostIt = addPostIt;
     self.acende = acende;
     self.apaga = apaga;
-    self.updateCodeOnion = [];
+    self.localcode = '';
 
     function intitOnion(){
         self.idproblem = $window.localStorage.getItem('problemid');
+        self.localcode =  $window.localStorage.getItem('localcode');
         problemService.getonion(self.idproblem)
             .success(function(data) {
                 if(data.success) {
@@ -42,7 +43,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     }
 
     Socket.on('onBroadcastOnionSave', function (data) {
-          angular.forEach(self.stakeholderList, function (stakeholder) {
+            angular.forEach(self.stakeholderList, function (stakeholder) {
             if (stakeholder._id == data._id){
                 stakeholder.stakeholder = data.stakeholder;
                 stakeholder.name = data.name;
@@ -50,7 +51,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
                 stakeholder.openEdit = data.openEdit;
                 stakeholder.x = data.x;
                 stakeholder.y = data.y;
-                stakeholder.zindex = 10;
+                stakeholder.zindex = 9999;
             }
         });
 
@@ -103,6 +104,15 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
         });
     }
 
+    Socket.on('onBroadcastMove', function (stakeholder) {
+            console.log(stakeholder.localcode + '  ' + self.localcode)
+            if(self.localcode !== stakeholder.localcode) {
+                document.getElementById('stakeholder'+stakeholder._id).style.left = stakeholder.x;
+                document.getElementById('stakeholder'+stakeholder._id).style.top = stakeholder.y;
+            }
+
+    });
+
     Socket.on('onBroadcastOnionAdd', function (retorno) {
         self.stakeholderList.push(retorno);
     });
@@ -135,4 +145,4 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     }
 }
 
-})();
+})(this);

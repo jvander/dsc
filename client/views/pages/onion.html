@@ -1,0 +1,55 @@
+<div data-ng-init="vm.intitOnion()">
+
+    <svg id="svg" height="800" width="1200">
+        <circle id="legendInformal" cx="1080" cy="10" r="10" style="fill: #E0F2F1;" ng-mouseover="" ng-mouseleave=""/>
+        <text id="nameCommunity" style="font-size: 14px" x="1090" y="15" ng-mouseover="" ng-mouseleave="">Informal</text>
+        <text x="1090" y="28" style="font-size: 10px">Real world</text>
+
+
+        <circle id="legendFormal" cx="1080" cy="90" r="10" style="fill: #80CBC4;" ng-mouseover="vm.acende('Source');" ng-mouseleave="vm.apaga('Source');"/>
+        <text id="nameSource" x="1090" y="95" ng-mouseover="vm.acende('Source');" ng-mouseleave="vm.apaga('Source');">Formal</text>
+        <text x="1090" y="108" style="font-size: 10px">Norms, rules, semantics</text>
+
+        <circle id="legendTechnical" cx="1080" cy="170" r="10" style="fill: #26A69A;" ng-mouseover="" ng-mouseleave=""/>
+        <text id="nameTechnical" x="1090" y="175"  ng-mouseover="" ng-mouseleave="">Technical</text>
+        <text x="1090" y="188" style="font-size: 10px">Ferramenta, objetivo, sistema</text>
+
+
+        <ellipse id="Informal" cx="600" cy="320" rx="480" ry="320" fill="#E0F2F1"  ng-mouseover="vm.acende('Community');" ng-mouseleave="vm.apaga('Community');" ng-dblclick="vm.addPostIt($event, 'Community');"/>
+        <ellipse id="Formal" cx="600" cy="440" rx="300" ry="200" fill="#80CBC4"  ng-mouseover="vm.acende('Source');" ng-mouseleave="vm.apaga('Source');" ng-dblclick="vm.addPostIt($event, 'Source');"/>
+        <ellipse id="Technical" cx="600" cy="560" rx="120" ry="80" fill="#26A69A"  ng-mouseover="vm.acende('Technico');" ng-mouseleave="vm.apaga('Technico');" ng-dblclick="vm.addPostIt($event, 'Technico');"/>
+    </svg>
+
+
+    <div ng-repeat="stakeholder in vm.stakeholderList">
+        <div draggable  style="position: absolute; top: {{stakeholder.y}}; left:{{stakeholder.x}}; z-index:{{stakeholder.zindex}}" class="sticky-note" id="stakeholder{{stakeholder._id}}">
+            <div class="closedsc"><a ng-click="vm.delPostIt($event,$index, stakeholder)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACqklEQVQ4T4WTXUiTURjHn/ec933Xq5OZ5ucc5kydTtYqBmWRQVhBmN6JRdlFpKBd6CLLoCaVBmKR5EVYI7xQL1IQkUiEAjXBCZof86MiP3jT5rKltY9370ds4LCa+lyci/M/53ee5/+ch3iiVqccOpdrjk9UJQy+ML+8MGGthm3iEUBEdEpyTWxq2qkv/QMtRJ+xfPrgmZw0+ud3YPv7vH3tXeaLi0slwRj1FHU4Tad7HqPNSF2aX5ifHRq8RViqKr9mHtDG7VpbAVj4DJx1FHrfjU5ZVpxZJgCHD2QCQEnhild6vT7fgZBzYmy8vNRub/JphG95plKVG3T7bqfL+UjMzoHT5oChZbd9bM2bTpGkRkOTnUqlMmLS6bZMsewxEwC3kaEfsBHNclmDLgyX7BEFivOIMOMSfjECMHKSxMOi1FzCeYv+Le0vgE+sB1DFM2SXRhT3Y14ClyjBACbrKnj+RjBf/gOYAEL2kqQlU+AzQAKgMAEjGA1f5gTDjoB6BlRqDo0kC2LkGkGAFaNuDQ2nE0MQ2b4OTys83mtblvAgFGK0LmI6SZTCBUzAe4zayjih8D6N8/KiqXY5g1HTR6++BrixzRB/Cb42pWI0nyGKCRRFwAcCzZ33CEkbB+/QuKBYzbSNrvJzZ23uwH6gjY0YtWRJYiEjw7CMCP4tj7XVHs/s5pcaGPphbixd2bHkuWp0e/1/wA+4CxCdHbWbVXl+kwIpQrcTao1uviqYYR3hshkFIqJOrrojAoDHirAreTknmsIWpmH1Gyv12qTEUpdrMRjgHkDyUYVs0uriC8o4odOfQW2o7EzRTePrOMEBsz09Qtf4p9jr62Dfap4aabJOCfAjn+NrAh60ZmcNHjluMLwxt7YUs7ZL2wyjX/KZbgIQA4CdLmyn/wENmQFM5/MDlQAAAABJRU5ErkJggg==" /> <!--<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaElEQVQ4T2NkwA4WMDAwxKNJgcQS0ZUzQgUcGBgY9uMwDJewIwMDwwGYAQYMDAwTSDSggIGB4QLMAJBeBSzOxmXmQgYGhgcgSWQDSPEG2PmjBoyGweBMB6CUuYGBgcGfQKYC5YMEmBoAfNQgEXHOeoIAAAAASUVORK5CYII="/>--></a>
+                <md-tooltip>
+                    Remove {{stakeholder.name}}
+                </md-tooltip>
+            </div>
+            <div id="moveStakeholder" ng-hide="stakeholder.openEdit">
+                <div class="btnedit"><span ng-click="vm.setOpenEdit(stakeholder._id)">{{stakeholder.name}}</span></div>
+            </div>
+            <div ng-show=stakeholder.openEdit>
+                <span>{{stakeholder.onionlayer}}</span>
+                <form name="onionForm" data-ng-submit="vm.saveStakeholder(stakeholder)">
+                    <md-input-container>
+                        <label> Stakeholder </label>
+                        <input class="title" ng-model="stakeholder.name" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Description</label>
+                        <textarea class="description" ng-model="stakeholder.description" required></textarea>
+                    </md-input-container>
+                    <md-button type="submit" class="md-primary"
+                               ng-class="{'md-raised md-hue-1': (onionForm.$dirty && onionForm.$valid) }"
+                               aria-label="invite">{{'BTN_SAVE' | translate}}</md-button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-show="vm.inProcessing">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+</div>

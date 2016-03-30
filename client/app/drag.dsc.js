@@ -1,7 +1,7 @@
 
 
 angular.module('DropDSC',[])
-    .directive('draggable', function($document,Socket) {
+    .directive('draggable', function($document,Socket,$window) {
       return {
             restrict: 'A',
             replace: true,
@@ -10,6 +10,7 @@ angular.module('DropDSC',[])
 
                       if(event.target.id.substring(0,11) == "stakeholder"){
                           // Prevent default dragging of selected content
+                          scope.stakeholder.localcode =  $window.localStorage.getItem('localcode');
                           event.preventDefault();
                           $document.bind('mousemove', mousemove);
                           $document.bind('mouseup', mouseup);
@@ -46,6 +47,7 @@ angular.module('DropDSC',[])
                   function mouseup() {
                       $document.unbind('mousemove', mousemove);
                       $document.unbind('mouseup', mouseup);
+                      Socket.emit('broadcastMove', scope.stakeholder);
                   }
               }
 

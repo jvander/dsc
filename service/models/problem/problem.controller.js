@@ -170,12 +170,15 @@ module.exports = function () {
         return deferred.promise;
     }
 
+
      function addNewProblem(req, res){
        searchUser(req.body.userid)
             .then(function(user){
                 var problem = new Problem({
                     title: req.body.title,
                     description: req.body.description,
+                    name: req.body.artifactName,
+
                     owner: {
                         fullname: user.fullname,
                         nickname: user.nickname,

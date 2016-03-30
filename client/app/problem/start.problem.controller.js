@@ -141,7 +141,13 @@
                     self.startNewProblem(problem);
                     $mdDialog.cancel();
                 };
+             $scope.addArtifact = function addArtifact(valor){
+                console.log(valor)
             }
+            }
+
+
+
     }
 })();
 

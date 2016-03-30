@@ -17,7 +17,7 @@
     "LABEL_BTN_CANCEL" : "Cancelar",
     "LABEL_BTN_EDIT_PROFILE" : "Perfil",
     "LABEL_BTN_CREATE_PROBLEM" : "Iniciar uma novo problema",
-    "LABEL_BTN_INIT_PROBLEM" : "Crear um novo problema",
+    "LABEL_BTN_INIT_PROBLEM" : "Iniciar um novo problema",
     "TITLE_FORM_SIGNUP" : "Crie uma conta",
     "TITLE_FORM_PROFILE" : "Suas configuações pessoais",
     "TITLE_RESCUE_PASSWORD" : "Recupere sua senha",
@@ -36,7 +36,7 @@
     "LABEL_FORM_EVALUATION_FRAMEWORK" : "Quadro de Avaliação",
     "LABEL_NEW_PROBLEM" : "Novo Problema",
     "BTN_ADD": "Adicionar",
-    "BTN_SAVE": "Savar",
-    "BTN_SHARED": "Shared",
+    "BTN_SAVE": "Salvar",
+    "BTN_SHARED": "Compartilhar",
     "LABEL_LOGOUT":"Sair"
 }

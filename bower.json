@@ -40,6 +40,7 @@
     "html2canvas": "~0.4.1",
     "ng-file-upload": "~5.0.9",
     "ngImgCrop": "~0.3.2",
-    "jquery-ui": "~1.11.4"
+    "jquery-ui": "~1.11.4",
+    "rx-angular": "angular-rx#^1.1.3"
   }
 }

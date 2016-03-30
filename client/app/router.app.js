@@ -133,6 +133,15 @@
                         controller: 'valueIdentificationFrameController as vm'
                     }
                 }
+            })
+            .state('problem.onion', {
+                url: '/onion',
+                views: {
+                    'dsc-artifact': {
+                        templateUrl: 'views/pages/onion.html',
+                        controller: 'onionController as vm'
+                    }
+                }
             });
         $urlRouterProvider.otherwise('/login');
 

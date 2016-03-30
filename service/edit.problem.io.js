@@ -253,14 +253,18 @@
     }
 
     module.exports = function(io,socket) {
+
         socket.on('initProblem', function(data){
+            console.log(data.idproblem);
             socket.room = data.idproblem;
             socket.join(data.idproblem);
             socket.username = data.nickname;
-
         });
 
+
         socket.on('checkUsers', function(){
+           /* console.log(socket.room);
+
             var clients = io.sockets.adapter.rooms[socket.room];
             var numClients = (typeof clients !== 'undefined') ? Object.keys(clients).length : 0;
             var userList = [];
@@ -269,12 +273,12 @@
                 userList.push(clientSocket.username);
                 clientSocket.emit('new event', 'Updates');
             }
-            io.sockets.in(socket.room).emit('onCheckUsers', userList);
+            io.sockets.in(socket.room).emit('onCheckUsers', userList);*/
         });
 
         socket.on('disconnectProblem', function(){
-            socket.leave(socket.room);
-            /* var clients = io.sockets.adapter.rooms[socket.room];
+           /* socket.leave(socket.room);
+             var clients = io.sockets.adapter.rooms[socket.room];
              var numClients = (typeof clients !== 'undefined') ? Object.keys(clients).length : 0;
              for (var clientId in clients ) {
              var clientSocket = io.sockets.connected[clientId];
@@ -292,6 +296,10 @@
                 });
             }
             io.sockets.in(socket.room).emit('onAtualizarProblema', data);
+        });
+
+        socket.on('broadcastMove',function(stakeholder){
+             updateStakeholder(socket,io,stakeholder);
         });
 
         socket.on('broadcastOnionEdit',function(id){

@@ -76,6 +76,7 @@ angular
             if(chatmsg === undefined || chatmsg.length < 2 ){
                 return;
             }
+
             Socket.emit('broadcastChat', chatmsg);
             self.newmsg = "";
         }

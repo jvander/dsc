@@ -46,11 +46,27 @@ var CultureAwareRequirementsFrameworkSchema = new  Schema({
     }
 });
 
+var ChangeProjectSchema = new  Schema({
+    identification: {
+    },
+    changed: [ { action: {}, old_version: {}, new_version: {}
+    }]
+
+
+
+});
+
 var ProblemSchema = new Schema({
     status: {type: String, enum: ['active', 'inactive', 'finished', 'suspended'], default: 'active'},
     started: {type: Date, default: Date.now },
     finished: {type: Date},
-    artefact: {type: String, enum: ['stakeholder', 'evaluationframing', 'semioticframework', 'carf']},
+
+    artefacts: [
+        {
+            name: {type: String, requered: true},
+            content: {type: String, requered: true}
+        }
+     ],
 
     owner:{
         fullname: {type: String, requered: true},

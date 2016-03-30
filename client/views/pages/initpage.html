@@ -1,4 +1,26 @@
 <div layout-fill>
+       <!-- <div layout="row" layout-align="end start" ng-show="!vm.inProcessing">
+                    <form name="loginForm" data-ng-submit="vm.doLogin(vm.user)" ng-show="!vm.inProcessing">
+                        <div layout-gt-sm="row" layout-align="end start">
+                        <md-input-container flex>
+                                <label>{{'LABEL_YOUR_EMAIL' | translate }}</label>
+                                <input type="email" ng-model="vm.user.email" required md-autofocus>
+                            </md-input-container>
+                        <md-input-container flex>
+                                <label>{{'LABEL_YOUR_PASSWORD' | translate }}</label>
+                                <input type="password" ng-model="vm.user.password" required>
+                        </md-input-container>
+                        <md-button type="submit" class="md-primary"
+                                   ng-class="{'md-raised md-hue-1': (loginForm.$dirty && loginForm.$valid) }"
+                                   aria-label="Save Project">{{'LABEL_BTN_LOGIN' | translate }}
+                        </md-button>
+                        </div>
+                    </form>
+        </div>
+                <div layout="row" layout-sm="row" layout-align="space-around" ng-show="vm.inProcessing">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>-->
+
     <div layout-gt-sm="column">
         <h4 align="center" style="color: #004d40"><img src="views/img/logo_60x68.png" /></h4>
         <h3 align="center"  style="color: #00695c">{{'NAME_SYSTEM' | translate }}</h3>

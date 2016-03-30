@@ -6,7 +6,7 @@
     .controller('editProblemController',editProblemaController);
 editProblemaController.$injectre = ['$scope','Socket'];
 
-function editProblemaController(Socket, $timeout,toastApp,$window,problemService) {
+function editProblemaController(Socket, $watch, $timeout,toastApp,$window,problemService) {
 
     var self = this;
     var updateTrue = true;
@@ -16,6 +16,18 @@ function editProblemaController(Socket, $timeout,toastApp,$window,problemService
     self.saveDescription = saveDescription;
     self.nickname;
     self.localcode = '';
+
+
+    var selected = null,
+    previous = null;
+
+    self.selectedIndex = 1;
+    self.$watch('selectedIndex', function(current, old){
+        previous = selected;
+        selected = artefacts[current];
+        if ( old + 1 && (old != current)) console.log('Goodbye ' + previous.title + '!');
+        if ( current + 1 )                console.log('Hello ' + selected.title + '!');
+    })
 
 
     function getCurrentProblem(){
@@ -66,6 +78,8 @@ function editProblemaController(Socket, $timeout,toastApp,$window,problemService
         problem.update = updateTrue;
         Socket.emit('atualizarProblema', problem);
     }
+
+
 
 
 
