@@ -4,42 +4,29 @@
 
     angular.module('app')
     .controller('editProblemController',editProblemaController);
-editProblemaController.$injectre = ['$scope','Socket'];
 
-function editProblemaController(Socket, $watch, $timeout,toastApp,$window,problemService) {
+    editProblemaController.$injectre = ['$scope','Socket'];
+
+function editProblemaController(Socket, $timeout,toastApp,$window,problemService) {
 
     var self = this;
     var updateTrue = true;
-    self.problem = "";
+    self.problem = '';
     self.problemUpdate = problemUpdate;
     self.getCurrentProblem = getCurrentProblem;
     self.saveDescription = saveDescription;
-    self.nickname;
+    self.nickname = '';
     self.localcode = '';
 
-
-    var selected = null,
-    previous = null;
-
-    self.selectedIndex = 1;
-    self.$watch('selectedIndex', function(current, old){
-        previous = selected;
-        selected = artefacts[current];
-        if ( old + 1 && (old != current)) console.log('Goodbye ' + previous.title + '!');
-        if ( current + 1 )                console.log('Hello ' + selected.title + '!');
-    })
-
-
     function getCurrentProblem(){
-
         self.nickname = $window.localStorage.getItem('nickname');
         self.idProblem = $window.localStorage.getItem('problemid');
         self.localcode =  $window.localStorage.getItem('localcode');
 
-
         problemService.getproblem(self.idProblem)
             .success(function(data) {
                 if(data.success) {
+                    console.log(data)
                     self.problem = data.problem;
                 }else{
                     toastApp.errorMessage(data.message);
@@ -78,8 +65,6 @@ function editProblemaController(Socket, $watch, $timeout,toastApp,$window,proble
         problem.update = updateTrue;
         Socket.emit('atualizarProblema', problem);
     }
-
-
 
 
 
