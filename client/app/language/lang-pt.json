@@ -38,5 +38,7 @@
     "BTN_ADD": "Adicionar",
     "BTN_SAVE": "Salvar",
     "BTN_SHARED": "Compartilhar",
-    "LABEL_LOGOUT":"Sair"
+    "LABEL_LOGOUT":"Sair",
+    "LABEL_ARTIFACT_VIF": "VIF",
+    "LABEL_ARTIFACT_CARF": "CARF"
 }

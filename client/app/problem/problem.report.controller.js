@@ -26,6 +26,12 @@
              problemService.getproblemreport(self.idProblem)
                  .success(function(data) {
                      if(data.success) {
+                         angular.forEach(data.problem.stakeholders, function (stakeholder) {
+                                  stakeholder.x = (parseInt(stakeholder.x.substring(0,stakeholder.x.length -2)) - 100)+'px';
+                                 stakeholder.y =  (parseInt(stakeholder.y.substring(0,stakeholder.y.length -2)) + 400)+'px';
+                             console.log(stakeholder.x)
+                         });
+
                          self.problem = data.problem;
                      }else{
                          toastApp.errorMessage(data.message);

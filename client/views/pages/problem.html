@@ -65,12 +65,17 @@
                 </md-tooltip>
                 <md-icon md-svg-src="views/img/icon/ic_home_24px.svg"></md-icon>
             </md-button>
+
+
+
           <!--  <md-button ng-click="vm.openChat()" class="md-fab md-primary" aria-label="Chat">
                 <md-tooltip>
                     Open Chat
                 </md-tooltip>
                 <md-icon md-svg-src="views/img/icon/ic_chat_bubble_24px.svg"></md-icon>
             </md-button>-->
+
+
            <md-button ng-click="vm.formProblemReport()" class="md-fab md-primary" aria-label="Chat">
                 <md-tooltip>
                     Open HTML Report
@@ -85,12 +90,23 @@
             </md-button>
         </div>
     </md-toolbar>
+
+
+
+
 </div>
+
+
 <div class="" ui-view="problem-description"></div>
 
-<div>
-
-        <md-tabs md-border-bottom md-dynamic-height md-stretch-tabs="always">
+<div  class="sample">
+        <md-tabs md-border-bottom md-autoselect md-dynamic-height>
+            <md-tab ng-repeat="tab in vm.dsc_artifacts" data-ui-sref="{{tab.name}}"
+                    md-active="$state.is('{{tab.name}}')"
+                    label="{{tab.label}}">
+            </md-tab>
+        </md-tabs>
+        <!--<md-tabs md-border-bottom md-dynamic-height md-stretch-tabs="always">
             <md-tab data-ui-sref="problem.stakeholders"
                      md-active="$state.is('problem.stakeholders')"
                      label="{{'LABEL_ARTIFACT_STAKEHOLDER' | translate }}">
@@ -112,10 +128,8 @@
                     md-active="$state.is('problem.carf')"
                     label="CARF">
             </md-tab>
-        </md-tabs>
+        </md-tabs>-->
     <div class="md-padding" class="" ui-view="dsc-artifact"></div>
-    </md-content>
-
 </div>
 
 

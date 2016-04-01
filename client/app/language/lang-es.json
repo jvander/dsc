@@ -38,8 +38,9 @@
     "BTN_ADD": "??Add",
     "BTN_SAVE": "???Salvar",
     "BTN_SHARED": "???Convidar",
-
-    "LABEL_LOGOUT":"??logout"
+    "LABEL_LOGOUT":"??logout",
+    "LABEL_ARTIFACT_VIF": "VIF",
+    "LABEL_ARTIFACT_CARF": "CARF"
 
 
 }
