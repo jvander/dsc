@@ -48,15 +48,18 @@
                         problemService.getproblemscollaborator(self.useremail)
                             .success(function(data) {
                                 if(data.success) {
-                                    for(var i=0; i < data.problems.length; i++ ){
-                                        console.log('Descrição: ' + data.problems[i].description);
-                                        console.log(data.problems[i].description.length);
 
-                                        if(data.problems[i].description.length > 300){
-                                            data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"").substring(0,280);
-                                        }
-                                        else {
-                                            data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"");
+                                    for(var i=0; i < data.problems.length; i++ ){
+                                        if(data.problems[i].description !== null) {
+                                            console.log('Descrição: ' + data.problems[i].description);
+                                            console.log(data.problems[i].description.length);
+
+                                            if (data.problems[i].description.length > 300) {
+                                                data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig, "").substring(0, 280);
+                                            }
+                                            else {
+                                                data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig, "");
+                                            }
                                         }
                                     }
                                     self.problemCollaboratorList = data.problems;
