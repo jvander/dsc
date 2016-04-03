@@ -42,8 +42,6 @@ module.exports = function () {
     router.route('/historychat/')
         .get(getHistoryChat)
 
-
-
     router.route('/ajuste/')
         .get(getAllProblemsAjuste)
 
@@ -220,6 +218,7 @@ module.exports = function () {
                     message: "Cadastre seus problemas."
                 });
             }else{
+                console.log(problems);
                 res.send({
                     success: true,
                     problems: problems
@@ -616,10 +615,10 @@ module.exports = function () {
                         console.log(problem.status)
                         problem.status = 'active';
 
-                       /* problem.save(function (err) {
+                       problem.save(function (err) {
                             console.log(err);
                             return
-                        });*/
+                        })
 
 
 
