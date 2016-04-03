@@ -614,12 +614,12 @@ module.exports = function () {
                     problems.forEach(function(problem) {
 
                         console.log(problem)
-                        /*problem.artifacts = newartifacts;
+                        problem.artifacts = newartifacts;
 
                         problem.save(function (err) {
                             console.log(err);
                             return
-                        });*/
+                        });
 
 
 
