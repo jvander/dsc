@@ -41,16 +41,19 @@
                         }
                         self.problemList = data.problems;
 
+
                     }else{
                         toastApp.errorMessage(data.message);
                     }
                 });
+
             problemService.getproblemscollaborator(self.useremail)
                 .success(function(data) {
                     if(data.success) {
                         for(var i=0; i < data.problems.length; i++ ){
                             data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"").substring(0,460);
                         }
+                        console.log(data.problems)
                         self.problemCollaboratorList = data.problems;
                     }else{
                         toastApp.errorMessage(data.message);

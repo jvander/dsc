@@ -218,7 +218,6 @@ module.exports = function () {
                     message: "Cadastre seus problemas."
                 });
             }else{
-                console.log(problems);
                 res.send({
                     success: true,
                     problems: problems
@@ -610,7 +609,7 @@ module.exports = function () {
                 } else {
                    // var newartifacts = ['LABEL_ARTIFACT_STAKEHOLDERS','LABEL_ARTIFACT_EVALUATIONFRAMEWORK','LABEL_ARTIFACT_SEMIOTICFRAMEWORK'];
 
-                    problems.forEach(function(problem) {
+                   /* problems.forEach(function(problem) {
 
                         console.log(problem.status)
                         problem.status = 'active';
@@ -622,7 +621,7 @@ module.exports = function () {
 
 
 
-                    });
+                    });*/
 
 
                     res.send({
