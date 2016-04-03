@@ -44,8 +44,8 @@ module.exports = function () {
 
 
 
-    router.route('/ajuste/')
-        .get(getAllProblemsAjuste)
+   /* router.route('/ajuste/')
+        .get(getAllProblemsAjuste)*/
 
 
     return router;
@@ -596,7 +596,7 @@ module.exports = function () {
             });
     }
 
-    function getAllProblemsAjuste(req,res) {
+    /*function getAllProblemsAjuste(req,res) {
         Problem.find({})
             .exec (function (err, problems) {
                 if (err) {
@@ -633,6 +633,6 @@ module.exports = function () {
                     });
                 }
             });
-    }
+    }*/
 
 }

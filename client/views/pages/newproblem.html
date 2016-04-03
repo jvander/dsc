@@ -1,4 +1,4 @@
-<md-dialog aria-label="DSC" ng-cloak flex="50">
+<md-dialog aria-label="DSC" ng-cloak flex="60">
            <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>{{'LABEL_NEW_PROBLEM' | translate }}</h2>
@@ -24,13 +24,13 @@
             </div>
 
                 <md-content>
-                    <div layout="column" layout-align="start start">
-            <md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_STAKEHOLDERS')"> {{ 'LABEL_ARTIFACT_STAKEHOLDERS' | translate }} </md-checkbox>
-            <md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_EVALUATIONFRAMEWORK')"> {{ 'LABEL_ARTIFACT_EVALUATIONFRAMEWORK' | translate }}</md-checkbox>
-            <md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_SEMIOTICFRAMEWORK')"> {{ 'LABEL_ARTIFACT_SEMIOTICFRAMEWORK' | translate }}</md-checkbox>
-            <!--<md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_ONION')"> {{ 'LABEL_ARTIFACT_ONION' | translate }}</md-checkbox>-->
-            <md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_VIF')"> {{ 'LABEL_ARTIFACT_VIF' | translate }}</md-checkbox>
-            <md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_CARF')"> {{ 'LABEL_ARTIFACT_CARF' | translate }}</md-checkbox>
+                    <div layout="row" layout-align="center start">
+                        &nbsp;&nbsp;<md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_STAKEHOLDERS')">{{ 'LABEL_ARTIFACT_STAKEHOLDERS' | translate }} </md-checkbox>
+                        &nbsp;&nbsp;<md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_EVALUATIONFRAMEWORK')"> {{ 'LABEL_ARTIFACT_EVALUATIONFRAMEWORK' | translate }}</md-checkbox>
+                        &nbsp;&nbsp;<md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_SEMIOTICFRAMEWORK')"> {{ 'LABEL_ARTIFACT_SEMIOTICFRAMEWORK' | translate }}</md-checkbox>
+                        &nbsp;&nbsp;<md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_VIF')"> {{ 'LABEL_ARTIFACT_VIF' | translate }}</md-checkbox>
+                        &nbsp;&nbsp;<md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_CARF')"> {{ 'LABEL_ARTIFACT_CARF' | translate }}</md-checkbox>
+                        <!--<md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_ONION')"> {{ 'LABEL_ARTIFACT_ONION' | translate }}</md-checkbox>-->
                     </div>
                 </md-content>
 
