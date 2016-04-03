@@ -44,6 +44,8 @@ module.exports = function () {
 
 
 
+    router.route('/ajuste/')
+        .get(getAllProblemsAjuste)
 
 
     return router;
@@ -172,13 +174,13 @@ module.exports = function () {
 
 
      function addNewProblem(req, res){
-       searchUser(req.body.userid)
+        console.log(req.body.artifacts);
+         searchUser(req.body.userid)
             .then(function(user){
                 var problem = new Problem({
                     title: req.body.title,
                     description: req.body.description,
-                    name: req.body.artifactName,
-
+                    artifacts: req.body.artifacts,
                     owner: {
                         fullname: user.fullname,
                         nickname: user.nickname,
@@ -202,6 +204,7 @@ module.exports = function () {
                         message: erro.message
                     })
             });
+
     }
 
     function getAllProblemsCollaborator(req, res){
@@ -252,7 +255,7 @@ module.exports = function () {
     function getProblem(req,res){
         Problem.findOne({
             _id: req.query.idproblem
-        }).select('_id title description').exec(function(err,problem){
+        }).select('_id title description, artifacts').exec(function(err,problem){
             if(err) throw err;
 
             if(!problem){
@@ -590,6 +593,45 @@ module.exports = function () {
                     message: "No History Chat"
 
                 })
+            });
+    }
+
+    function getAllProblemsAjuste(req,res) {
+        Problem.find({})
+            .exec (function (err, problems) {
+                if (err) {
+                    res.send(err);
+                    return;
+                }
+                if (!problems) {
+                    res.send({
+                        success: false,
+                        message: "Cadastre seus problemas."
+                    });
+                } else {
+                    var newartifacts = ['LABEL_ARTIFACT_STAKEHOLDERS','LABEL_ARTIFACT_EVALUATIONFRAMEWORK','LABEL_ARTIFACT_SEMIOTICFRAMEWORK'];
+
+                    problems.forEach(function(problem) {
+
+                        console.log(problem)
+                        /*problem.artifacts = newartifacts;
+
+                        problem.save(function (err) {
+                            console.log(err);
+                            return
+                        });*/
+
+
+
+                    });
+
+
+
+                    res.send({
+                        success: true,
+                        problems: problems
+                    });
+                }
             });
     }
 

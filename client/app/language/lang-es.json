@@ -27,7 +27,7 @@
     "LABEL_YOUR_EMAIL": "??Your email",
     "LABEL_YOUR_LANGUAGE": "??Language",
     "LABEL_YOUR_PASSWORD": "??Password",
-    "LABEL_ARTIFACT_STAKEHOLDER" : "??Stakeholders Identification",
+    "LABEL_ARTIFACT_STAKEHOLDERS" : "??Stakeholders Identification",
     "LABEL_ARTIFACT_EVALUATION_FRAMEWORK" : "??Valuation Framing",
     "LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK": "??Semiotic Framework",
     "LABEL_ARTIFACT" : "??Artifact",
@@ -40,7 +40,9 @@
     "BTN_SHARED": "???Convidar",
     "LABEL_LOGOUT":"??logout",
     "LABEL_ARTIFACT_VIF": "VIF",
-    "LABEL_ARTIFACT_CARF": "CARF"
+    "LABEL_ARTIFACT_CARF": "CARF",
+    "LABEL_ARTIFACT_ONION": "ONION",
+    "LABEL_CHOICE_ARTIFACTS": "#Please, choose one or more artifacts."
 
 
 }

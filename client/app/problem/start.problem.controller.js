@@ -7,7 +7,7 @@
         .module('app')
         .controller('startProblemController',startProblemController);
 
-    function startProblemController($mdDialog, $state,Auth,Socket, $window, problemService,toastApp ) {
+    function startProblemController($mdDialog,$state,Auth,Socket, $window, problemService,toastApp ) {
 
         var self = this;
         self.nickname = "";
@@ -33,7 +33,6 @@
             self.photo = $window.localStorage.getItem('photo');
 
 
-
             problemService.getuserproblems(self.useremail)
                 .success(function(data) {
                     if(data.success) {
@@ -41,6 +40,7 @@
                             data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"").substring(0,460);
                         }
                         self.problemList = data.problems;
+
                     }else{
                         toastApp.errorMessage(data.message);
                     }
@@ -92,6 +92,7 @@
 
         function startNewProblem(newproblem){
             newproblem.userid = self.userid;
+            console.log(newproblem.artifacts);
             problemService.newproblem(newproblem)
                 .success(function(data) {
                     if(data.success) {
@@ -129,7 +130,8 @@
                 });
             }
 
-        function DialogController($scope, $mdDialog) {
+        function DialogController($scope, $filter, $mdDialog) {
+            $scope.artifactList = [];
                 $scope.hide = function() {
                     $mdDialog.hide();
                 };
@@ -138,11 +140,20 @@
                 };
 
                 $scope.addNewProblem = function(problem) {
+                    if($scope.artifactList.length < 1){
+                        toastApp.errorMessage($filter('translate')('LABEL_CHOICE_ARTIFACTS'));
+                        return;
+                    }
+                    problem.artifacts =  $scope.artifactList;
+                    console.log(problem.artifacts);
                     self.startNewProblem(problem);
                     $mdDialog.cancel();
                 };
              $scope.addArtifact = function addArtifact(valor){
                 console.log(valor)
+                 $scope.artifactList.push(valor);
+
+
             }
             }
 

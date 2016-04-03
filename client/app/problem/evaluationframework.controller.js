@@ -30,7 +30,6 @@ angular
       }
 
       Socket.on('onBroadcastFrameEdit', function (data) {
-          console.log('O que vem aqui...' + data)
           angular.forEach(self.evaluationframeworkList,function(evaluationframework){
              if( evaluationframework.onionlayer == data.onionlayer){
                  angular.forEach(evaluationframework.stakeholders,function(stakeholder){

@@ -1,7 +1,5 @@
 <md-dialog aria-label="DSC" ng-cloak flex="50">
-
-<form>
-        <md-toolbar>
+           <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>{{'LABEL_NEW_PROBLEM' | translate }}</h2>
                 <span flex></span>
@@ -10,40 +8,45 @@
                 </md-button>
             </div>
         </md-toolbar>
-
+        <md-whiteframe class="md-whiteframe-4dp" layout-fill layout-align="center center">
         <md-dialog-content>
-
+            <form name="newProblemForm" data-ng-submit="addNewProblem(problem)">
             <br>
             <div layout="column">
             <md-input-container layout-fill>
                 <label>Title</label>
-                <input type="text" ng-model="problem.title" md-autofocus>
+                <input type="text" ng-model="problem.title" required md-autofocus>
             </md-input-container>
             <md-input-container layout-fill>
                 <label>Initial description</label>
-                <textarea type="text" ng-model="problem.description"></textarea>
+                <textarea type="text" ng-model="problem.description" required></textarea>
             </md-input-container>
             </div>
 
-           <!-- <div layout="column">
-            <md-checkbox ng-checked="true" ng-click="addArtifact('LABEL_ARTIFACT_STAKEHOLDER')"> {{ 'LABEL_ARTIFACT_STAKEHOLDER' | translate }} </md-checkbox>
-            <md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_EVALUATION_FRAMEWORK')"> {{ 'LABEL_ARTIFACT_EVALUATION_FRAMEWORK' | translate }}</md-checkbox>
-            <md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK')"> {{ 'LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK' | translate }}</md-checkbox>
-            </div>-->
+                <md-content>
+                    <div layout="column" layout-align="start start">
+            <md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_STAKEHOLDERS')"> {{ 'LABEL_ARTIFACT_STAKEHOLDERS' | translate }} </md-checkbox>
+            <md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_EVALUATIONFRAMEWORK')"> {{ 'LABEL_ARTIFACT_EVALUATIONFRAMEWORK' | translate }}</md-checkbox>
+            <md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_SEMIOTICFRAMEWORK')"> {{ 'LABEL_ARTIFACT_SEMIOTICFRAMEWORK' | translate }}</md-checkbox>
+            <!--<md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_ONION')"> {{ 'LABEL_ARTIFACT_ONION' | translate }}</md-checkbox>-->
+            <md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_VIF')"> {{ 'LABEL_ARTIFACT_VIF' | translate }}</md-checkbox>
+            <md-checkbox ng-click="addArtifact('LABEL_ARTIFACT_CARF')"> {{ 'LABEL_ARTIFACT_CARF' | translate }}</md-checkbox>
+                    </div>
+                </md-content>
 
             <md-dialog-actions layout="row">
-
                 <md-button ng-click="hide()" class="md-raised md-primary" md-autofocus>
                     {{'LABEL_BTN_CANCEL' | translate }}
                 </md-button>
                 <span flex></span>
 
-                <md-button ng-click="addNewProblem(problem)" class="md-raised md-primary" style="margin-right:20px;">
-                    {{'BTN_SAVE' | translate }}
+                <md-button type="submit" class="md-primary"
+                           ng-class="{'md-raised md-hue-1': (newProblemForm.$dirty && newProblemForm.$valid) }"
+                           aria-label="New Project">{{'BTN_SAVE' | translate }}
                 </md-button>
             </md-dialog-actions>
-
+            </form>
         </md-dialog-content>
-</form>
+</md-whiteframe>
 </md-dialog>
 

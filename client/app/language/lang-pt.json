@@ -27,7 +27,7 @@
     "LABEL_YOUR_EMAIL": "Seu Email",
     "LABEL_YOUR_LANGUAGE": "Linguagem",
     "LABEL_YOUR_PASSWORD": "Senha",
-    "LABEL_ARTIFACT_STAKEHOLDER" : "Stakeholders",
+    "LABEL_ARTIFACT_STAKEHOLDERS" : "Stakeholders",
     "LABEL_ARTIFACT_EVALUATION_FRAMEWORK" : "Quadro de Avaliação",
     "LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK": "Framework Semiótico",
     "LABEL_ARTIFACT" : "Artefatos",
@@ -40,5 +40,7 @@
     "BTN_SHARED": "Compartilhar",
     "LABEL_LOGOUT":"Sair",
     "LABEL_ARTIFACT_VIF": "VIF",
-    "LABEL_ARTIFACT_CARF": "CARF"
+    "LABEL_ARTIFACT_CARF": "CARF",
+    "LABEL_ARTIFACT_ONION": "ONION",
+    "LABEL_CHOICE_ARTIFACTS": "Por favor, escolha um ou mais artefatos!"
 }

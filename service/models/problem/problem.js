@@ -61,13 +61,6 @@ var ProblemSchema = new Schema({
     started: {type: Date, default: Date.now },
     finished: {type: Date},
 
-    artefacts: [
-        {
-            name: {type: String, requered: true},
-            content: {type: String, requered: true}
-        }
-     ],
-
     owner:{
         fullname: {type: String, requered: true},
         nickname: {type: String, requered: true},
@@ -92,7 +85,11 @@ var ProblemSchema = new Schema({
         required: 'required.description',
         trim: true
     },
+
+    artifacts: [],
+
     stakeholders: [StakeholderSchema],
+
     semioticframework:{
         socialworld: {
             type: String

@@ -99,8 +99,8 @@
 
 <div class="" ui-view="problem-description"></div>
 
-<div  class="sample">
-        <md-tabs md-border-bottom md-autoselect md-dynamic-height>
+<div  ng-cloak>
+        <md-tabs md-border-bottom md-selected="0" md-dynamic-height>
             <md-tab ng-repeat="tab in vm.dsc_artifacts" data-ui-sref="{{tab.name}}"
                     md-active="$state.is('{{tab.name}}')"
                     label="{{tab.label}}">
@@ -109,7 +109,7 @@
         <!--<md-tabs md-border-bottom md-dynamic-height md-stretch-tabs="always">
             <md-tab data-ui-sref="problem.stakeholders"
                      md-active="$state.is('problem.stakeholders')"
-                     label="{{'LABEL_ARTIFACT_STAKEHOLDER' | translate }}">
+                     label="{{'LABEL_ARTIFACT_STAKEHOLDERS' | translate }}">
             </md-tab>
 
             <md-tab  data-ui-sref="problem.evaluationframework"
