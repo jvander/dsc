@@ -51,10 +51,13 @@
                 .success(function(data) {
                     if(data.success) {
                         for(var i=0; i < data.problems.length; i++ ){
-                            if(data.problems[i].description.length > 280) data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"").substring(0,280);
-                            else data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"");
+                            if(data.problems[i].description.length > 300){
+                                data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"").substring(0,280);
+                            }
+                            else {
+                                data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig,"");
+                            }
                         }
-                        console.log(data.problems)
                         self.problemCollaboratorList = data.problems;
                     }else{
                         toastApp.errorMessage(data.message);
