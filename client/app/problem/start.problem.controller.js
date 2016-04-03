@@ -51,10 +51,7 @@
 
                                     for(var i=0; i < data.problems.length; i++ ){
                                         if(data.problems[i].description !== null) {
-                                            console.log('Descrição: ' + data.problems[i].description);
-                                            console.log(data.problems[i].description.length);
-
-                                            if (data.problems[i].description.length > 300) {
+                                               if (data.problems[i].description.length > 300) {
                                                 data.problems[i].description = data.problems[i].description.replace(/(<([^>]+)>)/ig, "").substring(0, 280);
                                             }
                                             else {
