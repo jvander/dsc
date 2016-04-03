@@ -51,7 +51,7 @@ angular
       }
 
       Socket.on('onUpdateStakeholder', function (stakeholderOnion) {
-         console.log(stakeholderOnion);
+
 
       });
 

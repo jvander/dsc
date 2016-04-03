@@ -92,15 +92,15 @@
 
         function startNewProblem(newproblem){
             newproblem.userid = self.userid;
-            console.log(newproblem.artifacts);
-            problemService.newproblem(newproblem)
+
+            /*problemService.newproblem(newproblem)
                 .success(function(data) {
                     if(data.success) {
                         self.editProblem(data.problem);
                     }else{
                         toastApp.errorMessage(data.message);
                     }
-                });
+                });*/
         }
 
         function editProblem(problem) {
@@ -145,16 +145,20 @@
                         return;
                     }
                     problem.artifacts =  $scope.artifactList;
-                    console.log(problem.artifacts);
                     self.startNewProblem(problem);
                     $mdDialog.cancel();
                 };
              $scope.addArtifact = function addArtifact(valor){
-                console.log(valor)
-                 $scope.artifactList.push(valor);
+                     for(var i=0; i < $scope.artifactList.length; i++){
+                         if($scope.artifactList[i] === valor){
+                             $scope.artifactList.splice(i,1);
+                             return;
+                         }
+                     }
+                     $scope.artifactList.push(valor);
+                }
 
 
-            }
             }
 
 

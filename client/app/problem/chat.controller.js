@@ -88,7 +88,6 @@ angular
         }
 
         function keypressChat(event,chatmsg){
-            console.log(self.contador);
             if(event.keyCode == 13){
                 self.contador++;
                 if (self.contador == 1) {

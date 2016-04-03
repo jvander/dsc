@@ -59,7 +59,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.reject(new Error("Problem n�o encontrado"));
+                return deferred.reject(new Error("Problem nao encontrado"));
             }
             deferred.resolve(problem)
         });
@@ -255,7 +255,7 @@ module.exports = function () {
     function getProblem(req,res){
         Problem.findOne({
             _id: req.query.idproblem
-        }).select('_id title description, artifacts').exec(function(err,problem){
+        }).select('_id title description artifacts').exec(function(err,problem){
             if(err) throw err;
 
             if(!problem){
@@ -264,6 +264,7 @@ module.exports = function () {
                     mensage: "Not Problem"
                 });
             }else{
+                console.log(problem);
                 res.json({
                     success: true,
                     problem: problem

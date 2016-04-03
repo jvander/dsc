@@ -30,7 +30,6 @@
 
                         angular.forEach(data.problem.artifacts, function (artifact) {
                             var name = artifact.split("_");
-                            console.log(name[name.length - 1].toLowerCase())
                             self.dsc_artifacts.push({name: "problem." + name[2].toLowerCase(), label: $filter('translate')(artifact)});
                         });
 

@@ -105,7 +105,6 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     }
 
     Socket.on('onBroadcastMove', function (stakeholder) {
-            console.log(stakeholder.localcode + '  ' + self.localcode)
             if(self.localcode !== stakeholder.localcode) {
                 document.getElementById('stakeholder'+stakeholder._id).style.left = stakeholder.x;
                 document.getElementById('stakeholder'+stakeholder._id).style.top = stakeholder.y;
@@ -126,7 +125,8 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
             "description": "",
             "openEdit": true,
             "x": e.pageX + 'px',
-            "y": (e.pageY) + 'px'
+            "y": (e.pageY) + 'px',
+            "zindex": 9999
         };
 
        Socket.emit('broadcastOnionAdd', newStakeholder);
