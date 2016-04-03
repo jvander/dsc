@@ -436,7 +436,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.reject(new Error("Problem n�o encontrado"));
+                return deferred.reject(new Error("Problem nao encontrado"));
             }
             if(buscaUser(problem.collaborators,email)){
                 return deferred.reject(new Error("User is Colaborator."));
@@ -597,7 +597,8 @@ module.exports = function () {
             });
     }
 
-    /*function getAllProblemsAjuste(req,res) {
+    //Utilizar para fazer alterações no problema.
+    function getAllProblemsAjuste(req,res) {
         Problem.find({})
             .exec (function (err, problems) {
                 if (err) {
@@ -610,7 +611,7 @@ module.exports = function () {
                         message: "Cadastre seus problemas."
                     });
                 } else {
-                    var newartifacts = ['LABEL_ARTIFACT_STAKEHOLDERS','LABEL_ARTIFACT_EVALUATIONFRAMEWORK','LABEL_ARTIFACT_SEMIOTICFRAMEWORK'];
+                    /*var newartifacts = ['LABEL_ARTIFACT_STAKEHOLDERS','LABEL_ARTIFACT_EVALUATIONFRAMEWORK','LABEL_ARTIFACT_SEMIOTICFRAMEWORK'];
 
                     problems.forEach(function(problem) {
 
@@ -625,7 +626,7 @@ module.exports = function () {
 
 
                     });
-
+*/
 
 
                     res.send({
@@ -634,6 +635,6 @@ module.exports = function () {
                     });
                 }
             });
-    }*/
+    }
 
 }
