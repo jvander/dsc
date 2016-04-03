@@ -44,8 +44,8 @@ module.exports = function () {
 
 
 
-   /* router.route('/ajuste/')
-        .get(getAllProblemsAjuste)*/
+    router.route('/ajuste/')
+        .get(getAllProblemsAjuste)
 
 
     return router;
@@ -609,22 +609,21 @@ module.exports = function () {
                         message: "Cadastre seus problemas."
                     });
                 } else {
-                    /*var newartifacts = ['LABEL_ARTIFACT_STAKEHOLDERS','LABEL_ARTIFACT_EVALUATIONFRAMEWORK','LABEL_ARTIFACT_SEMIOTICFRAMEWORK'];
+                   // var newartifacts = ['LABEL_ARTIFACT_STAKEHOLDERS','LABEL_ARTIFACT_EVALUATIONFRAMEWORK','LABEL_ARTIFACT_SEMIOTICFRAMEWORK'];
 
                     problems.forEach(function(problem) {
 
-                        console.log(problem)
-                        problem.artifacts = newartifacts;
+                        console.log(problem.status)
+                        problem.status = 'active';
 
-                        problem.save(function (err) {
+                       /* problem.save(function (err) {
                             console.log(err);
                             return
-                        });
+                        });*/
 
 
 
                     });
-*/
 
 
                     res.send({
