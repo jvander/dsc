@@ -93,14 +93,14 @@
         function startNewProblem(newproblem){
             newproblem.userid = self.userid;
 
-            /*problemService.newproblem(newproblem)
+            problemService.newproblem(newproblem)
                 .success(function(data) {
                     if(data.success) {
                         self.editProblem(data.problem);
                     }else{
                         toastApp.errorMessage(data.message);
                     }
-                });*/
+                });
         }
 
         function editProblem(problem) {

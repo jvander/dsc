@@ -174,7 +174,6 @@ module.exports = function () {
 
 
      function addNewProblem(req, res){
-        console.log(req.body.artifacts);
          searchUser(req.body.userid)
             .then(function(user){
                 var problem = new Problem({
@@ -264,7 +263,6 @@ module.exports = function () {
                     mensage: "Not Problem"
                 });
             }else{
-                console.log(problem);
                 res.json({
                     success: true,
                     problem: problem

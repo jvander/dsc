@@ -255,7 +255,6 @@
     module.exports = function(io,socket) {
 
         socket.on('initProblem', function(data){
-            console.log(data.idproblem);
             socket.room = data.idproblem;
             socket.join(data.idproblem);
             socket.username = data.nickname;
