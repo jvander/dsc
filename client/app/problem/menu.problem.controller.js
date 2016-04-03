@@ -36,11 +36,6 @@
                         toastApp.errorMessage(data.message);
                     }
                 });
-            var initsocketproblem = {
-                "idproblem": self.idProblem,
-                "nickname": self.nickname
-            };
-            Socket.emit('initProblem', initsocketproblem);
         }
         function systemReturn(){
             $state.go('startproblem');
