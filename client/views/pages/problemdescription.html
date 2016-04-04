@@ -1,19 +1,35 @@
-<div data-ng-init="vm.getCurrentProblem()">
-<md-toolbar>
-    <div class="md-toolbar-tools">
-        <h2>{{vm.problem.title}}</h2>
-        <span flex></span>
-    </div>
-</md-toolbar>
-    <div>
-        <md-content layout-padding>
-            <div class="md-whiteframe-z1">
-                    <div text-angular="text-angular" ng-blur="vm.problemUpdate(vm.problem)" ng-change="vm.problemUpdate(vm.problem)" name="htmlcontent" ng-model="vm.problem.description"></div>
-                <!--<div ta-bind="vm.problem.description" ng-model="vm.problem.description" ta-readonly='enable'></div>-->
-                <!--<div ng-bind-html="vm.problem.description" ng-model-options="vm.problem.descriptionpure"></div>-->
-                <!--<textarea ng-model="vm.problem.description" rows="2" ng-blur="saveDescription(vm.problem)"  ></textarea>-->
+<div data-ng-init="getProblemEdit()">
+    <md-dialog aria-label="Problem Edition" ng-cloak flex="100">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{problem.title}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="views/img/icon/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
             </div>
-        </md-content>
-    </div>
-</div>
+        </md-toolbar>
 
+    <md-whiteframe class="md-whiteframe-4dp" layout-fill layout-align="center center">
+        <md-dialog-content>
+            <div>
+                <md-content layout-padding>
+                    <div class="md-whiteframe-z1">
+                        <div text-angular="text-angular" ng-blur="problemUpdate(problem.description)" ng-change="problemUpdate(problem.description)" name="htmlcontent" ng-model="problem.description"></div>
+                        <!--<div ta-bind="vm.problem.description" ng-model="vm.problem.description" ta-readonly='enable'></div>-->
+                        <!--<div ng-bind-html="vm.problem.description" ng-model-options="vm.problem.descriptionpure"></div>-->
+                        <!--<textarea ng-model="vm.problem.description" rows="2" ng-blur="saveDescription(vm.problem)"  ></textarea>-->
+                    </div>
+                </md-content>
+            </div>
+            <md-dialog-actions layout="row">
+
+                <span flex></span>
+                <md-button ng-click="hide()" class="md-raised md-primary" md-autofocus>
+                    {{'LABEL_CLOSE' | translate }}
+                </md-button>
+            </md-dialog-actions>
+        </md-dialog-content>
+    </md-whiteframe>
+    </md-dialog>
+</div>

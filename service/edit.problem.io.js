@@ -288,6 +288,7 @@
 
         socket.on('atualizarProblema', function (data) {
             if(data.update){
+                console.log(data.update);
                 Problem.update({ _id : socket.room}, { $set : { "description": data.description }}, function(err, updated) {
                     if( err || !updated ){
                         console.log(err);

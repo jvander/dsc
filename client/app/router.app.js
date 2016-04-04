@@ -70,7 +70,7 @@
                 templateUrl: 'views/pages/problem.html',
                 controller: 'menuProblemController as vm'
             })
-            .state('problem.description', {
+           /* .state('problem.description', {
                 url: '/description',
                 views: {
                     'problem-description': {
@@ -78,8 +78,8 @@
                         controller: 'editProblemController as vm'
                     }
                 }
-            })
-            .state('problem.collaborators', {
+            })*/
+            /*.state('problem.collaborators', {
                 url: '/collaborators',
                 views: {
                     'problem-description': {
@@ -87,7 +87,7 @@
                         controller: 'controllerCollaborators as vm'
                     }
                 }
-            })
+            })*/
             .state('problem.stakeholders', {
                 url: '/stakeholders',
                 views: {
@@ -139,7 +139,7 @@
                 views: {
                     'dsc-artifact': {
                         templateUrl: 'views/pages/onion.html',
-                        controller: 'onionController as vm'
+                        controller: 'onion3LayerController as vm'
                     }
                 }
             });

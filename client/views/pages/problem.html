@@ -46,14 +46,14 @@
                 <span><img src="views/img/logo_barra.png" /> {{'NAME_SYSTEM' | translate }}</span>
             </h3>
             <span flex flex-md="100"></span>
-            <md-button ng-click="vm.formAddCollaborators()" class="md-fab md-primary" aria-label="Edit Collaborators">
+            <md-button ng-click="vm.formInviteCollaborator($event)" class="md-fab md-primary" aria-label="Edit Collaborators">
                 <md-tooltip>
                     Edit Collaborators
                 </md-tooltip>
                 <md-icon md-svg-src="views/img/icon/shared.svg"></md-icon>
             </md-button>
 
-            <md-button ng-click="vm.editDescriptionProblem()" class="md-fab md-primary" aria-label="Edit Description">
+            <md-button ng-click="vm.formEditProblem($event)" class="md-fab md-primary" aria-label="Edit Description">
                 <md-tooltip>
                     Edit Description
                 </md-tooltip>
@@ -99,7 +99,7 @@
 <div class="" ui-view="problem-description"></div>
 
 <div  ng-cloak>
-        <md-tabs md-border-bottom md-selected="0" md-dynamic-height>
+        <md-tabs md-border-bottom md-selected="selectedIndex" md-dynamic-height>
             <md-tab ng-repeat="tab in vm.dsc_artifacts" data-ui-sref="{{tab.name}}"
                     md-active="$state.is('{{tab.name}}')"
                     label="{{tab.label}}">

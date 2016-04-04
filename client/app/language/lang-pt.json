@@ -42,5 +42,7 @@
     "LABEL_ARTIFACT_VIF": "VIF",
     "LABEL_ARTIFACT_CARF": "CARF",
     "LABEL_ARTIFACT_ONION": "ONION",
-    "LABEL_CHOICE_ARTIFACTS": "Por favor, escolha um ou mais artefatos!"
+    "LABEL_CHOICE_ARTIFACTS": "Por favor, escolha um ou mais artefatos!",
+    "LABEL_INVITE_COLLABORATOR": "Convide pessoas para colaborar no projeto",
+    "LABEL_COLLABORATORS": "Pesssoas participando do projeto"
 }
