@@ -22,8 +22,12 @@
                         <div><span>{{collaborator.email}}</span></div>
                     </div>
                 </div>
-        <br><br><br><br>
+
         <form name="inviteForm" data-ng-submit="addCollaborator(email)">
+            <h3></h3>
+            <br>
+            <br>
+            <br>
             <div layout="row" layout-fill layout-margin>
             <md-input-container flex>
                 <label>{{'LABEL_EMAIL' | translate }}</label>
@@ -43,7 +47,6 @@
                 </md-dialog-actions>
 
             </md-dialog-content>
-
         </md-whiteframe>
     </md-dialog>
 </div>
