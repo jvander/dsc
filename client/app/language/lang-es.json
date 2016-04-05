@@ -44,7 +44,8 @@
     "LABEL_ARTIFACT_ONION": "ONION",
     "LABEL_CHOICE_ARTIFACTS": "#Please, choose one or more artifacts.",
     "LABEL_INVITE_COLLABORATOR": "#Invite Collaborators",
-    "LABEL_COLLABORATORS": "#Project participants!"
+    "LABEL_COLLABORATORS": "#Project participants!",
+    "LABEL_SELECT_ALL": "#Select All"
 
 
 }

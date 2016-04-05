@@ -115,6 +115,7 @@
                 });
         }
 
+
         function editProblem(problem) {
             $window.localStorage.setItem("problemid",problem._id);
             var initsocketproblem = {
@@ -143,6 +144,52 @@
             }
 
         function DialogController($scope, $filter, $mdDialog) {
+            $scope.items = ['LABEL_ARTIFACT_STAKEHOLDERS',
+                'LABEL_ARTIFACT_EVALUATIONFRAMEWORK',
+                'LABEL_ARTIFACT_SEMIOTICFRAMEWORK',
+                'LABEL_ARTIFACT_VIF',
+                'LABEL_ARTIFACT_CARF'
+                /*'LABEL_ARTIFACT_ONION'*/];
+
+            $scope.selected = [];
+
+            $scope.toggle = function (item, list) {
+                var idx = list.indexOf(item);
+                if (idx > -1) {
+                    list.splice(idx, 1);
+                }
+                else {
+                    list.push(item);
+                    if(item === 'LABEL_ARTIFACT_EVALUATIONFRAMEWORK'){
+                        idx = list.indexOf('LABEL_ARTIFACT_STAKEHOLDERS');
+                        if (idx === -1) {
+                            list.push('LABEL_ARTIFACT_STAKEHOLDERS');
+                        }
+                    }
+                }
+            };
+            $scope.exists = function (item, list) {
+                return list.indexOf(item) > -1;
+            };
+
+            $scope.isIndeterminate = function() {
+                return ($scope.selected.length !== 0 &&
+                $scope.selected.length !== $scope.items.length);
+            };
+
+            $scope.isChecked = function() {
+                return $scope.selected.length === $scope.items.length;
+            };
+
+            $scope.toggleAll = function() {
+                if ($scope.selected.length === $scope.items.length) {
+                    $scope.selected = [];
+                } else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
+                    $scope.selected = $scope.items.slice(0);
+                }
+            };
+
+
             $scope.artifactList = [];
                 $scope.hide = function() {
                     $mdDialog.hide();
@@ -150,38 +197,17 @@
                 $scope.cancel = function() {
                     $mdDialog.cancel();
                 };
+
                 $scope.addNewProblem = function(problem) {
-                    if($scope.artifactList.length < 1){
+                    if($scope.selected.length < 1){
                         toastApp.errorMessage($filter('translate')('LABEL_CHOICE_ARTIFACTS'));
                         return;
                     }
-                    var ef = false;
-                    var dpi = false;
-                    for(var i=0; i < $scope.artifactList.length; i++){
-                        if($scope.artifactList[i] === 'LABEL_ARTIFACT_STAKEHOLDERS'){
-                            dpi = true;
-                        }
-                        if($scope.artifactList[i] === 'LABEL_ARTIFACT_EVALUATIONFRAMEWORK'){
-                            ef = true;
-                        }
-                    }
-                    if(ef && !dpi){
-                        toastApp.errorMessage('Para utilizar o EF você precisa do DPI.'/*$filter('translate')('LABEL_CHOICE_ARTIFACTS')*/);
-                        return;
-                    }
-                    problem.artifacts =  $scope.artifactList;
+                    problem.artifacts =  $scope.selected;
                     self.startNewProblem(problem);
                     $mdDialog.cancel();
                 };
-             $scope.addArtifact = function addArtifact(artifact){
-                     for(var i=0; i < $scope.artifactList.length; i++){
-                         if($scope.artifactList[i] === artifact){
-                             $scope.artifactList.splice(i,1);
-                             return;
-                         }
-                     }
-                     $scope.artifactList.push(artifact);
-                }
+
             }
 
 
