@@ -45,7 +45,8 @@
     "LABEL_CHOICE_ARTIFACTS": "Please, choose one or more artifacts.",
     "LABEL_INVITE_COLLABORATOR": "Invite Collaborators",
     "LABEL_COLLABORATORS": "Project participants!",
-    "LABEL_SELECT_ALL": "Select All"
+    "LABEL_SELECT_ALL": "Select All",
+    "LABEL_ARTIFACT_STAKEHOLDERS_NECESSARY": "Sorry, but artifact atakeholder Identification is necessary."
 
 
 

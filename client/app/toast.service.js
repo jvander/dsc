@@ -43,7 +43,7 @@
                     action: "OK",
                     highlightAction: true,
                     position: "top right",
-                    hideDelay: 500
+                    hideDelay: 2000
                 }
             );
         }

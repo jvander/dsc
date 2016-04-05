@@ -156,11 +156,21 @@
             $scope.toggle = function (item, list) {
                 var idx = list.indexOf(item);
                 if (idx > -1) {
-                    list.splice(idx, 1);
+                    if(item !== 'LABEL_ARTIFACT_STAKEHOLDERS'){
+                          list.splice(idx, 1);
+                    }else{
+                        if(list.length == 1){
+                            list.splice(idx, 1);
+                        }else{
+                            toastApp.errorMessage($filter('translate')('LABEL_ARTIFACT_STAKEHOLDERS_NECESSARY'));
+                        }
+                    }
+
+
                 }
                 else {
                     list.push(item);
-                    if(item === 'LABEL_ARTIFACT_EVALUATIONFRAMEWORK'){
+                    if(item != 'LABEL_ARTIFACT_SEMIOTICFRAMEWORK'){
                         idx = list.indexOf('LABEL_ARTIFACT_STAKEHOLDERS');
                         if (idx === -1) {
                             list.push('LABEL_ARTIFACT_STAKEHOLDERS');
