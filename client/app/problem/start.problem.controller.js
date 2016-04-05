@@ -48,7 +48,6 @@
                         problemService.getproblemscollaborator(self.useremail)
                             .success(function(data) {
                                 if(data.success) {
-
                                     for(var i=0; i < data.problems.length; i++ ){
                                         if(data.problems[i].description !== null) {
                                                if (data.problems[i].description.length > 300) {
@@ -151,27 +150,38 @@
                 $scope.cancel = function() {
                     $mdDialog.cancel();
                 };
-
                 $scope.addNewProblem = function(problem) {
                     if($scope.artifactList.length < 1){
                         toastApp.errorMessage($filter('translate')('LABEL_CHOICE_ARTIFACTS'));
+                        return;
+                    }
+                    var ef = false;
+                    var dpi = false;
+                    for(var i=0; i < $scope.artifactList.length; i++){
+                        if($scope.artifactList[i] === 'LABEL_ARTIFACT_STAKEHOLDERS'){
+                            dpi = true;
+                        }
+                        if($scope.artifactList[i] === 'LABEL_ARTIFACT_EVALUATIONFRAMEWORK'){
+                            ef = true;
+                        }
+                    }
+                    if(ef && !dpi){
+                        toastApp.errorMessage('Para utilizar o EF você precisa do DPI.'/*$filter('translate')('LABEL_CHOICE_ARTIFACTS')*/);
                         return;
                     }
                     problem.artifacts =  $scope.artifactList;
                     self.startNewProblem(problem);
                     $mdDialog.cancel();
                 };
-             $scope.addArtifact = function addArtifact(valor){
+             $scope.addArtifact = function addArtifact(artifact){
                      for(var i=0; i < $scope.artifactList.length; i++){
-                         if($scope.artifactList[i] === valor){
+                         if($scope.artifactList[i] === artifact){
                              $scope.artifactList.splice(i,1);
                              return;
                          }
                      }
-                     $scope.artifactList.push(valor);
+                     $scope.artifactList.push(artifact);
                 }
-
-
             }
 
 

@@ -1,6 +1,5 @@
 <div data-ng-init="initCollaborators()" flex="60">
     <md-dialog aria-label="Problem Edition" ng-cloak flex="100">
-
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h3>{{'LABEL_INVITE_COLLABORATOR' | translate }}</h3>
@@ -10,9 +9,7 @@
                 </md-button>
             </div>
         </md-toolbar>
-
-
-        <md-whiteframe class="md-whiteframe-4dp" layout-fill layout-align="center center">
+        <md-whiteframe class="md-whiteframe-1dp" layout-fill layout-align="center center">
             <md-dialog-content>
                 <h3>{{'LABEL_COLLABORATORS' | translate }}</h3>
                 <div ng-repeat="collaborator in collaborators">
@@ -23,8 +20,6 @@
                     </div>
                 </div>
         <div>
-            <br>
-            
         <form name="inviteForm" data-ng-submit="addCollaborator(email)"
             <div layout="row" layout-fill layout-margin>
             <md-input-container flex>
