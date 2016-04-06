@@ -1,5 +1,4 @@
 <md-dialog aria-label="DSC" ng-cloak flex="60">
-
            <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>{{'LABEL_NEW_PROBLEM' | translate }}</h2>
@@ -16,11 +15,11 @@
             <div class="md-dialog-content">
             <div layout="column">
             <md-input-container layout-fill>
-                <label>Title</label>
+                <label>{{ 'LABEL_PROBLEM_TITLE' | translate }}</label>
                 <input type="text" ng-model="problem.title" required md-autofocus>
             </md-input-container>
             <md-input-container layout-fill>
-                <label>Initial description</label>
+                <label>{{ 'LABEL_INITIAL_DECRIPTION' | translate }}</label>
                 <textarea ng-model="problem.description" rows="5" required></textarea>
             </md-input-container>
 
