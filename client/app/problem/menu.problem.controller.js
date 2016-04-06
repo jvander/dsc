@@ -134,7 +134,6 @@
                 problemService.getcollaborators($scope.idProblem)
                     .success(function(data) {
                         if(data.success) {
-                            console.log(data.collaborators);
                             $scope.collaborators = data.collaborators;
                             //Socket.emit('checkUsers');
                         }else{
