@@ -624,3 +624,22 @@ body{
     font-family: inherit;
     font-size: 100%;
 }
+
+
+.chip {
+    display: inline-block;
+    padding: 0 25px;
+    height: 50px;
+    font-size: 13px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #bbf1ac;
+}
+
+.chip picture {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}

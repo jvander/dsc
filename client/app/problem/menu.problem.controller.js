@@ -119,6 +119,8 @@
             $scope.initCollaborators = initCollaborators;
             $scope.addCollaborator = addCollaborator;
             $scope.removeCollaborator = removeCollaborator;
+            $scope.alertDeleteCollaborator = alertDeleteCollaborator;
+            $scope.email = "";
 
             $scope.hide = function() {
                 $mdDialog.hide();
@@ -166,6 +168,7 @@
                             .success(function (data) {
                                 if (data.success) {
                                     $scope.collaborators = data.collaborators;
+                                    $scope.email = '';
                                 } else {
                                     toastApp.errorMessage(data.message);
                                 }
@@ -174,20 +177,22 @@
                 }
             }
 
-            function removeCollaborator(people){
-                var obj = {
-                    idproblem: $scope.idProblem,
-                    email: people.email
-                };
-                problemService.removecollaborators(obj)
-                    .success(function(data) {
-                        if(data.success) {
-                            toastApp.errorMessage("Colaborador foi removido do projeto.");
-                            $scope.collaborators = data.collaborators;
-                        }else{
-                            toastApp.errorMessage(data.message);
-                        }
-                    });
+            function alertDeleteCollaborator(collaborator){
+                 collaborator.isDeleted = !collaborator.isDeleted;
+            }
+
+            function removeCollaborator(collaborator){
+                   collaborator.idproblem = $scope.idProblem;
+                   problemService.removecollaborators(collaborator)
+                        .success(function(data) {
+                            if(data.success) {
+                                $scope.collaborators = data.collaborators;
+                                $scope.isDeleteCollaborator = !$scope.isDeleteCollaborator;
+                                toastApp.errorMessage("Colaborador " + collaborator.nickname + " foi removido do projeto.");
+                            }else{
+                                toastApp.errorMessage(data.message);
+                            }
+                        });
             }
 
         }

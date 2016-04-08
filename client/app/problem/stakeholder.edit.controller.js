@@ -82,7 +82,6 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     });
 
     function removePostIt(index,stakeholder) {
-
         var obj = {
             index: index,
             stakeholder: stakeholder
