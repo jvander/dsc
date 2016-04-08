@@ -9,9 +9,21 @@
                 </md-button>
             </div>
         </md-toolbar>
-        <md-whiteframe class="md-whiteframe-1dp" layout-fill layout-align="center center">
+        <br>
+        <div layout-fill layout-align="center center">
             <md-dialog-content>
-                <h3>{{'LABEL_COLLABORATORS' | translate }}</h3>
+                <form name="inviteForm" data-ng-submit="addCollaborator(email)">
+                    <div layout="row" layout-fill layout-margin>
+                        <md-input-container flex>
+                            <label>{{'LABEL_EMAIL' | translate }}</label>
+                            <input type="email" ng-model="email" md-autofocus required>
+                        </md-input-container>
+                        <md-button type="submit" class="md-primary"
+                                   ng-class="{'md-raised md-hue-1': (inviteForm.$dirty && inviteForm.$valid) }"
+                                   aria-label="invite">{{'BTN_SHARED' | translate}}</md-button>
+                    </div>
+                </form>
+                <h4>{{'LABEL_COLLABORATORS' | translate }}</h4>
                 <div class="chip" ng-repeat="collaborator in collaborators">
                         <span ng-if="!collaborator.isDeleted"><b>({{collaborator.nickname}})</b></span>
                         <span ng-if="!collaborator.isDeleted">{{collaborator.email}}</span>
@@ -21,20 +33,7 @@
                         <md-button ng-if="collaborator.isDeleted" ng-click="alertDeleteCollaborator(collaborator)" class="md-warn">{{'LABEL_BTN_CANCEL' | translate }}</md-button>
                 </div>
         <div>
-            <br>
-            <md-divider></md-divider>
-            <br>
-        <form name="inviteForm" data-ng-submit="addCollaborator(email)">
-            <div layout="row" layout-fill layout-margin>
-            <md-input-container flex>
-                <label>{{'LABEL_EMAIL' | translate }}</label>
-                <input type="email" ng-model="email" md-autofocus required>
-            </md-input-container>
-            <md-button type="submit" class="md-primary"
-                       ng-class="{'md-raised md-hue-1': (inviteForm.$dirty && inviteForm.$valid) }"
-                       aria-label="invite">{{'BTN_SHARED' | translate}}</md-button>
-            </div>
-        </form>
+
         </div>
                 <md-dialog-actions layout="row">
                     <span flex></span>
@@ -44,6 +43,6 @@
                 </md-dialog-actions>
 
             </md-dialog-content>
-        </md-whiteframe>
+        </div>
     </md-dialog>
 </div>
