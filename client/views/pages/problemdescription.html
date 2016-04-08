@@ -1,4 +1,4 @@
-<md-dialog aria-label="Problem Edition" ng-cloak flex="80" data-ng-init="getProblemEdit()">
+<md-dialog aria-label="Problem Edition" ng-cloak flex="70" data-ng-init="getProblemEdit()">
     <form>
     <md-toolbar>
         <div class="md-toolbar-tools">
@@ -11,16 +11,9 @@
     </md-toolbar>
 
     <md-dialog-content>
-        <div class="md-dialog-content">
-                <md-content md-scroll-y layout="column" flex>
-                    <div class="md-whiteframe-z1">
-                        <div text-angular="text-angular" ng-blur="problemUpdate(problem.description)" ng-change="problemUpdate(problem.description)" name="htmlcontent" ng-model="problem.description"></div>
-                        <!--<div ta-bind="vm.problem.description" ng-model="vm.problem.description" ta-readonly='enable'></div>-->
-                        <!--<div ng-bind-html="vm.problem.description" ng-model-options="vm.problem.descriptionpure"></div>-->
-                        <!--<textarea ng-model="vm.problem.description" rows="2" ng-blur="saveDescription(vm.problem)"  ></textarea>-->
-                    </div>
+                <md-content layout="column" flex>
+                        <div text-angular="text-angular" ng-blur="problemUpdate(problem.description)" ng-change="problemUpdate(problem.description)" name="htmlcontent" ng-model="problem.description" style="min-height: 300px; height: auto; overflow: auto; font-family: inherit; font-size: 100%;"></div>
                 </md-content>
-        </div>
     </md-dialog-content>
             <md-dialog-actions layout="row">
                 <span flex></span>

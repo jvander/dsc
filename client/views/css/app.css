@@ -615,3 +615,12 @@ body{
     width: 264px; }
 .tabsdemoDynamicTabs .md-button.add-tab {
     transform: translateY(5px); }
+
+.ta-editor {
+    min-height: 300px;
+    max-height: 480px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+}

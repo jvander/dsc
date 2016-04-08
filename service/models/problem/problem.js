@@ -25,6 +25,15 @@ var StakeholderSchema = new Schema({
     values: [String]
 });
 
+
+var Onion3LayerSchema = new Schema({
+    layer: { type: String, trim: true },
+    title: { type: String, trim: true },
+    description: { type: String, trim: true },
+    x: { type: String, required: true, trim: true },
+    y: { type: String, required: true, trim: true }
+});
+
 var CultureAwareRequirementsFrameworkSchema = new  Schema({
     pms: {
         type: String,
@@ -47,13 +56,8 @@ var CultureAwareRequirementsFrameworkSchema = new  Schema({
 });
 
 var ChangeProjectSchema = new  Schema({
-    identification: {
-    },
-    changed: [ { action: {}, old_version: {}, new_version: {}
-    }]
-
-
-
+    identification: {},
+    changed: [ { action: {}, old_version: {}, new_version: {} }]
 });
 
 var ProblemSchema = new Schema({
@@ -112,7 +116,9 @@ var ProblemSchema = new Schema({
     },
     values: [String],
     carf: [CultureAwareRequirementsFrameworkSchema],
-    chat: [MessageSchema]
+    chat: [MessageSchema],
+    Onion3LayerSchema: [Onion3LayerSchema],
+
 
 });
 

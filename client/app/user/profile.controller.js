@@ -10,7 +10,7 @@
         .module('app')
         .controller('profileController',profileController);
 
-    function profileController($window,$state, $scope,signupService){
+    function profileController($window,$state, toastApp, $scope,signupService){
         var self = this;
         self.startProfile = startProfile;
         self.uploadInProgress = true;
