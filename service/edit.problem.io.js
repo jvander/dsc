@@ -258,13 +258,17 @@
             socket.room = data.idproblem;
             socket.join(data.idproblem);
             socket.username = data.nickname;
+            io.sockets.in(socket.room).emit('onNotifyON', {
+                nickname: data.nickname,
+                msg: 'LABEL_USER_ONLINE'
+            });
         });
 
 
-        socket.on('checkUsers', function(){
-           /* console.log(socket.room);
 
-            var clients = io.sockets.adapter.rooms[socket.room];
+        socket.on('checkUsers', function(){
+
+           /* var clients = io.sockets.adapter.rooms[socket.room];
             var numClients = (typeof clients !== 'undefined') ? Object.keys(clients).length : 0;
             var userList = [];
             for (var clientId in clients ) {
@@ -272,7 +276,7 @@
                 userList.push(clientSocket.username);
                 clientSocket.emit('new event', 'Updates');
             }
-            io.sockets.in(socket.room).emit('onCheckUsers', userList);*/
+            io.sockets.in(socket.room).emit('onCheckUsers', userList);*!/
         });
 
         socket.on('disconnectProblem', function(){
@@ -284,6 +288,20 @@
              console.log("Deixando o problema " + clientSocket.username);
              clientSocket.emit('new event', "Updates");
              }*/
+        });
+
+        socket.on('disconnectProblem', function(nickname){
+             io.sockets.in(socket.room).emit('onNotifyOFF', {
+                 nickname: nickname,
+                 msg: 'LABEL_LEFT_PROJECT'
+             });
+        });
+
+
+
+
+        socket.on('userON', function(nickname){
+            io.sockets.in(socket.room).emit('onUserON',nickname);
         });
 
         socket.on('atualizarProblema', function (data) {

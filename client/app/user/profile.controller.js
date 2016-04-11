@@ -10,7 +10,7 @@
         .module('app')
         .controller('profileController',profileController);
 
-    function profileController($window,$state, toastApp, $scope,signupService){
+    function profileController(Socket, $window,$state, toastApp, $scope,signupService){
         var self = this;
         self.startProfile = startProfile;
         self.uploadInProgress = true;
@@ -20,8 +20,10 @@
         self.systemReturn = systemReturn;
 
         function systemReturn(){
+            Socket.emit('disconnectProblem', $window.localStorage.getItem('nickname'));
             $state.go('startproblem');
         }
+
 
         self.myImage='';
         self.myCroppedImage='';

@@ -118,11 +118,6 @@
 
         function editProblem(problem) {
             $window.localStorage.setItem("problemid",problem._id);
-            var initsocketproblem = {
-                "idproblem":problem._id,
-                "nickname": self.nickname
-            };
-            Socket.emit('initProblem', initsocketproblem);
             $state.go('problem.stakeholders');
         }
 

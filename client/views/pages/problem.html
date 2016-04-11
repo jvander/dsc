@@ -132,14 +132,20 @@
 </div>
 
 
-
 <md-content>
     <div class="chatarea" ng-controller="chatDSC as vm" data-ng-init="vm.initHistoryChat()">
         <div class="chat">
-            <div class="chathead" id="chathead" ng-click="vm.openChat()">
-                <span><img src="{{ vm.photo }}" /></span>
-                <span flex layout-align="end end">{{vm.nickname}}</span>
+            <div ng-show="vm.showUser">
+                <ul ng-repeat="user in vm.usersOnLine">
+                    <li ng-if="user != vm.nickname" )>{{ user }}</li>
+                </ul>
             </div>
+            <div ng-mouseover="vm.showUsersOnLine()" ng-mouseleave="vm.showUsersOnLine()" layout="row" class="chathead" id="chathead" ng-click="vm.openChat()">
+                <div layout-align="start start"><img src="{{ vm.photo }}" /></div>
+                <div layout-align="center start">{{vm.nickname}}</div>
+             </div>
+            
+            
             <div id="togglearea" ng-show="vm.isOpenChat">
                 <div class="feed" style="height: 400px;"  scroll-glue>
                     <div ng-repeat="msg in vm.messages">

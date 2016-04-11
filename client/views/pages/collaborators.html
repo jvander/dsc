@@ -28,7 +28,7 @@
                         <span ng-if="!collaborator.isDeleted"><b>({{collaborator.nickname}})</b></span>
                         <span ng-if="!collaborator.isDeleted">{{collaborator.email}}</span>
                         <span ng-if="!collaborator.isDeleted"><a ng-click="alertDeleteCollaborator(collaborator)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaElEQVQ4T2NkwA4WMDAwxKNJgcQS0ZUzQgUcGBgY9uMwDJewIwMDwwGYAQYMDAwTSDSggIGB4QLMAJBeBSzOxmXmQgYGhgcgSWQDSPEG2PmjBoyGweBMB6CUuYGBgcGfQKYC5YMEmBoAfNQgEXHOeoIAAAAASUVORK5CYII="></a></span>
-                        <span ng-if="collaborator.isDeleted">Remover {{collaborator.nickname}}?</span>
+                        <span ng-if="collaborator.isDeleted">Remover {{collaborator.nickname}}?  </span>
                         <md-button md-no-ink class="md-primary" ng-if="collaborator.isDeleted" ng-click="removeCollaborator(collaborator)">{{'LABEL_BTN_CONFIRM' | translate }}</md-button>
                         <md-button ng-if="collaborator.isDeleted" ng-click="alertDeleteCollaborator(collaborator)" class="md-warn">{{'LABEL_BTN_CANCEL' | translate }}</md-button>
                 </div>

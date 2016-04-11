@@ -646,3 +646,9 @@ body{
     width: 50px;
     border-radius: 50%;
 }
+
+li {
+    background: url("../img/icon/user.png") 0 50% no-repeat;
+    list-style-type: none;
+    padding-left: 12px;
+}

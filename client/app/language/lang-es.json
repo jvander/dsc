@@ -49,7 +49,9 @@
     "LABEL_ARTIFACT_STAKEHOLDERS_NECESSARY": "#Sorry, but artifact atakeholder Identification is necessary.",
     "LABEL_INITIAL_DECRIPTION": "#Initial description",
     "LABEL_PROBLEM_TITLE": "#Title of problem",
-    "LABEL_BTN_CONFIRM": "#Confirm"
+    "LABEL_BTN_CONFIRM": "#Confirm",
+    "LABEL_USER_ONLINE": "#is online to contribute",
+    "LABEL_LEFT_PROJECT": "#left the project."
 
 
 }

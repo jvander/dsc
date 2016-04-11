@@ -20,7 +20,8 @@
     function toastApp ($mdToast) {
         var service = {
             message: '',
-            errorMessage: errorMessage
+            errorMessage: errorMessage,
+            errorMessageBottom: errorMessageBottom
         };
         return service;
 
@@ -44,6 +45,21 @@
                     highlightAction: true,
                     position: "top right",
                     hideDelay: 2000
+                }
+            );
+        }
+
+        function errorMessageBottom(errorMessage) {
+            this.message = errorMessage;
+            $mdToast.show(
+                {
+                    controller: 'toastController',
+                    controllerAs: 'vm',
+                    templateUrl: 'views/pages/dsctoast.html',
+                    action: "OK",
+                    highlightAction: true,
+                    position: "bottom left",
+                    hideDelay: 1000
                 }
             );
         }

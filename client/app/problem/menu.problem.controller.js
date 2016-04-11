@@ -45,9 +45,9 @@
             });
         }
 
-        function DialogEditProblemController(Socket,$timeout,$scope,$mdDialog) {
+        function DialogEditProblemController($timeout,$scope,$mdDialog) {
             var updateTrue = true;
-            $scope.problem = '';
+            $scope.problem;
             $scope.problemUpdate = problemUpdate;
             $scope.getProblemEdit = getProblemEdit;
             $scope.saveDescription = saveDescription;
@@ -78,6 +78,7 @@
             }
 
             function problemUpdate(description) {
+                console.log(description);
                 var problem = {
                     'update': updateTrue,
                     'description': description
@@ -223,7 +224,8 @@
              "nickname": self.nickname
         };
         Socket.emit('initProblem', initsocketproblem);
-        }
+
+    }
 
 
         self.selectedIndex = 0;
@@ -236,6 +238,7 @@
         });
 
         function systemReturn(){
+            Socket.emit('disconnectProblem', self.nickname);
             $state.go('startproblem');
         }
 
@@ -253,6 +256,7 @@
         }
 
         function doLogout() {
+            Socket.emit('disconnectProblem', self.nickname);
             Auth.logout();
             $state.go('init.login');
         }

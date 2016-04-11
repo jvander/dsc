@@ -10,14 +10,14 @@ angular
     .module('app')
     .controller('chatDSC',chatDSC);
 
-    function chatDSC($timeout, Socket, problemService, $window) {
+    function chatDSC($timeout, $filter, toastApp, Socket, problemService, $window) {
 
         var self = this;
         self.newmsg = "";
         self.messages = [];
         self.replay = false;
         self.nickname = "";
-        self.userList = [];
+        self.usersOnLine = [];
         self.initHistoryChat = initHistoryChat;
         self.showReplay = showReplay;
         self.sendMessage = sendMessage;
@@ -26,6 +26,14 @@ angular
         self.isOpenChat = false;
         self.keypressChat = keypressChat;
         self.contador = 0;
+        self.showUsersOnLine = showUsersOnLine;
+        self.showUser = false;
+
+        function showUsersOnLine(){
+            if(self.usersOnLine.length > 1){
+                self.showUser = !self.showUser;
+            }
+        };
 
         function openChat(){
             self.isOpenChat = !self.isOpenChat;
@@ -50,8 +58,53 @@ angular
                         }
                     }
                 });
-            Socket.emit('checkUsers');
         }
+
+        Socket.on('onUserON', function (nickname) {
+                if(nickname !== self.nickname){
+                    setUsersList(nickname);
+                }
+        });
+
+        function setUsersList(nickname){
+            for(var i=0; i < self.usersOnLine.length; i++){
+                if(self.usersOnLine[i] === nickname) return;
+            }
+            self.usersOnLine.push(nickname);
+            self.usersOnLine.sort();
+        }
+
+        Socket.on('onNotifyON', function (obj) {
+            if(self.nickname !== obj.nickname) {
+                toastApp.errorMessageBottom(obj.nickname + ", " + $filter('translate')(obj.msg));
+                setUsersList(obj.nickname);
+                Socket.emit('userON', self.nickname);
+                return;
+            }
+            self.usersOnLine = [];
+            self.usersOnLine.push(self.nickname);
+        });
+
+        Socket.on('onNotifyOFF', function (obj) {
+            if(obj.nickname !== self.nickname) {
+                toastApp.errorMessageBottom(obj.nickname + ", " + $filter('translate')(obj.msg));
+            }
+            for (var i = 0; i < self.usersOnLine.length; i++) {
+                if (obj.nickname === self.usersOnLine[i]) {
+                    self.usersOnLine.splice(i, 1);
+                }
+            }
+        });
+
+
+        Socket.on('onBroadcastChat', function (obj) {
+            var tmp = new Date(obj[obj.length -1].time);
+            self.messages.push({
+                nickname: obj[obj.length -1].nickname,
+                msg: obj[obj.length -1].msg,
+                time: tmp.getDate() + "/" + (tmp.getMonth() + 1) + "/" + tmp.getFullYear() + " [" + tmp.getHours() + ":" + tmp.getMinutes() + "] "
+            });
+        });
 
         function showReplay(){
             if(self.replay){
@@ -70,9 +123,6 @@ angular
             });
         });
 
-        Socket.on('onCheckUsers', function (userList) {
-            self.userList = userList;
-        });
 
         function sendMessage(chatmsg){
             if(chatmsg === undefined || chatmsg.length < 2 ){
@@ -102,9 +152,6 @@ angular
    }
 
 })();
-
-
-
 
 
 

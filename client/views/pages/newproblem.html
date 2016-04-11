@@ -22,25 +22,26 @@
                 <label>{{ 'LABEL_INITIAL_DECRIPTION' | translate }}</label>
                 <textarea ng-model="problem.description" rows="5" required></textarea>
             </md-input-container>
-
                     <h3>{{'LABEL_CHOICE_ARTIFACTS' | translate }}</h3>
-                    <div layout="row" layout-wrap flex>
-                        <div flex-xs flex="50">
-                            <md-checkbox aria-label="Select All"
-                                         ng-checked="isChecked()"
-                                         md-indeterminate="isIndeterminate()"
-                                         ng-click="toggleAll()">
-                                <span ng-if="isChecked()">Un-</span>{{'LABEL_SELECT_ALL' | translate }}
-                            </md-checkbox>
-                        </div>
-                        <br>
-                        <div flex="100" ng-repeat="item in items">
+                <div flex-xs flex="50">
+                    <md-checkbox aria-label="Select All"
+                                 ng-checked="isChecked()"
+                                 md-indeterminate="isIndeterminate()"
+                                 ng-click="toggleAll()">
+                        <span ng-if="isChecked()">Un-</span>{{'LABEL_SELECT_ALL' | translate }}
+                    </md-checkbox>
+                </div>
+                <div layout="row" layout-wrap flex>
+                    <div flex="5"></div>
+                    <div layout="column">
+                        <div ng-repeat="item in items">
                             <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
                                 {{ item | translate}}
                             </md-checkbox>
                         </div>
                     </div>
-
+                </div>
+            <md-divider></md-divider>
             <md-dialog-actions layout="row">
                 <md-button ng-click="hide()" class="md-raised md-primary" md-autofocus>
                     {{'LABEL_BTN_CANCEL' | translate }}
