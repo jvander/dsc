@@ -1,45 +1,44 @@
-<div>
+<div ng-init="vm.initOnion3Layer()">
 
     <svg id="svg" height="800" width="1200">
-        <circle id="legendInformal" cx="980" cy="10" r="10" style="fill: #E0F2F1;" ng-mouseover="vm.acende('Informal');" ng-mouseleave="vm.apaga('Informal');"/>
-        <text id="nameInformal" style="font-size: 14px" x="995" y="15" ng-mouseover="vm.acende('Informal');" ng-mouseleave="vm.apaga('Informal');">Informal</text>
+        <circle id="legendInformal" cx="980" cy="10" r="10" style="fill: #E0F2F1;" ng-mouseover="vm.acende('Informal');" ng-mouseleave="vm.apaga('Informal','#E0F2F1');"/>
+        <text id="nameInformal" style="font-size: 14px" x="995" y="15" ng-mouseover="vm.acende('Informal');" ng-mouseleave="vm.apaga('Informal','#E0F2F1');">Informal</text>
         <text x="1000" y="28" style="font-size: 10px">Real world</text>
 
-        <circle id="legendFormal" cx="980" cy="90" r="10" style="fill: #80CBC4;" ng-mouseover="vm.acende('Formal');" ng-mouseleave="vm.apaga('Formal');"/>
-        <text id="nameFormal" x="995" y="95" ng-mouseover="vm.acende('Formal');" ng-mouseleave="vm.apaga('Formal');">Formal</text>
+        <circle id="legendFormal" cx="980" cy="90" r="10" style="fill: #80CBC4;" ng-mouseover="vm.acende('Formal');" ng-mouseleave="vm.apaga('Formal','#80CBC4');"/>
+        <text id="nameFormal" x="995" y="95" ng-mouseover="vm.acende('Formal');" ng-mouseleave="vm.apaga('Formal','#80CBC4');">Formal</text>
         <text x="1000" y="108" style="font-size: 10px">Norms, rules, semantics</text>
 
-        <circle id="legendTechnical" cx="980" cy="170" r="10" style="fill: #26A69A;" ng-mouseover="vm.acende('Technical');" ng-mouseleave="vm.apaga('Technical');"/>
-        <text id="nameTechnical" x="995" y="175"  ng-mouseover="vm.acende('Technical');" ng-mouseleave="vm.apaga('Technical');">Technical</text>
+        <circle id="legendTechnical" cx="980" cy="170" r="10" style="fill: #26A69A;" ng-mouseover="vm.acende('Technical');" ng-mouseleave="vm.apaga('Technical','#26A69A');"/>
+        <text id="nameTechnical" x="995" y="175"  ng-mouseover="vm.acende('Technical');" ng-mouseleave="vm.apaga('Technical','#26A69A');">Technical</text>
         <text x="1000" y="188" style="font-size: 10px">Tools, system</text>
 
 
-        <ellipse id="Informal" cx="500" cy="320" rx="480" ry="320" fill="#E0F2F1"  ng-mouseover="vm.acende('Informal');" ng-mouseleave="vm.apaga('Informal','#E0F2F1');" ng-dblclick="vm.addPostIt($event, 'Technical');"/>
-        <ellipse id="Formal" cx="500" cy="420" rx="360" ry="220" fill="#80CBC4"  ng-mouseover="vm.acende('Formal');" ng-mouseleave="vm.apaga('Formal','#80CBC4');" ng-dblclick="vm.addPostIt($event, 'Technical');"/>
+        <ellipse id="Informal" cx="500" cy="320" rx="480" ry="320" fill="#E0F2F1"  ng-mouseover="vm.acende('Informal');" ng-mouseleave="vm.apaga('Informal','#E0F2F1');" ng-dblclick="vm.addPostIt($event, 'Informal');"/>
+        <ellipse id="Formal" cx="500" cy="420" rx="360" ry="220" fill="#80CBC4"  ng-mouseover="vm.acende('Formal');" ng-mouseleave="vm.apaga('Formal','#80CBC4');" ng-dblclick="vm.addPostIt($event, 'Formal');"/>
         <ellipse id="Technical" cx="500" cy="520" rx="220" ry="120" fill="#26A69A"  ng-mouseover="vm.acende('Technical');" ng-mouseleave="vm.apaga('Technical','#26A69A');" ng-dblclick="vm.addPostIt($event, 'Technical');"/>
     </svg>
 
-<!--
-    <div ng-repeat="stakeholder in vm.stakeholderList">
-        <div draggable  style="position: absolute; top: {{stakeholder.y}}; left:{{stakeholder.x}}; z-index:{{stakeholder.zindex}}" class="sticky-note" id="stakeholder{{stakeholder._id}}">
-            <div class="closedsc"><a ng-click="vm.delPostIt($event,$index, stakeholder)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACqklEQVQ4T4WTXUiTURjHn/ec933Xq5OZ5ucc5kydTtYqBmWRQVhBmN6JRdlFpKBd6CLLoCaVBmKR5EVYI7xQL1IQkUiEAjXBCZof86MiP3jT5rKltY9370ds4LCa+lyci/M/53ee5/+ch3iiVqccOpdrjk9UJQy+ML+8MGGthm3iEUBEdEpyTWxq2qkv/QMtRJ+xfPrgmZw0+ud3YPv7vH3tXeaLi0slwRj1FHU4Tad7HqPNSF2aX5ifHRq8RViqKr9mHtDG7VpbAVj4DJx1FHrfjU5ZVpxZJgCHD2QCQEnhild6vT7fgZBzYmy8vNRub/JphG95plKVG3T7bqfL+UjMzoHT5oChZbd9bM2bTpGkRkOTnUqlMmLS6bZMsewxEwC3kaEfsBHNclmDLgyX7BEFivOIMOMSfjECMHKSxMOi1FzCeYv+Le0vgE+sB1DFM2SXRhT3Y14ClyjBACbrKnj+RjBf/gOYAEL2kqQlU+AzQAKgMAEjGA1f5gTDjoB6BlRqDo0kC2LkGkGAFaNuDQ2nE0MQ2b4OTys83mtblvAgFGK0LmI6SZTCBUzAe4zayjih8D6N8/KiqXY5g1HTR6++BrixzRB/Cb42pWI0nyGKCRRFwAcCzZ33CEkbB+/QuKBYzbSNrvJzZ23uwH6gjY0YtWRJYiEjw7CMCP4tj7XVHs/s5pcaGPphbixd2bHkuWp0e/1/wA+4CxCdHbWbVXl+kwIpQrcTao1uviqYYR3hshkFIqJOrrojAoDHirAreTknmsIWpmH1Gyv12qTEUpdrMRjgHkDyUYVs0uriC8o4odOfQW2o7EzRTePrOMEBsz09Qtf4p9jr62Dfap4aabJOCfAjn+NrAh60ZmcNHjluMLwxt7YUs7ZL2wyjX/KZbgIQA4CdLmyn/wENmQFM5/MDlQAAAABJRU5ErkJggg==" /> &lt;!&ndash;<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaElEQVQ4T2NkwA4WMDAwxKNJgcQS0ZUzQgUcGBgY9uMwDJewIwMDwwGYAQYMDAwTSDSggIGB4QLMAJBeBSzOxmXmQgYGhgcgSWQDSPEG2PmjBoyGweBMB6CUuYGBgcGfQKYC5YMEmBoAfNQgEXHOeoIAAAAASUVORK5CYII="/>&ndash;&gt;</a>
+    <div ng-repeat="postit in vm.onion3LayerList">
+        <div draggable style="position: absolute; top: {{postit.y}}; left:{{postit.x}}; z-index:{{postit.zindex}}" class="sticky-note" id="postit{{postit._id}}">
+            <div class="closedsc"><a ng-click="vm.delPostIt($event,$index, postit)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACqklEQVQ4T4WTXUiTURjHn/ec933Xq5OZ5ucc5kydTtYqBmWRQVhBmN6JRdlFpKBd6CLLoCaVBmKR5EVYI7xQL1IQkUiEAjXBCZof86MiP3jT5rKltY9370ds4LCa+lyci/M/53ee5/+ch3iiVqccOpdrjk9UJQy+ML+8MGGthm3iEUBEdEpyTWxq2qkv/QMtRJ+xfPrgmZw0+ud3YPv7vH3tXeaLi0slwRj1FHU4Tad7HqPNSF2aX5ifHRq8RViqKr9mHtDG7VpbAVj4DJx1FHrfjU5ZVpxZJgCHD2QCQEnhild6vT7fgZBzYmy8vNRub/JphG95plKVG3T7bqfL+UjMzoHT5oChZbd9bM2bTpGkRkOTnUqlMmLS6bZMsewxEwC3kaEfsBHNclmDLgyX7BEFivOIMOMSfjECMHKSxMOi1FzCeYv+Le0vgE+sB1DFM2SXRhT3Y14ClyjBACbrKnj+RjBf/gOYAEL2kqQlU+AzQAKgMAEjGA1f5gTDjoB6BlRqDo0kC2LkGkGAFaNuDQ2nE0MQ2b4OTys83mtblvAgFGK0LmI6SZTCBUzAe4zayjih8D6N8/KiqXY5g1HTR6++BrixzRB/Cb42pWI0nyGKCRRFwAcCzZ33CEkbB+/QuKBYzbSNrvJzZ23uwH6gjY0YtWRJYiEjw7CMCP4tj7XVHs/s5pcaGPphbixd2bHkuWp0e/1/wA+4CxCdHbWbVXl+kwIpQrcTao1uviqYYR3hshkFIqJOrrojAoDHirAreTknmsIWpmH1Gyv12qTEUpdrMRjgHkDyUYVs0uriC8o4odOfQW2o7EzRTePrOMEBsz09Qtf4p9jr62Dfap4aabJOCfAjn+NrAh60ZmcNHjluMLwxt7YUs7ZL2wyjX/KZbgIQA4CdLmyn/wENmQFM5/MDlQAAAABJRU5ErkJggg==" /> <!--<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaElEQVQ4T2NkwA4WMDAwxKNJgcQS0ZUzQgUcGBgY9uMwDJewIwMDwwGYAQYMDAwTSDSggIGB4QLMAJBeBSzOxmXmQgYGhgcgSWQDSPEG2PmjBoyGweBMB6CUuYGBgcGfQKYC5YMEmBoAfNQgEXHOeoIAAAAASUVORK5CYII="/>--></a>
                 <md-tooltip>
                     Remove {{postit.title}}
                 </md-tooltip>
             </div>
-            <div id="moveStakeholder" ng-hide="stakeholder.openEdit">
-                <div class="btnedit"><span ng-click="vm.setOpenEdit(stakeholder._id)">{{stakeholder.name}}</span></div>
+            <div id="moveStakeholder" ng-hide="postit.openEdit">
+                <div class="btnedit"><span ng-click="vm.setOpenEdit(postit._id)">{{postit.title}}</span></div>
             </div>
-            <div ng-show=stakeholder.openEdit>
-                <span>{{stakeholder.onionlayer}}</span>
-                <form name="onionForm" data-ng-submit="vm.saveStakeholder(stakeholder)">
+            <div ng-show=postit.openEdit>
+                <span>{{postit.onionlayer}}</span>
+                <form name="onionForm" data-ng-submit="vm.saveOnion3Layer(postit)">
                     <md-input-container>
-                        <label> Stakeholder </label>
-                        <input class="title" ng-model="stakeholder.name" required>
+                        <label>{{'LABEL_TITLE' | translate}}</label>
+                        <input class="title" ng-model="postit.title" required>
                     </md-input-container>
                     <md-input-container>
-                        <label>Description</label>
-                        <textarea class="description" ng-model="stakeholder.description" required></textarea>
+                        <label>{{'LABEL_DESCRIPTION' | translate}}</label>
+                        <textarea class="description" ng-model="postit.description" required></textarea>
                     </md-input-container>
                     <md-button type="submit" class="md-primary"
                                ng-class="{'md-raised md-hue-1': (onionForm.$dirty && onionForm.$valid) }"
@@ -50,5 +49,5 @@
     </div>
     <div layout="row" layout-sm="column" layout-align="space-around" ng-show="vm.inProcessing">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-    </div>-->
+    </div>
 </div>

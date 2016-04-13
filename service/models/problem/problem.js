@@ -26,7 +26,7 @@ var StakeholderSchema = new Schema({
 });
 
 
-var Onion3LayerSchema = new Schema({
+var PostItSchema = new Schema({
     layer: { type: String, trim: true },
     title: { type: String, trim: true },
     description: { type: String, trim: true },
@@ -117,8 +117,7 @@ var ProblemSchema = new Schema({
     values: [String],
     carf: [CultureAwareRequirementsFrameworkSchema],
     chat: [MessageSchema],
-    Onion3LayerSchema: [Onion3LayerSchema],
-
+    postits: [PostItSchema],
 
 });
 

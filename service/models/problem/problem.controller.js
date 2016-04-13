@@ -41,7 +41,8 @@ module.exports = function () {
         .get(findCarf)
     router.route('/historychat/')
         .get(getHistoryChat)
-
+   router.route('/getonion3layer/')
+        .get(findOnion3layer)
     router.route('/ajuste/')
         .get(getAllProblemsAjuste)
 
@@ -314,6 +315,22 @@ module.exports = function () {
         return deferred.promise;
     }
 
+    function searchOnion3Layer(id){
+        var deferred = Q.defer();
+        Problem.findOne({
+            _id: id
+        }).select('postits').exec(function (err, problem){
+            if(err) {
+                return deferred.reject(err)
+            };
+            if(!problem){
+                return deferred.reject(new Error("Problem nao encontrado"));
+            }
+            deferred.resolve(problem)
+        });
+        return deferred.promise;
+    }
+
     function findOnion(req, res){
         searchOnion(req.query.idproblem)
             .then(function (problem) {
@@ -328,6 +345,23 @@ module.exports = function () {
                         message: erro.message
                     })
             });
+    }
+
+    function findOnion3layer(req, res){
+        searchOnion3Layer(req.query.idproblem)
+            .then(function (problem) {
+                console.log(problem.postits)
+                res.json({
+                        success:true,
+                        postits: problem.postits
+                    }
+                );
+            }).catch(function (erro) {
+            res.status(400)
+                .json({
+                    message: erro.message
+                })
+        });
     }
 
     function findEvaluationFraming(req, res){

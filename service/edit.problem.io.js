@@ -99,6 +99,18 @@
             });
     }
 
+    function removePostIt(idproblem,postit){
+        searchProblem(idproblem)
+            .then(function(problem){
+                problem.postits.pull(postit);
+                problem.save(function(err){
+                    console.log(err);
+                });
+            }).catch(function(err){
+            console.log(err);
+        });
+    }
+
     function savePhysical(idproblem, text){
         searchProblem(idproblem)
             .then(function(problem){
@@ -194,6 +206,24 @@
             });
     }
 
+
+    function creatPostIt(socket,io,postit){
+        searchProblem(socket.room)
+            .then(function(problem) {
+                problem.postits.push(postit);
+                console.log('Create postit');
+                problem.save(function(err, objUpdate) {
+                    if( err  ){
+                        console.log(err);
+                    }else{
+                        io.sockets.in(socket.room).emit('onBroadcastOnion3LayerAdd', objUpdate.postits[objUpdate.postits.length -1]);
+                    }
+                });
+            }).catch(function (err) {
+            console.log(err)
+        });
+    }
+
     function updateStakeholder(socket,io,stakeholder){
         var idproblem = socket.room;
         searchProblem(idproblem)
@@ -219,6 +249,34 @@
             }).catch(function (err) {
                 console.log(err)
             });
+    }
+
+
+    function updatePostIt(socket,io,postit){
+        var idproblem = socket.room;
+        searchProblem(idproblem)
+            .then(function(problem) {
+                var id = postit._id;
+                console.log(id);
+                Problem.findOneAndUpdate({ _id : idproblem, 'postits._id' : id },
+                    { $set: {
+                        'postits.$.title' : postit.title,
+                        'postits.$.description' : postit.description,
+                        'postits.$.layer' : postit.layer,
+                        'postits.$.x' : postit.x,
+                        'postits.$.y' : postit.y
+                    }},function(err,objUpdate){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            console.log('AFTER SAVE ---------------------');
+                            console.log(objUpdate);
+                            io.sockets.in(socket.room).emit('onBroadcastOnion3LayerSave',postit);
+                        }
+                    });
+            }).catch(function (err) {
+            console.log(err)
+        });
     }
 
     function saveorUpdate(socket,io,stakeholder){
@@ -340,6 +398,35 @@
         socket.on('broadcastOnionPosition',function(data){
             io.sockets.in(socket.room).emit('onBroadcastOnionPosition', data);
         });
+// Onion3Layer
+
+
+        socket.on('broadcastOnion3LayerMove',function(postit){
+            updatePostIt(socket,io,postit);
+        });
+
+        socket.on('broadcastOnion3LayerEdit',function(id){
+            io.sockets.in(socket.room).emit('onBroadcastOnion3LayerEdit',id);
+        });
+
+        socket.on('broadcastOnion3LayerAdd',function(data){
+            creatPostIt(socket,io,data);
+        });
+
+        socket.on('broadcastOnion3LayerRemove',function(obj){
+            removePostIt(socket.room,obj.postit);
+            io.sockets.in(socket.room).emit('onBroadcastOnion3LayerRemove', obj.index);
+        });
+
+        socket.on('broadcastOnion3LayerSave',function(postit){
+            updatePostIt(socket,io,postit);
+
+        });
+
+        socket.on('broadcastOnion3LayerPosition',function(data){
+            io.sockets.in(socket.room).emit('onBroadcastOnion3LayerPosition', data);
+        });
+
 
         //----------------------- Evaluation Framing ----------------------------
 

@@ -143,12 +143,13 @@
                 'LABEL_ARTIFACT_EVALUATIONFRAMEWORK',
                 'LABEL_ARTIFACT_SEMIOTICFRAMEWORK',
                 'LABEL_ARTIFACT_VIF',
-                'LABEL_ARTIFACT_CARF'
-                /*'LABEL_ARTIFACT_ONION'*/];
+                'LABEL_ARTIFACT_CARF',
+                'LABEL_ARTIFACT_ONION'];
 
             $scope.selected = [];
 
             $scope.toggle = function (item, list) {
+
                 var idx = list.indexOf(item);
                 if (idx > -1) {
                     if(item !== 'LABEL_ARTIFACT_STAKEHOLDERS'){
@@ -160,16 +161,16 @@
                             toastApp.errorMessage($filter('translate')('LABEL_ARTIFACT_STAKEHOLDERS_NECESSARY'));
                         }
                     }
-
-
                 }
                 else {
-                    list.push(item);
                     if(item != 'LABEL_ARTIFACT_SEMIOTICFRAMEWORK'){
                         idx = list.indexOf('LABEL_ARTIFACT_STAKEHOLDERS');
                         if (idx === -1) {
                             list.push('LABEL_ARTIFACT_STAKEHOLDERS');
+                            list.push(item);
                         }
+                    }else{
+                        list.push(item);
                     }
                 }
             };

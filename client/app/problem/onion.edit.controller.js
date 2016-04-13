@@ -18,7 +18,7 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
     self.initOnion3Layer = initOnion3Layer;
     self.move = false;
     self.onion3LayerList = [];
-    self.inProcessing = true;
+    self.inProcessing = false;
     self.saveOnion3Layer = saveOnion3Layer;
     self.setOpenEdit = setOpenEdit;
     self.delPostIt = delPostIt;
@@ -28,27 +28,30 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
     self.localcode = '';
 
     function initOnion3Layer(){
+        self.inProcessing = true;
         self.idproblem = $window.localStorage.getItem('problemid');
         self.localcode =  $window.localStorage.getItem('localcode');
-
-       /* problemService.getonion(self.idproblem)
+        problemService.getonion3layer(self.idproblem)
             .success(function(data) {
                 if(data.success) {
-                    self.onionList = data.onion;
+                    angular.forEach(data.postits, function (postit) {
+                        postit.openEdit = false;
+                        self.onion3LayerList.push(postit);
+                    });
                 }else{
                     toastApp.errorMessage(data.message);
                 }
-            });*/
+            });
 
         self.inProcessing = false;
     }
 
     Socket.on('onBroadcastOnion3LayerSave', function (data) {
             angular.forEach(self.onion3LayerList, function (postit) {
-            if (postit._id == data._id){
+            if (postit._id == data._id) {
                 postit.title = data.title;
                 postit.description = data.description;
-                postit.openEdit = data.openEdit;
+                postit.openEdit = false;
                 postit.x = data.x;
                 postit.y = data.y;
                 postit.zindex = 9999;
@@ -76,24 +79,25 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
     }
 
     Socket.on('onBroadcastOnion3LayerRemove', function (id) {
-        var postit = document.getElementById("postit" +self.onion3LayerList[id]._id);
-        onion3Layer.style.display = 'none';
+        var postit = document.getElementById("postit" + self.onion3LayerList[id]._id);
+        postit.style.display = 'none';
         self.onion3LayerList.splice(id,1);
     });
 
     function removePostIt(index,postit) {
-        var obj = {
-            index: index,
-            postit: postit
-        };
-        Socket.emit('broadcastOnion3LayerRemove', obj);
+        Socket.emit('broadcastOnion3LayerRemove',
+            {
+                index: index,
+                postit: postit
+            }
+        );
     }
 
     function delPostIt(ev,index,postit) {
         var confirm = $mdDialog.confirm()
             .parent(angular.element(document.body))
             .title('Detete Postit?')
-            .content('Title: ' + onion.title)
+            .content('Title: ' + postit.title)
             .ariaLabel('Remove postit')
             .ok('Yes!')
             .cancel('Cancel')
@@ -111,37 +115,32 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
 
     });
 
-    Socket.on('onBroadcastOnion3LayerAdd', function (retorno) {
-        self.onion3LayerList.push(retorno);
+    Socket.on('onBroadcastOnion3LayerAdd', function (postit) {
+        postit.openEdit = true;
+        self.onion3LayerList.push(postit);
     });
 
     function addPostIt(e,camada) {
-        var newStakeholder =
-        {
-            "onionlayer": camada,
-            "title": "",
-            "description": "",
-            "openEdit": true,
-            "x": e.pageX + 'px',
-            "y": (e.pageY) + 'px',
-            "zindex": 9999
-        };
-
-       Socket.emit('broadcastOnion3LayerAdd', newStakeholder);
+        Socket.emit('broadcastOnion3LayerAdd', {
+            layer: camada,
+            title: '',
+            description: '',
+            x: e.pageX + 'px',
+            y: e.pageY + 'px',
+            zindex: 9999
+        });
     }
 
     function acende(id) {
-        document.getElementById("name"+id).setAttribute('style', 'text-decoration: underline; fill: #8FBC8F;');
-        document.getElementById(id).setAttribute('style', 'fill: #8FBC8F;');
-        document.getElementById("legend"+id).setAttribute("opacity", "0.7");
-        document.getElementById(id).setAttribute("opacity", "0.7");
+        document.getElementById("name"+id).setAttribute('style', 'text-decoration: underline;');
+        document.getElementById(id).setAttribute('style', 'fill:#D1C4E9;');
+        document.getElementById("legend"+id).setAttribute('style', 'fill:#D1C4E9;');
     }
 
     function apaga(id,color) {
         document.getElementById("name"+id).setAttribute('style', 'text-decoration: none;');
         document.getElementById(id).setAttribute('style', 'fill: '+color+';');
-        document.getElementById("legend"+id).setAttribute("opacity", "1.0");
-        document.getElementById(id).setAttribute("opacity", "1.0");
+        document.getElementById("legend"+id).setAttribute('style', 'fill: '+color+';');
     }
 }
 

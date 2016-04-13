@@ -51,5 +51,7 @@
     "LABEL_PROBLEM_TITLE": "Título para o problema",
     "LABEL_BTN_CONFIRM": "Confirmar",
     "LABEL_USER_ONLINE": "está online para contribuir com o projeto.",
-    "LABEL_LEFT_PROJECT": "saiu do projeto."
+    "LABEL_LEFT_PROJECT": "saiu do projeto.",
+    "LABEL_TITLE": "Título",
+    "LABEL_DESCRIPTION": "Descrição"
 }

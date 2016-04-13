@@ -116,19 +116,17 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     });
 
     function addPostIt(e,camada) {
-
-        var newStakeholder =
-        {
-            "onionlayer": camada,
-            "name": "",
-            "description": "",
-            "openEdit": true,
-            "x": e.pageX + 'px',
-            "y": (e.pageY) + 'px',
-            "zindex": 9999
-        };
-
-       Socket.emit('broadcastOnionAdd', newStakeholder);
+       Socket.emit('broadcastOnionAdd',
+           {
+               "onionlayer": camada,
+               "name": "",
+               "description": "",
+               "openEdit": true,
+               "x": e.pageX + 'px',
+               "y": e.pageY + 'px',
+               "zindex": 9999
+           }
+       );
     }
 
     function acende(id) {
