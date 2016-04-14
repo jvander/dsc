@@ -257,7 +257,6 @@
         searchProblem(idproblem)
             .then(function(problem) {
                 var id = postit._id;
-                console.log(id);
                 Problem.findOneAndUpdate({ _id : idproblem, 'postits._id' : id },
                     { $set: {
                         'postits.$.title' : postit.title,
@@ -268,9 +267,6 @@
                     }},function(err,objUpdate){
                         if(err){
                             console.log(err);
-                        }else{
-                            console.log('AFTER SAVE ---------------------');
-                            console.log(objUpdate);
                             io.sockets.in(socket.room).emit('onBroadcastOnion3LayerSave',postit);
                         }
                     });
