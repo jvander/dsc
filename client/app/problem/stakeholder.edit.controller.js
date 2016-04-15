@@ -131,14 +131,14 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
 
     function acende(id) {
         document.getElementById("name"+id).setAttribute('style', 'text-decoration: underline;');
-        document.getElementById("legend"+id).setAttribute("opacity", "0.7");
-        document.getElementById(id).setAttribute("opacity", "0.7");
+        document.getElementById(id).setAttribute('style', 'fill:#D1C4E9;');
+        document.getElementById("legend"+id).setAttribute('style', 'fill:#D1C4E9;');
     }
 
-    function apaga(id) {
+    function apaga(id,color) {
         document.getElementById("name"+id).setAttribute('style', 'text-decoration: none;');
-        document.getElementById("legend"+id).setAttribute("opacity", "1.0");
-        document.getElementById(id).setAttribute("opacity", "1.0");
+        document.getElementById(id).setAttribute('style', 'fill: '+color+';');
+        document.getElementById("legend"+id).setAttribute('style', 'fill: '+color+';');
     }
 }
 
