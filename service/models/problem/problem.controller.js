@@ -350,7 +350,6 @@ module.exports = function () {
     function findOnion3layer(req, res){
         searchOnion3Layer(req.query.idproblem)
             .then(function (problem) {
-                console.log(problem.postits)
                 res.json({
                         success:true,
                         postits: problem.postits

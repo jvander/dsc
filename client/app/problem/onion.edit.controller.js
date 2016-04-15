@@ -52,9 +52,10 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
                 postit.title = data.title;
                 postit.description = data.description;
                 postit.openEdit = false;
+                postit.layer = data.layer;
                 postit.x = data.x;
                 postit.y = data.y;
-                postit.zindex = 9999;
+                postit.zindex = 1;
             }
         });
 
@@ -115,20 +116,30 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
 
     });
 
-    Socket.on('onBroadcastOnion3LayerAdd', function (postit) {
-        postit.openEdit = true;
-        self.onion3LayerList.push(postit);
+    Socket.on('onBroadcastOnion3LayerAdd', function (data) {
+        if(self.localcode !== data.localcode) {
+            data.postit.openEdit = false;
+            data.postit.title = 'new Postit';
+        }else{
+            data.postit.openEdit = true;
+        }
+        self.onion3LayerList.push(data.postit);
+
     });
 
     function addPostIt(e,camada) {
         Socket.emit('broadcastOnion3LayerAdd', {
-            layer: camada,
-            title: '',
-            description: '',
-            x: e.pageX + 'px',
-            y: e.pageY + 'px',
-            zindex: 9999
-        });
+            postit: {
+                layer: camada,
+                title: '',
+                description: '',
+                x: e.pageX + 'px',
+                y: e.pageY + 'px',
+                zindex: 9999
+            },
+            localcode: self.localcode
+        }
+    );
     }
 
     function acende(id) {

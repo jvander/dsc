@@ -207,16 +207,15 @@
     }
 
 
-    function creatPostIt(socket,io,postit){
+    function creatPostIt(socket,io,data){
         searchProblem(socket.room)
             .then(function(problem) {
-                problem.postits.push(postit);
-                console.log('Create postit');
+                problem.postits.push(data.postit);
                 problem.save(function(err, objUpdate) {
                     if( err  ){
                         console.log(err);
                     }else{
-                        io.sockets.in(socket.room).emit('onBroadcastOnion3LayerAdd', objUpdate.postits[objUpdate.postits.length -1]);
+                        io.sockets.in(socket.room).emit('onBroadcastOnion3LayerAdd', data);
                     }
                 });
             }).catch(function (err) {
@@ -267,6 +266,7 @@
                     }},function(err,objUpdate){
                         if(err){
                             console.log(err);
+                        }else{
                             io.sockets.in(socket.room).emit('onBroadcastOnion3LayerSave',postit);
                         }
                     });
