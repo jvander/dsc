@@ -8,7 +8,7 @@
     angular
     .module('app')
     .controller('helpController',helpController)
-    .directive('buttonHelp',buttonHelp);
+    .directive('buttonhelp',buttonhelp);
 
 
 function helpController($mdDialog) {
@@ -55,7 +55,7 @@ function helpController($mdDialog) {
 
 }
 
-function buttonHelp(){
+function buttonhelp(){
     return {
         templateUrl : "app/feedback/helpbutton.html",
         restrict: "E"

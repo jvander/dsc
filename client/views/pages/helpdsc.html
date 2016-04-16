@@ -1,0 +1,43 @@
+<div flex="70">
+    <form name="helpDSCForm" data-ng-submit="sendEmailDSC(email)">
+        <md-dialog aria-label="Help DSC" ng-cloak>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>{{'LABEL_EMAIL_DSC' | translate }}</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()">
+                        <md-icon md-svg-src="views/img/icon/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-whiteframe class="md-whiteframe-4dp" layout-fill layout-align="center center">
+                <md-dialog-content>
+                        <div class="md-dialog-content" layout="column">
+                                <md-input-container layout-fill>
+                                    <label>{{ 'LABEL_SUBJECT' | translate }}</label>
+                                    <input type="text" ng-model="email.subject" required md-autofocus>
+                                </md-input-container>
+                                <md-input-container layout-fill>
+                                    <label>{{ 'LABEL_MESSAGE' | translate }}</label>
+                                    <textarea ng-model="email.message" required style="min-height: 300px; max-height:300px; overflow: auto; font-family: inherit; font-size: 100%;"></textarea>
+                                </md-input-container>
+                            </div>
+                </md-dialog-content>
+                <div layout="column">
+                                <md-dialog-actions layout="row">
+                                    <md-button ng-click="hide()" class="md-raised md-primary" md-autofocus>
+                                        {{'LABEL_BTN_CANCEL' | translate }}
+                                    </md-button>
+                                    <span flex></span>
+
+                                    <md-button type="submit" class="md-primary"
+                                               ng-class="{'md-raised md-hue-1': (helpDSCForm.$dirty && helpDSCForm.$valid) }"
+                                               aria-label="Send message">{{'BTN_SEND' | translate }}
+                                    </md-button>
+                                </md-dialog-actions>
+                        </div>
+
+            </md-whiteframe>
+        </md-dialog>
+    </form>
+</div>
