@@ -131,7 +131,6 @@
     <div class="md-padding" class="" ui-view="dsc-artifact"></div>
 </div>
 
-
 <md-content>
     <div class="chatarea" ng-controller="chatDSC as vm" data-ng-init="vm.initHistoryChat()">
         <div class="chat">
@@ -144,8 +143,8 @@
                 <div layout-align="start start"><img src="{{ vm.photo }}" /></div>
                 <div layout-align="center start">{{vm.nickname}}</div>
              </div>
-            
-            
+
+
             <div id="togglearea" ng-show="vm.isOpenChat">
                 <div class="feed" style="height: 400px;"  scroll-glue>
                     <div ng-repeat="msg in vm.messages">
@@ -167,7 +166,11 @@
                     <md-button class="md-primary" ng-click="vm.sendMessage(vm.newmsg)">Send</md-button>
                 </div>
             </div>
-
         </div><!-- chatbox -->
     </div><!-- chat container -->
+
+
+
 </md-content>
+
+<button-help></button-help>

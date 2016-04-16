@@ -53,5 +53,9 @@
     "LABEL_USER_ONLINE": "está online para contribuir com o projeto.",
     "LABEL_LEFT_PROJECT": "saiu do projeto.",
     "LABEL_TITLE": "Título",
-    "LABEL_DESCRIPTION": "Descrição"
+    "LABEL_DESCRIPTION": "Descrição",
+    "LABEL_EMAIL_DSC": "Eviar Menssagem para equipe DSC.",
+    "LABEL_SUBJECT": "Assunto",
+    "LABEL_MESSAGE": "Sua Mensagem",
+    "BTN_SEND": "Enviar"
 }

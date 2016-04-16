@@ -6,11 +6,6 @@
 
     module.exports =  function(mailOptions){
 
-        console.log(mailOptions);
-
-        console.log(configMail.email);
-        console.log(configMail.password);
-
         var transporter = nodemailer.createTransport({
             service: 'Gmail',
             auth: {

@@ -13,16 +13,22 @@
     var API_ROUTE_RESCUEPASSWORD = '/api/rescuepasswd/';
     var API_ROUTE_SETNEWPASSWORD = '/api/rescuepasswd/newpasswd/';
     var API_ROUTE_UPDATEPHOTO = '/api/profile/photo/';
+    var API_ROUTE_SENDMESSAGE = '/api/sendmessage/';
 
 
     var service = {
       create         : create,
       rescuePassword : rescuePassword,
       changePassword : changePassword,
-      uploadPhoto: uploadPhoto
+      uploadPhoto: uploadPhoto,
+      sendemailDSC: sendemailDSC
     };
 
     return service;
+
+    function sendemailDSC(data){
+      return $http.post(API_ROUTE_SENDMESSAGE, data);
+    }
 
     function create(data) {
         return $http.post(API_ROUTE_USER, data);

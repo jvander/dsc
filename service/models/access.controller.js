@@ -8,9 +8,14 @@
     var User = require('../models/user');
     var config = require('../../config.server');
     var secretKey = config.secretKey;
+    var configMail = require('../../configmail');
     var router = require('express').Router();
     var Problem = require('../models/problem/problem');
     var jsonwebtoken = require('jsonwebtoken');
+
+    function sendMail(mailOptions){
+        require('../sendmailDSC')(mailOptions);
+    }
 
     function createToken(user){
         var token = jsonwebtoken.sign({
@@ -36,8 +41,25 @@
         router.use(validate);
         router.route('/me')
             .get(getUser);
+        router.route('/sendmessage/')
+            .post(sendEmailDSC);
 
         return router;
+
+
+        function sendEmailDSC(req,res){
+            var mailOptions = {
+                from: configMail.email, // sender address
+                to: 'vander.vander@gmail.com', // list of receivers
+                subject: req.body.subject, // Subject line
+                html: "Mensagem enviada por + " + req.body.nickname + " com email de contato " + req.body.emilContact + "<br>     " +
+                "<h4>Mensagem</h4> <p>" + req.body.message + "</p>"
+            };
+            sendMail(mailOptions);
+            res.json({
+                success: true,
+            })
+        }
 
         function signuUser(req,res){
             User.findOne({
