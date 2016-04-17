@@ -136,7 +136,8 @@
         }
 
         function getUsers(req,res){
-            User.find({}, function (err,users) {
+            User.find({}).select('email')
+                .exec(function (err,users) {
                 if(err){
                     res.send(err);
                     return;

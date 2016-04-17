@@ -24,27 +24,31 @@ module.exports = function () {
     router.route('/getproblemscollaborator/')
         .get(getAllProblemsCollaborator);
     router.route('/invite/')
-        .post(addCollaborator)
+        .post(addCollaborator);
     router.route('/getcollaborators/')
-        .get(getAllCollaborators)
+        .get(getAllCollaborators);
     router.route('/removecollaborator/')
-        .get(removeCollaborator)
+        .get(removeCollaborator);
     router.route('/getonion/')
-        .get(findOnion)
+        .get(findOnion);
     router.route('/getevaluation/')
-        .get(findEvaluationFraming)
+        .get(findEvaluationFraming);
     router.route('/getsemiotic/')
-        .get(findSemioticFramework)
+        .get(findSemioticFramework);
     router.route('/removeproblem/')
-        .get(removeProblem)
+        .get(removeProblem);
     router.route('/getcarf/')
-        .get(findCarf)
+        .get(findCarf);
     router.route('/historychat/')
-        .get(getHistoryChat)
+        .get(getHistoryChat);
    router.route('/getonion3layer/')
-        .get(findOnion3layer)
-    router.route('/ajuste/')
-        .get(getAllProblemsAjuste)
+        .get(findOnion3layer);
+
+    /*router.route('/ajuste/')
+        .get(getAllProblemsAjuste);*/
+
+
+
 
 
     return router;
