@@ -87,12 +87,17 @@
             });
     }
 
-    function removeStakeholder(idproblem,stakeholder){
-        searchProblem(idproblem)
+    function removeStakeholder(socket,io,obj){
+        var idProblem = socket.room;
+        searchProblem(idProblem)
             .then(function(problem){
-                problem.stakeholders.pull(stakeholder);
+                problem.stakeholders.pull(obj.stakeholder);
                 problem.save(function(err){
-                    console.log(err);
+                    if(err){
+                        console.log(err);
+                    }else{
+                        io.sockets.in(idProblem).emit('onBroadcastOnionRemove', obj.index);
+                    }
                 });
             }).catch(function(err){
                 console.log(err);
@@ -198,6 +203,8 @@
                     if( err  ){
                         console.log(err);
                     }else{
+                        console.log();
+                        data.stakeholder._id = objUpdate.stakeholders[objUpdate.stakeholders.length -1]._id;
                         io.sockets.in(socket.room).emit('onBroadcastOnionAdd', data);
                     }
                 });
@@ -215,6 +222,7 @@
                     if( err  ){
                         console.log(err);
                     }else{
+                        data.postit._id = objUpdate.postits[objUpdate.postits.length -1]._id;
                         io.sockets.in(socket.room).emit('onBroadcastOnion3LayerAdd', data);
                     }
                 });
@@ -228,6 +236,9 @@
         searchProblem(idproblem)
             .then(function(problem) {
                 var id = stakeholder._id;
+                if(stakeholder.name === '' || stakeholder.name === undefined){
+                    stakeholder.name = 'newStakeholer';
+                }
                 stakeholder.openEdit = false;
                    Problem.findOneAndUpdate({ _id : idproblem, 'stakeholders._id' : id },
                     { $set: {
@@ -256,6 +267,9 @@
         searchProblem(idproblem)
             .then(function(problem) {
                 var id = postit._id;
+                if(postit.title === '' || stakeholder.title === undefined){
+                    stakeholder.name = 'newStakeholer';
+                }
                 Problem.findOneAndUpdate({ _id : idproblem, 'postits._id' : id },
                     { $set: {
                         'postits.$.title' : postit.title,
@@ -382,9 +396,7 @@
         });
 
         socket.on('broadcastOnionRemove',function(obj){
-            //Notificar interessados.
-            removeStakeholder(socket.room,obj.stakeholder);
-            io.sockets.in(socket.room).emit('onBroadcastOnionRemove', obj.index);
+            removeStakeholder(socket,io,obj);
         });
 
         socket.on('broadcastOnionSave',function(stakeholder){

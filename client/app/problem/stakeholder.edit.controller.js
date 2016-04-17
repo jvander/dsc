@@ -72,6 +72,12 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     });
 
     function setOpenEdit(id){
+        angular.forEach(self.stakeholderList, function (stakeholder) {
+            if(stakeholder._id === id) {
+                stakeholder.openEdit = true;
+                stakeholder.zindex = 9999;
+            }
+        });
         Socket.emit('broadcastOnionEdit', id);
     }
 
@@ -112,9 +118,10 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     });
 
     Socket.on('onBroadcastOnionAdd', function (data) {
+        console.log(data.stakeholder);
         if(self.localcode !== data.localcode) {
             data.stakeholder.openEdit = false;
-            data.stakeholder.name = 'new Stakeholder';
+            data.stakeholder.name = 'New';
         }else{
             data.stakeholder.openEdit = true;
         }
