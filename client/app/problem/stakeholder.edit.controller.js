@@ -51,7 +51,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
                 stakeholder.openEdit = data.openEdit;
                 stakeholder.x = data.x;
                 stakeholder.y = data.y;
-                stakeholder.zindex = 9999;
+                stakeholder.zindex = 1;
             }
         });
 
@@ -111,21 +111,30 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
 
     });
 
-    Socket.on('onBroadcastOnionAdd', function (retorno) {
-        self.stakeholderList.push(retorno);
+    Socket.on('onBroadcastOnionAdd', function (data) {
+        if(self.localcode !== data.localcode) {
+            data.stakeholder.openEdit = false;
+            data.stakeholder.name = 'new Stakeholder';
+        }else{
+            data.stakeholder.openEdit = true;
+        }
+        self.stakeholderList.push(data.stakeholder);
     });
 
     function addPostIt(e,camada) {
-       Socket.emit('broadcastOnionAdd',
-           {
-               "onionlayer": camada,
-               "name": "",
-               "description": "",
-               "openEdit": true,
-               "x": e.pageX + 'px',
-               "y": e.pageY + 'px',
-               "zindex": 9999
+       Socket.emit('broadcastOnionAdd', {
+               stakeholder: {
+                   "onionlayer": camada,
+                   "name": "",
+                   "description": "",
+                   "openEdit": true,
+                   "x": e.pageX + 'px',
+                   "y": e.pageY + 'px',
+                   "zindex": 9999
+               },
+               "localcode": self.localcode
            }
+
        );
     }
 

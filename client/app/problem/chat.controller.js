@@ -96,16 +96,6 @@ angular
             }
         });
 
-
-        Socket.on('onBroadcastChat', function (obj) {
-            var tmp = new Date(obj[obj.length -1].time);
-            self.messages.push({
-                nickname: obj[obj.length -1].nickname,
-                msg: obj[obj.length -1].msg,
-                time: tmp.getDate() + "/" + (tmp.getMonth() + 1) + "/" + tmp.getFullYear() + " [" + tmp.getHours() + ":" + tmp.getMinutes() + "] "
-            });
-        });
-
         function showReplay(){
             if(self.replay){
                 self.replay = false;

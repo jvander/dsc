@@ -189,16 +189,16 @@
             });
     }
 
-    function creatStakeholder(socket,io,stakeholder){
+    function creatStakeholder(socket,io,data){
         var idproblem = socket.room;
         searchProblem(idproblem)
             .then(function(problem) {
-                problem.stakeholders.push(stakeholder);
+                problem.stakeholders.push(data.stakeholder);
                 problem.save(function(err, objUpdate) {
                     if( err  ){
                         console.log(err);
                     }else{
-                        io.sockets.in(socket.room).emit('onBroadcastOnionAdd', objUpdate.stakeholders[objUpdate.stakeholders.length -1]);
+                        io.sockets.in(socket.room).emit('onBroadcastOnionAdd', data);
                     }
                 });
             }).catch(function (err) {
