@@ -62,21 +62,27 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
     });
 
     function saveOnion3Layer(postit) {
+        postit.zindex = 1;
         Socket.emit('broadcastOnion3LayerSave', postit);
     }
 
-    Socket.on('onBroadcastOnion3LayerEdit', function (id) {
+    Socket.on('onBroadcastOnion3LayerEdit', function (obj) {
         angular.forEach(self.onion3LayerList, function (postit) {
-            if(postit._id === id) {
+            if(postit._id === obj.id) {
+                if(self.localcode === obj.localcode) {
+                    postit.zindex = 999;
+                }
                 postit.openEdit = true;
-                postit.zindex = 9999;
             }
         });
 
     });
 
     function setOpenEdit(id){
-        Socket.emit('broadcastOnion3LayerEdit', id);
+        Socket.emit('broadcastOnion3LayerEdit', {
+            id: id,
+            localcode: self.localcode
+        });
     }
 
     Socket.on('onBroadcastOnion3LayerRemove', function (id) {
@@ -119,7 +125,6 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
     Socket.on('onBroadcastOnion3LayerAdd', function (data) {
         if(self.localcode !== data.localcode) {
             data.postit.openEdit = false;
-            data.postit.title = 'new Postit';
         }else{
             data.postit.openEdit = true;
         }
@@ -135,7 +140,7 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
                 description: '',
                 x: e.pageX + 'px',
                 y: e.pageY + 'px',
-                zindex: 9999
+                zindex: 1
             },
             localcode: self.localcode
         }

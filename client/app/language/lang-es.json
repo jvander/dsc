@@ -54,7 +54,7 @@
     "LABEL_LEFT_PROJECT": "#left the project.",
     "LABEL_TITLE": "#Title of Postit",
     "LABEL_DESCRIPTION": "#Description",
-    "LABEL_EMAIL_DSC": "#Send Message for time DSC.",
+    "LABEL_EMAIL_DSC": "#Send Message for team DSC.",
     "LABEL_SUBJECT": "#Subject",
     "LABEL_MESSAGE": "#Your Message",
     "BTN_SEND": "#Send"

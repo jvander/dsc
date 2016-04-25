@@ -267,8 +267,8 @@
         searchProblem(idproblem)
             .then(function(problem) {
                 var id = postit._id;
-                if(postit.title === '' || stakeholder.title === undefined){
-                    stakeholder.name = 'newStakeholer';
+                if(postit.title === '' || postit.title === undefined){
+                    postit.title = 'newPostit';
                 }
                 Problem.findOneAndUpdate({ _id : idproblem, 'postits._id' : id },
                     { $set: {
@@ -413,8 +413,8 @@
             updatePostIt(socket,io,postit);
         });
 
-        socket.on('broadcastOnion3LayerEdit',function(id){
-            io.sockets.in(socket.room).emit('onBroadcastOnion3LayerEdit',id);
+        socket.on('broadcastOnion3LayerEdit',function(obj){
+            io.sockets.in(socket.room).emit('onBroadcastOnion3LayerEdit',obj);
         });
 
         socket.on('broadcastOnion3LayerAdd',function(data){
