@@ -2,15 +2,12 @@
  * Created by JOSEVALDERLEI on 19/06/2015.
  */
 (function(){
-
 'use strict';
-
     angular
     .module('app')
     .config(initLanguage)
     .controller('languageController',languageController)
     .directive('changeLanguage',changeLanguage);
-
 initLanguage.$inject = ['$translateProvider'];
 languageController.$inject = ['$translate'];
 
