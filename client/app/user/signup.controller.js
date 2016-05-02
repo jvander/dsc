@@ -3,7 +3,7 @@
   angular
     .module('app')
     .controller('signupController', signupController);
-    signupController.$inject = ['$translate','$window','signupService','$state','toastApp','AuthToken','Auth','$filter','$stateParams'];
+    signupController.$inject = ['$translate','$window','signupService','$state','AuthToken','Auth','$stateParams'];
 
   function signupController($translate, $window, signupService,$state,toastApp,AuthToken,Auth,$filter,$stateParams){
 
