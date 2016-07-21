@@ -4,9 +4,7 @@
             <md-toolbar class="md-primary md-toolbar-tools" layout-padding layout-wrap layout-fill>
                <h3>{{ evaluationframework.onionlayer }}</h3>
             </md-toolbar>
-
             <div ng-repeat="stakeholder in evaluationframework.stakeholders">
-
                <div class="sticky-note-frame" id="stakeholder{{stakeholder._id}}">
                    <div ng-hide="stakeholder.openEdit"  ng-click="vm.setOpenEditDiscution(stakeholder)">
                         <div class="title">{{stakeholder.name}}</div>

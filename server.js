@@ -11,13 +11,20 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var dpi = require('./service/edit.problem.io');
 
+
+var connectWithRetry = function() {
 mongoose.connect(config.database.uri, function(err){
     if(err){
-        console.log(err);
+        console.error('Failed to connect to mongo on startup - retrying in 5 sec', err);
+        setTimeout(connectWithRetry, 5000);
     } else {
         console.log('Connected to the database');
     }
 });
+};
+
+connectWithRetry();
+
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());

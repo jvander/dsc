@@ -21,6 +21,14 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
     self.removeValueIdentication = removeValueIdentication;
     self.setValueIdentication = setValueIdentication;
     self.sugestionValues = "";
+    self.selectStakeholderValue = selectStakeholderValue;
+
+    function selectStakeholderValue(i,stakeholder,newValue) {
+        stakeholder.sugestionValues.splice(i,1);
+        stakeholder.newValues = newValue;
+        setValueIdentication(stakeholder);
+    }
+
     self.stakeholderList = [
         {
             onionlayer: "Community",
@@ -49,30 +57,44 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
         'Objeto', 'Portabilidade', 'Presença', 'Privacidade', 'Propriedade', 'Reciprocidade, Relacionamento, Reputação',
         'Escalabilidade', 'Segurança', 'Compartilhamento', 'Confiança', 'Usabilidade', 'Visibilidade'];
 
+
+    var solveList = function(valuesList){
+        var sugestionList = self.sugestionValuesArray.slice();
+            for(var i=0; i < sugestionList.length; i++){
+                for(var k=0; k < valuesList.length; k++){
+                    if(sugestionList[i] === valuesList[k]){
+                        sugestionList.splice(i,1);
+                    }
+                }
+        }
+        return sugestionList;
+    };
+    
     function initValueIdentificationFrame(){
         self.idproblem = $window.localStorage.getItem('problemid');
         problemService.getonion(self.idproblem)
             .success(function(data) {
                 if(data.success) {
                     if(data.stakeholders.length > 0){
-                            for(var k = 1; k < self.sugestionValuesArray.length; k++){
-                                self.sugestionValues += self.sugestionValuesArray[k] +  ", ";
-                            }
-                        self.sugestionValues[self.sugestionValuesArray[self.sugestionValuesArray.length-1]] + '.';
                             for(var i = 0; i < data.stakeholders.length; i++){
+                                if(data.stakeholders[i].values === null){
+                                    data.stakeholders[i].values = [];
+                                }
+                                console.log(data.stakeholders[i].onionlayer)
+                                var stakeholder = {
+                                    _id : data.stakeholders[i]._id,
+                                    onionlayer : data.stakeholders[i].onionlayer,
+                                    values : data.stakeholders[i].values,
+                                    name : data.stakeholders[i].name,
+                                    description : data.stakeholders[i].description,
+                                    x : data.stakeholders[i].x,
+                                    y : data.stakeholders[i].y,
+                                    newValues : [],
+                                    sugestionValues: solveList(data.stakeholders[i].values)
+                                };
+
                                 for(var j = 0; j < self.stakeholderList.length; j++){
-                                    var stakeholder = {
-                                        _id : data.stakeholders[i]._id,
-                                        onionlayer : data.stakeholders[i].onionlayer,
-                                        values : data.stakeholders[i].values,
-                                        name : data.stakeholders[i].name,
-                                        description : data.stakeholders[i].description,
-                                        openEdit : data.stakeholders[i].openEdit,
-                                        x : data.stakeholders[i].x,
-                                        y : data.stakeholders[i].y,
-                                        newValues : []
-                                    };
-                                     if(data.stakeholders[i].onionlayer == self.stakeholderList[j].onionlayer){
+                                     if(data.stakeholders[i].onionlayer === self.stakeholderList[j].onionlayer){
                                         self.stakeholderList[j].stakeholders.push(stakeholder);
                                         continue;
                                     }
@@ -92,7 +114,6 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
                 stakeholder.stakeholder = data.stakeholder;
                 stakeholder.name = data.name;
                 stakeholder.description = data.description;
-                stakeholder.openEdit = data.openEdit;
                 stakeholder.x = data.x;
                 stakeholder.y = data.y;
                 stakeholder.newValues = [];
@@ -115,11 +136,14 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
                 newList.push(stakeholder.values[i]);
             }
         }
+        stakeholder.sugestionValues.push(value);
         stakeholder.values = newList;
         Socket.emit('broadcastOnionSave', stakeholder);
     }
 
+
     function setValueIdentication(stakeholder) {
+        console.log(stakeholder);
         if((stakeholder.newValues === "") || (stakeholder.newValues === undefined)){
             toastApp.errorMessage('Valor não especificado.');
         }else{
@@ -131,6 +155,7 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
                     stakeholder.values.push(valuesList[i]);
                 }
             }
+
             stakeholder.newValues = "";
             stakeholder.openEdit = false;
             Socket.emit('broadcastOnionSave', stakeholder);
@@ -139,11 +164,12 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
     }
 
     function findValue(list, value){
-        for(var i=0; i < list.length; i++){
-            if(value === list[i]){
-                return true;
+            for (var i = 0; i < list.length; i++) {
+                if (value === list[i]) {
+                    return true;
+                }
             }
-        }
+
         return false;
     }
 }

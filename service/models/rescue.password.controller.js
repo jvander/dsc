@@ -1,6 +1,5 @@
 (function(){
   'use strict';
-
   var User = require('../models/user');
   var config = require('../../config.server');
   var configMail = require('../../configmail');
@@ -98,9 +97,7 @@
         }
       });
     }
-
   }
-
 })();
 
 

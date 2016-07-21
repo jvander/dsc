@@ -1,3 +1,14 @@
+.fixed-nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 80px;
+    background-color: #00a087;
+}
+
 .chatarea {
     position:fixed;
     bottom:0;
@@ -149,13 +160,12 @@ body{
 }
 
 .sticky-note {
-    margin: 5px;
+    padding: 1em;
     background:#FFFF00;
-    padding:9px;
     font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     color: #000;
-    width: 140px;
+    width: 150px;
     box-shadow: 0px 4px 6px #333;
     -moz-box-shadow: 0px 4px 6px #333;
     -webkit-box-shadow: 0px 4px 6px #333;
@@ -209,7 +219,7 @@ body{
     float: left;
     width: 240px;
     margin: 5px 5px;
-    background:#FFFF00;
+    background:#FFFFA5;
     padding:9px;
     font-family: 'Gloria Hallelujah', cursive;
     color: #000;
@@ -330,13 +340,12 @@ body{
 
 
 .sticky-note-frame {
-    margin: 2px;
+    margin: 1px;
     float: left;
-    background-color:#FFFFA5;
-    padding:2px;
-    font-family: 'Gloria Hallelujah', cursive;
-    font-size:12px;
-    color: #000;
+    background:#FFFFA5;
+    padding:1px;
+    font-family: Arial;
+    font-size: 11px;
     width: 240px;
     box-shadow: 0px 4px 6px #333;
     -moz-box-shadow: 0px 4px 6px #333;
@@ -354,7 +363,7 @@ body{
     background: transparent;
     border: none;
     display: block;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     text-align: center;
 }
@@ -363,7 +372,7 @@ body{
     background: transparent;
     border: none;
     display: block;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
 }
 
