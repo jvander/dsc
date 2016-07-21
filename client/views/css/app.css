@@ -176,28 +176,38 @@ body{
     float: left;
     width: 240px;
     margin: 5px;
-    background:#FFFF00;
+    background: #a61398;
     padding:9px;
     font-family: 'Gloria Hallelujah', cursive;
-    font-size: 13px;
-    color: #000;
-    box-shadow: 0px 4px 6px #333;
-    -moz-box-shadow: 0px 4px 6px #333;
-    -webkit-box-shadow: 0px 4px 6px #333;
+    font-size: 14px;
+    color: #f9ff10;
     cursor: default;
 }
 
 .sticky-note-value .stakeholder{
-    background: #d6e9c6;
-    padding:9px;
+    background: #f9ff10;
+    padding: 5px;
     font-family: 'Gloria Hallelujah', cursive;
-    border: dashed;
+    color: #000;
+    margin: 8px;
+    border-bottom-color: #ffe8fa;
+    -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
 }
+.sticky-note-value .title {
+    background: transparent;
+    border: none;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 .sticky-note .btnedit{
     background: transparent;
     border: none;
     display: block;
-    font-size: 13px;
+    font-size: 12px;
     cursor: pointer;
 }
 

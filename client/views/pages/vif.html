@@ -1,13 +1,16 @@
 <div data-ng-init="vm.initValueIdentificationFrame()">
     <div ng-repeat="onion in vm.stakeholderList">
-        <div ng-if="onion.stakeholders.length > 0">
+        <div ng-show="(onion.stakeholders.length > 0)">
+
             <div class="sticky-note-value">
-            <div>{{onion.onionlayer}}</div>
+                <div>{{onion.onionlayer}}</div>
             <div ng-repeat="stakeholder in onion.stakeholders">
+
                 <div class="stakeholder" id="stakeholder{{stakeholder._id}}"  ng-click="vm.setSuggestionShow(stakeholder)" ng-mouseleave="vm.leaveSuggestionShow(stakeholder)">
-                    <div><span>{{stakeholder.name}}</span></div>
+
+                    <div class="title"><span>{{stakeholder.name}}</span></div>
                     <div ng-repeat="value in stakeholder.values">
-                            <div><span>{{value}} </span><span ng-click="vm.removeValueIdentication(value,stakeholder)">x</span></div>
+                            <div><span>{{value}} </span><span ng-click="vm.removeValueIdentication(value,stakeholder)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACqklEQVQ4T4WTXUiTURjHn/ec933Xq5OZ5ucc5kydTtYqBmWRQVhBmN6JRdlFpKBd6CLLoCaVBmKR5EVYI7xQL1IQkUiEAjXBCZof86MiP3jT5rKltY9370ds4LCa+lyci/M/53ee5/+ch3iiVqccOpdrjk9UJQy+ML+8MGGthm3iEUBEdEpyTWxq2qkv/QMtRJ+xfPrgmZw0+ud3YPv7vH3tXeaLi0slwRj1FHU4Tad7HqPNSF2aX5ifHRq8RViqKr9mHtDG7VpbAVj4DJx1FHrfjU5ZVpxZJgCHD2QCQEnhild6vT7fgZBzYmy8vNRub/JphG95plKVG3T7bqfL+UjMzoHT5oChZbd9bM2bTpGkRkOTnUqlMmLS6bZMsewxEwC3kaEfsBHNclmDLgyX7BEFivOIMOMSfjECMHKSxMOi1FzCeYv+Le0vgE+sB1DFM2SXRhT3Y14ClyjBACbrKnj+RjBf/gOYAEL2kqQlU+AzQAKgMAEjGA1f5gTDjoB6BlRqDo0kC2LkGkGAFaNuDQ2nE0MQ2b4OTys83mtblvAgFGK0LmI6SZTCBUzAe4zayjih8D6N8/KiqXY5g1HTR6++BrixzRB/Cb42pWI0nyGKCRRFwAcCzZ33CEkbB+/QuKBYzbSNrvJzZ23uwH6gjY0YtWRJYiEjw7CMCP4tj7XVHs/s5pcaGPphbixd2bHkuWp0e/1/wA+4CxCdHbWbVXl+kwIpQrcTao1uviqYYR3hshkFIqJOrrojAoDHirAreTknmsIWpmH1Gyv12qTEUpdrMRjgHkDyUYVs0uriC8o4odOfQW2o7EzRTePrOMEBsz09Qtf4p9jr62Dfap4aabJOCfAjn+NrAh60ZmcNHjluMLwxt7YUs7ZL2wyjX/KZbgIQA4CdLmyn/wENmQFM5/MDlQAAAABJRU5ErkJggg=="></span></div>
                     </div>
                     <div ng-show="stakeholder.openEdit">
                         <md-input-container>
@@ -16,10 +19,11 @@
                         </md-input-container>
                         <md-button ng-click="vm.setValueIdentication(stakeholder)" class="md-primary">{{'BTN_ADD' | translate}}</md-button>
                         <div ng-repeat="sv in stakeholder.sugestionValues">
-                           <span ng-click="vm.selectStakeholderValue($index,stakeholder,sv)">{{sv}}</span>
+                           <span>{{sv}} <img ng-click="vm.selectStakeholderValue($index,stakeholder,sv)" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACEUlEQVQ4T2NkoBAwYtNvcKrA4B8jUwADI4Maw7+//xmYGW/9Y/i//orxxEvo6lEMMD5TLPLr75+FjMxMXlgd9v//pr+/GROvWvW/g8nDDQBp/v3/1zkGRhZZfL76y/D/ARMbh9FlvY73IHVwA3RO5BxkYmG1Q9ZcLxbK8Pf/P4aW12tRzPz/79/uy2YT3eAGGJ0oNv7D8u8Mus11QsFgA1rfr8dw1H8GBr3LJv2XwS7QOZyznImTNYIkA379XnjZakoC2ADto7k3mdlZ1EDsBolwuDmabFJg9vVfz+BiDS9Wgtn/f/6+etl6ig7EBUeyHzJxsMmB2FW8/nDFegJKDP///2O4/PEBXKzt80Yw+8+P3/eu2UxRhrjgYOY5Zm4OQxD737ffCNukIxj+/v/L0PxsNVyMiYsVzP775depqw5TzcEGaO5Ma2EV5q4mJQx+v/pac91rVivYAI11ccLMwjwvmbnZmZENwRULvz///P39wzexB4ELPsDTgfqmlGo2Ua4WRlaEGX8//QCnFGZeDri5/3/9Zfj9+lvJDf85vfB0AAlWBkb1TQnTWAS5M5i52DDiHezvr78Y/r7/PvmG/7x8BkaG/6gGQLVorI8PZmRh6WTkYlVmZGFiYGRgZPj3+y/D76+/bzP9/Vd6M2g+JBqgAGtuBLlGY32cKgMTkzrDP8b/jP/+37wevOAOzFZkAwC6SNIRfsQqxQAAAABJRU5ErkJggg=="></span>
                         </div>
                     </div>
                 </div>
+
             </div>
             </div>
         </div>
