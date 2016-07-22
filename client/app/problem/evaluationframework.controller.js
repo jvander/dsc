@@ -9,19 +9,33 @@ angular
     .module('app')
     .controller('evaluationframeworkController',evaluationframeworkController);
 
-  function evaluationframeworkController ($window,problemService,Socket,toastApp){
+  function evaluationframeworkController ($window,$filter,problemService,Socket,toastApp){
 
       var self = this;
       self.evaluationframeworkList =[];
       self.initEvaluation = initEvaluation;
       self.setOpenEditDiscution = setOpenEditDiscution;
       self.saveFrame = saveFrame;
+      self.labelShowSuggestion = $filter('translate')('SHOW_SUGGESTION');
+       self.showValues = showValues;
+      self.isShowValues = false;
+
+
+      function showValues() {
+              self.isShowValues = !self.isShowValues;
+              if(self.isShowValues){
+                  self.labelShowSuggestion = $filter('translate')('HIDE_SUGGESTION');
+              }else{
+                  self.labelShowSuggestion = $filter('translate')('SHOW_SUGGESTION');
+              }
+      }
 
       function initEvaluation(){
           self.idproblem = $window.localStorage.getItem('problemid');
          problemService.getevaluation(self.idproblem)
               .success(function(data) {
                   if(data.success) {
+                      console.log(data.evaluationframework);
                       self.evaluationframeworkList = data.evaluationframework;
                   }else{
                       toastApp.errorMessage(data.message);

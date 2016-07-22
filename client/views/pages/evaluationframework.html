@@ -8,24 +8,40 @@
                <div class="sticky-note-frame" id="stakeholder{{stakeholder._id}}">
                    <div ng-hide="stakeholder.openEdit"  ng-click="vm.setOpenEditDiscution(stakeholder)">
                         <div class="title">{{stakeholder.name}}</div>
+                       <br><br>
                         <div><span flex layout-fill></span></div>
                          <div class="item">Question/Problem: </div><span>{{stakeholder.problems}}</span>
                         <div class="item">Ideia/Solution: </div><span>{{stakeholder.solutions}}</span>
                      </div>
-
                      <div ng-show=stakeholder.openEdit>
                          <div class="title">{{stakeholder.name}}</div>
-                         <br>
-                         <br>
+                         <div>
                         <md-input-container layout-fill>
                            <label>Question/Problem</label>
                            <textarea class="discution" ng-model="stakeholder.problems"></textarea>
                         </md-input-container>
+                         </div>
+                         <div>
                         <md-input-container layout-fill>
                            <label>Ideia/Solution</label>
                            <textarea class="discution" ng-model="stakeholder.solutions"></textarea>
                         </md-input-container>
-                        <div layout="row" layout-align="center center"><md-button ng-click="vm.saveFrame(stakeholder)">Save</md-button></div>
+                         </div>
+                        <div layout="row" layout-align="center center"><md-button class="md-primary md-raised" ng-click="vm.saveFrame(stakeholder)">{{'BTN_SAVE' | translate}}</md-button></div>
+                         <div ng-show="(stakeholder.values.length > 0)" layout="column">
+                             <div layout-align="center center">
+                                 <md-button class="md-primary" ng-click="vm.showValues()" aria-label="More">
+                                     {{vm.labelShowSuggestion}}
+                                 </md-button>
+                             </div>
+                             <div ng-show="vm.isShowValues">
+                                 <div ng-repeat="value in stakeholder.values">
+                                     <div><span>{{value}} </span>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
                      </div>
 
                   </div>

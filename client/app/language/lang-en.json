@@ -63,6 +63,9 @@
     "REMOVE_VALUE": "Delete Value",
     "BTN_REMOVE" : "Delete",
     "SHOW_SUGGESTION" : "Show Suggestion",
-    "HIDE_SUGGESTION" : "Hide Suggestion"
+    "HIDE_SUGGESTION" : "Hide Suggestion",
+    "SHOW_VALUES" : "Show Values",
+    "HIDE_VALUES" : "Hide Values",
+    "VALUES": "Values"
 }
 

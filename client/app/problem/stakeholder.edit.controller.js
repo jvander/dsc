@@ -29,14 +29,14 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
     self.localcode = '';
     self.showSuggestion = showSuggestion;
     self.isShowSuggestion = false;
-    self.labelShowSuggestion = $filter('translate')('SHOW_SUGGESTION');
+    self.labelShowSuggestion = $filter('translate')('SHOW_VALUES');
 
     function showSuggestion() {
         self.isShowSuggestion = !self.isShowSuggestion;
         if(self.isShowSuggestion){
-            self.labelShowSuggestion = $filter('translate')('HIDE_SUGGESTION');
+            self.labelShowSuggestion = $filter('translate')('HIDE_VALUES');
         }else{
-            self.labelShowSuggestion = $filter('translate')('SHOW_SUGGESTION');
+            self.labelShowSuggestion = $filter('translate')('SHOW_VALUES');
         }
         
     }
