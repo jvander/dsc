@@ -1,18 +1,24 @@
-<div flex="100" flex-sm="100" class="md-whiteframe-z1" data-ng-init="vm.initCarf()">
-    <form style="background-color: #fefabc" name="carfForm" data-ng-submit="vm.addpmsvalue(vm.carf)">
-        <fieldset flex>
-            <legend><span>PMS</span></legend>
-            <md-radio-group ng-change="vm.selectPMSValue(vm.carf.pms)" ng-model="vm.carf.pms" layout="row" layout-align="start start">
-                    <md-radio-button class="md-primary" ng-repeat="p in vm.carfPMSValue"
-                                     ng-value="p.pms">
-                        {{ p.pms }}
-                    </md-radio-button>
-            </md-radio-group>
-        </fieldset>
-        <div layout="row">
-            <div flex="100" flex-md="100" layout="column">
-                <fieldset flex>
-                    <legend><code>{{vm.carf.pms}}</code></legend>
+<div data-ng-init="vm.initCarf()" class="md-whiteframe-z1">
+
+    <div class="pms" layout="column" flex="100">
+        <form name="carfForm" data-ng-submit="vm.addpmsvalue(vm.carf)">
+
+            <div layout="column">
+                <div><h3>PMS</h3></div>
+                <div>
+                    <md-radio-group ng-change="vm.selectPMSValue(vm.carf.pms)" ng-model="vm.carf.pms" layout="row" layout-align="start start">
+                        <md-radio-button class="md-primary" ng-repeat="p in vm.carfPMSValue"
+                                         ng-value="p.pms">
+                            {{ p.pms }}
+                        </md-radio-button>
+                    </md-radio-group>
+                </div>
+            </div>
+            <div layout="column" ng-show="vm.showValues">
+                <div layout="column">
+                    <div>
+                        <h3>{{vm.carf.pms}}</h3>
+                    </div>
                     <div layout="row" layout-wrap>
                         <div flex ng-repeat="pmsvalue in vm.valueList">
                             <md-checkbox class="md-primary" ng-click="vm.addListValue(pmsvalue)" ng-click="">
@@ -20,62 +26,88 @@
                             </md-checkbox>
                         </div>
                     </div>
-                </fieldset>
-            </div>
-        </div>
-
-        <fieldset flex>
-            <legend><span>Priority</span></legend>
-            <md-radio-group ng-change="vm.setPriotity(vm.carf.priority)" ng-model="vm.carf.priority" layout="row" layout-align="start start">
-                <md-radio-button class="md-primary" ng-repeat="priority in vm.carfPriorityList"
-                                 ng-value="priority">
-                    {{ priority }}
-                </md-radio-button>
-            </md-radio-group>
-        </fieldset>
-
-
-        <md-input-container>
-            <label>Requirement</label>
-            <textarea required ng-model="vm.carf.requirement"></textarea>
-        </md-input-container>
-        <div ng-repeat="stakeholder in vm.stakeholderList">
-            <div layout="row" layout-align="start start">
-                <md-checkbox ng-click="vm.addStakeholder(stakeholder)" class="md-primary"> {{stakeholder}} </md-checkbox>
-            </div>
-
-        </div>
-        <md-button type="submit" class="md-primary"
-                   ng-class="{'md-raised md-hue-1': (carfForm.$dirty && carfForm.$valid) }"
-                   aria-label="Save">{{'BTN_ADD' | translate}}</md-button>
-
-    </form>
-
-    <div flex="100" flex-sm="100" class="md-whiteframe-z3">
-        <md-content>
-            <div ng-repeat="carf in vm.carfList">
-
-                <div class="box-pms">
-                    <div class="close-pms"><a ng-click="vm.removeCARF($index,carf)">X</a></div>
-                    <div><span>PMS:&nbsp;</span>{{carf.pms}}</div>
-                    <div><span>Values</span></div>
-                    <div ng-repeat="value in carf.values">
-                        <span>{{value}}</span>
+                </div>
+                <div layout="column">
+                    <div>
+                        <h3>Priority</h3>
                     </div>
-                    <div><span>Requirement</span></div>
-                    <div><span>{{carf.requirement}}</span></div>
-                    <div><span>Priority: {{carf.priority}}</span></div>
-                    <div><span>Stakeholders</span></div>
-                    <div ng-repeat="stakeholder in carf.stakeholders">
-                        <span>{{stakeholder}}</span>
+                    <div>
+                        <md-radio-group ng-change="vm.setPriotity(vm.carf.priority)" ng-model="vm.carf.priority" layout="row" layout-align="start start">
+                            <md-radio-button class="md-primary" ng-repeat="priority in vm.carfPriorityList"
+                                             ng-value="priority">
+                                {{ priority }}
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                </div>
+                <div layout="column" flex="100">
+                    <md-input-container flex>
+                        <label>Requirement</label>
+                        <textarea required ng-model="vm.carf.requirement"></textarea>
+                    </md-input-container>
+                </div>
+                <div ng-show="(vm.stakeholderList.length > 0)">
+                <div><h3><div>{{'STAKEHOLDERS' | translate}}</div></h3></div>
+                <div ng-repeat="stakeholder in vm.stakeholderList">
+                    <div layout="row" layout-align="start start">
+                        <md-checkbox ng-click="vm.addStakeholder(stakeholder)" class="md-primary"> {{stakeholder}} </md-checkbox>
+                    </div>
+
+                </div>
+                </div>
+                <div layout-align="end end" layout="column" flex>
+                    <span flex></span>
+                    <div>
+                        <md-button type="submit" class="md-raised md-hue-1"
+                                   ng-class="{'md-primary md-raised': (carfForm.$dirty && carfForm.$valid) }"
+                                   aria-label="Save">{{'BTN_ADD' | translate}}</md-button>
                     </div>
                 </div>
             </div>
-        </md-content>
+        </form>
+
+        <div flex="100">
+            <md-content>
+                <div ng-repeat="carf in vm.carfList">
+
+                    <div class="box-pms">
+                        <div class="close-pms"><a ng-click="vm.removeCARF($index,carf)">X</a></div>
+                        <div class="title">PMS:&nbsp;{{carf.pms}}</div>
+
+                        <div class="internal">
+                            <div class="title">Values</div>
+                        <div ng-repeat="value in carf.values">
+                            <span>{{value}}</span>
+                        </div>
+                        </div>
+                        <div class="internal">
+                        <div class="title">Requirement</div>
+                        <div><span>{{carf.requirement}}</span></div>
+                            </div>
+                        <div class="internal">
+                        <div class="title">Priority</div><div>{{carf.priority}}</div>
+                        </div>
+                        <div class="internal">
+                        <div class="title">{{'STAKEHOLDERS' | translate}}</div>
+                        <div ng-repeat="stakeholder in carf.stakeholders">
+                            <span>{{stakeholder}}</span>
+                        </div>
+                            </div>
+
+                    </div>
+                </div>
+            </md-content>
+        </div>
     </div>
-    <div ng-show="vm.inProcessing">
-        <div><md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular></div>
-    </div>
+
+
+</div>
+
+<div ng-show="vm.inProcessing">
+    <div><md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular></div>
+</div>
+
+
 </div>
 
 

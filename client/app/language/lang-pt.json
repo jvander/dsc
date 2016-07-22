@@ -57,5 +57,6 @@
     "LABEL_EMAIL_DSC": "Eviar Menssagem para a equipe DSC.",
     "LABEL_SUBJECT": "Assunto",
     "LABEL_MESSAGE": "Sua Mensagem",
-    "BTN_SEND": "Enviar"
+    "BTN_SEND": "Enviar",
+    "STAKEHOLDERS": "Partes Interessadas"
 }

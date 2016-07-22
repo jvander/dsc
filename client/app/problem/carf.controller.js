@@ -32,6 +32,7 @@
         self.initCarf = initCarf;
         self.carfList = [];
         self.carfPriorityList = [];
+        self.showValues = false;
 
         function initCarf(){
             self.idProblem = $window.localStorage.getItem('problemid');
@@ -110,6 +111,7 @@
                     if (pms_value.pms == pms) {
                         self.carf.values = [];
                         self.valueList = pms_value.values;
+                        self.showValues = true;
                         return;
                     }
                 });
