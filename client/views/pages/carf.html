@@ -1,8 +1,10 @@
-<div data-ng-init="vm.initCarf()" class="md-whiteframe-z1">
-
-    <div class="pms" layout="column" flex="100">
+<div data-ng-init="vm.initCarf()" class="md-whiteframe-z1" flex="100">
+    <div class="pms" flex="100">
+        <div layout="column" layout-align="end end">
+        <div><md-button ng-click="vm.showForm()">{{vm.labelBtnShowFormPMS}}</md-button></div>
+        </div>
+        <div ng-show="vm.showFormPMS">
         <form name="carfForm" data-ng-submit="vm.addpmsvalue(vm.carf)">
-
             <div layout="column">
                 <div><h3>PMS</h3></div>
                 <div>
@@ -65,11 +67,9 @@
                 </div>
             </div>
         </form>
-
-        <div flex="100">
-            <md-content>
+            </div>
+        <div flex="100" layout="rows" style="background-color: teal">
                 <div ng-repeat="carf in vm.carfList">
-
                     <div class="box-pms">
                         <div class="close-pms"><a ng-click="vm.removeCARF($index,carf)">X</a></div>
                         <div class="title">PMS:&nbsp;{{carf.pms}}</div>
@@ -96,10 +96,8 @@
 
                     </div>
                 </div>
-            </md-content>
         </div>
     </div>
-
 
 </div>
 

@@ -33,6 +33,18 @@
         self.carfList = [];
         self.carfPriorityList = [];
         self.showValues = false;
+        self.showFormPMS = false;
+        self.showForm = showForm;
+        self.labelBtnShowFormPMS = 'New';
+
+        function showForm() {
+            self.showFormPMS = !self.showFormPMS;
+            if(self.showFormPMS){
+                self.labelBtnShowFormPMS = 'Hide';
+            }else{
+                self.labelBtnShowFormPMS = 'New';
+            }
+        }
 
         function initCarf(){
             self.idProblem = $window.localStorage.getItem('problemid');
