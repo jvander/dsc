@@ -60,13 +60,14 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
 
     var solveList = function(valuesList){
         var sugestionList = self.sugestionValuesArray.slice();
-            for(var i=0; i < sugestionList.length; i++){
-                for(var k=0; k < valuesList.length; k++){
-                    if(sugestionList[i] === valuesList[k]){
-                        sugestionList.splice(i,1);
-                    }
+        for (var i=0; i < valuesList.length; i++){
+            for (var k=0; k < sugestionList.length; k++) {
+                if(valuesList[i] === sugestionList[k]){
+                    sugestionList.splice(k,1);
                 }
+            }
         }
+
         return sugestionList;
     };
     
@@ -109,6 +110,7 @@ function valueIdentificationFrameController($window,problemService,toastApp,Sock
     }
 
     Socket.on('onBroadcastOnionSave', function (data) {
+        console.log(data);
         angular.forEach(self.stakeholderList, function (stakeholder) {
             if (stakeholder._id == data._id){
                 stakeholder.stakeholder = data.stakeholder;

@@ -165,6 +165,7 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
                    "name": "",
                    "description": "",
                    "openEdit": true,
+                   "sugestionValues" : self.sugestionValuesArray,
                    "x": e.pageX + 'px',
                    "y": e.pageY + 'px',
                    "zindex": 9
