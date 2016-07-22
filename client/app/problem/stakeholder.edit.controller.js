@@ -11,7 +11,7 @@ angular
     .controller('stakeholderController',stakeholderController);
 
 
-function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp){
+function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,toastApp){
 
     var self = this;
     self.idproblem = "";
@@ -27,14 +27,42 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     self.acende = acende;
     self.apaga = apaga;
     self.localcode = '';
+    self.showSuggestion = showSuggestion;
+    self.isShowSuggestion = false;
+    self.labelShowSuggestion = $filter('translate')('SHOW_SUGGESTION');
 
+    function showSuggestion() {
+        self.isShowSuggestion = !self.isShowSuggestion;
+        if(self.isShowSuggestion){
+            self.labelShowSuggestion = $filter('translate')('HIDE_SUGGESTION');
+        }else{
+            self.labelShowSuggestion = $filter('translate')('SHOW_SUGGESTION');
+        }
+        
+    }
     function intitOnion(){
         self.idproblem = $window.localStorage.getItem('problemid');
         self.localcode =  $window.localStorage.getItem('localcode');
         problemService.getonion(self.idproblem)
             .success(function(data) {
                 if(data.success) {
-                    self.stakeholderList = data.stakeholders;
+                    for(var i = 0; i < data.stakeholders.length; i++) {
+                        if (data.stakeholders[i].values === null) {
+                            data.stakeholders[i].values = [];
+                        }
+                        var stakeholder = {
+                            _id: data.stakeholders[i]._id,
+                            onionlayer: data.stakeholders[i].onionlayer,
+                            values: data.stakeholders[i].values,
+                            name: data.stakeholders[i].name,
+                            description: data.stakeholders[i].description,
+                            x: data.stakeholders[i].x,
+                            y: data.stakeholders[i].y,
+                            newValues: [],
+                            sugestionValues: solveList(data.stakeholders[i].values)
+                        };
+                        self.stakeholderList.push(stakeholder);
+                    }
                 }else{
                     toastApp.errorMessage(data.message);
                 }
@@ -43,7 +71,9 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     }
 
     Socket.on('onBroadcastOnionSave', function (data) {
+        console.log('Recebendo... ' + data._id);
             angular.forEach(self.stakeholderList, function (stakeholder) {
+                console.log(stakeholder)
             if (stakeholder._id == data._id){
                 stakeholder.stakeholder = data.stakeholder;
                 stakeholder.name = data.name;
@@ -58,6 +88,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     });
 
     function saveStakeholder(stakeholder) {
+        console.log( 'Enviando.... ' + stakeholder._id);
         Socket.emit('broadcastOnionSave', stakeholder);
     }
 
@@ -65,7 +96,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
         angular.forEach(self.stakeholderList, function (stakeholder) {
             if(stakeholder._id === id) {
                 stakeholder.openEdit = true;
-                stakeholder.zindex = 9999;
+                stakeholder.zindex = 9;
             }
         });
 
@@ -75,7 +106,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
         angular.forEach(self.stakeholderList, function (stakeholder) {
             if(stakeholder._id === id) {
                 stakeholder.openEdit = true;
-                stakeholder.zindex = 9999;
+                stakeholder.zindex = 9;
             }
         });
         Socket.emit('broadcastOnionEdit', id);
@@ -118,7 +149,6 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
     });
 
     Socket.on('onBroadcastOnionAdd', function (data) {
-        console.log(data.stakeholder);
         if(self.localcode !== data.localcode) {
             data.stakeholder.openEdit = false;
             data.stakeholder.name = 'New';
@@ -137,7 +167,7 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
                    "openEdit": true,
                    "x": e.pageX + 'px',
                    "y": e.pageY + 'px',
-                   "zindex": 9999
+                   "zindex": 9
                },
                "localcode": self.localcode
            }
@@ -155,6 +185,90 @@ function stakeholderController(Socket,$window,problemService,$mdDialog,toastApp)
         document.getElementById("name"+id).setAttribute('style', 'text-decoration: none;');
         document.getElementById(id).setAttribute('style', 'fill: '+color+';');
         document.getElementById("legend"+id).setAttribute('style', 'fill: '+color+';');
+    }
+
+    self.newvalues = "";
+    self.setSuggestionShow = setSuggestionShow;
+    self.leaveSuggestionShow = leaveSuggestionShow;
+    self.removeValueIdentication = removeValueIdentication;
+    self.setValueIdentication = setValueIdentication;
+    self.sugestionValues = "";
+    self.selectStakeholderValue = selectStakeholderValue;
+
+    function selectStakeholderValue(i,stakeholder,newValue) {
+        console.log(stakeholder);
+        stakeholder.sugestionValues.splice(i,1);
+        stakeholder.newValues = newValue;
+        setValueIdentication(stakeholder);
+    }
+    self.sugestionValuesArray = [
+        'Acessibilidade','Adaptabilidade','Estética','Autonomia', 'Disponibilidade', 'Consciência', 'Colaboração',
+        'Conversação', 'Emoção e Afeto', 'Grupos', 'Identidade', 'Consentimento informado', 'Meta-comunicação', 'Normas',
+        'Objeto', 'Portabilidade', 'Presença', 'Privacidade', 'Propriedade', 'Reciprocidade, Relacionamento, Reputação',
+        'Escalabilidade', 'Segurança', 'Compartilhamento', 'Confiança', 'Usabilidade', 'Visibilidade'];
+
+
+    var solveList = function(valuesList){
+        var sugestionList = self.sugestionValuesArray.slice();
+        for (var i=0; i < valuesList.length; i++){
+            for (var k=0; k < sugestionList.length; k++) {
+                if(valuesList[i] === sugestionList[k]){
+                   sugestionList.splice(k,1);
+                }
+            }
+        }
+
+        return sugestionList;
+    };
+
+
+    function setSuggestionShow(stakeholder){
+        stakeholder.openEdit = true;
+    }
+
+    function leaveSuggestionShow(stakeholder){
+        stakeholder.openEdit = false;
+    }
+
+    function removeValueIdentication(value,stakeholder){
+        var newList = [];
+        for(var i = 0; i < stakeholder.values.length; i++){
+            if(stakeholder.values[i] != value){
+                newList.push(stakeholder.values[i]);
+            }
+        }
+        stakeholder.values = newList;
+        stakeholder.sugestionValues.push(value);
+    }
+
+
+    function setValueIdentication(stakeholder) {
+        console.log(stakeholder.newValues);
+        if((stakeholder.newValues.length < 1) ||(stakeholder.newValues === "") || (stakeholder.newValues === undefined)){
+            toastApp.errorMessage('Valor não especificado.');
+        }else{
+            var valuesList = stakeholder.newValues.split(',');
+            for(var i=0; i < valuesList.length; i++){
+                if(findValue(stakeholder.values, valuesList[i])){
+                    toastApp.errorMessage("Duplicate value: " + valuesList[i]);
+                }else{
+                    stakeholder.values.push(valuesList[i]);
+                }
+            }
+
+            stakeholder.newValues = "";
+        }
+
+    }
+
+    function findValue(list, value){
+        for (var i = 0; i < list.length; i++) {
+            if (value === list[i]) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 

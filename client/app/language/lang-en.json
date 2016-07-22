@@ -58,6 +58,11 @@
     "LABEL_SUBJECT": "Subject",
     "LABEL_MESSAGE": "Your Message",
     "BTN_SEND": "Send",
-    "STAKEHOLDERS": "Stakeholders"
+    "STAKEHOLDERS": "Stakeholders",
+    "ADD_VALUE": "Add Value",
+    "REMOVE_VALUE": "Delete Value",
+    "BTN_REMOVE" : "Delete",
+    "SHOW_SUGGESTION" : "Show Suggestion",
+    "HIDE_SUGGESTION" : "Hide Suggestion"
 }
 
