@@ -16,7 +16,7 @@ angular
       self.initEvaluation = initEvaluation;
       self.setOpenEditDiscution = setOpenEditDiscution;
       self.saveFrame = saveFrame;
-      self.labelShowSuggestion = $filter('translate')('SHOW_SUGGESTION');
+      self.labelShowValues = $filter('translate')('SHOW_VALUES');
        self.showValues = showValues;
       self.isShowValues = false;
 
@@ -24,9 +24,9 @@ angular
       function showValues() {
               self.isShowValues = !self.isShowValues;
               if(self.isShowValues){
-                  self.labelShowSuggestion = $filter('translate')('HIDE_SUGGESTION');
+                  self.labelShowValues = $filter('translate')('HIDE_VALUES');
               }else{
-                  self.labelShowSuggestion = $filter('translate')('SHOW_SUGGESTION');
+                  self.labelShowValues = $filter('translate')('SHOW_VALUES');
               }
       }
 

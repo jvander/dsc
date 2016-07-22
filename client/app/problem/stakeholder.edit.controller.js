@@ -29,14 +29,14 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
     self.localcode = '';
     self.showSuggestion = showSuggestion;
     self.isShowSuggestion = false;
-    self.labelShowSuggestion = $filter('translate')('SHOW_VALUES');
+    self.labelShowSuggestion = $filter('translate')('SHOW_SUGGESTION');
 
     function showSuggestion() {
         self.isShowSuggestion = !self.isShowSuggestion;
         if(self.isShowSuggestion){
-            self.labelShowSuggestion = $filter('translate')('HIDE_VALUES');
+            self.labelShowSuggestion = $filter('translate')('HIDE_SUGGESTION');
         }else{
-            self.labelShowSuggestion = $filter('translate')('SHOW_VALUES');
+            self.labelShowSuggestion = $filter('translate')('SHOW_SUGGESTION');
         }
         
     }
@@ -165,7 +165,7 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
                    "name": "",
                    "description": "",
                    "openEdit": true,
-                   "sugestionValues" : self.sugestionValuesArray,
+                   "sugestionValues" : self.su,
                    "x": e.pageX + 'px',
                    "y": e.pageY + 'px',
                    "zindex": 9
