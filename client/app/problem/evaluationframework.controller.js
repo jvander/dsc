@@ -17,16 +17,25 @@ angular
       self.setOpenEditDiscution = setOpenEditDiscution;
       self.saveFrame = saveFrame;
       self.showValues = showValues;
-      self.isShowValues = -1;
-
-
-      function showValues(index) {
-              if(self.isShowValues !== index){
-                  self.isShowValues = index;
-              }else{
-                  self.isShowValues = -1;
-              }
+      self.showDescription = showDescription;
+      
+      function showDescription(stakeholder) {
+          stakeholder.showDescription = !stakeholder.showDescription;
       }
+
+
+      function showValues(stakeholder) {
+              stakeholder.showValues = !stakeholder.showValues;
+      }
+      
+      var newtakeholder = function (stakeholder) {
+        return {
+              _id: stakeholder._id,
+              problems: stakeholder.problems,
+              solutions: stakeholder.solutions
+          };   
+      }
+      
       function initEvaluation(){
           self.idproblem = $window.localStorage.getItem('problemid');
          problemService.getevaluation(self.idproblem)
@@ -48,7 +57,7 @@ angular
                          stakeholder.name = data.name;
                          stakeholder.onionlayer = data.onionlayer;
                          stakeholder.description = data.description;
-                         stakeholder.openEdit = data.openEdit;
+                         stakeholder.openEdit = false;
                          stakeholder.problems = data.problems;
                          stakeholder.solutions = data.solutions;
                      }
@@ -58,13 +67,10 @@ angular
       });
 
       function saveFrame(stakeholder) {
-          Socket.emit('broadcastFrameSave', stakeholder);
+          stakeholder.openEdit = false;
+          Socket.emit('broadcastFrameSave', newtakeholder(stakeholder));
       }
 
-      Socket.on('onUpdateStakeholder', function (stakeholderOnion) {
-
-
-      });
 
       function setOpenEditDiscution(currentStakeholder){
           currentStakeholder.openEdit = true;

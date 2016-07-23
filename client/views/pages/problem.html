@@ -100,8 +100,7 @@
 
 <div  ng-cloak>
         <md-tabs md-border-bottom md-selected="selectedIndex" md-dynamic-height>
-            <md-tab ng-repeat="tab in vm.dsc_artifacts" data-ui-sref="{{tab.name}}"
-                    md-active="$state.is('{{tab.name}}')"
+            <md-tab ng-repeat="tab in vm.dsc_artifacts" ng-click="vm.loadArtifact(tab.name)"
                     label="{{tab.label}}">
             </md-tab>
         </md-tabs>

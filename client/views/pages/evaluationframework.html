@@ -14,7 +14,15 @@
                         <div class="item">Ideia/Solution: </div><span>{{stakeholder.solutions}}</span>
                     </div>
                     <div ng-show=stakeholder.openEdit>
-                        <div class="title">{{stakeholder.name}}</div>
+                        <div ng-mousedown="vm.showDescription(stakeholder)" class="title">
+                            <span>{{stakeholder.name}}</span>
+                        </div>
+                        <div>
+                            <span ng-show="stakeholder.showDescription">{{stakeholder.description}}
+                            <!--<md-button class="md-primary" ng-click="vm.showDescription(stakeholder)">{{'HIDE_DESCRIPTION' | translate}}</md-button>-->
+                            </span>
+                        </div>
+                        <br><br>
                         <div>
                             <md-input-container layout-fill>
                                 <label>Question/Problem</label>
@@ -30,18 +38,18 @@
                         <div layout="row" layout-align="center center"><md-button class="md-primary md-raised" ng-click="vm.saveFrame(stakeholder)">{{'BTN_SAVE' | translate}}</md-button></div>
                         <div ng-show="(stakeholder.values.length > 0)" layout="column">
                             <div layout-align="center center">
-                                <div ng-hide="(vm.isShowValues === $index)">
-                                    <md-button class="md-primary" ng-click="vm.showValues($index)" aria-label="More">
+                                <div ng-hide="stakeholder.showValues">
+                                    <md-button class="md-primary" ng-click="vm.showValues(stakeholder)" aria-label="More">
                                         {{'SHOW_VALUES' | translate}}
                                     </md-button>
                                 </div>
-                                <div ng-show="(vm.isShowValues === $index)">
-                                    <md-button class="md-primary" ng-click="vm.showValues($index)" aria-label="More">
+                                <div ng-show="stakeholder.showValues">
+                                    <md-button class="md-primary" ng-click="vm.showValues(stakeholder)" aria-label="More">
                                         {{'HIDE_VALUES' | translate}}
                                     </md-button>
                                 </div>
                             </div>
-                            <div ng-show="(vm.isShowValues === $index)">
+                            <div ng-show="stakeholder.showValues">
                                 <div ng-repeat="value in stakeholder.values">
                                     <div><span>{{value}} </span>
                                     </div>

@@ -20,6 +20,7 @@
         self.formEditProblem = formEditProblem;
         self.formInviteCollaborator = formInviteCollaborator;
         var localcode = '';
+        self.loadArtifact = loadArtifact;
 
 
 
@@ -78,7 +79,6 @@
             }
 
             function problemUpdate(description) {
-                console.log(description);
                 var problem = {
                     'update': updateTrue,
                     'description': description
@@ -206,6 +206,7 @@
             self.nickname = $window.localStorage.getItem('nickname');
             self.idProblem = $window.localStorage.getItem('problemid');
             localcode =  $window.localStorage.getItem('localcode');
+            $scope.selectedIndex = $window.localStorage.getItem('indiceMenu');
             problemService.getproblem(self.idProblem)
                 .success(function(data) {
                     if(data.success) {
@@ -224,17 +225,20 @@
              "nickname": self.nickname
         };
         Socket.emit('initProblem', initsocketproblem);
-
     }
 
+        function loadArtifact (artifac) {
+            $state.go(artifac);
+        }
 
-        self.selectedIndex = 0;
+        $scope.selectedIndex = 4;
         var selected = null,
             previous = null;
         $scope.$watch('selectedIndex', function(current){
             previous = selected;
             selected =  self.dsc_artifacts[current];
-            self.selectedIndex = current;
+            $scope.selectedIndex = current;
+            $window.localStorage.setItem('indiceMenu',$scope.selectedIndex);
         });
 
         function systemReturn(){

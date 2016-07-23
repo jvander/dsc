@@ -401,7 +401,8 @@ module.exports = function () {
                                         onionlayer: data[j].onionlayer,
                                         description: problem.stakeholders[i].description,
                                         values: problem.stakeholders[i].values,
-                                        openEdit: problem.stakeholders[i].openEdit,
+                                        showValues: false,
+                                        showDescription: false,
                                         problems: problem.stakeholders[i].evaluationframing.problems,
                                         solutions: problem.stakeholders[i].evaluationframing.solutions
                                     }

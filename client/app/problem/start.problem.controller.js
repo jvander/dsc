@@ -32,7 +32,6 @@
             self.useremail = $window.localStorage.getItem('useremail');
             self.photo = $window.localStorage.getItem('photo');
 
-
             problemService.getuserproblems(self.useremail)
                 .success(function(data) {
                     if(data.success) {
