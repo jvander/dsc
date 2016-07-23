@@ -12,6 +12,13 @@
                        ng-class="{'md-raised md-hue-1': (socialWorldForm.$dirty && socialWorldForm.$valid) }"
                        aria-label="social world">{{'BTN_ADD' | translate}}</md-button>
         </md-toolbar>
+            <!--<span ng-hide="vm.isEditSocialworld" ng-click="vm.editSocialworld()" ng-bind-html="vm.semioticframework.socialworld">{{vm.semioticframework.socialworld}}
+            </span>
+            <span ng-show="vm.isEditSocialworld">
+                <md-content layout="column" flex>
+                    <div text-angular="text-angular" ng-blur="vm.onBlurSocialworld(vm.semioticframework.socialworld,true)" ng-change="vm.saveSocialWorld(vm.semioticframework.socialworld,false)" name="htmlcontent" ng-model="vm.semioticframework.socialworld" style="min-height: 200px; height: auto; overflow: auto; font-family: inherit; font-size: 100%;"></div>
+                </md-content>
+                </span>-->
                 <md-input-container layout-fill>
                     <textarea ng-blur="vm.saveSocialWorld(vm.semioticframework.socialworld,true)" ng-change="vm.saveSocialWorld(vm.semioticframework.socialworld,false)" ng-model="vm.semioticframework.socialworld" required></textarea>
                 </md-input-container>

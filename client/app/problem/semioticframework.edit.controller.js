@@ -22,6 +22,18 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
     self.savePhysical = savePhysical;
     self.semioticframework = "";
     self.initSemioticFramework = initSemioticFramework;
+    self.editSocialworld = editSocialworld;
+    self.isEditSocialworld = false;
+    self.onBlurSocialworld = onBlurSocialworld;
+
+    function onBlurSocialworld(text,flag){
+        editSocialworld();
+        saveSocialWorld(text,flag);
+    }
+
+    function editSocialworld() {
+        self.isEditSocialworld = !self.isEditSocialworld;
+    }
 
     function initSemioticFramework(){
         self.idproblem = $window.localStorage.getItem('problemid');

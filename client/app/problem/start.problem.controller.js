@@ -116,6 +116,7 @@
 
 
         function editProblem(problem) {
+            $window.localStorage.setItem('indiceMenu',0);
             $window.localStorage.setItem("problemid",problem._id);
             $state.go('problem.stakeholders');
         }
