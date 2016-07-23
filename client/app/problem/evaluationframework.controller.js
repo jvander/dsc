@@ -16,20 +16,17 @@ angular
       self.initEvaluation = initEvaluation;
       self.setOpenEditDiscution = setOpenEditDiscution;
       self.saveFrame = saveFrame;
-      self.labelShowValues = $filter('translate')('SHOW_VALUES');
-       self.showValues = showValues;
-      self.isShowValues = false;
+      self.showValues = showValues;
+      self.isShowValues = -1;
 
 
-      function showValues() {
-              self.isShowValues = !self.isShowValues;
-              if(self.isShowValues){
-                  self.labelShowValues = $filter('translate')('HIDE_VALUES');
+      function showValues(index) {
+              if(self.isShowValues !== index){
+                  self.isShowValues = index;
               }else{
-                  self.labelShowValues = $filter('translate')('SHOW_VALUES');
+                  self.isShowValues = -1;
               }
       }
-
       function initEvaluation(){
           self.idproblem = $window.localStorage.getItem('problemid');
          problemService.getevaluation(self.idproblem)
