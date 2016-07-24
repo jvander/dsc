@@ -104,29 +104,7 @@
                     label="{{tab.label}}">
             </md-tab>
         </md-tabs>
-        <!--<md-tabs md-border-bottom md-dynamic-height md-stretch-tabs="always">
-            <md-tab data-ui-sref="problem.stakeholders"
-                     md-active="$state.is('problem.stakeholders')"
-                     label="{{'LABEL_ARTIFACT_STAKEHOLDERS' | translate }}">
-            </md-tab>
 
-            <md-tab  data-ui-sref="problem.evaluationframework"
-                     md-active="$state.is('problem.evaluationframework')"
-                    label="{{'LABEL_ARTIFACT_EVALUATION_FRAMEWORK' | translate }}">
-            </md-tab>
-            <md-tab data-ui-sref="problem.semioticframework"
-                    md-active="$state.is('problem.semioticframework')"
-                    label="{{'LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK' | translate }}">
-            </md-tab>
-            <md-tab data-ui-sref="problem.vif"
-                    md-active="$state.is('problem.vif')"
-                    label="VIF">
-            </md-tab>
-            <md-tab data-ui-sref="problem.carf"
-                    md-active="$state.is('problem.carf')"
-                    label="CARF">
-            </md-tab>
-        </md-tabs>-->
     <div class="md-padding" class="" ui-view="dsc-artifact"></div>
 </div>
 
@@ -138,11 +116,16 @@
                     <li ng-if="user != vm.nickname" )>{{ user }}</li>
                 </ul>
             </div>
-            <div ng-mouseover="vm.showUsersOnLine()" ng-mouseleave="vm.showUsersOnLine()" layout="row" class="chathead" id="chathead" ng-click="vm.openChat()">
-                <div layout-align="start start"><img src="{{ vm.photo }}" /></div>
-                <div layout-align="center start">{{vm.nickname}}</div>
-             </div>
+            <div layout-align="end end" ng-mouseover="vm.showUsersOnLine()" ng-mouseleave="vm.showUsersOnLine()" layout="row" class="chathead" id="chathead" ng-click="vm.openChat()">
+                <div><img src="{{ vm.photo }}" /></div>
+                <div>{{vm.nickname}}</div>
+                <span flex></span>
+                <div>
+                    <span ng-hide="vm.isOpenChat"><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCIgdmlld0JveD0iMCAwIDMyLjUyOSAzMi41MjkiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyLjUyOSAzMi41Mjk7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBkPSJNMTguNzIsMTMuODExYy0wLjg0Ni0wLjg0Ni0wLjg0Ni0yLjIxNywwLTMuMDYzbDYuMTY4LTYuMTY4bC0zLjEzMS0wLjI1NGMtMC41MzMtMC4wNDUtMS4wMDYtMC4yNzctMS4zNTctMC42MjggICBjLTAuNDM0LTAuNDM0LTAuNjgyLTEuMDQ4LTAuNjI3LTEuNzA3YzAuMS0xLjE5MiwxLjE0NS0yLjA4LDIuMzM0LTEuOTgzbDcuNzk5LDAuNjM1YzEuMDU5LDAuMDg4LDEuODk2LDAuOTI3LDEuOTgyLDEuOTgzICAgbDAuNjM1LDcuNzk3YzAuMDk4LDEuMTkxLTAuNzkxLDIuMjM2LTEuOTgyLDIuMzM0Yy0xLjE5LDAuMDk3LTIuMjM1LTAuNzkxLTIuMzM0LTEuOTgzbC0wLjI1NC0zLjEyOWwtNi4xNjgsNi4xNjcgICBDMjAuOTM3LDE0LjY1OSwxOS41NjUsMTQuNjU5LDE4LjcyLDEzLjgxMXogTTEwLjc0NywxOC43MTlsLTYuMTY2LDYuMTY3bC0wLjI1Ni0zLjEzYy0wLjA5OC0xLjE5Mi0xLjE0My0yLjA4LTIuMzM0LTEuOTgyICAgYy0xLjE5MywwLjA5OS0yLjA4LDEuMTQ0LTEuOTg0LDIuMzMzbDAuNjM1LDcuOGMwLjA4NiwxLjA1NiwwLjkyNywxLjg5NSwxLjk4NCwxLjk4bDcuNzk3LDAuNjM1ICAgYzEuMTkxLDAuMDk5LDIuMjM2LTAuNzkxLDIuMzM0LTEuOTgxYzAuMDU1LTAuNjU5LTAuMTkzLTEuMjczLTAuNjI3LTEuNzA4Yy0wLjM1Mi0wLjM1My0wLjgyMi0wLjU4Mi0xLjM1NS0wLjYyN0w3LjY0NCwyNy45NSAgIGw2LjE2Ni02LjE2N2MwLjg0OS0wLjg0OCwwLjg0OS0yLjIxOSwwLjAwMi0zLjA2M0MxMi45NjQsMTcuODcyLDExLjU5MywxNy44NzIsMTAuNzQ3LDE4LjcxOXogTTMwLjUzOCwxOS43NzIgICBjLTAuNjYtMC4wNTUtMS4yNzMsMC4xOTMtMS43MDcsMC42MjdjLTAuMzUzLDAuMzUzLTAuNTg0LDAuODIzLTAuNjI3LDEuMzU2bC0wLjI1NiwzLjEzbC02LjE2Ni02LjE2NyAgIGMtMC44NDktMC44NDYtMi4yMi0wLjg0Ni0zLjA2MiwwYy0wLjg0OSwwLjg0Ni0wLjg0OSwyLjIxOCwwLDMuMDYzbDYuMTY2LDYuMTY3bC0zLjEzMiwwLjI1NGMtMS4xOSwwLjA5OC0yLjA3NywxLjE0NC0xLjk4MSwyLjMzNSAgIGMwLjA5OSwxLjE5LDEuMTQ0LDIuMDgsMi4zMzcsMS45ODJsNy43OTUtMC42MzZjMS4wNTctMC4wODYsMS44OTYtMC45MjUsMS45ODMtMS45ODFsMC42MzMtNy43OTkgICBDMzIuNjE5LDIwLjkxNSwzMS43MzEsMTkuODY5LDMwLjUzOCwxOS43NzJ6IE03LjY0NCw0LjU4bDMuMTMxLTAuMjU0YzEuMTkxLTAuMDk4LDIuMDc4LTEuMTQzLDEuOTgyLTIuMzM2ICAgYy0wLjA5OS0xLjE5Mi0xLjE0NC0yLjA3OS0yLjMzNS0xLjk4M0wyLjYyMywwLjY0M0MxLjU2OCwwLjcyOSwwLjcyNywxLjU2OCwwLjY0MiwyLjYyNmwtMC42MzUsNy43OTcgICBjLTAuMDk3LDEuMTkyLDAuNzksMi4yMzYsMS45ODMsMi4zMzRjMC42NTcsMC4wNTQsMS4yNzItMC4xOTMsMS43MDctMC42MjhjMC4zNTMtMC4zNTEsMC41ODQtMC44MjEsMC42MjctMS4zNTVMNC41OCw3LjY0MyAgIGw2LjE2OCw2LjE2N2MwLjg0NSwwLjg0NywyLjIxOCwwLjg0NywzLjA2MiwwYzAuODQ4LTAuODQ2LDAuODQ4LTIuMjE3LDAuMDAyLTMuMDYzTDcuNjQ0LDQuNTh6IiBmaWxsPSIjRkZGRkZGIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" /></span>
+                    <span ng-show="vm.isOpenChat"><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDIxMC4wMDIgMjEwLjAwMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjEwLjAwMiAyMTAuMDAyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxwYXRoIGQ9Ik0xOTUuNzY1LDc2LjgxNWwtNzcuNDI0LDExLjExOGwxMS4xMTktNzcuNDIybDE5LjkzMiwxOS45MzFsMzAuNDQ1LTMwLjQ0MWwyNi40MzksMjYuNDQgIGwtMzAuNDQxLDMwLjQ0NEwxOTUuNzY1LDc2LjgxNXogTTM0LjE2OCwxNTMuMTE3TDMuNzI1LDE4My41NjNsMjYuNDM5LDI2LjQzOWwzMC40NDUtMzAuNDQxbDE5LjkzMiwxOS45M2wxMS4xMTktNzcuNDIyICBsLTc3LjQyMiwxMS4xMTlMMzQuMTY4LDE1My4xMTd6IE02MC42MSwzMC40NDFMMzAuMTY0LDBMMy43MjUsMjYuNDRsMzAuNDQzLDMwLjQ0NGwtMTkuOTMsMTkuOTMxTDkxLjY2LDg3LjkzM0w4MC41NDEsMTAuNTExICBMNjAuNjEsMzAuNDQxeiBNMTk1Ljc2NSwxMzMuMTg4bC03Ny40MjQtMTEuMTE5bDExLjExOSw3Ny40MjJsMTkuOTMyLTE5LjkzbDMwLjQ0NSwzMC40NDFsMjYuNDM5LTI2LjQzOWwtMzAuNDQxLTMwLjQ0NSAgTDE5NS43NjUsMTMzLjE4OHoiIGZpbGw9IiNGRkZGRkYiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+                </div>
 
+            </div>
 
             <div id="togglearea" ng-show="vm.isOpenChat">
                 <div class="feed" style="height: 400px;"  scroll-glue>
@@ -160,9 +143,8 @@
                     </div>
 
                 </div><!-- feed -->
-                <div class="messagebox" flex layout="column" layout-align="center center">
+                <div class="messagebox" flex layout="row" layout-align="center center">
                     <textarea ng-keydown="vm.keypressChat($event,vm.newmsg)" id="message" ng-model="vm.newmsg"></textarea>
-                    <md-button class="md-primary" ng-click="vm.sendMessage(vm.newmsg)">{{'BTN_SEND' | translate }}</md-button>
                 </div>
             </div>
         </div><!-- chatbox -->

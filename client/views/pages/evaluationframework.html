@@ -14,8 +14,8 @@
                         <div class="item">Ideia/Solution: </div><span>{{stakeholder.solutions}}</span>
                     </div>
                     <div ng-show=stakeholder.openEdit>
-                        <div ng-click="vm.showDescription(stakeholder)" class="title">
-                            <span>{{stakeholder.name}}</span>
+                        <div class="title">
+                            <span ng-click="vm.showDescription(stakeholder)">{{stakeholder.name}}</span>
                         </div>
                         <div>
                             <span ng-show="stakeholder.showDescription">{{stakeholder.description}}

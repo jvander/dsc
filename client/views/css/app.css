@@ -37,11 +37,13 @@
 
 .chathead {
     width:250px;
+    padding-right: 5px;
     background-color: #004D40;
     height:40px;
     color:#ffffff;
-    padding-top:4px;
+    padding-top:5px;
     padding-left: 10px;
+    padding-bottom: 5px;
     cursor:pointer;
 }
 
@@ -176,7 +178,7 @@ body{
     margin: 5px;
     background: teal;
     padding:9px;
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: "Helvetica Neue", Arial, sans-serif
     font-size: 14px;
     color: #f9ff10;
     cursor: default;
@@ -188,7 +190,7 @@ body{
 .sticky-note-value .stakeholder{
     background: #f9ff10;
     padding: 5px;
-    font-family: 'Gloria Hallelujah', cursive;
+    font-family: "Helvetica Neue", Arial, sans-serif;
     color: #000;
     margin: 8px;
     border-bottom-color: #ffe8fa;
@@ -247,15 +249,37 @@ body{
 
 .pms {
     float: left;
-    margin:4px 4px;
-    background: #adf1a4;
-    padding: 10px;
+    margin:5px 5px;
+    background: #E0F2F1;
+    padding: 4px;
     font-family: 'Gloria Hallelujah', cursive;
     color: #000000;
-    box-shadow: 0px 4px 6px #333;
-    -moz-box-shadow: 0px 4px 6px #333;
-    -webkit-box-shadow: 0px 4px 6px #333;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    5px 5px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         5px 5px 5px 0px rgba(50, 50, 50, 0.75);
 }
+
+
+.semioticframework {
+    float: left;
+    background: #f9ff10;
+    padding-top: 25px;
+    padding-left: 4px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    color: #000000;
+    border-top: solid;
+    border-left: solid;
+    -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.semioticframework-box {
+    float: left;
+    background: teal;
+}
+
 .close-pms a {
     position: absolute;
     margin-left: 210px;
@@ -634,37 +658,10 @@ body{
     width: 200px; }
 
 .dialogdemoBasicUsage div#status {
-    color: #c60008; }
+    color: #c60008;
+}
 
-.tabsdemoDynamicTabs md-content {
-    background-color: transparent !important; }
-.tabsdemoDynamicTabs md-content md-tabs {
-    border: 1px solid #e1e1e1; }
-.tabsdemoDynamicTabs md-content md-tabs md-tab-content {
-    background: #f6f6f6; }
-.tabsdemoDynamicTabs md-content md-tabs md-tabs-wrapper {
-    background: white; }
-.tabsdemoDynamicTabs md-content h1:first-child {
-    margin-top: 0; }
-.tabsdemoDynamicTabs md-input-container {
-    padding-bottom: 0; }
-.tabsdemoDynamicTabs .remove-tab {
-    margin-bottom: 40px; }
-.tabsdemoDynamicTabs .demo-tab > div > div {
-    padding: 25px;
-    box-sizing: border-box; }
-.tabsdemoDynamicTabs .edit-form input {
-    width: 100%; }
-.tabsdemoDynamicTabs md-tabs {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
-.tabsdemoDynamicTabs md-tab[disabled] {
-    opacity: 0.5; }
-.tabsdemoDynamicTabs label {
-    text-align: left; }
-.tabsdemoDynamicTabs .long > input {
-    width: 264px; }
-.tabsdemoDynamicTabs .md-button.add-tab {
-    transform: translateY(5px); }
+
 
 .ta-editor {
     min-height: 300px;

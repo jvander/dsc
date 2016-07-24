@@ -131,7 +131,7 @@ angular
             if(event.keyCode == 13){
                 self.contador++;
                 if (self.contador == 1) {
-                    $timeout(zerarContador, 2000);
+                    $timeout(zerarContador, 1000);
                 }
                 if(self.contador > 1){
                     sendMessage(chatmsg);
