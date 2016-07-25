@@ -16,8 +16,6 @@ function valueIdentificationFrameController($filter,$window,problemService,toast
     self.useremail = "";
     self.newvalues = "";
     self.initValueIdentificationFrame = initValueIdentificationFrame;
-    self.setSuggestionShow = setSuggestionShow;
-    self.leaveSuggestionShow = leaveSuggestionShow;
     self.removeValueIdentication = removeValueIdentication;
     self.setValueIdentication = setValueIdentication;
     self.sugestionValues = "";
@@ -27,9 +25,9 @@ function valueIdentificationFrameController($filter,$window,problemService,toast
     self.labelShowSuggestion = $filter('translate')('SHOW_SUGGESTION');
     self.arrow = "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCIgdmlld0JveD0iMCAwIDI5Mi4zNjIgMjkyLjM2MiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjkyLjM2MiAyOTIuMzYyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTI4Ni45MzUsNjkuMzc3Yy0zLjYxNC0zLjYxNy03Ljg5OC01LjQyNC0xMi44NDgtNS40MjRIMTguMjc0Yy00Ljk1MiwwLTkuMjMzLDEuODA3LTEyLjg1LDUuNDI0ICAgQzEuODA3LDcyLjk5OCwwLDc3LjI3OSwwLDgyLjIyOGMwLDQuOTQ4LDEuODA3LDkuMjI5LDUuNDI0LDEyLjg0N2wxMjcuOTA3LDEyNy45MDdjMy42MjEsMy42MTcsNy45MDIsNS40MjgsMTIuODUsNS40MjggICBzOS4yMzMtMS44MTEsMTIuODQ3LTUuNDI4TDI4Ni45MzUsOTUuMDc0YzMuNjEzLTMuNjE3LDUuNDI3LTcuODk4LDUuNDI3LTEyLjg0N0MyOTIuMzYyLDc3LjI3OSwyOTAuNTQ4LDcyLjk5OCwyODYuOTM1LDY5LjM3N3oiIGZpbGw9IiMwMDZERjAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K";
 
-    function showSuggestion() {
-        self.isShowSuggestion = !self.isShowSuggestion;
-        if(self.isShowSuggestion){
+    function showSuggestion(stakeholder) {
+        stakeholder.openEdit = !stakeholder.openEdit;
+        if(stakeholder.openEdit){
             self.labelShowSuggestion = $filter('translate')('HIDE_SUGGESTION');
             self.arrow = "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCIgdmlld0JveD0iMCAwIDI5Mi4zNjIgMjkyLjM2MSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjkyLjM2MiAyOTIuMzYxOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTI4Ni45MzUsMTk3LjI4N0wxNTkuMDI4LDY5LjM4MWMtMy42MTMtMy42MTctNy44OTUtNS40MjQtMTIuODQ3LTUuNDI0cy05LjIzMywxLjgwNy0xMi44NSw1LjQyNEw1LjQyNCwxOTcuMjg3ICAgQzEuODA3LDIwMC45MDQsMCwyMDUuMTg2LDAsMjEwLjEzNHMxLjgwNyw5LjIzMyw1LjQyNCwxMi44NDdjMy42MjEsMy42MTcsNy45MDIsNS40MjUsMTIuODUsNS40MjVoMjU1LjgxMyAgIGM0Ljk0OSwwLDkuMjMzLTEuODA4LDEyLjg0OC01LjQyNWMzLjYxMy0zLjYxMyw1LjQyNy03Ljg5OCw1LjQyNy0xMi44NDdTMjkwLjU0OCwyMDAuOTA0LDI4Ni45MzUsMTk3LjI4N3oiIGZpbGw9IiMwMDZERjAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K";
         }else{
@@ -97,7 +95,6 @@ function valueIdentificationFrameController($filter,$window,problemService,toast
                                 if(data.stakeholders[i].values === null){
                                     data.stakeholders[i].values = [];
                                 }
-                                console.log(data.stakeholders[i].onionlayer)
                                 var stakeholder = {
                                     _id : data.stakeholders[i]._id,
                                     onionlayer : data.stakeholders[i].onionlayer,
@@ -107,6 +104,7 @@ function valueIdentificationFrameController($filter,$window,problemService,toast
                                     x : data.stakeholders[i].x,
                                     y : data.stakeholders[i].y,
                                     newValues : [],
+                                    openEdit: false,
                                     sugestionValues: solveList(data.stakeholders[i].values)
                                 };
 
@@ -126,7 +124,6 @@ function valueIdentificationFrameController($filter,$window,problemService,toast
     }
 
     Socket.on('onBroadcastOnionSave', function (data) {
-        console.log(data);
         angular.forEach(self.stakeholderList, function (stakeholder) {
             if (stakeholder._id == data._id){
                 stakeholder.stakeholder = data.stakeholder;
@@ -138,15 +135,7 @@ function valueIdentificationFrameController($filter,$window,problemService,toast
             }
         });
     });
-
-    function setSuggestionShow(stakeholder){
-        stakeholder.openEdit = true;
-    }
-
-    function leaveSuggestionShow(stakeholder){
-        stakeholder.openEdit = false;
-    }
-
+    
     function removeValueIdentication(value,stakeholder){
         var newList = [];
         for(var i = 0; i < stakeholder.values.length; i++){
@@ -161,7 +150,6 @@ function valueIdentificationFrameController($filter,$window,problemService,toast
 
 
     function setValueIdentication(stakeholder) {
-        console.log(stakeholder.newValues.length);
         if((stakeholder.newValues.length === 0) || (stakeholder.newValues === "") || (stakeholder.newValues === undefined)){
             toastApp.errorMessage('Valor não especificado.');
             return;
