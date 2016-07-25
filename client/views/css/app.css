@@ -187,6 +187,10 @@ body{
     color: #0000FF;
     cursor: pointer;
 }
+.acaoTitulo{
+    color: #0000FF;
+    cursor: default;
+}
 .sticky-note-value .stakeholder{
     background: #f9ff10;
     padding: 5px;

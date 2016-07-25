@@ -6,7 +6,7 @@
                 <div>{{onion.onionlayer}}</div>
             <div ng-repeat="stakeholder in onion.stakeholders">
 
-                <div class="stakeholder" id="stakeholder{{stakeholder._id}}"  ng-click="vm.setSuggestionShow(stakeholder)" ng-mouseleave="vm.leaveSuggestionShow(stakeholder)">
+                <div class="stakeholder" id="stakeholder{{stakeholder._id}}">
 
                     <div class="title"><span>{{stakeholder.name}}</span></div>
                     <div ng-repeat="value in stakeholder.values">
@@ -25,12 +25,12 @@
                         </div>
                     </div>
                         <div layout="row" layout-align="center start" ng-show="(stakeholder.sugestionValues.length > 0)">
+                            <span class="acaoTitulo">{{vm.labelShowSuggestion}}&nbsp;</span>
                             <span class="acaoNormal">
-                                {{vm.labelShowSuggestion}}&nbsp;
-                                <img  ng-click="vm.showSuggestion()" src={{vm.arrow}} />
+                                <img  ng-click="vm.showSuggestion(stakeholder)" src={{vm.arrow}} />
                             </span>
                         </div>
-                        <div ng-show="vm.isShowSuggestion">
+                        <div ng-show="stakeholder.openEdit">
                             <div ng-repeat="sv in stakeholder.sugestionValues">
                                 <span>{{sv}}</span>
                                 <span class="acaoNormal">
