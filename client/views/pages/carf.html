@@ -16,14 +16,16 @@
                     </md-radio-group>
                 </div>
             </div>
+
             <div layout="column" ng-show="vm.showValues">
                 <div layout="column">
                     <div>
                         <h3>{{vm.carf.pms}}</h3>
                     </div>
+
                     <div layout="row" layout-wrap>
                         <div flex ng-repeat="pmsvalue in vm.valueList">
-                            <md-checkbox class="md-primary" ng-click="vm.addListValue(pmsvalue)" ng-click="">
+                            <md-checkbox class="md-primary" ng-checked="vm.exists(pmsvalue, vm.carf.values)"  ng-click="vm.addListValue(pmsvalue)">
                                 {{ pmsvalue }}
                             </md-checkbox>
                         </div>
@@ -42,6 +44,7 @@
                         </md-radio-group>
                     </div>
                 </div>
+
                 <div layout="column" flex="100">
                     <md-input-container flex>
                         <label>Requirement</label>
@@ -50,16 +53,20 @@
                 </div>
                 <div ng-show="(vm.stakeholderList.length > 0)">
                 <div><h3><div>{{'STAKEHOLDERS' | translate}}</div></h3></div>
-                <div ng-repeat="stakeholder in vm.stakeholderList">
+                <div ng-model="vm.carf.stakeholders" ng-repeat="stakeholder in vm.stakeholderList">
                     <div layout="row" layout-align="start start">
-                        <md-checkbox ng-click="vm.addStakeholder(stakeholder)" class="md-primary"> {{stakeholder}} </md-checkbox>
+                        <md-checkbox ng-checked="vm.exists(stakeholder, vm.carf.stakeholders)" ng-click="vm.addStakeholder(stakeholder)" class="md-primary"> {{stakeholder}} </md-checkbox>
                     </div>
 
                 </div>
                 </div>
                 <div layout-align="end end" layout="column" flex>
                     <span flex></span>
-                    <div>
+                    <div ng-hide="vm.loadEditPMS">
+                        <md-button ng-click="vm.resetFormPMP()" class="md-primary md-raised" aria-label="Save">{{'BTN_CLEAR' | translate}}</md-button>
+                        <md-button ng-click="vm.updatePMS(vm.carf)" class="md-primary md-raised" aria-label="Save">{{'BTN_SAVE' | translate}}</md-button>
+                    </div>
+                    <div ng-show="vm.loadEditPMS">
                         <md-button type="submit" class="md-raised md-hue-1"
                                    ng-class="{'md-primary md-raised': (carfForm.$dirty && carfForm.$valid) }"
                                    aria-label="Save">{{'BTN_ADD' | translate}}</md-button>
@@ -71,9 +78,17 @@
         <div flex="100" layout="rows" style="background-color: teal">
                 <div ng-repeat="carf in vm.carfList">
                     <div class="box-pms">
-                        <div class="close-pms"><a ng-click="vm.removeCARF($index,carf)">X</a></div>
-                        <div class="title">PMS:&nbsp;{{carf.pms}}</div>
+                        <div layout-align="end end">
+                            <span flex></span>
+                            <span ng-click="vm.openEditPMS($index)">
+                                <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI3NS44MzYgMjc1LjgzNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjc1LjgzNiAyNzUuODM2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTE5MS4zNDQsMjAuOTIybC05NS4xNTUsOTUuMTU1Yy0wLjc1NiwwLjc1Ni0xLjI5NywxLjY5OS0xLjU2NSwyLjczNGwtOC4xNjcsMzEuNDU0Yy0wLjUzNCwyLjA1OSwwLjA2MSw0LjI0NiwxLjU2NSw1Ljc1MSAgIGMxLjE0LDEuMTM5LDIuNjcxLDEuNzU3LDQuMjQyLDEuNzU3YzAuNTAzLDAsMS4wMDktMC4wNjMsMS41MDgtMC4xOTJsMzEuNDU0LTguMTY4YzEuMDM1LTAuMjY5LDEuOTc5LTAuODEsMi43MzQtMS41NjUgICBsOTUuMTUzLTk1LjE1M2MwLjAwMi0wLjAwMiwwLjAwNC0wLjAwMywwLjAwNS0wLjAwNHMwLjAwMy0wLjAwNCwwLjAwNC0wLjAwNWwxOS4xNTYtMTkuMTU2YzIuMzQ0LTIuMzQzLDIuMzQ0LTYuMTQyLDAuMDAxLTguNDg0ICAgTDIxOC45OTQsMS43NThDMjE3Ljg2OCwwLjYzMiwyMTYuMzQzLDAsMjE0Ljc1MSwwYy0xLjU5MSwwLTMuMTE3LDAuNjMyLTQuMjQyLDEuNzU4bC0xOS4xNTUsMTkuMTU1ICAgYy0wLjAwMiwwLjAwMi0wLjAwNCwwLjAwMy0wLjAwNSwwLjAwNFMxOTEuMzQ2LDIwLjkyMSwxOTEuMzQ0LDIwLjkyMnogTTEyMC42MzEsMTM4LjIwOGwtMTkuOTkzLDUuMTkybDUuMTkxLTE5Ljk5M2w4OS43NjItODkuNzYyICAgbDE0LjgwMSwxNC44MDJMMTIwLjYzMSwxMzguMjA4eiBNMjE0Ljc1MSwxNC40ODVsMTQuODAxLDE0LjgwMmwtMTAuNjc1LDEwLjY3NUwyMDQuMDc2LDI1LjE2TDIxNC43NTEsMTQuNDg1eiIgZmlsbD0iIzAwMDAwMCIvPgoJPHBhdGggZD0iTTIzOC4wMzcsNjUuMDIyYy0zLjMxMywwLTYsMi42ODctNiw2djE5Mi44MTNINDMuNzk5VjM0LjQxN2gxMTEuMDYzYzMuMzEzLDAsNi0yLjY4Nyw2LTZzLTIuNjg3LTYtNi02SDM3Ljc5OSAgIGMtMy4zMTMsMC02LDIuNjg3LTYsNnYyNDEuNDE5YzAsMy4zMTMsMi42ODcsNiw2LDZoMjAwLjIzOGMzLjMxMywwLDYtMi42ODcsNi02VjcxLjAyMiAgIEMyNDQuMDM3LDY3LjcwOSwyNDEuMzUxLDY1LjAyMiwyMzguMDM3LDY1LjAyMnoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+                            </span>
+                            <span ng-click="vm.removeCARF($index,carf)">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACqklEQVQ4T4WTXUiTURjHn/ec933Xq5OZ5ucc5kydTtYqBmWRQVhBmN6JRdlFpKBd6CLLoCaVBmKR5EVYI7xQL1IQkUiEAjXBCZof86MiP3jT5rKltY9370ds4LCa+lyci/M/53ee5/+ch3iiVqccOpdrjk9UJQy+ML+8MGGthm3iEUBEdEpyTWxq2qkv/QMtRJ+xfPrgmZw0+ud3YPv7vH3tXeaLi0slwRj1FHU4Tad7HqPNSF2aX5ifHRq8RViqKr9mHtDG7VpbAVj4DJx1FHrfjU5ZVpxZJgCHD2QCQEnhild6vT7fgZBzYmy8vNRub/JphG95plKVG3T7bqfL+UjMzoHT5oChZbd9bM2bTpGkRkOTnUqlMmLS6bZMsewxEwC3kaEfsBHNclmDLgyX7BEFivOIMOMSfjECMHKSxMOi1FzCeYv+Le0vgE+sB1DFM2SXRhT3Y14ClyjBACbrKnj+RjBf/gOYAEL2kqQlU+AzQAKgMAEjGA1f5gTDjoB6BlRqDo0kC2LkGkGAFaNuDQ2nE0MQ2b4OTys83mtblvAgFGK0LmI6SZTCBUzAe4zayjih8D6N8/KiqXY5g1HTR6++BrixzRB/Cb42pWI0nyGKCRRFwAcCzZ33CEkbB+/QuKBYzbSNrvJzZ23uwH6gjY0YtWRJYiEjw7CMCP4tj7XVHs/s5pcaGPphbixd2bHkuWp0e/1/wA+4CxCdHbWbVXl+kwIpQrcTao1uviqYYR3hshkFIqJOrrojAoDHirAreTknmsIWpmH1Gyv12qTEUpdrMRjgHkDyUYVs0uriC8o4odOfQW2o7EzRTePrOMEBsz09Qtf4p9jr62Dfap4aabJOCfAjn+NrAh60ZmcNHjluMLwxt7YUs7ZL2wyjX/KZbgIQA4CdLmyn/wENmQFM5/MDlQAAAABJRU5ErkJggg==" />
+                            </span>
+                        </div>
 
+                        <div class="title">PMS:&nbsp;{{carf.pms}}</div>
                         <div class="internal">
                             <div class="title">Values</div>
                         <div ng-repeat="value in carf.values">
@@ -109,70 +124,3 @@
 </div>
 
 
-<!--
-<div flex="100" flex-sm="100" class="md-whiteframe-z1" data-ng-init="vm.initCarf()">
-
-<form name="carfForm" data-ng-submit="vm.addpmsvalue(vm.carf)">
-    <fieldset flex>
-        <legend><code>PMS</code></legend>
-        <md-radio-group ng-change="vm.selectPMSValue(vm.carf.pms)" ng-model="vm.carf.pms" layout="row" layout-align="start start">
-            <md-radio-button class="md-primary" ng-repeat="p in vm.carfPMSValue"
-                             ng-value="p.pms">
-                {{ p.pms }}
-            </md-radio-button>
-        </md-radio-group>
-    </fieldset>
-        <div layout="row">
-        <div flex="100" flex-md="100" layout="column">
-            <fieldset flex>
-                <legend><code>{{vm.carf.pms}}</code></legend>
-                <div layout="row" layout-wrap>
-                    <div flex ng-repeat="pmsvalue in vm.valueList">
-                        <md-checkbox class="md-primary" ng-click="vm.addListValue(pmsvalue)" ng-click="">
-                            {{ pmsvalue }}
-                        </md-checkbox>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        </div>
-    <md-input-container>
-        <label>Requirement</label>
-    <textarea required ng-model="vm.carf.requirement"></textarea>
-    </md-input-container>
-       <div ng-repeat="stakeholder in vm.stakeholderList">
-           <div layout="row" layout-align="start start">
-               <md-checkbox ng-click="vm.addStakeholder(stakeholder)" class="md-primary"> {{stakeholder}} </md-checkbox>
-           </div>
-
-       </div>
-    <md-button type="submit" class="md-primary"
-               ng-class="{'md-raised md-hue-1': (carfForm.$dirty && carfForm.$valid) }"
-               aria-label="Save">{{'BTN_ADD' | translate}}</md-button>
-
-</form>
-
-<div flex="100" flex-sm="100" class="md-whiteframe-z3">
-    <md-content>
-        <div ng-repeat="carf in vm.carfList">
-
-            <div class="box-pms">
-            <div class="close-pms"><a ng-click="vm.removeCARF($index,carf)">X</a></div>
-            <div><span>PMS:&nbsp;</span>{{carf.pms}}</div>
-            <div><span>Values</span></div>
-            <div ng-repeat="value in carf.values">
-            <span>{{value}}</span>
-            </div>
-            <div><span>Requirement</span></div>
-            <div><span>{{carf.requirement}}</span></div>
-            <div><span>Stakeholders</span></div>
-            <div ng-repeat="stakeholder in carf.stakeholders">
-            <span>{{stakeholder}}</span>
-            </div>
-            </div>
-        </div>
-    </md-content>
-</div>
-
-</div>
--->

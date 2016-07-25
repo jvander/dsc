@@ -22,7 +22,46 @@
         self.setPriotity = setPriotity;
         self.addListValue = addListValue;
         self.addStakeholder = addStakeholder;
+        self.openEditPMS = openEditPMS;
+        self.exists = exists;
+        self.loadEditPMS = true;
+        self.resetFormPMP = resetFormPMP;
+        self.updatePMS = updatePMS;
+        
+        function updatePMS(carf) {
+            for(var k=0; k < carf.stakeholders.length; k++){
+                var index = k;
+                for(var j = 0; j < self.localStakeholders.length; j++){
+                    if(carf.stakeholders[k] === self.localStakeholders[j]){
+                        index = -1;
+                        break;
+                    }
+                }
+                if(index !== -1){
+                    carf.stakeholders.splice(index,1);
+                }
+            }
+            for(var i=0; i < self.carfList.length; i++){
+                if(carf._id == self.carfList[i]._id){
+                    removeCARF(i,carf)
+                    break;
+                }
+            }
+            addpmsvalue(carf);
+            self.loadEditPMS = true;
+        }
+
+        function resetFormPMP() {
+            resetCarf();
+            self.loadEditPMS = true;
+        }
+
+        function exists(item,list) {
+            return list.indexOf(item) > -1;
+        };
+
         self.carf = {
+            _id: "",
             pms: "",
             values: [],
             priority: "",
@@ -36,6 +75,23 @@
         self.showFormPMS = false;
         self.showForm = showForm;
         self.labelBtnShowFormPMS = 'New';
+
+        function openEditPMS(index) {
+            self.showFormPMS = true;
+            self.showValues = true;
+            self.carf = self.carfList[index];
+            angular.forEach(self.carfPMSValue, function (pms_value) {
+                if (pms_value.pms == self.carf.pms) {
+                    self.valueList = pms_value.values;
+                    self.showValues = true;
+                    return;
+                }
+            });
+
+            self.carf.values = self.carfList[index].values;
+            self.labelBtnShowFormPMS = 'Hide';
+            self.loadEditPMS = false;
+        }
 
         function showForm() {
             self.showFormPMS = !self.showFormPMS;
@@ -81,8 +137,7 @@
         });
 
         function addpmsvalue(carf){
-
-            if(carf.pms === ""){
+            if(carf.pms === "" || carf.pms === undefined){
                 toastApp.errorMessage("Select PMS");
             }else{
                 if(carf.values.length < 1 ){
