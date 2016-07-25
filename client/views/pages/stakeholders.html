@@ -46,9 +46,10 @@
                     <div layout="row">
                         <md-input-container flex>
                             <label> Stakeholder </label>
-                            <input class="title" ng-model="stakeholder.name" required>
+                            <input class="description" ng-model="stakeholder.name" required>
                         </md-input-container>
                     </div>
+
                     <div layout="row">
                         <md-input-container flex>
                             <label>Description</label>
@@ -83,16 +84,17 @@
                         </div>
 
                         <div layout="row" layout-align="center start" ng-show="(stakeholder.sugestionValues.length > 0)">
-                            <md-button class="md-primary md-raised" ng-click="vm.showSuggestion()" aria-label="More">
-                                {{vm.labelShowSuggestion}}
-                            </md-button>
+                            <span class="acaoNormal">
+                                {{vm.labelShowSuggestion}}&nbsp;
+                                <img  ng-click="vm.showSuggestion()" src={{vm.arrow}} />
+                            </span>
                         </div>
 
                         <div ng-show="vm.isShowSuggestion">
                             <div ng-repeat="sv in stakeholder.sugestionValues">
                                 <span>{{sv}}</span>
                                 <span class="acaoNormal">
-                                    <img ng-click="vm.selectStakeholderValue($index,stakeholder,sv)" <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAzMDAuMDAzIDMwMC4wMDMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMwMC4wMDMgMzAwLjAwMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0xNTAsMEM2Ny4xNTksMCwwLjAwMSw2Ny4xNTksMC4wMDEsMTUwYzAsODIuODM4LDY3LjE1NywxNTAuMDAzLDE0OS45OTcsMTUwLjAwM1MzMDAuMDAyLDIzMi44MzgsMzAwLjAwMiwxNTAgICAgQzMwMC4wMDIsNjcuMTU5LDIzMi44MzksMCwxNTAsMHogTTIxMy4yODEsMTY2LjUwMWgtNDguMjd2NTAuNDY5Yy0wLjAwMyw4LjQ2My02Ljg2MywxNS4zMjMtMTUuMzI4LDE1LjMyMyAgICBjLTguNDY4LDAtMTUuMzI4LTYuODYtMTUuMzI4LTE1LjMyOHYtNTAuNDY0SDg3LjM3Yy04LjQ2Ni0wLjAwMy0xNS4zMjMtNi44NjMtMTUuMzI4LTE1LjMyOGMwLTguNDYzLDYuODYzLTE1LjMyNiwxNS4zMjgtMTUuMzI4ICAgIGw0Ni45ODQsMC4wMDNWOTEuMDU3YzAtOC40NjYsNi44NjMtMTUuMzI4LDE1LjMyNi0xNS4zMjhjOC40NjgsMCwxNS4zMzEsNi44NjMsMTUuMzI4LDE1LjMyOGwwLjAwMyw0NC43ODdsNDguMjY1LDAuMDA1ICAgIGM4LjQ2Ni0wLjAwNSwxNS4zMzEsNi44NiwxNS4zMjgsMTUuMzI4QzIyOC42MDcsMTU5LjY0MywyMjEuNzQyLDE2Ni41MDEsMjEzLjI4MSwxNjYuNTAxeiIgZmlsbD0iIzkxREM1QSIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
+                                    <img ng-click="vm.selectStakeholderValue($index,stakeholder,sv)" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAzMDAuMDAzIDMwMC4wMDMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMwMC4wMDMgMzAwLjAwMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0xNTAsMEM2Ny4xNTksMCwwLjAwMSw2Ny4xNTksMC4wMDEsMTUwYzAsODIuODM4LDY3LjE1NywxNTAuMDAzLDE0OS45OTcsMTUwLjAwM1MzMDAuMDAyLDIzMi44MzgsMzAwLjAwMiwxNTAgICAgQzMwMC4wMDIsNjcuMTU5LDIzMi44MzksMCwxNTAsMHogTTIxMy4yODEsMTY2LjUwMWgtNDguMjd2NTAuNDY5Yy0wLjAwMyw4LjQ2My02Ljg2MywxNS4zMjMtMTUuMzI4LDE1LjMyMyAgICBjLTguNDY4LDAtMTUuMzI4LTYuODYtMTUuMzI4LTE1LjMyOHYtNTAuNDY0SDg3LjM3Yy04LjQ2Ni0wLjAwMy0xNS4zMjMtNi44NjMtMTUuMzI4LTE1LjMyOGMwLTguNDYzLDYuODYzLTE1LjMyNiwxNS4zMjgtMTUuMzI4ICAgIGw0Ni45ODQsMC4wMDNWOTEuMDU3YzAtOC40NjYsNi44NjMtMTUuMzI4LDE1LjMyNi0xNS4zMjhjOC40NjgsMCwxNS4zMzEsNi44NjMsMTUuMzI4LDE1LjMyOGwwLjAwMyw0NC43ODdsNDguMjY1LDAuMDA1ICAgIGM4LjQ2Ni0wLjAwNSwxNS4zMzEsNi44NiwxNS4zMjgsMTUuMzI4QzIyOC42MDcsMTU5LjY0MywyMjEuNzQyLDE2Ni41MDEsMjEzLjI4MSwxNjYuNTAxeiIgZmlsbD0iIzkxREM1QSIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
                                 <md-tooltip>{{'ADD_VALUE' | translate}}</md-tooltip>
                                 </span>
                             </div>

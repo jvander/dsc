@@ -1,8 +1,10 @@
 <div data-ng-init="vm.initCarf()" class="md-whiteframe-z1" flex="100">
     <div class="pms" flex="100">
+
         <div layout="column" layout-align="end end">
         <div><md-button ng-click="vm.showForm()">{{vm.labelBtnShowFormPMS}}</md-button></div>
         </div>
+
         <div ng-show="vm.showFormPMS">
         <form name="carfForm" data-ng-submit="vm.addpmsvalue(vm.carf)">
             <div layout="column">
@@ -78,7 +80,8 @@
         <div flex="100" layout="rows" style="background-color: teal">
                 <div ng-repeat="carf in vm.carfList">
                     <div class="box-pms">
-                        <div layout-align="end end">
+                        <div layout="rows" layout-align="end end">
+                            <span class="title">PMS:&nbsp;{{carf.pms}}</span>
                             <span flex></span>
                             <span ng-click="vm.openEditPMS($index)">
                                 <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI3NS44MzYgMjc1LjgzNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjc1LjgzNiAyNzUuODM2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTE5MS4zNDQsMjAuOTIybC05NS4xNTUsOTUuMTU1Yy0wLjc1NiwwLjc1Ni0xLjI5NywxLjY5OS0xLjU2NSwyLjczNGwtOC4xNjcsMzEuNDU0Yy0wLjUzNCwyLjA1OSwwLjA2MSw0LjI0NiwxLjU2NSw1Ljc1MSAgIGMxLjE0LDEuMTM5LDIuNjcxLDEuNzU3LDQuMjQyLDEuNzU3YzAuNTAzLDAsMS4wMDktMC4wNjMsMS41MDgtMC4xOTJsMzEuNDU0LTguMTY4YzEuMDM1LTAuMjY5LDEuOTc5LTAuODEsMi43MzQtMS41NjUgICBsOTUuMTUzLTk1LjE1M2MwLjAwMi0wLjAwMiwwLjAwNC0wLjAwMywwLjAwNS0wLjAwNHMwLjAwMy0wLjAwNCwwLjAwNC0wLjAwNWwxOS4xNTYtMTkuMTU2YzIuMzQ0LTIuMzQzLDIuMzQ0LTYuMTQyLDAuMDAxLTguNDg0ICAgTDIxOC45OTQsMS43NThDMjE3Ljg2OCwwLjYzMiwyMTYuMzQzLDAsMjE0Ljc1MSwwYy0xLjU5MSwwLTMuMTE3LDAuNjMyLTQuMjQyLDEuNzU4bC0xOS4xNTUsMTkuMTU1ICAgYy0wLjAwMiwwLjAwMi0wLjAwNCwwLjAwMy0wLjAwNSwwLjAwNFMxOTEuMzQ2LDIwLjkyMSwxOTEuMzQ0LDIwLjkyMnogTTEyMC42MzEsMTM4LjIwOGwtMTkuOTkzLDUuMTkybDUuMTkxLTE5Ljk5M2w4OS43NjItODkuNzYyICAgbDE0LjgwMSwxNC44MDJMMTIwLjYzMSwxMzguMjA4eiBNMjE0Ljc1MSwxNC40ODVsMTQuODAxLDE0LjgwMmwtMTAuNjc1LDEwLjY3NUwyMDQuMDc2LDI1LjE2TDIxNC43NTEsMTQuNDg1eiIgZmlsbD0iIzAwMDAwMCIvPgoJPHBhdGggZD0iTTIzOC4wMzcsNjUuMDIyYy0zLjMxMywwLTYsMi42ODctNiw2djE5Mi44MTNINDMuNzk5VjM0LjQxN2gxMTEuMDYzYzMuMzEzLDAsNi0yLjY4Nyw2LTZzLTIuNjg3LTYtNi02SDM3Ljc5OSAgIGMtMy4zMTMsMC02LDIuNjg3LTYsNnYyNDEuNDE5YzAsMy4zMTMsMi42ODcsNiw2LDZoMjAwLjIzOGMzLjMxMywwLDYtMi42ODcsNi02VjcxLjAyMiAgIEMyNDQuMDM3LDY3LjcwOSwyNDEuMzUxLDY1LjAyMiwyMzguMDM3LDY1LjAyMnoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
@@ -88,7 +91,6 @@
                             </span>
                         </div>
 
-                        <div class="title">PMS:&nbsp;{{carf.pms}}</div>
                         <div class="internal">
                             <div class="title">Values</div>
                         <div ng-repeat="value in carf.values">
