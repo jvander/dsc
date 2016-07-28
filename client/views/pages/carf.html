@@ -5,7 +5,8 @@
         <div><md-button ng-click="vm.showForm()">{{vm.labelBtnShowFormPMS}}</md-button></div>
         </div>
 
-        <div ng-show="vm.showFormPMS">
+        <div class="md-whiteframe-6dp" layout-padding="4" ng-show="vm.showFormPMS">
+
         <form name="carfForm" data-ng-submit="vm.addpmsvalue(vm.carf)">
             <div layout="column">
                 <div><h3>PMS</h3></div>
@@ -18,15 +19,14 @@
                     </md-radio-group>
                 </div>
             </div>
-
+            <br>
             <div layout="column" ng-show="vm.showValues">
                 <div layout="column">
                     <div>
                         <h3>{{vm.carf.pms}}</h3>
                     </div>
-
-                    <div layout="row" layout-wrap>
-                        <div flex ng-repeat="pmsvalue in vm.valueList">
+                    <div>
+                        <div ng-repeat="pmsvalue in vm.valueList">
                             <md-checkbox class="md-primary" ng-checked="vm.exists(pmsvalue, vm.carf.values)"  ng-click="vm.addListValue(pmsvalue)">
                                 {{ pmsvalue }}
                             </md-checkbox>
@@ -46,7 +46,7 @@
                         </md-radio-group>
                     </div>
                 </div>
-
+                <br>
                 <div layout="column" flex="100">
                     <md-input-container flex>
                         <label>Requirement</label>
@@ -76,8 +76,9 @@
                 </div>
             </div>
         </form>
-            </div>
-        <div flex="100" layout="rows" style="background-color: teal">
+        </div>
+
+        <div flex="100" layout="rows" style="background-color: teal; padding-top: 10px">
                 <div ng-repeat="carf in vm.carfList">
                     <div class="box-pms">
                         <div layout="rows" layout-align="end end">
@@ -90,7 +91,6 @@
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACqklEQVQ4T4WTXUiTURjHn/ec933Xq5OZ5ucc5kydTtYqBmWRQVhBmN6JRdlFpKBd6CLLoCaVBmKR5EVYI7xQL1IQkUiEAjXBCZof86MiP3jT5rKltY9370ds4LCa+lyci/M/53ee5/+ch3iiVqccOpdrjk9UJQy+ML+8MGGthm3iEUBEdEpyTWxq2qkv/QMtRJ+xfPrgmZw0+ud3YPv7vH3tXeaLi0slwRj1FHU4Tad7HqPNSF2aX5ifHRq8RViqKr9mHtDG7VpbAVj4DJx1FHrfjU5ZVpxZJgCHD2QCQEnhild6vT7fgZBzYmy8vNRub/JphG95plKVG3T7bqfL+UjMzoHT5oChZbd9bM2bTpGkRkOTnUqlMmLS6bZMsewxEwC3kaEfsBHNclmDLgyX7BEFivOIMOMSfjECMHKSxMOi1FzCeYv+Le0vgE+sB1DFM2SXRhT3Y14ClyjBACbrKnj+RjBf/gOYAEL2kqQlU+AzQAKgMAEjGA1f5gTDjoB6BlRqDo0kC2LkGkGAFaNuDQ2nE0MQ2b4OTys83mtblvAgFGK0LmI6SZTCBUzAe4zayjih8D6N8/KiqXY5g1HTR6++BrixzRB/Cb42pWI0nyGKCRRFwAcCzZ33CEkbB+/QuKBYzbSNrvJzZ23uwH6gjY0YtWRJYiEjw7CMCP4tj7XVHs/s5pcaGPphbixd2bHkuWp0e/1/wA+4CxCdHbWbVXl+kwIpQrcTao1uviqYYR3hshkFIqJOrrojAoDHirAreTknmsIWpmH1Gyv12qTEUpdrMRjgHkDyUYVs0uriC8o4odOfQW2o7EzRTePrOMEBsz09Qtf4p9jr62Dfap4aabJOCfAjn+NrAh60ZmcNHjluMLwxt7YUs7ZL2wyjX/KZbgIQA4CdLmyn/wENmQFM5/MDlQAAAABJRU5ErkJggg==" />
                             </span>
                         </div>
-
                         <div class="internal">
                             <div class="title">Values</div>
                         <div ng-repeat="value in carf.values">
@@ -110,7 +110,6 @@
                             <span>{{stakeholder}}</span>
                         </div>
                             </div>
-
                     </div>
                 </div>
         </div>

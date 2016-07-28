@@ -1,24 +1,25 @@
 <div data-ng-init="vm.intitOnion()">
 
 <svg id="svg" height="800" width="1200">
-    <circle id="legendCommunity" cx="1080" cy="10" r="10" style="fill: #E0F2F1;" ng-mouseover="vm.acende('Community');" ng-mouseleave="vm.apaga('Community','#E0F2F1');"/>
-    <text id="nameCommunity" style="font-size: 14px" x="1090" y="15" ng-mouseover="vm.acende('Community');" ng-mouseleave="vm.apaga('Community','#E0F2F1');">Community</text>
-    <text x="1090" y="28" style="font-size: 10px">Epectador, Legislador</text>
-    <circle id="legendMarket" cx="1080" cy="50" r="10" style="fill: #B2DFDB;" ng-mouseover="vm.acende('Market');" ng-mouseleave="vm.apaga('Market','#B2DFDB');"/>
-    <text id="nameMarket" x="1090" y="55" ng-mouseover="vm.acende('Market');" ng-mouseleave="vm.apaga('Market','#B2DFDB');">Market</text>
-    <text x="1090" y="68" style="font-size: 10px">Parceiros, Concorrentes</text>
-    <circle id="legendSource" cx="1080" cy="90" r="10" style="fill: #80CBC4;" ng-mouseover="vm.acende('Source');" ng-mouseleave="vm.apaga('Source','#80CBC4');"/>
-    <text id="nameSource" x="1090" y="95" ng-mouseover="vm.acende('Source');" ng-mouseleave="vm.apaga('Source','#80CBC4');">Source</text>
-    <text x="1090" y="108" style="font-size: 10px">Clientes, Fornecedores</text>
-    <circle id="legendContribution" cx="1080" cy="130" r="10" style="fill: #4DB6AC;" ng-mouseover="vm.acende('Contribution');" ng-mouseleave="vm.apaga('Contribution','#4DB6AC');"/>
-    <text id="nameContribution" x="1090" y="135" ng-mouseover="vm.acende('Contribution');" ng-mouseleave="vm.apaga('Contribution','#4DB6AC');">Contribution</text>
-    <text x="1090" y="148" style="font-size: 10px">Atores, responsaveis</text>
-    <circle id="legendTechnico" cx="1080" cy="170" r="10" style="fill: #26A69A;" ng-mouseover="vm.acende('Technico');" ng-mouseleave="vm.apaga('Technico','#26A69A');"/>
-    <text id="nameTechnico" x="1090" y="175"  ng-mouseover="vm.acende('Technico');" ng-mouseleave="vm.apaga('Technico','#26A69A');">Technico</text>
-    <text x="1090" y="188" style="font-size: 10px">Tecnicos, Sistema</text>
+    <circle id="legendCommunity" cx="1065" cy="10" r="8" style="fill: #E0F2F1;" ng-mouseover="vm.acende('Community');" ng-mouseleave="vm.apaga('Community','#E0F2F1');"/>
+    <text id="nameCommunity" style="font-size: 14px" x="1075" y="15" ng-mouseover="vm.acende('Community');" ng-mouseleave="vm.apaga('Community','#E0F2F1');">{{'COMMUNITY_LABEL' | translate}}</text>
+    <text x="1070" y="25" style="font-size: 10px">{{'COMMUNITY_DESCRIPTION' | translate}}</text>
+
+    <circle id="legendMarket" cx="1065" cy="40" r="8" style="fill: #B2DFDB;" ng-mouseover="vm.acende('Market');" ng-mouseleave="vm.apaga('Market','#B2DFDB');"/>
+    <text id="nameMarket" x="1075" y="45" ng-mouseover="vm.acende('Market');" ng-mouseleave="vm.apaga('Market','#B2DFDB');">{{'MARKET_LABEL' | translate}}</text>
+    <text x="1070" y="55" style="font-size: 10px">{{'MARKET_DESCRIPTION' | translate}}</text>
+    <circle id="legendSource" cx="1065" cy="70" r="8" style="fill: #80CBC4;" ng-mouseover="vm.acende('Source');" ng-mouseleave="vm.apaga('Source','#80CBC4');"/>
+    <text id="nameSource" x="1075" y="75" ng-mouseover="vm.acende('Source');" ng-mouseleave="vm.apaga('Source','#80CBC4');">{{'SOURCE_LABEL' | translate}}</text>
+    <text x="1070" y="85" style="font-size: 10px">{{'SOURCE_DESCRIPTION' | translate}}</text>
+    <circle id="legendContribution" cx="1065" cy="100" r="8" style="fill: #4DB6AC;" ng-mouseover="vm.acende('Contribution');" ng-mouseleave="vm.apaga('Contribution','#4DB6AC');"/>
+    <text id="nameContribution" x="1075" y="105" ng-mouseover="vm.acende('Contribution');" ng-mouseleave="vm.apaga('Contribution','#4DB6AC');">{{'CONTRIBUTION_LABEL' | translate}}</text>
+    <text x="1070" y="115" style="font-size: 10px">{{'CONTRIBUTION_DESCRIPTION' | translate}}</text>
+    <circle id="legendTechnico" cx="1065" cy="130" r="8" style="fill: #26A69A;" ng-mouseover="vm.acende('Technico');" ng-mouseleave="vm.apaga('Technico','#26A69A');"/>
+    <text id="nameTechnico" x="1075" y="135"  ng-mouseover="vm.acende('Technico');" ng-mouseleave="vm.apaga('Technico','#26A69A');">{{'TECHNICO_LABEL' | translate}}</text>
+    <text x="1070" y="145" style="font-size: 10px">{{'TECHNICO_DESCRIPTION' | translate}}</text>
 
 
-    <ellipse id="Community" cx="600" cy="320" rx="480" ry="320" fill="#E0F2F1"  ng-mouseover="vm.acende('Community');" ng-mouseleave="vm.apaga('Community','#E0F2F1');" ng-dblclick="vm.addPostIt($event, 'Community');"/>
+    <ellipse id="Community"75 cx="600" cy="320" rx="480" ry="320" fill="#E0F2F1"  ng-mouseover="vm.acende('Community');" ng-mouseleave="vm.apaga('Community','#E0F2F1');" ng-dblclick="vm.addPostIt($event, 'Community');"/>
     <ellipse id="Market" cx="600" cy="380" rx="390" ry="260" fill="#B2DFDB"  ng-mouseover="vm.acende('Market');" ng-mouseleave="vm.apaga('Market','#B2DFDB');" ng-dblclick="vm.addPostIt($event, 'Market');"/>
     <ellipse id="Source" cx="600" cy="440" rx="300" ry="200" fill="#80CBC4"  ng-mouseover="vm.acende('Source');" ng-mouseleave="vm.apaga('Source','#80CBC4')"; ng-dblclick="vm.addPostIt($event, 'Source');"/>
     <ellipse id="Contribution" cx="600" cy="500" rx="210" ry="140" fill="#4DB6AC"  ng-mouseover="vm.acende('Contribution');" ng-mouseleave="vm.apaga('Contribution','#4DB6AC');" ng-dblclick="vm.addPostIt($event, 'Contribution');"/>

@@ -4,44 +4,43 @@
 
             <div class="sticky-note-value">
                 <div>{{onion.onionlayer}}</div>
-            <div ng-repeat="stakeholder in onion.stakeholders">
-
-                <div class="stakeholder" id="stakeholder{{stakeholder._id}}">
-
-                    <div class="title"><span>{{stakeholder.name}}</span></div>
-                    <div ng-repeat="value in stakeholder.values">
-                            <div><span>{{value}} </span><span ng-click="vm.removeValueIdentication(value,stakeholder)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACqklEQVQ4T4WTXUiTURjHn/ec933Xq5OZ5ucc5kydTtYqBmWRQVhBmN6JRdlFpKBd6CLLoCaVBmKR5EVYI7xQL1IQkUiEAjXBCZof86MiP3jT5rKltY9370ds4LCa+lyci/M/53ee5/+ch3iiVqccOpdrjk9UJQy+ML+8MGGthm3iEUBEdEpyTWxq2qkv/QMtRJ+xfPrgmZw0+ud3YPv7vH3tXeaLi0slwRj1FHU4Tad7HqPNSF2aX5ifHRq8RViqKr9mHtDG7VpbAVj4DJx1FHrfjU5ZVpxZJgCHD2QCQEnhild6vT7fgZBzYmy8vNRub/JphG95plKVG3T7bqfL+UjMzoHT5oChZbd9bM2bTpGkRkOTnUqlMmLS6bZMsewxEwC3kaEfsBHNclmDLgyX7BEFivOIMOMSfjECMHKSxMOi1FzCeYv+Le0vgE+sB1DFM2SXRhT3Y14ClyjBACbrKnj+RjBf/gOYAEL2kqQlU+AzQAKgMAEjGA1f5gTDjoB6BlRqDo0kC2LkGkGAFaNuDQ2nE0MQ2b4OTys83mtblvAgFGK0LmI6SZTCBUzAe4zayjih8D6N8/KiqXY5g1HTR6++BrixzRB/Cb42pWI0nyGKCRRFwAcCzZ33CEkbB+/QuKBYzbSNrvJzZ23uwH6gjY0YtWRJYiEjw7CMCP4tj7XVHs/s5pcaGPphbixd2bHkuWp0e/1/wA+4CxCdHbWbVXl+kwIpQrcTao1uviqYYR3hshkFIqJOrrojAoDHirAreTknmsIWpmH1Gyv12qTEUpdrMRjgHkDyUYVs0uriC8o4odOfQW2o7EzRTePrOMEBsz09Qtf4p9jr62Dfap4aabJOCfAjn+NrAh60ZmcNHjluMLwxt7YUs7ZL2wyjX/KZbgIQA4CdLmyn/wENmQFM5/MDlQAAAABJRU5ErkJggg=="></span></div>
-                    </div>
-
-                    <div layout="rows">
+                <div ng-repeat="stakeholder in onion.stakeholders">
+                    <div layout="col" class="stakeholder" id="stakeholder{{stakeholder._id}}">
                         <div>
-                            <md-input-container>
-                                <label>New Value</label>
-                                <input ng-model="stakeholder.newValues">
-                            </md-input-container>
-                        </div>
-                        <div>
-                        <md-button ng-click="vm.setValueIdentication(stakeholder)" class="md-primary md-raised">{{'ADD_VALUE' | translate}}</md-button>
-                        </div>
-                    </div>
-                        <div layout="row" layout-align="center start" ng-show="(stakeholder.sugestionValues.length > 0)">
-                            <span class="acaoTitulo">{{vm.labelShowSuggestion}}&nbsp;</span>
+                            <span class="title">{{stakeholder.name}}</span>
+                            <div ng-repeat="value in stakeholder.values">
+                                <div><span>{{value}} </span><span ng-click="vm.removeValueIdentication(value,stakeholder)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACqklEQVQ4T4WTXUiTURjHn/ec933Xq5OZ5ucc5kydTtYqBmWRQVhBmN6JRdlFpKBd6CLLoCaVBmKR5EVYI7xQL1IQkUiEAjXBCZof86MiP3jT5rKltY9370ds4LCa+lyci/M/53ee5/+ch3iiVqccOpdrjk9UJQy+ML+8MGGthm3iEUBEdEpyTWxq2qkv/QMtRJ+xfPrgmZw0+ud3YPv7vH3tXeaLi0slwRj1FHU4Tad7HqPNSF2aX5ifHRq8RViqKr9mHtDG7VpbAVj4DJx1FHrfjU5ZVpxZJgCHD2QCQEnhild6vT7fgZBzYmy8vNRub/JphG95plKVG3T7bqfL+UjMzoHT5oChZbd9bM2bTpGkRkOTnUqlMmLS6bZMsewxEwC3kaEfsBHNclmDLgyX7BEFivOIMOMSfjECMHKSxMOi1FzCeYv+Le0vgE+sB1DFM2SXRhT3Y14ClyjBACbrKnj+RjBf/gOYAEL2kqQlU+AzQAKgMAEjGA1f5gTDjoB6BlRqDo0kC2LkGkGAFaNuDQ2nE0MQ2b4OTys83mtblvAgFGK0LmI6SZTCBUzAe4zayjih8D6N8/KiqXY5g1HTR6++BrixzRB/Cb42pWI0nyGKCRRFwAcCzZ33CEkbB+/QuKBYzbSNrvJzZ23uwH6gjY0YtWRJYiEjw7CMCP4tj7XVHs/s5pcaGPphbixd2bHkuWp0e/1/wA+4CxCdHbWbVXl+kwIpQrcTao1uviqYYR3hshkFIqJOrrojAoDHirAreTknmsIWpmH1Gyv12qTEUpdrMRjgHkDyUYVs0uriC8o4odOfQW2o7EzRTePrOMEBsz09Qtf4p9jr62Dfap4aabJOCfAjn+NrAh60ZmcNHjluMLwxt7YUs7ZL2wyjX/KZbgIQA4CdLmyn/wENmQFM5/MDlQAAAABJRU5ErkJggg=="></span></div>
+                            </div>
+                            <div layout="rows">
+                                <div>
+                                    <md-input-container>
+                                        <label>New Value</label>
+                                        <input ng-model="stakeholder.newValues">
+                                    </md-input-container>
+                                </div>
+                                <div>
+                                    <md-button ng-click="vm.setValueIdentication(stakeholder)" class="md-primary md-raised">{{'ADD_VALUE' | translate}}</md-button>
+                                </div>
+                            </div>
+                            <div layout="row" layout-align="center start" ng-show="(stakeholder.sugestionValues.length > 0)">
+                                <span class="acaoTitulo">{{vm.labelShowSuggestion}}&nbsp;</span>
                             <span class="acaoNormal">
                                 <img  ng-click="vm.showSuggestion(stakeholder)" src={{vm.arrow}} />
                             </span>
-                        </div>
-                        <div ng-show="stakeholder.openEdit">
-                            <div ng-repeat="sv in stakeholder.sugestionValues">
-                                <span>{{sv}}</span>
+                            </div>
+                            <div ng-show="stakeholder.openEdit">
+                                <div ng-repeat="sv in stakeholder.sugestionValues">
+                                    <span>{{sv}}</span>
                                 <span class="acaoNormal">
                                     <img ng-click="vm.selectStakeholderValue($index,stakeholder,sv)" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAzMDAuMDAzIDMwMC4wMDMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMwMC4wMDMgMzAwLjAwMzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0xNTAsMEM2Ny4xNTksMCwwLjAwMSw2Ny4xNTksMC4wMDEsMTUwYzAsODIuODM4LDY3LjE1NywxNTAuMDAzLDE0OS45OTcsMTUwLjAwM1MzMDAuMDAyLDIzMi44MzgsMzAwLjAwMiwxNTAgICAgQzMwMC4wMDIsNjcuMTU5LDIzMi44MzksMCwxNTAsMHogTTIxMy4yODEsMTY2LjUwMWgtNDguMjd2NTAuNDY5Yy0wLjAwMyw4LjQ2My02Ljg2MywxNS4zMjMtMTUuMzI4LDE1LjMyMyAgICBjLTguNDY4LDAtMTUuMzI4LTYuODYtMTUuMzI4LTE1LjMyOHYtNTAuNDY0SDg3LjM3Yy04LjQ2Ni0wLjAwMy0xNS4zMjMtNi44NjMtMTUuMzI4LTE1LjMyOGMwLTguNDYzLDYuODYzLTE1LjMyNiwxNS4zMjgtMTUuMzI4ICAgIGw0Ni45ODQsMC4wMDNWOTEuMDU3YzAtOC40NjYsNi44NjMtMTUuMzI4LDE1LjMyNi0xNS4zMjhjOC40NjgsMCwxNS4zMzEsNi44NjMsMTUuMzI4LDE1LjMyOGwwLjAwMyw0NC43ODdsNDguMjY1LDAuMDA1ICAgIGM4LjQ2Ni0wLjAwNSwxNS4zMzEsNi44NiwxNS4zMjgsMTUuMzI4QzIyOC42MDcsMTU5LjY0MywyMjEuNzQyLDE2Ni41MDEsMjEzLjI4MSwxNjYuNTAxeiIgZmlsbD0iIzkxREM1QSIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
                                 <md-tooltip>{{'ADD_VALUE' | translate}}</md-tooltip>
                                 </span>
+                                </div>
                             </div>
                         </div>
-                </div>
 
-            </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

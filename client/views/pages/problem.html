@@ -1,44 +1,5 @@
 <div layout="column" layout-fill data-ng-init="vm.getCurrentProblem()">
 
-            <!--<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="chat">
-                <md-toolbar class="md-theme-light">
-                    <h1 class="md-toolbar-tools">Chat DSC</h1>
-                </md-toolbar>
-                <md-content ng-controller="chatDSC as vm" layout-padding data-ng-init="vm.initHistoryChat()">
-                <md-content style="height: 400px;"  scroll-glue>
-
-                            <div ng-repeat="msg in vm.messages">
-                                    <div ng-if="msg.nickname == vm.nickname">
-                                        <div class="bubble me">{{msg.time}} {{msg.nickname}} : {{msg.msg}}</div>
-                                    </div>
-                                    <div ng-if="msg.nickname != vm.nickname">
-                                        <div class="bubble you">{{msg.time}} {{msg.nickname}} : {{msg.msg}}</div>
-                                    </div>
-                            </div>
-                                <md-divider inset></md-divider>
-                            </md-list-item>
-
-                    </md-content>
-
-                    <form>
-                        <md-input-container>
-                            <label for="testInput">Mensagem</label>
-                            <input type="text" id="testInput"
-                                   ng-model="vm.newmsg" md-sidenav-focus>
-                        </md-input-container>
-                        <md-button ng-hide="true" ng-click="vm.sendMessage(vm.newmsg)">Send</md-button>
-                        <md-button ng-click="vm.close()" class="md-primary">Close</md-button>
-                        <span flex></span>
-                        <md-button ng-click="vm.sendMessage(vm.newmsg)">Send</md-button>
-                    </form>
-                    <div>
-                        <span>Collaborators on</span>
-                    <div ng-repeat="user in vm.userList">
-                        <span>{{user}}</span>
-                    </div>
-                    </div>
-                </md-content>
-            </md-sidenav>-->
 
     <md-toolbar md-scroll-shrink>
         <div class="md-toolbar-tools">
@@ -48,20 +9,20 @@
             <span flex flex-md="100"></span>
             <md-button ng-click="vm.formInviteCollaborator($event)" class="md-fab md-primary" aria-label="Edit Collaborators">
                 <md-tooltip>
-                    Edit Collaborators
+                    {{'EDIT_COLLABORATORS' | translate}}
                 </md-tooltip>
                 <md-icon md-svg-src="views/img/icon/shared.svg"></md-icon>
             </md-button>
 
             <md-button ng-click="vm.formEditProblem($event)" class="md-fab md-primary" aria-label="Edit Description">
                 <md-tooltip>
-                    Edit Description
+                    {{'EDIT_PROBLEM_DESCRIPTION' | translate}}
                 </md-tooltip>
                 <md-icon md-svg-src="views/img/icon/ic_edit_24px.svg"></md-icon>
             </md-button>
             <md-button ng-click="vm.systemReturn()" class="md-fab md-primary" aria-label="Chat">
                 <md-tooltip>
-                    Your Projects (Problems)
+                    {{'YOUR_DESIGNS' | translate}}
                 </md-tooltip>
                 <md-icon md-svg-src="views/img/icon/ic_home_24px.svg"></md-icon>
             </md-button>
@@ -78,7 +39,7 @@
 
            <md-button ng-click="vm.formProblemReport()" class="md-fab md-primary" aria-label="Chat">
                 <md-tooltip>
-                    Open HTML Report
+                    {{'HTML_REPORT' | translate}}
                 </md-tooltip>
                <md-icon md-svg-src="views/img/icon/report1.svg"></md-icon>
             </md-button>

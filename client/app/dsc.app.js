@@ -5,7 +5,7 @@
     "use strict";
 
 angular
-    .module('app',['ngImgCrop','toastService','textAngular','luegg.directives', 'appRxDrag', 'DropDSC','authService','ui.router','ngMaterial','ngMdIcons','ngCookies','pascalprecht.translate'])
+    .module('app',['ngImgCrop','toastService', 'rx','textAngular','luegg.directives', 'appRxDrag', 'DropDSC','authService','ui.router','ngMaterial','ngMdIcons','ngCookies','pascalprecht.translate'])
         .config(function($httpProvider) {
             $httpProvider.interceptors.push('AuthInterceptor');
         })

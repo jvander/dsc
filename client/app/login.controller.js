@@ -10,13 +10,15 @@
         .module('app')
         .controller('loginController',loginController);
 
-        function loginController(Socket, $translate, $rootScope, $state, Auth, $window, $filter, toastApp) {
+        function loginController(rx, $translate, $rootScope, $state, Auth, $window, $filter, toastApp) {
             var self = this;
             self.inProcessing = false;
             self.setLang = setLang;
             self.doLogout = doLogout;
             self.doLogin = doLogin;
 
+          
+            
             function setLang(langKey) {
                  $translate.use(langKey);
             }

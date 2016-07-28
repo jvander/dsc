@@ -67,7 +67,21 @@
     "SHOW_VALUES" : "#Show Values",
     "HIDE_VALUES" : "#Hide Values",
     "BTN_CLEAR" : "#Reset",
-    "VALUES": "#Values"
+    "VALUES": "#Values",
+    "COMMUNITY_DESCRIPTION": "#Epectador, Legislador",
+    "MARKET_DESCRIPTION": "#Parceiros, Concorrentes",
+    "SOURCE_DESCRIPTION": "#Clientes, Fornecedores",
+    "CONTRIBUTION_DESCRIPTION": "#Atores, responsáveis",
+    "TECHNICO_DESCRIPTION" : "#Tecnicos, Sistema",
+    "COMMUNITY_LABEL": "#Community",
+    "MARKET_LABEL": "#Market",
+    "SOURCE_LABEL": "#Source",
+    "CONTRIBUTION_LABEL": "#Contribution",
+    "TECHNICO_LABEL" : "#Technico",
+    "EDIT_COLLABORATORS": "#Edit Collaborators",
+    "EDIT_PROBLEM_DESCRIPTION": "#Edit problem description",
+    "YOUR_DESIGNS": "#Your Projects (Problem)",
+    "HTML_REPORT": "#Htlm Report"
 
 
 }
