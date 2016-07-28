@@ -81,6 +81,8 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
                 stakeholder.stakeholder = data.stakeholder;
                 stakeholder.name = data.name;
                 stakeholder.description = data.description;
+                stakeholder.values = data.values;
+                stakeholder.sugestionValues = solveList(data.values);
                 stakeholder.openEdit = data.openEdit;
                 stakeholder.x = data.x;
                 stakeholder.y = data.y;
@@ -168,7 +170,9 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
                    "name": "",
                    "description": "",
                    "openEdit": true,
-                   "sugestionValues" : self.su,
+                   "newValues":"",
+                   "values": [],
+                   "sugestionValues" : self.sugestionValuesArray,
                    "x": e.pageX + 'px',
                    "y": e.pageY + 'px',
                    "zindex": 9
@@ -249,6 +253,7 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
     function setValueIdentication(stakeholder) {
         console.log(stakeholder.newValues);
         if((stakeholder.newValues.length < 1) ||(stakeholder.newValues === "") || (stakeholder.newValues === undefined)){
+            document.getElementById("id"+stakeholder._id).focus();
             toastApp.errorMessage('Valor não especificado.');
         }else{
             var valuesList = stakeholder.newValues.split(',');
