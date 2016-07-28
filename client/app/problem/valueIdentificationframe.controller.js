@@ -151,6 +151,7 @@ function valueIdentificationFrameController($filter,$window,problemService,toast
 
     function setValueIdentication(stakeholder) {
         if((stakeholder.newValues.length === 0) || (stakeholder.newValues === "") || (stakeholder.newValues === undefined)){
+            document.getElementById("id"+stakeholder._id).focus();
             toastApp.errorMessage('Valor não especificado.');
             return;
         }else{
