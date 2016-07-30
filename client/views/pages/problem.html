@@ -92,13 +92,28 @@
                 <div class="feed" style="height: 400px;"  scroll-glue>
                     <div ng-repeat="msg in vm.messages">
                         <div ng-if="msg.nickname == vm.nickname">
-                            <div class="bubble me">
-                                {{msg.time}} {{msg.nickname}} : {{msg.msg}}
+                            <div ng-dblclick="vm.returnChat(msg)" class="bubble me">
+                                <span>{{msg.time}} {{msg.nickname}} : {{msg.msg}}</span>
+                                <span ng-show="msg.isReturnMsg">
+
+                                     <div class="messageboxReturn" flex layout="row" layout-align="center center">
+                    <textarea ng-keydown="vm.keypressChatReturn($event,msg)" id="message" ng-model="msg.newMsg"></textarea>
+                </div>
+
+                                </span>
                             </div>
                         </div>
                         <div ng-if="msg.nickname != vm.nickname">
-                            <div class="bubble you">
-                                {{msg.time}} {{msg.nickname}} : {{msg.msg}}
+                            <div ng-dblclick="vm.returnChat(msg)" class="bubble you">
+                                <span>{{msg.time}} {{msg.nickname}} : {{msg.msg}}</span>
+                                <span ng-show="msg.isReturnMsg">
+
+                                     <div class="messageboxReturn" flex layout="row" layout-align="center center">
+                    <textarea ng-keydown="vm.keypressChatReturn($event,msg)" id="message" ng-model="msg.newMsg"></textarea>
+                </div>
+
+                                </span>
+
                             </div>
                         </div>
                     </div>

@@ -28,6 +28,11 @@ angular
         self.contador = 0;
         self.showUsersOnLine = showUsersOnLine;
         self.showUser = false;
+        self.keypressChatReturn = keypressChatReturn;
+        self.returnChat = returnChat;
+        function returnChat(msg) {
+            msg.isReturnMsg = !msg.isReturnMsg;
+        }
 
         function showUsersOnLine(){
             if(self.usersOnLine.length > 1){
@@ -51,6 +56,7 @@ angular
                             var tmp = new Date(data.historychat[i].time);
                             var msn = {
                                 nickname: data.historychat[i].nickname,
+                                isReturnMsg: false,
                                 msg: data.historychat[i].msg,
                                 time: tmp.getDate() + "/" + (tmp.getMonth() + 1 )+ "/" + tmp.getFullYear() + " [" + tmp.getHours() + ":" + tmp.getMinutes() + "] "
                             };
@@ -127,6 +133,22 @@ angular
             self.contador = 0;
         }
 
+        function keypressChatReturn(event,msg){
+            var newMsg =
+               "(" + msg.nickname + "-" + msg.time + ": " + msg.msg + ") " + msg.newMsg;
+            if(event.keyCode == 13){
+                self.contador++;
+                if (self.contador == 1) {
+                    $timeout(zerarContador, 1000);
+                }
+                if(self.contador > 1){
+                    msg.isReturnMsg = false;
+                    sendMessage(newMsg);
+                    msg.newMsg = "";
+                }
+            }
+        }
+        
         function keypressChat(event,chatmsg){
             if(event.keyCode == 13){
                 self.contador++;

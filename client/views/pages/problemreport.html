@@ -88,18 +88,29 @@
             <div class="containerDiv">
                 <div class="rowDivHeader">
                     <div class="cellDivHeader">Stakeholder</div>
-                    <div class="cellDivHeader lastCell">Description</div>
+                    <div class="cellDivHeader segundCell">Description</div>
+                    <div class="cellDivHeader segundLastCell"> {{'VALUES' | translate}}</div>
                 </div>
 
             <div ng-repeat="stakeholder in vm.problem.stakeholders" class="rowDiv">
                 <div class="cellDiv">&nbsp;{{stakeholder.name}}</div>
-                <div class="cellDiv lastCell">&nbsp;{{stakeholder.description}}</div>
+                <div class="cellDiv segundCell">&nbsp;
+                    <span>{{stakeholder.description}}</span>
+                    &nbsp;
+
+                </div>
+                <div class="cellDivHeader segundLastCell">
+
+                    <span ng-repeat="va in stakeholder.values">
+                        {{va}}
+                    </span>
+                </div>
             </div>
             </div>
 
 
             <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
-                <div class="titleReport2">2 {{'LABEL_ARTIFACT_EVALUATION_FRAMEWORK' | translate}}</div>
+                <div class="titleReport2">2 {{'LABEL_ARTIFACT_EVALUATIONFRAMEWORK' | translate}}</div>
             </div>
             <div class="containerDiv">
                 <div class="rowDivHeader">
@@ -117,7 +128,7 @@
 
 
             <div flex-sm="100" flex-gt-sm="100" layout-sm="column">
-                <div class="titleReport2">3 {{'LABEL_ARTIFACT_SEMIOTIC_FRAMEWORK' | translate}}</div>
+                <div class="titleReport2">3 {{'LABEL_ARTIFACT_SEMIOTICFRAMEWORK' | translate}}</div>
             </div>
             <div flex-sm="100" class="containerDiv">
                 <div class="rowDivHeader">

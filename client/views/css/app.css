@@ -90,6 +90,16 @@
     border: groove;
 }
 
+.messageboxReturn textarea {
+    width:180px;
+    box-sizing:border-box;
+    height:100%;
+    border:0;
+    font-family: Arial, serif;
+    padding-left:10px;
+    background-color: snow;
+    border: groove;
+}
 
 section.module.parallax {
     height: 600px;
