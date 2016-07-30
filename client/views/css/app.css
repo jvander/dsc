@@ -297,6 +297,17 @@ body{
     background: teal;
 }
 
+.boxSF-title {
+    float: left;
+    background: teal;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    color: #FFF;
+    -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
 .close-pms a {
     position: absolute;
     margin-left: 210px;
@@ -436,6 +447,7 @@ body{
     border: none;
     display: block;
     font-size: 14px;
+    padding-left: 8px;
     font-weight: bold;
     text-align: center;
 }

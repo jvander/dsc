@@ -1,9 +1,9 @@
-<div data-ng-init="vm.initEvaluation()" layout-padding layout-wrap layout-fill flex-sm="100" flex-gt-sm="100" flex-gt-md="100" layout layout-align="center center">
+<div data-ng-init="vm.initEvaluation()"  layout-wrap layout-fill flex-sm="100" flex-gt-sm="100" flex-gt-md="100" layout layout-align="center center">
     <div class="md-whiteframe-2dp" layout-wrap layout-fill ng-repeat="evaluationframework in vm.evaluationframeworkList">
-        <md-content>
-            <md-toolbar class="md-primary md-toolbar-tools" layout-padding layout-wrap layout-fill>
+        <md-content layout-padding ng-show="(evaluationframework.stakeholders.length > 0)">
+            <div class="boxSF-title" layout-wrap layout-fill>
                 <h3>{{ evaluationframework.onionlayer }}</h3>
-            </md-toolbar>
+            </div>
             <div ng-repeat="stakeholder in evaluationframework.stakeholders">
                 <div class="sticky-note-frame" id="stakeholder{{stakeholder._id}}">
                     <div ng-hide="stakeholder.openEdit"  ng-click="vm.setOpenEditDiscution(stakeholder)">
@@ -53,7 +53,6 @@
                             <span class="acaoNormal">
                                 <img  ng-click="vm.showValues(stakeholder)" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCIgdmlld0JveD0iMCAwIDI5Mi4zNjIgMjkyLjM2MSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjkyLjM2MiAyOTIuMzYxOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTI4Ni45MzUsMTk3LjI4N0wxNTkuMDI4LDY5LjM4MWMtMy42MTMtMy42MTctNy44OTUtNS40MjQtMTIuODQ3LTUuNDI0cy05LjIzMywxLjgwNy0xMi44NSw1LjQyNEw1LjQyNCwxOTcuMjg3ICAgQzEuODA3LDIwMC45MDQsMCwyMDUuMTg2LDAsMjEwLjEzNHMxLjgwNyw5LjIzMyw1LjQyNCwxMi44NDdjMy42MjEsMy42MTcsNy45MDIsNS40MjUsMTIuODUsNS40MjVoMjU1LjgxMyAgIGM0Ljk0OSwwLDkuMjMzLTEuODA4LDEyLjg0OC01LjQyNWMzLjYxMy0zLjYxMyw1LjQyNy03Ljg5OCw1LjQyNy0xMi44NDdTMjkwLjU0OCwyMDAuOTA0LDI4Ni45MzUsMTk3LjI4N3oiIGZpbGw9IiMwMDZERjAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
                             </span>
-
 
                                 </div>
                             </div>
