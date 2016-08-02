@@ -27,8 +27,9 @@
         /*Edit Problem*/
 
         Socket.on('onAtualizarProblema', function (retorno) {
+            console.log(retorno);
             if(localcode !== retorno.localcode) {
-                setDescrition(retorno.description);
+                self.setDescrition(retorno.description);
             }
         });
 
@@ -53,6 +54,8 @@
             $scope.getProblemEdit = getProblemEdit;
             $scope.saveDescription = saveDescription;
             $scope.nickname = '';
+
+
 
             $scope.hide = function() {
                 $mdDialog.hide();
@@ -97,8 +100,8 @@
                 }
                  saveProblem(problem)
             }
-            function setDescrition(problem){
-                $scope.problem = problem;
+            self.setDescrition = function(description){
+                $scope.problem.description = description;
             }
 
         }
