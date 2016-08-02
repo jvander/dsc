@@ -60,6 +60,7 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
     }
 
     Socket.on('onUpdatePragmatic', function (text) {
+        console.log(text)
         self.semioticframework.pragmatic = text;
     });
 
@@ -72,7 +73,8 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
     }
 
     Socket.on('onUpdateSemantic', function (text) {
-        self.semioticframework.semioticramework = text;
+        console.log(text);
+        self.semioticframework.semantic = text;
     });
 
     function saveSemantic(text,flagSave){
