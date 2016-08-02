@@ -1,18 +1,21 @@
-<div class="md-whiteframe-z2">
+<div class="md-whiteframe-z2" layout="column">
+
     <md-content class="md-padding">
     <form name="loginForm" data-ng-submit="vm.doLogin(vm.user)">
-        <div layout-gt-sm="column">
+        <div layout="column">
             <md-input-container flex>
                 <label>{{'LABEL_YOUR_EMAIL' | translate }}</label>
                 <input type="email" ng-model="vm.user.email" required md-autofocus>
             </md-input-container>
+
             <md-input-container flex>
                 <label>{{'LABEL_YOUR_PASSWORD' | translate }}</label>
                 <input type="password" ng-model="vm.user.password" required>
             </md-input-container>
         </div>
-        <div layout-gt-sm="row" layout-align="center end"ng-show="!vm.inProcessing">
-            <div layout-align="end center" layout="row" >
+
+        <div layout-gt-sm="column" layout-align="center end"ng-show="!vm.inProcessing">
+            <div layout-align="end center" layout="column" >
                 <md-button type="submit" class="md-primary"
                            ng-class="{'md-raised md-hue-1': (loginForm.$dirty && loginForm.$valid) }"
                            aria-label="Save Project">{{'LABEL_BTN_LOGIN' | translate }}</md-button>
