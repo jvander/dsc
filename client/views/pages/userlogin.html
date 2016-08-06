@@ -14,12 +14,10 @@
             </md-input-container>
         </div>
 
-        <div layout-gt-sm="column" layout-align="center end"ng-show="!vm.inProcessing">
-            <div layout-align="end center" layout="column" >
+        <div layout="column" layout-align="center center"ng-show="!vm.inProcessing">
                 <md-button type="submit" class="md-primary"
                            ng-class="{'md-raised md-hue-1': (loginForm.$dirty && loginForm.$valid) }"
                            aria-label="Save Project">{{'LABEL_BTN_LOGIN' | translate }}</md-button>
-            </div>
         </div>
         <div layout="row" layout-sm="column" layout-align="space-around" ng-show="vm.inProcessing">
             <md-progress-circular md-mode="indeterminate"></md-progress-circular>

@@ -25,6 +25,11 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
     self.editSocialworld = editSocialworld;
     self.isEditSocialworld = false;
     self.onBlurSocialworld = onBlurSocialworld;
+    self.localcode = '';
+
+
+
+
 
     function onBlurSocialworld(text,flag){
         editSocialworld();
@@ -37,6 +42,7 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
 
     function initSemioticFramework(){
         self.idproblem = $window.localStorage.getItem('problemid');
+        self.localcode =  $window.localStorage.getItem('localcode');
         problemService.getsemiotic(self.idproblem)
             .success(function(data) {
                 if(data.success) {
@@ -46,77 +52,94 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
                 }
             });
     }
-
-    Socket.on('onUpdateSocialWorld', function (text) {
-        self.semioticframework.socialworld = text;
+    
+    
+    Socket.on('onUpdateSocialWorld', function (data) {
+        if(self.localcode !== data.localcode) {
+            self.semioticframework.socialworld = data.text;
+        }
     });
 
     function saveSocialWorld(text,flagSave){
         var obj = {
             text: text,
-            update: flagSave
+            update: flagSave,
+            localcode: self.localcode
         };
         Socket.emit('updateSocialWorld', obj);
     }
 
-    Socket.on('onUpdatePragmatic', function (text) {
-        console.log(text)
-        self.semioticframework.pragmatic = text;
+    Socket.on('onUpdatePragmatic', function (data) {
+        if(self.localcode !== data.localcode) {
+            self.semioticframework.pragmatic = data.text;
+        }
     });
 
     function savePragmatic(text,flagSave){
         var obj = {
             text: text,
-            update: flagSave
+            update: flagSave,
+            localcode: self.localcode
         };
         Socket.emit('updatePragmatic', obj);
     }
 
-    Socket.on('onUpdateSemantic', function (text) {
-        console.log(text);
-        self.semioticframework.semantic = text;
+    Socket.on('onUpdateSemantic', function (data) {
+        if(self.localcode !== data.localcode) {
+            self.semioticframework.semantic = data.text;
+        }
     });
 
     function saveSemantic(text,flagSave){
         var obj = {
             text: text,
-            update: flagSave
+            update: flagSave,
+            localcode: self.localcode
         };
         Socket.emit('updateSemantic', obj);
     }
 
-    Socket.on('onUpdateSyntatic', function (text,flagSave) {
-        self.semioticframework.syntatic = text;
+    Socket.on('onUpdateSyntatic', function (data) {
+        if(self.localcode !== data.localcode) {
+            self.semioticframework.syntatic = data.text;
+        }
     });
 
     function saveSyntatic(text,flagSave){
         var obj = {
             text: text,
-            update: flagSave
+            update: flagSave,
+            localcode: self.localcode
         };
         Socket.emit('updateSyntatic', obj);
     }
 
-    Socket.on('onUpdateEmpirical', function (text) {
-        self.semioticframework.empirical = text;
+    Socket.on('onUpdateEmpirical', function (data) {
+        if(self.localcode !== data.localcode) {
+            self.semioticframework.empirical = data.text;
+        }
     });
 
     function saveEmpirical(text,flagSave){
         var obj = {
             text: text,
-            update: flagSave
+            update: flagSave,
+            localcode: self.localcode
         };
         Socket.emit('updateEmpirical', obj);
     }
 
-    Socket.on('onUpdatePhysical', function (text) {
-        self.semioticframework.physical = text;
+    Socket.on('onUpdatePhysical', function (data) {
+        if(self.localcode !== data.localcode) {
+            self.semioticframework.physical = data.text;
+        }
     });
 
     function savePhysical(text,flagSave){
         var obj = {
             text: text,
-            update: flagSave
+            update: flagSave,
+            localcode: self.localcode
         };
         Socket.emit('updatePhysical', obj);
     }

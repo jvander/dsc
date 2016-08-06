@@ -459,7 +459,7 @@
             if(obj.update){
                 saveSocialWorld(socket.room, obj.text);
             }
-            io.sockets.in(socket.room).emit('onUpdateSocialWorld', obj.text);
+            io.sockets.in(socket.room).emit('onUpdateSocialWorld', obj);
         });
 
         socket.on('updatePragmatic',function(obj){
@@ -467,7 +467,7 @@
             if(obj.update){
                 savePragmatic(socket.room, obj.text);
             }
-            io.sockets.in(socket.room).emit('onUpdatePragmatic', obj.text);
+            io.sockets.in(socket.room).emit('onUpdatePragmatic', obj);
         });
 
         socket.on('updateSemantic',function(obj){
@@ -475,7 +475,7 @@
             if(obj.update){
                 saveSemantic(socket.room, obj.text);
             }
-             io.sockets.in(socket.room).emit('onUpdateSemantic', obj.text);
+             io.sockets.in(socket.room).emit('onUpdateSemantic', obj);
         });
 
         socket.on('updateSyntatic',function(obj){
@@ -483,7 +483,7 @@
             if(obj.update){
                 saveSyntatic(socket.room, obj.text);
             }
-             io.sockets.in(socket.room).emit('onUpdateSyntatic', obj.text);
+             io.sockets.in(socket.room).emit('onUpdateSyntatic', obj);
         });
 
         socket.on('updateEmpirical',function(obj){
@@ -491,7 +491,7 @@
             if(obj.update){
                 saveEpirical(socket.room, obj.text);
             }
-            io.sockets.in(socket.room).emit('onUpdateEmpirical', obj.text);
+            io.sockets.in(socket.room).emit('onUpdateEmpirical', obj);
         });
 
         socket.on('updatePhysical',function(obj){
@@ -499,7 +499,7 @@
             if(obj.update){
                 savePhysical(socket.room, obj.text);
             }
-            io.sockets.in(socket.room).emit('onUpdatePhysical', obj.text);
+            io.sockets.in(socket.room).emit('onUpdatePhysical', obj);
         });
 
         // ----- CARF --------------------------------------------------

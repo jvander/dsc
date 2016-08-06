@@ -74,9 +74,7 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
     }
 
     Socket.on('onBroadcastOnionSave', function (data) {
-        console.log('Recebendo... ' + data._id);
             angular.forEach(self.stakeholderList, function (stakeholder) {
-                console.log(stakeholder)
             if (stakeholder._id == data._id){
                 stakeholder.stakeholder = data.stakeholder;
                 stakeholder.name = data.name;
@@ -93,7 +91,6 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
     });
 
     function saveStakeholder(stakeholder) {
-        console.log( 'Enviando.... ' + stakeholder._id);
         Socket.emit('broadcastOnionSave', stakeholder);
     }
 
