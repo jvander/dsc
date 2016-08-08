@@ -106,13 +106,13 @@
                         <div ng-if="msg.nickname != vm.nickname">
                             <div ng-dblclick="vm.returnChat(msg)" class="bubble you">
                                 <span>{{msg.time}} {{msg.nickname}} : {{msg.msg}}</span>
-                                <span ng-show="msg.isReturnMsg">
+                                <div ng-show="msg.isReturnMsg">
 
-                                     <div class="messageboxReturn" flex layout="row" layout-align="center center">
-                    <textarea ng-keydown="vm.keypressChatReturn($event,msg)" id="message" ng-model="msg.newMsg"></textarea>
-                </div>
+                                    <div class="messageboxReturn" flex layout="row" layout-align="center center">
+                                        <textarea ng-keydown="vm.keypressChatReturn($event,msg)" id="message" ng-model="msg.newMsg"></textarea>
+                                    </div>
 
-                                </span>
+                                </div>
 
                             </div>
                         </div>
