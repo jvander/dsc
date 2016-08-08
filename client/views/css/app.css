@@ -551,6 +551,17 @@ body{
     display: block;
 }
 
+
+.img_circularCapa{
+    width: 400px;
+    height: 200px;
+    border-radius: 200px;
+    -webkit-border-radius: 400px;
+    -moz-border-radius: 400px;
+    display: block;
+}
+
+
 .cropArea {
     background: #E4E4E4;
     overflow: hidden;
@@ -618,7 +629,7 @@ body{
 }
 .rowDivHeader {
     border: 1px solid black;
-    background-color: #26A69A;
+    background-color: teal;
     color: white;
     font-weight: bold; display:table-row
 }
