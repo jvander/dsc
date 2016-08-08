@@ -77,7 +77,7 @@
     min-height:30px;
     width:250px;
     border-top:1px solid #e0e0e0;
-    background-color:#ffffff;
+    background-color: snow;
 }
 .messagebox textarea {
     width:250px;
@@ -86,7 +86,7 @@
     border:0;
     font-family: Arial, serif;
     padding-left:10px;
-    background-color: snow;
+    background-color: white;
     border: groove;
 }
 

@@ -42,7 +42,6 @@ angular
 
         function openChat(){
             self.isOpenChat = !self.isOpenChat;
-            document.getElementById('message').focus()
         }
 
         function initHistoryChat(){
@@ -121,7 +120,9 @@ angular
 
 
         function sendMessage(chatmsg){
+            console.log(chatmsg);
             if(chatmsg === undefined || chatmsg.length < 2 ){
+                document.getElementById('fieldNewMessage').focus();
                 return;
             }
             Socket.emit('broadcastChat', chatmsg);

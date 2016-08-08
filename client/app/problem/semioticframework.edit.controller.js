@@ -10,7 +10,7 @@ angular
     .module('app')
     .controller('semioticframeworkController',semioticframeworkController);
 
-function semioticframeworkController(Socket,$window, problemService,toastApp){
+function semioticframeworkController($timeout,Socket,$window, problemService,toastApp){
 
     var self = this;
     self.idproblem = "";
@@ -22,23 +22,14 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
     self.savePhysical = savePhysical;
     self.semioticframework = "";
     self.initSemioticFramework = initSemioticFramework;
-    self.editSocialworld = editSocialworld;
-    self.isEditSocialworld = false;
-    self.onBlurSocialworld = onBlurSocialworld;
     self.localcode = '';
+    var flagDataBase = true;
 
 
+    var dataBaseTimeOut = function() {
+         flagDataBase = true;
+    };
 
-
-
-    function onBlurSocialworld(text,flag){
-        editSocialworld();
-        saveSocialWorld(text,flag);
-    }
-
-    function editSocialworld() {
-        self.isEditSocialworld = !self.isEditSocialworld;
-    }
 
     function initSemioticFramework(){
         self.idproblem = $window.localStorage.getItem('problemid');
@@ -61,12 +52,18 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
     });
 
     function saveSocialWorld(text,flagSave){
-        var obj = {
-            text: text,
-            update: flagSave,
-            localcode: self.localcode
-        };
-        Socket.emit('updateSocialWorld', obj);
+        if (flagDataBase) {
+            flagSave = flagDataBase;
+            flagDataBase = false;
+            $timeout(dataBaseTimeOut, 2000);
+        }
+        Socket.emit('updateSocialWorld',
+            {
+                text: text,
+                update: flagSave,
+                localcode: self.localcode
+            }
+        );
     }
 
     Socket.on('onUpdatePragmatic', function (data) {
@@ -76,12 +73,16 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
     });
 
     function savePragmatic(text,flagSave){
-        var obj = {
+        if (flagDataBase) {
+            flagSave = flagDataBase;
+            flagDataBase = false;
+            $timeout(dataBaseTimeOut, 2000);
+        }
+        Socket.emit('updatePragmatic', {
             text: text,
             update: flagSave,
             localcode: self.localcode
-        };
-        Socket.emit('updatePragmatic', obj);
+        });
     }
 
     Socket.on('onUpdateSemantic', function (data) {
@@ -91,12 +92,16 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
     });
 
     function saveSemantic(text,flagSave){
-        var obj = {
+        if (flagDataBase) {
+            flagSave = flagDataBase;
+            flagDataBase = false;
+            $timeout(dataBaseTimeOut, 2000);
+        }
+        Socket.emit('updateSemantic', {
             text: text,
             update: flagSave,
             localcode: self.localcode
-        };
-        Socket.emit('updateSemantic', obj);
+        });
     }
 
     Socket.on('onUpdateSyntatic', function (data) {
@@ -106,12 +111,16 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
     });
 
     function saveSyntatic(text,flagSave){
-        var obj = {
+        if (flagDataBase) {
+            flagSave = flagDataBase;
+            flagDataBase = false;
+            $timeout(dataBaseTimeOut, 2000);
+        }
+        Socket.emit('updateSyntatic', {
             text: text,
             update: flagSave,
             localcode: self.localcode
-        };
-        Socket.emit('updateSyntatic', obj);
+        });
     }
 
     Socket.on('onUpdateEmpirical', function (data) {
@@ -121,12 +130,16 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
     });
 
     function saveEmpirical(text,flagSave){
-        var obj = {
+        if (flagDataBase) {
+            flagSave = flagDataBase;
+            flagDataBase = false;
+            $timeout(dataBaseTimeOut, 2000);
+        }
+        Socket.emit('updateEmpirical', {
             text: text,
             update: flagSave,
             localcode: self.localcode
-        };
-        Socket.emit('updateEmpirical', obj);
+        });
     }
 
     Socket.on('onUpdatePhysical', function (data) {
@@ -136,12 +149,16 @@ function semioticframeworkController(Socket,$window, problemService,toastApp){
     });
 
     function savePhysical(text,flagSave){
-        var obj = {
+        if (flagDataBase) {
+            flagSave = flagDataBase;
+            flagDataBase = false;
+            $timeout(dataBaseTimeOut, 2000);
+        }
+        Socket.emit('updatePhysical', {
             text: text,
             update: flagSave,
             localcode: self.localcode
-        };
-        Socket.emit('updatePhysical', obj);
+        });
     }
 }
 
