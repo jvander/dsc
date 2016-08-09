@@ -10,15 +10,33 @@
         .module('app')
         .controller('loginController',loginController);
 
-        function loginController(rx, $translate, $rootScope, $state, Auth, $window, $filter, toastApp) {
+        function loginController(rx, $timeout, $translate, $rootScope, $state, Auth, $window, $filter, toastApp) {
             var self = this;
             self.inProcessing = false;
             self.setLang = setLang;
             self.doLogout = doLogout;
             self.doLogin = doLogin;
 
-          
+
+            var slides =  [
+                {image: "../views/img/sawd.jpg"},
+                {image: "../views/img/sawd0.jpg"},
+                {image: "../views/img/sawd1.jpg"},
+                {image: "../views/img/sawd2.jpg"},
+                {image: "../views/img/sawd3.jpg"},
+                {image: "../views/img/sawd4.jpg"},
+                {image: "../views/img/sawd5.jpg"},
+                {image: "../views/img/sawd6.jpg"},
+                {image: "../views/img/sawd7.jpg"},
+                {image: "../views/img/sawd8.jpg"},
+                {image: "../views/img/sawd8.jpg"},
+                {image: "../views/img/sawd10.jpg"}
+            ];
+
+            var index = 0;
+            self.photo = slides[index].image;
             
+
             function setLang(langKey) {
                  $translate.use(langKey);
             }

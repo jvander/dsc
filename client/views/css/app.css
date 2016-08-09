@@ -553,11 +553,11 @@ body{
 
 
 .img_circularCapa{
-    width: 400px;
-    height: 200px;
-    border-radius: 200px;
-    -webkit-border-radius: 400px;
-    -moz-border-radius: 400px;
+    width: 600px;
+    height: 300px;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
     display: block;
 }
 
