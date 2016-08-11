@@ -16,6 +16,7 @@
             self.setLang = setLang;
             self.doLogout = doLogout;
             self.doLogin = doLogin;
+            self.netImg = netImg;
 
 
             var slides =  [
@@ -35,7 +36,11 @@
 
             var index = 0;
             self.photo = slides[index].image;
-            
+
+            function netImg() {
+                index = (index + 1) % slides.length;
+                self.photo = slides[index].image;
+            }
 
             function setLang(langKey) {
                  $translate.use(langKey);
