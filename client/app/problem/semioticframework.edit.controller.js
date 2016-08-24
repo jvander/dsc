@@ -46,10 +46,14 @@ function semioticframeworkController($timeout,Socket,$window, problemService,toa
     
     
     Socket.on('onUpdateSocialWorld', function (data) {
-        if(self.localcode !== data.localcode) {
+        if(isLocalCode(data.localcode)) {
             self.semioticframework.socialworld = data.text;
         }
     });
+
+    var isLocalCode = function (code){
+        return (self.localcode !== code);
+    }
 
     function saveSocialWorld(text,flagSave){
         if (flagDataBase) {
@@ -67,7 +71,7 @@ function semioticframeworkController($timeout,Socket,$window, problemService,toa
     }
 
     Socket.on('onUpdatePragmatic', function (data) {
-        if(self.localcode !== data.localcode) {
+        if(isLocalCode(data.localcode)) {
             self.semioticframework.pragmatic = data.text;
         }
     });
@@ -86,7 +90,7 @@ function semioticframeworkController($timeout,Socket,$window, problemService,toa
     }
 
     Socket.on('onUpdateSemantic', function (data) {
-        if(self.localcode !== data.localcode) {
+        if(isLocalCode(data.localcode)) {
             self.semioticframework.semantic = data.text;
         }
     });
@@ -105,7 +109,7 @@ function semioticframeworkController($timeout,Socket,$window, problemService,toa
     }
 
     Socket.on('onUpdateSyntatic', function (data) {
-        if(self.localcode !== data.localcode) {
+        if(isLocalCode(data.localcode)) {
             self.semioticframework.syntatic = data.text;
         }
     });
@@ -124,7 +128,7 @@ function semioticframeworkController($timeout,Socket,$window, problemService,toa
     }
 
     Socket.on('onUpdateEmpirical', function (data) {
-        if(self.localcode !== data.localcode) {
+        if(isLocalCode(data.localcode)) {
             self.semioticframework.empirical = data.text;
         }
     });
@@ -143,7 +147,7 @@ function semioticframeworkController($timeout,Socket,$window, problemService,toa
     }
 
     Socket.on('onUpdatePhysical', function (data) {
-        if(self.localcode !== data.localcode) {
+        if(isLocalCode(data.localcode)) {
             self.semioticframework.physical = data.text;
         }
     });
