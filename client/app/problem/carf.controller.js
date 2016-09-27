@@ -252,7 +252,7 @@
                 {
                     "pms": "Protection",
                     "values": [
-                        "Informed consert",
+                        "Informed consent",
                         "Reputation",
                         "Security"
                     ]
@@ -267,7 +267,7 @@
                     ]
                 },
                 {
-                    "pms": "Teporality",
+                    "pms": "Temporality",
                     "values": [
                         "Availability",
                         "Awareness",

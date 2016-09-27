@@ -26,6 +26,7 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
     self.addPostIt = addPostIt;
     self.acende = acende;
     self.apaga = apaga;
+    self.minimizeStakeholder = minimizeStakeholder;
     self.localcode = '';
     self.showSuggestion = showSuggestion;
     self.isShowSuggestion = false;
@@ -41,8 +42,9 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
             self.labelShowSuggestion = $filter('translate')('SHOW_SUGGESTION');
             self.arrow = "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCIgdmlld0JveD0iMCAwIDI5Mi4zNjIgMjkyLjM2MiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjkyLjM2MiAyOTIuMzYyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTI4Ni45MzUsNjkuMzc3Yy0zLjYxNC0zLjYxNy03Ljg5OC01LjQyNC0xMi44NDgtNS40MjRIMTguMjc0Yy00Ljk1MiwwLTkuMjMzLDEuODA3LTEyLjg1LDUuNDI0ICAgQzEuODA3LDcyLjk5OCwwLDc3LjI3OSwwLDgyLjIyOGMwLDQuOTQ4LDEuODA3LDkuMjI5LDUuNDI0LDEyLjg0N2wxMjcuOTA3LDEyNy45MDdjMy42MjEsMy42MTcsNy45MDIsNS40MjgsMTIuODUsNS40MjggICBzOS4yMzMtMS44MTEsMTIuODQ3LTUuNDI4TDI4Ni45MzUsOTUuMDc0YzMuNjEzLTMuNjE3LDUuNDI3LTcuODk4LDUuNDI3LTEyLjg0N0MyOTIuMzYyLDc3LjI3OSwyOTAuNTQ4LDcyLjk5OCwyODYuOTM1LDY5LjM3N3oiIGZpbGw9IiMwMDZERjAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K";
         }
-        
     }
+
+    
     function intitOnion(){
         self.idproblem = $window.localStorage.getItem('problemid');
         self.localcode =  $window.localStorage.getItem('localcode');
@@ -62,7 +64,7 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
                             x: data.stakeholders[i].x,
                             y: data.stakeholders[i].y,
                             newValues: [],
-                            sugestionValues: solveList(data.stakeholders[i].values)
+                            /*sugestionValues: solveList(data.stakeholders[i].values)*/
                         };
                         self.stakeholderList.push(stakeholder);
                     }
@@ -80,7 +82,7 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
                 stakeholder.name = data.name;
                 stakeholder.description = data.description;
                 stakeholder.values = data.values;
-                stakeholder.sugestionValues = solveList(data.values);
+                stakeholder.sugestionValues = data.values;
                 stakeholder.openEdit = data.openEdit;
                 stakeholder.x = data.x;
                 stakeholder.y = data.y;
@@ -92,6 +94,10 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
 
     function saveStakeholder(stakeholder) {
         Socket.emit('broadcastOnionSave', stakeholder);
+    }
+
+    function minimizeStakeholder(stakeholder) {
+        stakeholder.openEdit = false;
     }
 
     Socket.on('onBroadcastOnionEdit', function (id) {
@@ -108,7 +114,7 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
         angular.forEach(self.stakeholderList, function (stakeholder) {
             if(stakeholder._id === id) {
                 stakeholder.openEdit = true;
-                stakeholder.zindex = 9;
+                stakeholder.zindex = 9999;
             }
         });
         Socket.emit('broadcastOnionEdit', id);
@@ -119,6 +125,7 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
         stakeholder.style.display = 'none';
         self.stakeholderList.splice(id,1);
     });
+
 
     function removePostIt(index,stakeholder) {
         var obj = {
@@ -131,11 +138,11 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
     function delPostIt(ev,index,stakeholder) {
         var confirm = $mdDialog.confirm()
             .parent(angular.element(document.body))
-            .title('Detete Stakeholder?')
+            .title($filter('translate')('BTN_REMOVE') + ' ' + $filter('translate')('STAKEHOLDER') + '?')
             .content('Title: ' + stakeholder.name)
             .ariaLabel('Remove Stakeholder')
-            .ok('Yes!')
-            .cancel('Cancel')
+            .ok($filter('translate')('LABEL_YES'))
+            .cancel($filter('translate')('LABEL_BTN_CANCEL'))
             .targetEvent(ev);
         $mdDialog.show(confirm).then(function() {
             removePostIt(index,stakeholder);
@@ -169,7 +176,6 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
                    "openEdit": true,
                    "newValues":"",
                    "values": [],
-                   "sugestionValues" : self.sugestionValuesArray,
                    "x": e.pageX + 'px',
                    "y": e.pageY + 'px',
                    "zindex": 9
@@ -206,14 +212,14 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
         stakeholder.newValues = newValue;
         setValueIdentication(stakeholder);
     }
-    self.sugestionValuesArray = [
+   /* self.sugestionValuesArray = [
         'Acessibilidade','Adaptabilidade','Estética','Autonomia', 'Disponibilidade', 'Consciência', 'Colaboração',
         'Conversação', 'Emoção e Afeto', 'Grupos', 'Identidade', 'Consentimento informado', 'Meta-comunicação', 'Normas',
         'Objeto', 'Portabilidade', 'Presença', 'Privacidade', 'Propriedade', 'Reciprocidade, Relacionamento, Reputação',
         'Escalabilidade', 'Segurança', 'Compartilhamento', 'Confiança', 'Usabilidade', 'Visibilidade'];
+*/
 
-
-    var solveList = function(valuesList){
+   /* var solveList = function(valuesList){
         var sugestionList = self.sugestionValuesArray.slice();
         for (var i=0; i < valuesList.length; i++){
             for (var k=0; k < sugestionList.length; k++) {
@@ -224,7 +230,7 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
         }
 
         return sugestionList;
-    };
+    };*/
 
 
     function setSuggestionShow(stakeholder){

@@ -59,6 +59,7 @@
     "LABEL_MESSAGE": "Your Message",
     "BTN_SEND": "Send",
     "STAKEHOLDERS": "Stakeholders",
+    "STAKEHOLDER": "Stakeholder",
     "ADD_VALUE": "Add value",
     "REMOVE_VALUE": "Delete value",
     "BTN_REMOVE" : "Delete",
@@ -81,7 +82,12 @@
     "EDIT_COLLABORATORS": "Edit Collaborators",
     "EDIT_PROBLEM_DESCRIPTION": "Edit problem description",
     "YOUR_DESIGNS": "Your Projects (Problem)",
-    "HTML_REPORT": "Htlm Report"
+    "HTML_REPORT": "Htlm Report",
+    "LABEL_YES" : "Yes",
+    "LABEL_QUESTION_PROBLEM" : "Question/Problem",
+    "LABEL_IDEA_SOLUTION": "Idea/Solution",
+    "LABEL_MINIMIZE" : "Minimize",
+    "INFO_DBLCLICK": "Use double click for new stakeholder"
 
 }
 

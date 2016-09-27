@@ -59,6 +59,7 @@
     "LABEL_MESSAGE": "Sua Mensagem",
     "BTN_SEND": "Enviar",
     "STAKEHOLDERS": "Partes Interessadas",
+    "STAKEHOLDER": "Parte Interessada",
     "ADD_VALUE": "Adicionar Valores",
     "REMOVE_VALUE": "Remover Valor",
     "BTN_REMOVE" : "Excluir",
@@ -81,5 +82,10 @@
     "EDIT_COLLABORATORS": "Convidar Colaboradores",
     "EDIT_PROBLEM_DESCRIPTION": "Editar descrição do problema",
     "YOUR_DESIGNS": "Seus projetos (Problemas)",
-    "HTML_REPORT": "Resumo (Relatório HTML)"
+    "HTML_REPORT": "Resumo (Relatório HTML)",
+    "LABEL_YES" : "Sim",
+    "LABEL_QUESTION_PROBLEM" : "Questão/Problema",
+    "LABEL_IDEA_SOLUTION": "Ideia/Solução",
+    "LABEL_MINIMIZE" : "Minimizar",
+    "INFO_DBLCLICK": "Use o clique duplo para criar um novo stakeholder"
 }

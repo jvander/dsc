@@ -45,7 +45,15 @@
                 </div>
             </div>
             <div ng-show=stakeholder.openEdit layout="column">
-                <span>{{stakeholder.onionlayer}}</span>
+                <div layout="row" layout-align="start start" flex>
+                    <span>{{stakeholder.onionlayer}}</span>
+                    <span flex></span>
+                    <span class="acaoNormal">
+                        <img ng-click="vm.minimizeStakeholder(stakeholder)" width="16" height="16" src="views/img/icon/minimize2.svg">
+                    <md-tooltip>{{"LABEL_MINIMIZE" | translate}}</md-tooltip>
+                    </span>
+                </div>
+
 
                 <form name="onionForm" data-ng-submit="vm.saveStakeholder(stakeholder)">
                     <div layout="row">
@@ -64,7 +72,7 @@
 
                     <div layout="column" flex>
                         <div>
-                            <h4>Valores</h4>
+                            <h4>{{'VALUES' | translate }}</h4>
                         </div>
                         <div ng-repeat="value in stakeholder.values">
                             <div>
@@ -89,6 +97,7 @@
                             </div>
                         </div>
 
+                        <!--Sugestão de valores
                         <div layout="row" layout-align="center start" ng-show="(stakeholder.sugestionValues.length > 0)">
                             <span class="acaoTitulo">{{vm.labelShowSuggestion}}&nbsp;</span>
                             <span class="acaoNormal">
@@ -104,7 +113,9 @@
                                 <md-tooltip>{{'ADD_VALUE' | translate}}</md-tooltip>
                                 </span>
                             </div>
-                        </div>
+                        </div>-->
+
+
                     </div>
 
 
