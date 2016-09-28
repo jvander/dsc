@@ -1,7 +1,6 @@
-<div layout="column" layout-fill data-ng-init="vm.getCurrentProblem()">
-
-
-    <md-toolbar md-scroll-shrink>
+<div layout="column" flex-auto data-ng-init="vm.getCurrentProblem()">
+    <div layout="column" flex>
+    <md-toolbar flex>
         <div class="md-toolbar-tools">
             <h3>
                 <span><img src="views/img/logo_barra.png" /> {{'NAME_SYSTEM' | translate }}</span>
@@ -26,17 +25,6 @@
                 </md-tooltip>
                 <md-icon md-svg-src="views/img/icon/ic_home_24px.svg"></md-icon>
             </md-button>
-
-
-
-          <!--  <md-button ng-click="vm.openChat()" class="md-fab md-primary" aria-label="Chat">
-                <md-tooltip>
-                    Open Chat
-                </md-tooltip>
-                <md-icon md-svg-src="views/img/icon/ic_chat_bubble_24px.svg"></md-icon>
-            </md-button>-->
-
-
            <md-button ng-click="vm.formProblemReport()" class="md-fab md-primary" aria-label="Chat">
                 <md-tooltip>
                     {{'HTML_REPORT' | translate}}
@@ -51,14 +39,8 @@
             </md-button>
         </div>
     </md-toolbar>
-
-
-
-
 </div>
-
 <div class="" ui-view="problem-description"></div>
-
 <div  ng-cloak>
         <md-tabs md-border-bottom md-selected="selectedIndex" md-dynamic-height>
             <md-tab ng-repeat="tab in vm.dsc_artifacts" ng-click="vm.loadArtifact(tab.name)"
@@ -68,7 +50,6 @@
 
     <div class="md-padding" class="" ui-view="dsc-artifact"></div>
 </div>
-
 <md-content>
     <div class="chatarea" ng-controller="chatDSC as vm" data-ng-init="vm.initHistoryChat()">
         <div class="chat">
@@ -129,9 +110,6 @@
             </div>
         </div><!-- chatbox -->
     </div><!-- chat container -->
-
-
-
 </md-content>
-
 <buttonhelp></buttonhelp>
+</div>

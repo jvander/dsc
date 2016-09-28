@@ -44,8 +44,8 @@ module.exports = function () {
    router.route('/getonion3layer/')
         .get(findOnion3layer);
 
-    router.route('/ajuste/')
-        .get(getAllProblemsAjuste);
+   /* router.route('/ajuste/')
+        .get(getAllProblemsAjuste);*/
 
 
 
