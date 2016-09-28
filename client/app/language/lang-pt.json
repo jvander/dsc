@@ -87,5 +87,6 @@
     "LABEL_QUESTION_PROBLEM" : "Questão/Problema",
     "LABEL_IDEA_SOLUTION": "Ideia/Solução",
     "LABEL_MINIMIZE" : "Minimizar",
-    "INFO_DBLCLICK": "Use o clique duplo para criar um novo stakeholder"
+    "INFO_DBLCLICK": "Use o clique duplo para criar um novo stakeholder",
+    "LABEL_OPERATION" : "Operação"
 }

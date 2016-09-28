@@ -44,8 +44,8 @@ module.exports = function () {
    router.route('/getonion3layer/')
         .get(findOnion3layer);
 
-    /*router.route('/ajuste/')
-        .get(getAllProblemsAjuste);*/
+    router.route('/ajuste/')
+        .get(getAllProblemsAjuste);
 
 
 
@@ -388,7 +388,7 @@ module.exports = function () {
                         stakeholders:[],
                     },
                     {
-                        onionlayer: "Technico",
+                        onionlayer: "Operation",
                         stakeholders:[],
                     }
                 ];
@@ -608,7 +608,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.resolve(new Error("Problem n�o encontrado"));
+                return deferred.resolve(new Error("Problem nao encontrado"));
             }
             deferred.resolve(problem)
         });
@@ -634,6 +634,7 @@ module.exports = function () {
 
     //Utilizar para fazer alterações no problema.
     function getAllProblemsAjuste(req,res) {
+
         Problem.find({})
             .exec (function (err, problems) {
                 if (err) {
@@ -646,21 +647,21 @@ module.exports = function () {
                         message: "Cadastre seus problemas."
                     });
                 } else {
-                   // var newartifacts = ['LABEL_ARTIFACT_STAKEHOLDERS','LABEL_ARTIFACT_EVALUATIONFRAMEWORK','LABEL_ARTIFACT_SEMIOTICFRAMEWORK'];
 
-                   /* problems.forEach(function(problem) {
 
-                        console.log(problem.status)
-                        problem.status = 'active';
-
+                    problems.forEach(function(problem) {
+                       for(var i = 0; i < problem.stakeholders.length; i++){
+                           if(problem.stakeholders[i].onionlayer  === "Technico"){
+                               console.log(i);
+                               problem.stakeholders[i].onionlayer = "Operation";
+                           }
+                       }
                        problem.save(function (err) {
                             console.log(err);
                             return
                         })
 
-
-
-                    });*/
+                    });
 
 
                     res.send({

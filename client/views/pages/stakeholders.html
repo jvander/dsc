@@ -14,8 +14,8 @@
     <circle id="legendContribution" cx="1065" cy="100" r="8" style="fill: #4DB6AC;" ng-mouseover="vm.acende('Contribution');" ng-mouseleave="vm.apaga('Contribution','#4DB6AC');"/>
     <text id="nameContribution" x="1075" y="105" ng-mouseover="vm.acende('Contribution');" ng-mouseleave="vm.apaga('Contribution','#4DB6AC');">{{'CONTRIBUTION_LABEL' | translate}}</text>
     <text x="1070" y="115" style="font-size: 10px">{{'CONTRIBUTION_DESCRIPTION' | translate}}</text>
-    <circle id="legendTechnico" cx="1065" cy="130" r="8" style="fill: #26A69A;" ng-mouseover="vm.acende('Technico');" ng-mouseleave="vm.apaga('Technico','#26A69A');"/>
-    <text id="nameTechnico" x="1075" y="135"  ng-mouseover="vm.acende('Technico');" ng-mouseleave="vm.apaga('Technico','#26A69A');">{{'TECHNICO_LABEL' | translate}}</text>
+    <circle id="legendOperation" cx="1065" cy="130" r="8" style="fill: #26A69A;" ng-mouseover="vm.acende('Operation');" ng-mouseleave="vm.apaga('Operation','#26A69A');"/>
+    <text id="nameOperation" x="1075" y="135"  ng-mouseover="vm.acende('Operation');" ng-mouseleave="vm.apaga('Operation','#26A69A');">{{'LABEL_OPERATION' | translate}}</text>
     <text x="1070" y="145" style="font-size: 10px">{{'TECHNICO_DESCRIPTION' | translate}}</text>
 
 
@@ -23,7 +23,7 @@
     <ellipse id="Market" cx="600" cy="380" rx="390" ry="260" fill="#B2DFDB"  ng-mouseover="vm.acende('Market');" ng-mouseleave="vm.apaga('Market','#B2DFDB');" ng-dblclick="vm.addPostIt($event, 'Market');"/>
     <ellipse id="Source" cx="600" cy="440" rx="300" ry="200" fill="#80CBC4"  ng-mouseover="vm.acende('Source');" ng-mouseleave="vm.apaga('Source','#80CBC4')"; ng-dblclick="vm.addPostIt($event, 'Source');"/>
     <ellipse id="Contribution" cx="600" cy="500" rx="210" ry="140" fill="#4DB6AC"  ng-mouseover="vm.acende('Contribution');" ng-mouseleave="vm.apaga('Contribution','#4DB6AC');" ng-dblclick="vm.addPostIt($event, 'Contribution');"/>
-    <ellipse id="Technico" cx="600" cy="560" rx="120" ry="80" fill="#26A69A"  ng-mouseover="vm.acende('Technico');" ng-mouseleave="vm.apaga('Technico','#26A69A');" ng-dblclick="vm.addPostIt($event, 'Technico');"/>
+    <ellipse id="Operation" cx="600" cy="560" rx="120" ry="80" fill="#26A69A"  ng-mouseover="vm.acende('Operation');" ng-mouseleave="vm.apaga('Operation','#26A69A');" ng-dblclick="vm.addPostIt($event, 'Operation');"/>
 
 
 </svg>
