@@ -63,8 +63,8 @@
                 <circle id="legendContribution" cx="970" cy="130" r="10" style="fill: #4DB6AC;" />
                 <text id="nameContribution" x="985" y="135" >Contribution</text>
                 <text x="985" y="148" style="font-size: 10px">Atores, responsaveis</text>
-                <circle id="legendTechnico" cx="970" cy="170" r="10" style="fill: #26A69A;" />
-                <text id="nameTechnico" x="985" y="175"  >Technico</text>
+                <circle id="legendOperation" cx="970" cy="170" r="10" style="fill: #26A69A;" />
+                <text id="nameOperation" x="985" y="175"  >Operation</text>
                 <text x="985" y="188" style="font-size: 10px">Epectador, Legislador</text>
 
 
@@ -72,7 +72,7 @@
                 <ellipse id="Market" cx="500" cy="380" rx="390" ry="260" fill="#B2DFDB"  />
                 <ellipse id="Source" cx="500" cy="440" rx="300" ry="200" fill="#80CBC4"  />
                 <ellipse id="Contribution" cx="500" cy="500" rx="210" ry="140" fill="#4DB6AC" />
-                <ellipse id="Technico" cx="500" cy="560" rx="120" ry="80" fill="#26A69A"  />
+                <ellipse id="Operation" cx="500" cy="560" rx="120" ry="80" fill="#26A69A"  />
             </svg>
             <div ng-repeat="stakeholder in vm.problem.stakeholders">
                 <div style="position: absolute; top: {{stakeholder.y}}; left:{{stakeholder.x}};" class="sticky-note" id="stakeholder{{stakeholder._id}}">

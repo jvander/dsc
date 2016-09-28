@@ -139,7 +139,6 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
     });
 
     function addPostIt(e,camada) {
-        console.log(camada);
         Socket.emit('broadcastOnion3LayerAdd', {
             postit: {
                 layer: camada,
