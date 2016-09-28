@@ -26,6 +26,7 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
     self.acende = acende;
     self.apaga = apaga;
     self.localcode = '';
+    self.minimizePostit = minimizePostit;
 
     function initOnion3Layer(){
         self.inProcessing = true;
@@ -44,6 +45,11 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
             });
 
         self.inProcessing = false;
+    }
+
+    function minimizePostit(postit) {
+        postit.openEdit = false;
+        postit.zindex = 1;
     }
 
     Socket.on('onBroadcastOnion3LayerSave', function (data) {
@@ -133,6 +139,7 @@ function onion3LayerController(Socket,$window,problemService,$mdDialog,toastApp)
     });
 
     function addPostIt(e,camada) {
+        console.log(camada);
         Socket.emit('broadcastOnion3LayerAdd', {
             postit: {
                 layer: camada,

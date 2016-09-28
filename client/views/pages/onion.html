@@ -33,9 +33,13 @@
                 </div>
             </div>
             <div ng-show=postit.openEdit>
-                <div>
-                <span>{{postit.onionlayer}}</span>
-                </div>
+                    <div layout="row" layout-align="start start" flex>
+                        <span>{{postit.layer}}</span>
+                        <span flex></span>
+                    <span class="acaoNormal">
+                        <img ng-click="vm.minimizePostit(postit)" width="16" height="16" src="views/img/icon/minimize2.svg">
+                    </span>
+                    </div>
                 <form name="onionForm" data-ng-submit="vm.saveOnion3Layer(postit)">
                     <div>
                     <md-input-container>
