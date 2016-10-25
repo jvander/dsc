@@ -53,8 +53,6 @@ angular.module('DropDSC',[])
                      });
                      scope.postit.x = x + 'px';
                      scope.postit.y = y + 'px';
-
-
                  };
 
                  function mouseup(event) {
