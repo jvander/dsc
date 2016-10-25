@@ -142,6 +142,15 @@
                         controller: 'onion3LayerController as vm'
                     }
                 }
+            })
+            .state('problem.nethumanthings', {
+                url: '/humanthings',
+                views: {
+                    'dsc-artifact': {
+                        templateUrl: 'views/pages/nethumanthings.html',
+                        controller: 'valuesHumanThingsController as vm'
+                    }
+                }
             });
         $urlRouterProvider.otherwise('/login');
 

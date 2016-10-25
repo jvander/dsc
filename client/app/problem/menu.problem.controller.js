@@ -215,6 +215,7 @@
                     if(data.success) {
                         self.problem = data.problem;
                         angular.forEach(data.problem.artifacts, function (artifact) {
+                            console.log(artifact);
                             var name = artifact.split("_");
                             self.dsc_artifacts.push({name: "problem." + name[2].toLowerCase(), label: $filter('translate')(artifact)});
                         });
@@ -231,6 +232,7 @@
     }
 
         function loadArtifact (artifac) {
+            console.log(artifac);
             $state.go(artifac);
         }
 

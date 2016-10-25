@@ -144,7 +144,10 @@
                 'LABEL_ARTIFACT_SEMIOTICFRAMEWORK',
                 'LABEL_ARTIFACT_VIF',
                 'LABEL_ARTIFACT_CARF',
-                'LABEL_ARTIFACT_ONION'];
+                /*'LABEL_ARTIFACT_NETHUMANTHINGS',*/
+                'LABEL_ARTIFACT_ONION'
+
+            ];
 
             $scope.selected = [];
 

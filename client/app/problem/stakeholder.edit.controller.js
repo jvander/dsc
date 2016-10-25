@@ -178,7 +178,7 @@ function stakeholderController(Socket,$filter,$window,problemService,$mdDialog,t
                    "values": [],
                    "x": e.pageX + 'px',
                    "y": e.pageY + 'px',
-                   "zindex": 9
+                   "zindex": 99
                },
                "localcode": self.localcode
            }

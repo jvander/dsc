@@ -35,7 +35,7 @@
                     pos.localcode = localcode;
                     Socket.emit('broadcastMove',pos);
 
-                });
+                }).takeUntil(mousedown);;
 
             };
         });

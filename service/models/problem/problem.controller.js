@@ -44,8 +44,8 @@ module.exports = function () {
    router.route('/getonion3layer/')
         .get(findOnion3layer);
 
-   /* router.route('/ajuste/')
-        .get(getAllProblemsAjuste);*/
+    router.route('/ajuste/')
+        .post(getAllProblemsAjuste);
 
 
 
@@ -168,7 +168,7 @@ module.exports = function () {
                 return deferred.reject(err)
             };
             if(!user){
-                return deferred.resolve(new Error("User n�o encontrado"));
+                return deferred.resolve(new Error("User não encontrado"));
             }
             deferred.resolve(user)
         });
@@ -635,7 +635,12 @@ module.exports = function () {
     //Utilizar para fazer alterações no problema.
     function getAllProblemsAjuste(req,res) {
 
-        Problem.find({})
+        console.log(req.body.email + '  ' + req.body.timestamp);
+
+        res.json({
+            ok: "okkkkk"
+        });
+       /* Problem.find({})
             .exec (function (err, problems) {
                 if (err) {
                     res.send(err);
@@ -669,7 +674,7 @@ module.exports = function () {
                         problems: problems
                     });
                 }
-            });
+            });*/
     }
 
 }

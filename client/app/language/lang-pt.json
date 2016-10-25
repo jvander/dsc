@@ -30,6 +30,7 @@
     "LABEL_ARTIFACT_STAKEHOLDERS" : "Stakeholders",
     "LABEL_ARTIFACT_EVALUATIONFRAMEWORK" : "Quadro de Avaliação",
     "LABEL_ARTIFACT_SEMIOTICFRAMEWORK": "Framework Semiótico",
+    "LABEL_ARTIFACT_NETHUMANTHINGS": "Rede Pessoas(Valores)Coisas",
     "LABEL_ARTIFACT" : "Artefatos",
     "PROBLEMS": "Problemas",
     "LABEL_CLOSE" : "Fechar",
@@ -88,5 +89,7 @@
     "LABEL_IDEA_SOLUTION": "Ideia/Solução",
     "LABEL_MINIMIZE" : "Minimizar",
     "INFO_DBLCLICK": "Use o clique duplo para criar um novo stakeholder",
-    "LABEL_OPERATION" : "Operação"
+    "LABEL_OPERATION" : "Operação",
+    "BTN_NEW" : "Novo",
+    "LABEL_NEW_CONNECTION": "Estabelecer nova Conexão"
 }

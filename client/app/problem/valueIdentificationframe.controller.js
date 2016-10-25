@@ -70,7 +70,7 @@ function valueIdentificationFrameController($filter,$window,problemService,toast
     var sugestionValuesEN = [
         'Accessibility', 'Adaptability', 'Aesthetics', 'Autonomy', 'Availability', 'Awareness', 'Collaboration', 'Conversation', 'Emotion and Affection', 'Groups', 'Identity', 'Informed consent', 'Meta-communication', 'Norms', 'Object', 'Portability', 'Presence', 'Privacy', 'Property (ownership)', 'Reciprocity', 'Relationship', 'Reputation', 'Scalability', 'Security', 'Sharing', 'Trust', 'Usability', 'Visibility'
     ];
-    var sugestionValuesBR = [
+    var sugestionValuesPT = [
         'Acessibilidade','Adaptabilidade','Estética','Autonomia', 'Disponibilidade', 'Consciência', 'Colaboração',
         'Conversação', 'Emoção e Afeto', 'Grupos', 'Identidade', 'Consentimento informado', 'Meta-comunicação', 'Normas',
         'Objeto', 'Portabilidade', 'Presença', 'Privacidade', 'Propriedade', 'Reciprocidade, Relacionamento, Reputação',
@@ -93,7 +93,7 @@ function valueIdentificationFrameController($filter,$window,problemService,toast
     function initValueIdentificationFrame(){
         self.idproblem = $window.localStorage.getItem('problemid');
         if($window.localStorage.getItem('NG_TRANSLATE_LANG_KEY') === 'pt'){
-            self.sugestionValuesArray = sugestionValuesBR;
+            self.sugestionValuesArray = sugestionValuesPT;
         }else{
             self.sugestionValuesArray = sugestionValuesEN;
         }
@@ -188,7 +188,6 @@ function valueIdentificationFrameController($filter,$window,problemService,toast
                     return true;
                 }
             }
-
         return false;
     }
 }

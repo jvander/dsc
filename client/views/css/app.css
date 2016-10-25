@@ -306,6 +306,17 @@ body{
     box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
 }
 
+.boxHTN-title {
+    float: left;
+    background: teal;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    text-align: center;
+    color: #FFF;
+    -webkit-box-shadow: 3px 3px 2px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    3px 3px 2px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         3px 3px 2px 0px rgba(50, 50, 50, 0.75);
+}
+
 .close-pms a {
     position: absolute;
     margin-left: 210px;
@@ -760,4 +771,50 @@ li {
     position: absolute;
     top: -10px;
     width: 12px;
+}
+.vis.network {
+    background-color: #ffffff;
+    width: 400px;
+    height: 600px;
+}
+
+.vis.network .item {
+    /*background-color: #008CBA;*/
+    /*border-color: #008CBA;*/
+    /*color: #ffffff;*/
+    /*font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;*/
+    /*font-kerning: auto;*/
+    /*font-size: 13px;*/
+    /*font-style: normal;*/
+    /*font-variant: normal;*/
+    /*font-variant-ligatures: normal;*/
+    /*font-weight: normal;*/
+}
+
+.vis.network .item.green {
+    background-color: green;
+    border-color: green;
+    color: #ffffff;
+}
+
+.vis.network .item.red {
+    background-color: red;
+    border-color: red;
+    color: #ffffff;
+}
+
+.vis.network .item.orange {
+    background-color: orange;
+    border-color: orange;
+}
+
+.vis.network .item.magenta {
+    background-color: magenta;
+    border-color: magenta;
+    color: #ffffff;
+}
+
+.vis.network .item.past {
+    filter: alpha(opacity=50);
+    opacity: 0.5;
 }

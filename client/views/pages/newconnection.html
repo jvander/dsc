@@ -1,0 +1,323 @@
+<md-dialog aria-label="DSC" ng-cloak flex="60">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{'LABEL_NEW_CONNECTION' | translate }}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="views/img/icon/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content layout-padding="10">
+        <form name="newConnection" data-ng-submit="saveHTN(net)">
+            <div layout="rows">
+                <div>
+                <md-input-container>
+                    <label>Actor 01</label>
+                    <md-select ng-model="net.actor01" ng-change="selectActor(net.actor01)" required>
+                        <md-option ng-repeat="item in items1" ng-value="item">
+                            {{item.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Direction</label>
+                    <md-select ng-model="net.connection" required>
+                        <md-option value="from,to"><img width="20" height="20" src="views/img/icon/resize-length.svg"></md-option>
+                        <md-option value="from"><img width="20" height="20" src="views/img/icon/right-arrow.svg"></md-option>
+                        <md-option value="to"><img width="20" height="20" src="views/img/icon/left-arrow.svg"></md-option>
+                    </md-select>
+                </md-input-container>
+                </div>
+                <md-input-container>
+                    <label>Actor 02</label>
+                    <md-select ng-model="net.actor02" required>
+                        <md-option ng-repeat="item in items2" ng-value="item">
+                            {{item.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+            <!--<div>
+                <md-input-container layout-fill ng-hide="net.actor01 === undefined">
+                    <label>Information pocessing in {{net.actor01.name}}</label>
+                    <textarea name="net.dataInformation0'" ng-model="net.dataInformation01"></textarea>
+                </md-input-container>
+                <md-input-container layout-fill ng-hide="net.actor02 === undefined">
+                    <label>Information processing in {{net.actor02.name}}</label>
+                    <textarea name="dataInformation02" ng-model="net.dataInformation02"></textarea>
+                </md-input-container>
+            </div>-->
+            <md-whiteframe class="md-whiteframe-1dp"  layout="column">
+                <md-whiteframe class="boxHTN-title" layout="rows" >
+                    <div flex="10">
+                        <h3>PMP
+                            <md-tooltip>Primary Messages Systems</md-tooltip>
+                        </h3>
+                    </div>
+                    <div flex="30" class="md-whiteframe-3dp">
+                        <h3>Informal</h3>
+                    </div>
+
+                    <div flex="30" class="md-whiteframe-3dp">
+                        <h3>Formal</h3>
+                    </div>
+                    <div flex="30" class="md-whiteframe-3dp" layout-align="center center">
+                        <h3>{{'TECHNICO_LABEL' | translate}}</h3>
+                    </div>
+                </md-whiteframe>
+                <md-content class="md-whiteframe-1dp" layout="rows">
+                    <md-content flex="10" class="md-whiteframe-3dp">
+                        <span>&nbsp;&nbsp;Interaction</span>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.interaction.informal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.interaction.formal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.interaction.technical.values">
+                        </md-input-container>
+                    </md-content>
+
+                </md-content>
+                <md-content class="md-whiteframe-1dp" layout="rows">
+                    <md-content flex="10" class="md-whiteframe-3dp">
+                        <span>&nbsp;&nbsp;Association</span>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.association.informal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.association.formal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.association.technical.values">
+                        </md-input-container>
+
+                    </md-content>
+                </md-content>
+                <md-content class="md-whiteframe-1dp" layout="rows">
+                    <md-content flex="10" class="md-whiteframe-3dp">
+                        <span>&nbsp;&nbsp;Learning</span>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.learning.informal.values">
+                        </md-input-container>
+                    </md-content>
+
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.learning.formal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.learning.technical.values">
+                        </md-input-container>
+
+                    </md-content>
+                </md-content>
+                <md-content class="md-whiteframe-1dp" layout="rows">
+                    <md-content flex="10" class="md-whiteframe-3dp">
+                        <span>&nbsp;&nbsp;Play</span>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.play.informal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.play.formal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.play.technical.values">
+                        </md-input-container>
+                    </md-content>
+                </md-content>
+                <md-content class="md-whiteframe-1dp" layout="rows">
+                    <md-content flex="10" class="md-whiteframe-3dp">
+                        <span>&nbsp;&nbsp;Protection</span>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.protection.informal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.protection.formal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.protection.technical.values">
+                        </md-input-container>
+                    </md-content>
+                </md-content>
+                <md-content class="md-whiteframe-1dp" layout="rows">
+                    <md-content flex="10" class="md-whiteframe-3dp">
+                        <span>&nbsp;&nbsp;Exploitation</span>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.exploitation.informal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.exploitation.formal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.exploitation.technical.values">
+                        </md-input-container>
+                    </md-content>
+                </md-content>
+                <md-content class="md-whiteframe-1dp" layout="rows">
+                    <md-content flex="10" class="md-whiteframe-3dp">
+                        <span>&nbsp;&nbsp;Temporality</span>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.temporality.informal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.temporality.formal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.temporality.technical.values">
+                        </md-input-container>
+                    </md-content>
+                </md-content>
+                <md-content class="md-whiteframe-1dp" layout="rows">
+                    <md-content flex="10" class="md-whiteframe-3dp">
+                        <span>&nbsp;&nbsp;Territoriality</span>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.territoriality.informal.values">
+                        </md-input-container>
+                    </md-content>
+
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                        <label>Values</label>
+                        <input ng-model="net.territoriality.formal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                        <label>Values</label>
+                        <input ng-model="net.territoriality.technical.values">
+                        </md-input-container>
+                    </md-content>
+                </md-content>
+                <md-content class="md-whiteframe-1dp" layout="rows">
+                    <md-content flex="10" class="md-whiteframe-3dp">
+                        <span>&nbsp;&nbsp;Classification</span>
+                    </md-content>
+
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                        <label>Values</label>
+                        <input ng-model="net.classification.informal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.classification.formal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.classification.technical.values">
+                        </md-input-container>
+                    </md-content>
+                </md-content>
+                <md-content class="md-whiteframe-1dp" layout="rows">
+                    <md-content flex="10" class="md-whiteframe-3dp">
+                        <span>&nbsp;&nbsp;Subsistence</span>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.subsistence.formal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.subsistence.informal.values">
+                        </md-input-container>
+                    </md-content>
+                    <md-content flex="30" class="md-whiteframe-3dp">
+                        <md-input-container layout-fill>
+                            <label>Values</label>
+                            <input ng-model="net.subsistence.technical.values">
+                        </md-input-container>
+                    </md-content>
+                </md-content>
+            </md-whiteframe>
+
+            <md-dialog-actions layout="row">
+                <md-button ng-click="hide()" class="md-raised md-primary" md-autofocus>
+                    {{'LABEL_BTN_CANCEL' | translate }}
+                </md-button>
+                <span flex></span>
+
+                <md-button type="submit" class="md-primary"
+                           ng-class="{'md-raised md-hue-1': (newConnection.$dirty && newConnection.$valid) }"
+                           aria-label="New Project">{{'BTN_SAVE' | translate }}
+                </md-button>
+            </md-dialog-actions>
+        </form>
+    </md-content>
+</md-dialog>
+

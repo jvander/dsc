@@ -30,6 +30,7 @@
     "LABEL_ARTIFACT_STAKEHOLDERS": "Stakeholders Identification",
     "LABEL_ARTIFACT_EVALUATIONFRAMEWORK": "Evaluation Framing",
     "LABEL_ARTIFACT_SEMIOTICFRAMEWORK": "Semiotic Framework",
+    "LABEL_ARTIFACT_NETHUMANTHINGS": "Network Human[Values]things",
     "LABEL_ARTIFACT" : "Artifact",
     "PROBLEMS": "Problems",
     "LABEL_CLOSE" : "Close",
@@ -78,7 +79,7 @@
     "MARKET_LABEL": "Market",
     "SOURCE_LABEL": "Source",
     "CONTRIBUTION_LABEL": "Contribution",
-    "TECHNICO_LABEL" : "Technico",
+    "TECHNICO_LABEL" : "Technical",
     "EDIT_COLLABORATORS": "Edit Collaborators",
     "EDIT_PROBLEM_DESCRIPTION": "Edit problem description",
     "YOUR_DESIGNS": "Your Projects (Problem)",
@@ -88,7 +89,9 @@
     "LABEL_IDEA_SOLUTION": "Idea/Solution",
     "LABEL_MINIMIZE" : "Minimize",
     "INFO_DBLCLICK": "Use double click for new stakeholder",
-    "LABEL_OPERATION" : "Operation"
+    "LABEL_OPERATION" : "Operation",
+    "BTN_NEW" : "New",
+    "LABEL_NEW_CONNECTION": "New Connection"
 
 }
 
