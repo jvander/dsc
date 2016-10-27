@@ -192,7 +192,6 @@
         }
 
         function getUser(req, res){
-            console.log(req.query.userid)
             User.findOne({
                 _id: req.query.userid
             }).select('_id fullname nickname email language password photo').exec(function(err,user){

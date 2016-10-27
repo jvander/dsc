@@ -528,8 +528,9 @@ module.exports = function () {
                   var mailOptions = {
                     from: configMail.email, // sender address
                     to: req.body.email, // list of receivers
-                    subject: 'Project DSC', // Subject line
-                    text: 'Olá,! Você foi convidado para nos ajudar a entender o problema ' + problem.title + '.' +
+                    subject: 'Convite para Projeto ' + problem.title, // Subject line
+                    text: 'Você foi convidado para contribuir no entendimento do problema ' + problem.title + '.' +
+                    '(Informações: Problema proposto por: ' + problem.owner.fullname + ' (' + problem.owner.nickname + '). Email para contato: ' + problem.owner.email + '.) ' +
                     'Acesse http://'+ configMail.serverURL +':3000/'
                 };
                 sendMail(mailOptions);
