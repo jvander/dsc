@@ -1,3 +1,5 @@
+* { outline:none; }
+
 .fixed-nav-bar {
     position: fixed;
     top: 0;
