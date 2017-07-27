@@ -12,8 +12,9 @@ var io = require('socket.io')(http);
 var dpi = require('./service/edit.problem.io');
 
 
+
 var connectWithRetry = function() {
-mongoose.connect(config.database.uri, function(err){
+mongoose.connect(config.database.uri,{useMongoClient:true}, function(err){
     if(err){
         console.error('Failed to connect to mongo on startup - retrying in 5 sec', err);
         setTimeout(connectWithRetry, 5000);
@@ -21,6 +22,7 @@ mongoose.connect(config.database.uri, function(err){
         console.log('Connected to the database');
     }
 });
+mongoose.Promise = global.Promise;
 };
 
 connectWithRetry();

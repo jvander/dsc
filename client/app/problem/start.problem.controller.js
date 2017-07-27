@@ -154,7 +154,6 @@
 
             $scope.toggle = function (item, list) {
                 var idx = list.indexOf(item);
-
                 if (idx > -1) {
                     if(item !== 'LABEL_ARTIFACT_STAKEHOLDERS'){
                         list.splice(idx, 1);
