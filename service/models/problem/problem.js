@@ -25,7 +25,6 @@ var StakeholderSchema = new Schema({
     values: [String]
 });
 
-
 var PostItSchema = new Schema({
     layer: { type: String, trim: true },
     title: { type: String, trim: true },
@@ -59,6 +58,20 @@ var ChangeProjectSchema = new  Schema({
     identification: {},
     changed: [ { action: {}, old_version: {}, new_version: {} }]
 });
+
+
+
+var ValuePieSchema = new  Schema({
+    slice: { type: String, trim: true },
+    layer: { type: String, trim: true },
+    value: { type: String, trim: true },
+    description: { type: String, trim: true },
+    openEdit: { type: Boolean, default: false },
+    x: { type: String, required: true, trim: true },
+    y: { type: String, required: true, trim: true }           
+});
+
+
 
 var ProblemSchema = new Schema({
     status: {type: String, enum: ['active', 'inactive', 'finished', 'suspended'], default: 'active'},
@@ -118,6 +131,7 @@ var ProblemSchema = new Schema({
     carf: [CultureAwareRequirementsFrameworkSchema],
     chat: [MessageSchema],
     postits: [PostItSchema],
+    valuepie:[ValuePieSchema] 
 
 });
 

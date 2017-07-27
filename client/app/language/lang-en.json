@@ -55,7 +55,7 @@
     "LABEL_LEFT_PROJECT": "left the project.",
     "LABEL_TITLE": "Title",
     "LABEL_DESCRIPTION": "Description",
-    "LABEL_EMAIL_DSC": "Send Message for SAwD development team.",
+    "LABEL_EMAIL_DSC": "Send Message for SAwD team.",
     "LABEL_SUBJECT": "Subject",
     "LABEL_MESSAGE": "Your Message",
     "BTN_SEND": "Send",
@@ -91,7 +91,8 @@
     "INFO_DBLCLICK": "Use double click for new stakeholder",
     "LABEL_OPERATION" : "Operation",
     "BTN_NEW" : "New",
-    "LABEL_NEW_CONNECTION": "New Connection"
+    "LABEL_NEW_CONNECTION": "New Connection",
+    "LABEL_ARTIFACT_VALUEPIE": "Value Pie"
 
 }
 

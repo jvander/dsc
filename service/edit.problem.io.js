@@ -13,7 +13,7 @@
                 return deferred.reject(err)
             };
             if(!problem){
-                return deferred.resolve(new Error('Problem n�o encontrado'));
+                return deferred.resolve(new Error('Problem nao encontrado'));
             }
             deferred.resolve(problem)
         });
@@ -36,6 +36,72 @@
                 console.log(err)
             });
     }
+//Value Pie
+function creatNewValue(socket, io, data){
+
+    console.log("Save data " + data.tagValue.x)
+    searchProblem(socket.room)
+            .then(function(problem) {
+                problem.valuepie.push(data.tagValue);
+                problem.save(function(err, objUpdate) {
+                    if( err  ){
+                        console.log(err);
+                    }else{
+                        data.tagValue._id = objUpdate.valuepie[objUpdate.valuepie.length -1]._id;
+                        io.sockets.in(socket.room).emit('onBroadcastValuePieAdd', data);
+                    }
+                });
+            }).catch(function (err) {
+            console.log(err)
+        });
+        
+};
+
+
+
+ function updateValuePie(socket,io,tagValue){
+        var idproblem = socket.room;
+        searchProblem(idproblem)
+            .then(function(problem) {
+                var id = tagValue._id;
+                if(tagValue.value === '' || tagValue.value === undefined){
+                    tagValue.value = 'new Value';
+                }
+                tagValue.openEdit = false;
+                   Problem.findOneAndUpdate({ _id : idproblem, 'valuepie._id' : id },
+                    { $set: {
+                        'valuepie.$.slice' : tagValue.slice,
+                        'valuepie.$.layer' : tagValue.layer,
+                        'valuepie.$.value' : tagValue.value,
+                        'valuepie.$.description' : tagValue.description,
+                        'valuepie.$.x' : tagValue.x,
+                        'valuepie.$.y' : tagValue.y,
+                        'valuepie.$.openEdit' : false
+                       }},function(err,objUpdate){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            io.sockets.in(socket.room).emit('onBroadcastValuePieSave', tagValue);
+                        }
+                    });
+            }).catch(function (err) {
+                console.log(err)
+            });
+    }
+
+function removeValue(idproblem,value){
+        searchProblem(idproblem)
+            .then(function(problem){
+                problem.valuepie.pull(value);
+                problem.save(function(err){
+                    console.log(err);
+                });
+            }).catch(function(err){
+            console.log(err);
+        });
+    }
+
+
 //---- insert carf -----
     function creatNewCARF(socket, io, carf){
         var idproblem = socket.room;
@@ -520,6 +586,21 @@
                 time: new Date()
             };
             insertMessage(socket,io,obj);
+        });
+
+    // ValuePie ---------------------------------------------------------
+
+        socket.on('broadcastValuePieAdd',function(obj){
+            creatNewValue(socket,io,obj);
+        });
+
+        socket.on('broadcastValuePieSave',function(obj){
+            updateValuePie(socket,io,obj);
+        });
+
+        socket.on('broadcastTagValueRemove',function(obj){
+            removeValue(socket.room,obj.tagValue);
+            io.sockets.in(socket.room).emit('onBroadcastTagValueRemove', obj.index);
         });
 
     };

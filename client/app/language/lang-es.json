@@ -91,6 +91,8 @@
     "INFO_DBLCLICK": "Use double click for new stakeholder",
     "LABEL_OPERATION" : "#Operation",
     "BTN_NEW" : "?New",
-    "LABEL_NEW_CONNECTION": "?New Connection"
+    "LABEL_NEW_CONNECTION": "?New Connection",
+    LABEL_ARTIFACT_VALUEPIE": "Value Pie"
+
 
 }

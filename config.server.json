@@ -1,9 +1,9 @@
 {
   "port": 3000,
   "database":{
-    "uri":"mongodb://localhost/dsc"
+  "uri":"mongodb://localhost/dsc"
   },
   "viewPath": "/client/views/",
   "clientPath": "/client/",
-  "secretKey": "k398kqeriiuoyyçpiu80145"
+  "secretKey": "k398kqeriiuoyyÃ§piu80145"
 }

@@ -55,7 +55,7 @@
     "LABEL_LEFT_PROJECT": "saiu do projeto.",
     "LABEL_TITLE": "Título",
     "LABEL_DESCRIPTION": "Descrição",
-    "LABEL_EMAIL_DSC": "Enviar Menssagem para a equipe de desenvolmeno do DSC.",
+    "LABEL_EMAIL_DSC": "Eviar Menssagem para a equipe DSC.",
     "LABEL_SUBJECT": "Assunto",
     "LABEL_MESSAGE": "Sua Mensagem",
     "BTN_SEND": "Enviar",
@@ -91,5 +91,6 @@
     "INFO_DBLCLICK": "Use o clique duplo para criar um novo stakeholder",
     "LABEL_OPERATION" : "Operação",
     "BTN_NEW" : "Novo",
-    "LABEL_NEW_CONNECTION": "Estabelecer nova Conexão"
+    "LABEL_NEW_CONNECTION": "Estabelecer nova Conexão",
+    LABEL_ARTIFACT_VALUEPIE": "Value Pie"
 }

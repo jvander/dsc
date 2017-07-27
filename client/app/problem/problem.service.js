@@ -24,6 +24,7 @@
     var API_ROUTE_REMOVECOLLABORATOR = '/api/problem/removecollaborator';
     var API_ROUTE_GETHISTORYCHAT = '/api/problem/historychat';
     var API_ROUTE_GETONION3LALYER = '/api/problem/getonion3layer';
+    var API_ROUTE_GETVALUEPIE = '/api/problem/getvaluepie';
 
     var service = {
       newproblem       : newproblem,
@@ -40,7 +41,8 @@
       removecollaborators : removecollaborators,
       gethistorychat: gethistorychat,
       getproblemreport : getproblemreport,
-      getonion3layer : getonion3layer
+      getonion3layer : getonion3layer,
+      getvaluepie : getvaluepie
     };
 
     return service;
@@ -71,6 +73,10 @@
 
     function getonion(data){
       return $http.get(API_ROUTE_GETONION + '?idproblem=' + data );
+    }
+
+    function getvaluepie(data){
+      return $http.get(API_ROUTE_GETVALUEPIE + '?idproblem=' + data );
     }
 
     function getonion3layer (data){
@@ -104,6 +110,8 @@
     function gethistorychat(data){
       return $http.get(API_ROUTE_GETHISTORYCHAT + '?idproblem=' + data );
     }
+
+
 
   }
 })();

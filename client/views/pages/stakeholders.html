@@ -68,6 +68,8 @@
                         </md-input-container>
                     </div>
 
+
+
                     <div layout="column" flex>
                         <div>
                             <h4>{{'VALUES' | translate }}</h4>
@@ -84,6 +86,16 @@
 
 
                         <div layout="row">
+                                <md-input-container flex>
+                                    <label>New Value</label>
+                                    <input id="id{{stakeholder._id}}" ng-model="stakeholder.newValues" 
+                                    ng-keyup="vm.insertValueIdentification(stakeholder,$event.keyCode)"
+                                    ng-blur="vm.setValueIdentication(stakeholder)">
+                                </md-input-container>                         
+                        </div>
+
+
+                        <!-- <div layout="row">
                             <div flex>
                                 <md-input-container>
                                     <label>New Value</label>
@@ -93,7 +105,7 @@
                             <div>
                                 <md-button class="md-primary md-raised" ng-click="vm.setValueIdentication(stakeholder)" class="md-primary">{{'ADD_VALUE' | translate}}</md-button>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!--Sugestão de valores
                         <div layout="row" layout-align="center start" ng-show="(stakeholder.sugestionValues.length > 0)">
@@ -118,7 +130,7 @@
 
 
                     <div layout="row" layout-align="start start" flex>
-                        <md-button ng-click="vm.delPostIt($event,$index, stakeholder)" class="md-primary md-raised" aria-label="Remove Stekaholder">{{'BTN_REMOVE' | translate}}</md-button>
+                        <md-button ng-click="vm.removePostIt($index, stakeholder)" class="md-primary md-raised" aria-label="Remove Stekaholder">{{'BTN_REMOVE' | translate}}</md-button>
                         <span flex></span>
                         <md-button type="submit" class="md-raised md-hue-1"
                                    ng-class="{'md-primary': (onionForm.$dirty && onionForm.$valid) }"
@@ -131,4 +143,4 @@
     <div layout="row" layout-sm="column" layout-align="space-around" ng-show="vm.inProcessing">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
-</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+</div>

@@ -143,6 +143,15 @@
                     }
                 }
             })
+            .state('problem.valuepie', {
+                url: '/valuepie',
+                views: {
+                    'dsc-artifact': {
+                        templateUrl: 'views/pages/valuepie.html',
+                        controller: 'valuePieController as vm'
+                    }
+                }
+            })
             .state('problem.nethumanthings', {
                 url: '/humanthings',
                 views: {

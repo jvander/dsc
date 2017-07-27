@@ -43,6 +43,10 @@ module.exports = function () {
         .get(getHistoryChat);
    router.route('/getonion3layer/')
         .get(findOnion3layer);
+    
+    router.route('/getvaluepie/')
+        .get(findValuePie);
+
 
     router.route('/ajuste/')
         .post(getAllProblemsAjuste);
@@ -628,6 +632,25 @@ module.exports = function () {
                 res.json({
                     success: false,
                     message: "No History Chat"
+
+                })
+            });
+    }
+
+    function findValuePie(req, res){
+        console.log(req.query.idproblem)
+        var idproblem = req.query.idproblem;
+        searchProblem(idproblem)
+            .then(function(problem) {
+                console.log(problem.valuepie)
+                     res.json({
+                            success: true,
+                            valuepie: problem.valuepie
+                        })
+            }).catch(function (err) {
+                res.json({
+                    success: false,
+                    message: "No values"
 
                 })
             });
