@@ -23,18 +23,13 @@ var connectMongoDB = function() {
       const admin = new mongoose.mongo.Admin(mongoose.connection.db);
       admin.buildInfo(function(err, info) {
         if (err) {
-          console.err('Error getting MongoDB info: ${err}');
+          console.error('Error getting MongoDB info: ${err}');
+          setTimeout(connectMongoDB, 5000);
         } else {
           console.log('Connection to MongoDB (version ${info.version}) opened successfully!');
         }
       });
-    })
-    .catch((err) => {
-        console.error('Error connecting to MongoDB: ${err}');
-        setTimeout(connectMongoDB, 5000);
-    });
-
-
+    })       
 }
 connectMongoDB();
 
