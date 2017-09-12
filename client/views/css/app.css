@@ -1,6 +1,19 @@
 
 * { outline:none; }
 
+.visjsnetwork {
+      width: 600px;
+      height: 400px;
+      border: 1px solid lightgray;
+    }
+
+.mpc {
+      width: 600px;
+      height: 400px;
+      border: 1px solid lightgray;
+    }
+   
+
 .fixed-nav-bar {
     position: fixed;
     top: 0;

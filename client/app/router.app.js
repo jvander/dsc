@@ -152,12 +152,12 @@
                     }
                 }
             })
-            .state('problem.nethumanthings', {
-                url: '/humanthings',
+            .state('problem.mpcom', {
+                url: '/mpcom',
                 views: {
                     'dsc-artifact': {
-                        templateUrl: 'views/pages/nethumanthings.html',
-                        controller: 'valuesHumanThingsController as vm'
+                        templateUrl: 'views/pages/mpcom.html',
+                        controller: 'mapaComunicacional as vm'
                     }
                 }
             });

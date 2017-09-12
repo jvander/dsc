@@ -1,7 +1,7 @@
 /**
  * Created by jesus on 01/10/2016.
  */
-angular.module('ngVis', [])
+/*angular.module('ngVis', [])
 
     .factory('VisDataSet', function () {
         'use strict';
@@ -11,9 +11,7 @@ angular.module('ngVis', [])
         };
     })
 
-    /**
-     * TimeLine directive
-     */
+
     .directive('visTimeline', function () {
         'use strict';
         return {
@@ -41,7 +39,6 @@ angular.module('ngVis', [])
 
                 scope.$watch('data', function () {
                     // Sanity check
-                    console.log(scope.data);
                     if (scope.data == null) {
                         return;
                     }
@@ -53,7 +50,6 @@ angular.module('ngVis', [])
                     }
 
                     // Create the timeline object
-                    console.log(scope.data);
                     timeline = new vis.Timeline(element[0], scope.data.items, scope.data.groups, scope.options);
 
                     // Attach an event handler if defined
@@ -80,9 +76,7 @@ angular.module('ngVis', [])
         };
     })
 
-    /**
-     * Directive for network chart.
-     */
+
     .directive('visNetwork', function () {
         return {
             restrict: 'EA',
@@ -95,7 +89,7 @@ angular.module('ngVis', [])
             link: function (scope, element, attr) {
                 var networkEvents = [
                     'click',
-                    'doubleclick',
+                    'doubleClick',
                     'oncontext',
                     'hold',
                     'release',
@@ -107,7 +101,9 @@ angular.module('ngVis', [])
                     'dragging',
                     'dragEnd',
                     'hoverNode',
+                    'hoverEdge',
                     'blurNode',
+                    'blurEdge',
                     'zoom',
                     'showPopup',
                     'hidePopup',
@@ -150,7 +146,7 @@ angular.module('ngVis', [])
                     // onLoad callback
                     if (scope.events != null && scope.events.onload != null &&
                         angular.isFunction(scope.events.onload)) {
-                        scope.events.onload(graph);
+                        scope.events.onload(network);
                     }
                 });
 
@@ -164,9 +160,7 @@ angular.module('ngVis', [])
         };
     })
 
-    /**
-     * Directive for graph2d.
-     */
+
     .directive('visGraph2d', function () {
         'use strict';
         return {
@@ -226,5 +220,4 @@ angular.module('ngVis', [])
                 });
             }
         };
-    })
-;
+    });*/

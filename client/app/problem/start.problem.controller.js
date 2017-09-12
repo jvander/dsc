@@ -144,7 +144,7 @@
                 'LABEL_ARTIFACT_SEMIOTICFRAMEWORK',
                 'LABEL_ARTIFACT_VIF',
                 'LABEL_ARTIFACT_CARF',
-                /*'LABEL_ARTIFACT_NETHUMANTHINGS',*/
+                'LABEL_ARTIFACT_MPCOM',
                 'LABEL_ARTIFACT_VALUEPIE',
                 'LABEL_ARTIFACT_ONION'
 

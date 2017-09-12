@@ -42,6 +42,10 @@
     "ngImgCrop": "~0.3.2",
     "jquery-ui": "~1.11.4",
     "rx-angular": "angular-rx#^1.1.3",
-    "vis": "^4.16.1"
+    "vis": "^4.16.1",
+    "bower": "*",
+    "install": "^1.0.4",
+    "angular-visjs": "^4.16.0",
+    "moment": "^2.18.1"
   }
 }
