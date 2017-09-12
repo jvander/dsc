@@ -5,12 +5,31 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var config = require('./config.server');
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var dpi = require('./service/edit.problem.io');
+
+
+
+var connectWithRetry = function() {
+mongoose.connect(config.database.uri,{useMongoClient:true}, function(err){
+    if(err){
+        console.error('Failed to connect to mongo on startup - retrying in 5 sec', err);
+        setTimeout(connectWithRetry, 5000);
+    } else {
+        console.log('Connected to the database');
+    }
+});
 mongoose.Promise = global.Promise;
+};
+
+connectWithRetry();
+
+
+
+/*mongoose.Promise = global.Promise;
 
 const options = {
   promiseLibrary: global.Promise,
@@ -31,7 +50,7 @@ var connectMongoDB = function() {
       });
     })       
 }
-connectMongoDB();
+connectMongoDB();*/
 
 
 app.use(bodyParser.urlencoded({ extended: true}));
