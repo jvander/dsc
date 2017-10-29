@@ -17,6 +17,7 @@
             self.doLogout = doLogout;
             self.doLogin = doLogin;
             self.netImg = netImg;
+            self.netImgIHC2017 = netImgIHC2017;
 
 
             var slides =  [
@@ -30,16 +31,49 @@
                 {image: "../views/img/sawd6.jpg"},
                 {image: "../views/img/sawd7.jpg"},
                 {image: "../views/img/sawd8.jpg"},
-                {image: "../views/img/sawd8.jpg"},
+                {image: "../views/img/sawd9.jpg"},
                 {image: "../views/img/sawd10.jpg"}
             ];
 
+            var slidesMCIHC2017 =  [
+                {image: "../views/img/mcihc20170.jpg"},
+                {image: "../views/img/mcihc20171.jpg"},
+                {image: "../views/img/mcihc20172.jpg"},
+                {image: "../views/img/mcihc20173.jpg"},
+                {image: "../views/img/mcihc20174.jpg"},
+                {image: "../views/img/mcihc20175.jpg"},
+                {image: "../views/img/mcihc20176.jpg"},
+                {image: "../views/img/mcihc20177.jpg"},
+                {image: "../views/img/mcihc20178.jpg"},
+                {image: "../views/img/mcihc20179.jpg"},
+                {image: "../views/img/mcihc201710.jpg"}
+            ];
+
             var index = 0;
+            var index1 = 1;
             self.photo = slides[index].image;
+            self.photoMasterClassIHC2017 = slidesMCIHC2017[index1].image;
+
+            var giraSlideICISO = function() {
+                netImg();
+                $timeout(giraSlideICISO, 2000);
+            }    
+            $timeout(giraSlideICISO, 1000);
+
+            var giraSlideIHC2017 = function() {
+                netImgIHC2017();
+                $timeout(giraSlideIHC2017, 2000);
+            }   
+            $timeout(giraSlideIHC2017, 2000);
 
             function netImg() {
                 index = (index + 1) % slides.length;
                 self.photo = slides[index].image;
+            }
+
+            function netImgIHC2017() {
+                index1 = (index1 + 1) % slidesMCIHC2017.length;
+                self.photoMasterClassIHC2017 = slidesMCIHC2017[index1].image;
             }
 
             function setLang(langKey) {

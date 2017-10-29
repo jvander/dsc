@@ -28,31 +28,6 @@ mongoose.Promise = global.Promise;
 connectWithRetry();
 
 
-
-/*mongoose.Promise = global.Promise;
-
-const options = {
-  promiseLibrary: global.Promise,
-  useMongoClient: true,
-};
-
-var connectMongoDB = function() {
-  mongoose.connect(config.database.uri, options)
-    .then(function() {
-      const admin = new mongoose.mongo.Admin(mongoose.connection.db);
-      admin.buildInfo(function(err, info) {
-        if (err) {
-          console.error('Error getting MongoDB info: ${err}');
-          setTimeout(connectMongoDB, 5000);
-        } else {
-          console.log('Connection to MongoDB (version ${info.version}) opened successfully!');
-        }
-      });
-    })       
-}
-connectMongoDB();*/
-
-
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
