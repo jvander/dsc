@@ -1,4 +1,4 @@
-
+'use strict';
 
 angular.module('DropDSC',[])
     .directive('draggable', function($document,Socket,$window) {

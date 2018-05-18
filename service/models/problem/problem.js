@@ -1,13 +1,10 @@
-/**
- * Created by JOSEVALDERLEI on 07/07/2015.
- */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var MessageSchema = new Schema({
     nickname: {type: String, requered: true},
     msg: {type: String, requered: true},
-    time: {type: Date, required: true},
+    time: {type: Date, required: true}
 });
 
 var StakeholderSchema = new Schema({
@@ -17,7 +14,6 @@ var StakeholderSchema = new Schema({
     x: { type: String, required: true, trim: true },
     y: { type: String, required: true, trim: true },
     openEdit:{ type: Boolean, default: false },
-
     evaluationframing: {
         problems: { type: String, trim: true },
         solutions: { type: String, trim: true }
@@ -34,32 +30,17 @@ var PostItSchema = new Schema({
 });
 
 var CultureAwareRequirementsFrameworkSchema = new  Schema({
-    pms: {
-        type: String,
-        requried: true,
-        trim: true
-    },
-    values: [
-        {type:String, requried:true }
-    ],
-    requirement: {
-        type: String,
-        required: true,
-        trim: true
-    },
+    pms: { type: String, requried: true, trim: true },
+    values: [ { type:String, requried:true } ],
+    requirement: { type: String, required: true, trim: true },
     stakeholders: [String],
-    priority: {
-        type: String,
-        enum: ['Low', 'Medium', 'High']
-    }
+    priority: { type: String, enum: ['Low', 'Medium', 'High'] }
 });
 
 var ChangeProjectSchema = new  Schema({
     identification: {},
     changed: [ { action: {}, old_version: {}, new_version: {} }]
 });
-
-
 
 var ValuePieSchema = new  Schema({
     slice: { type: String, trim: true },
@@ -71,17 +52,14 @@ var ValuePieSchema = new  Schema({
     y: { type: String, required: true, trim: true }           
 });
 
-
-
 var ProblemSchema = new Schema({
     status: {type: String, enum: ['active', 'inactive', 'finished', 'suspended'], default: 'active'},
     started: {type: Date, default: Date.now },
     finished: {type: Date},
-
     owner:{
         fullname: {type: String, requered: true},
         nickname: {type: String, requered: true},
-        email: {type: String, required: true},
+        email: {type: String, required: true}
     },
     collaborators:[
         {
@@ -92,40 +70,17 @@ var ProblemSchema = new Schema({
             adm: {type: Boolean, default: false}
         }
     ],
-    title: {
-        type: String,
-        required: 'required.title',
-        trim: true
-    },
-    description: {
-        type: String,
-        required: 'required.description',
-        trim: true
-    },
-
+    title: { type: String, required: true, trim: true },
+    description: { type: String, required: true, trim: true },
     artifacts: [],
-
     stakeholders: [StakeholderSchema],
-
     semioticframework:{
-        socialworld: {
-            type: String
-        },
-        pragmatic: {
-            type: String
-        },
-        semantic: {
-            type: String
-        },
-        syntatic: {
-            type: String
-        },
-        empirical: {
-            type: String
-        },
-        physical: {
-            type: String
-        }
+        socialworld: { type: String },
+        pragmatic: { type: String },
+        semantic: { type: String },
+        syntatic: { type: String },
+        empirical: { type: String },
+        physical: { type: String }
     },
     values: [String],
     carf: [CultureAwareRequirementsFrameworkSchema],

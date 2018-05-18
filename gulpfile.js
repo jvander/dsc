@@ -35,16 +35,15 @@
         ]
     };
 
-
     gulp.task('app', ['limpar'], function(){
-        console.log('[gulp]: Iniciando a compactação do app base..');
+        console.log('[gulp]: Iniciando a compactaï¿½ï¿½o do app base..');
         var arquivos = pastas.app.concat(pastas.ignorar);
 
         return gulp.src(arquivos)
             //Inicio do Source Map
             .pipe(sourcemaps.init())
             //Concatena os arquivos
-            .pipe(concat('app.dsc.min.js'),  {newLine: ';'})
+            .pipe(concat('socialplayer.min.js'),  {newLine: ';'})
 
             .pipe(ngAnnotate())
             //Minifica
@@ -56,13 +55,13 @@
     });
 
     gulp.task('jshint', function() {
-        console.log('[gulp]: Iniciando a verificação do código..');
+        console.log('[gulp]: Iniciando a verificaï¿½ï¿½o do cï¿½digo..');
         var arquivos = pastas.jshint.concat(pastas.ignorar);
 
         return gulp.src(arquivos)
             // Realiza cache dos arquivos ja verificados
             .pipe(cache('jshintCache'))
-            // Analisa o código usando o jshint seguindo os padrões estabelecidos no arquivo .jshintrc
+            // Analisa o cï¿½digo usando o jshint seguindo os padrï¿½es estabelecidos no arquivo .jshintrc
             .pipe(jshint('.jshintrc'))
             // Utiliza o reporter stylish para exibir os resultados
             .pipe(jshint.reporter(stylish));
@@ -74,7 +73,7 @@
     });
 
     gulp.task('monitorar', function() {
-        // Monitora os arquivos do projeto para refazer o build caso houver alteração
+        // Monitora os arquivos do projeto para refazer o build caso houver alteraï¿½ï¿½o
         gulp.watch(pastas.jshint.concat(pastas.ignorar), ['jshint', 'app']);
     });
 
@@ -86,4 +85,6 @@
                 return fs.statSync(path.join(dir, file)).isDirectory();
             });
     }
+
+
 })();

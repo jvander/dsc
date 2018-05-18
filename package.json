@@ -37,7 +37,9 @@
     "q": "^1.5.0",
     "socket.io": "^1.7.4",
     "through2": "^2.0.3",
+    "uglify-js": "^3.3.25",
     "vary": "^1.1.1",
     "xmlhttprequest": "^1.8.0"
-  }
+  },
+  "devDependencies": {}
 }

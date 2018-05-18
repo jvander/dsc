@@ -2,6 +2,7 @@
  * Created by jesus on 21/03/2016.
  */
 ;(function (undefined) {
+    'use strict';
     angular.module('appRxDrag', ['rx'])
         .directive('rxdraggable', function($document, $window, rx, Socket) {
             return function(scope, element, attrs) {

@@ -449,6 +449,17 @@ function removeValue(idproblem,value){
             io.sockets.in(socket.room).emit('onAtualizarProblema', data);
         });
 
+        socket.on('titleUpdate', function (data) {
+            if(data.update){
+                Problem.update({ _id : socket.room}, { $set : { "title": data.title }}, function(err, updated) {
+                    if( err || !updated ){
+                        console.log(err);
+                    }
+                });
+            }
+            io.sockets.in(socket.room).emit('onTitleUpdate', data);
+        });
+
         socket.on('broadcastMove',function(stakeholder){
              updateStakeholder(socket,io,stakeholder);
         });

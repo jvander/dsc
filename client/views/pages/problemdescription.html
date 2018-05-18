@@ -2,7 +2,16 @@
     <form>
     <md-toolbar>
         <div class="md-toolbar-tools">
-                <h2>{{problem.title}}</h2>
+                <span ng-show=showTitle ng-click=editTitle()>
+                    <h3>{{problem.title}}</h3>
+                </span> 
+                
+                <span ng-hide=showTitle>
+                    <md-input-container flex>
+                    <input ng-model="problem.title" ng-blur="titleUpdate(problem.title)">
+                    </md-input-container>
+                    <md-input-container flex>
+                </span>              
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon md-svg-src="views/img/icon/ic_close_24px.svg" aria-label="Close dialog"></md-icon>

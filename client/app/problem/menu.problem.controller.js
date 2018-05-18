@@ -21,9 +21,7 @@
         self.formInviteCollaborator = formInviteCollaborator;
         var localcode = '';
         self.loadArtifact = loadArtifact;
-
-
-
+     
         /*Edit Problem*/
 
         Socket.on('onAtualizarProblema', function (retorno) {
@@ -31,6 +29,17 @@
                 self.setDescrition(retorno.description);
             }
         });
+
+        Socket.on('onTitleUpdate', function (retorno) {
+            if(localcode !== retorno.localcode) {
+                self.setTitle(retorno.title);
+            }
+        });
+
+        function saveTitle(problem){
+            problem.localcode = localcode;
+            Socket.emit('titleUpdate', problem);
+        }
 
         function saveProblem(problem){
             problem.localcode = localcode;
@@ -49,11 +58,14 @@
         function DialogEditProblemController($timeout,$scope,$mdDialog) {
             var updateTrue = true;
             $scope.problem;
+            $scope.showTitle = true;
+            $scope.editTitle = editTitle;
             $scope.problemUpdate = problemUpdate;
+            $scope.titleUpdate = titleUpdate;
             $scope.getProblemEdit = getProblemEdit;
             $scope.saveDescription = saveDescription;
             $scope.nickname = '';
-
+ 
 
 
             $scope.hide = function() {
@@ -82,7 +94,7 @@
 
             function problemUpdate(description) {
                 var problem = {
-                    'update': updateTrue,
+                    'update': true,
                     'description': description
                 }
                 saveProblem(problem);
@@ -90,6 +102,21 @@
                     updateTrue = false;
                     $timeout(setUpdate, 2000);
                 }
+            }
+
+            function titleUpdate(newTitle){
+                var problem = {
+                    'update': true,
+                    'title': newTitle
+                }
+                saveTitle(problem);
+                 console.log(newTitle);
+                 $scope.showTitle = true;
+                 
+            };
+
+            function editTitle(){
+                $scope.showTitle = false;
             }
 
             function saveDescription(description) {

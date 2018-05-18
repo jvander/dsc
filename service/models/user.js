@@ -6,7 +6,6 @@
     var mongoose = require('mongoose');
     var Schema = mongoose.Schema;
     var bcrypt = require('bcrypt-nodejs');
-
     var UserSchema = new Schema({
         fullname: {type: String, required: true },
         nickname: {type: String, required: true },
@@ -15,8 +14,8 @@
         password: {type: String, required: true, select: false },
         language: {type: String, enum: ['en', 'pt', 'es'], default: 'en' },
         status: {type: String, enum: ['active', 'inactive'], default: 'active'},
-        resetPasswordToken: String,
-        resetPasswordExpires: Date
+        resetPasswordToken: {type: String},
+        resetPasswordExpires: {type: Date}
     });
 
     UserSchema.pre('save', function(next){
